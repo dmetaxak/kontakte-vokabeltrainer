@@ -1,0 +1,124 @@
+# base ;; case ;; noun (pl: = plural of that vocab noun) ;; sentence ;; english
+der;;acc;;der Hund;;Ich sehe ___ Hund.;;I see the dog.
+der;;acc;;die Katze;;Wir suchen ___ Katze.;;We are looking for the cat.
+der;;acc;;das Fahrrad;;Er kauft ___ Fahrrad.;;He is buying the bicycle.
+der;;acc;;der Computer;;Sie verkauft ___ Computer.;;She is selling the computer.
+der;;acc;;der Rucksack;;Ich brauche ___ Rucksack.;;I need the backpack.
+der;;acc;;die Tasche;;Du verlierst ___ Tasche.;;You lose the bag.
+der;;acc;;das Handy;;Ich suche ___ Handy.;;I am looking for the phone.
+der;;acc;;der Film;;Wir sehen ___ Film.;;We are watching the film.
+der;;acc;;der Kaffee;;Er trinkt ___ Kaffee.;;He drinks the coffee.
+der;;acc;;das Buch;;Sie liest ___ Buch.;;She is reading the book.
+der;;acc;;der Brief;;Ich schreibe ___ Brief.;;I am writing the letter.
+der;;acc;;die Zeitung;;Mein Vater liest ___ Zeitung.;;My father is reading the newspaper.
+der;;acc;;der Hut;;Die Frau trägt ___ Hut.;;The woman is wearing the hat.
+der;;acc;;die Jacke;;Der Mann trägt ___ Jacke.;;The man is wearing the jacket.
+der;;acc;;das Kleid;;Sie trägt ___ Kleid.;;She is wearing the dress.
+der;;acc;;der Mantel;;Ich brauche ___ Mantel.;;I need the coat.
+der;;acc;;der Schuh;;Er verliert ___ Schuh.;;He loses the shoe.
+der;;acc;;das Hemd;;Wir waschen ___ Hemd.;;We are washing the shirt.
+der;;acc;;der Tisch;;Sie kauft ___ Tisch.;;She is buying the table.
+der;;acc;;die Lampe;;Ich finde ___ Lampe schön.;;I think the lamp is pretty.
+der;;acc;;der Stuhl;;Du brauchst ___ Stuhl.;;You need the chair.
+der;;acc;;das Fenster;;Er öffnet ___ Fenster.;;He opens the window.
+der;;acc;;der Schreibtisch;;Wir kaufen ___ Schreibtisch.;;We are buying the desk.
+der;;acc;;das Klavier;;Er spielt ___ Klavier.;;He plays the piano.
+der;;acc;;der Ball;;Das Kind wirft ___ Ball.;;The child throws the ball.
+der;;acc;;die Party;;Wir planen ___ Party.;;We are planning the party.
+der;;acc;;das Geschenk;;Ich bringe ___ Geschenk mit.;;I bring the gift along.
+der;;acc;;der Roman;;Ich lese ___ Roman.;;I am reading the novel.
+der;;acc;;das Lied;;Sie singt ___ Lied.;;She sings the song.
+der;;acc;;der Zug;;Wir nehmen ___ Zug.;;We take the train.
+der;;acc;;die Wohnung;;Sie sucht ___ Wohnung.;;She is looking for the apartment.
+der;;acc;;der Bus;;Ich nehme ___ Bus.;;I take the bus.
+der;;acc;;pl:der Hund;;Ich sehe ___ Hunde.;;I see the dogs.
+der;;acc;;pl:das Buch;;Wir kaufen ___ Bücher.;;We are buying the books.
+der;;acc;;pl:die Katze;;Sie sucht ___ Katzen.;;She is looking for the cats.
+ein;;acc;;der Hund;;Ich habe ___ Hund.;;I have a dog.
+ein;;acc;;die Katze;;Er hat ___ Katze.;;He has a cat.
+ein;;acc;;das Fahrrad;;Wir kaufen ___ Fahrrad.;;We are buying a bicycle.
+ein;;acc;;der Computer;;Du brauchst ___ Computer.;;You need a computer.
+ein;;acc;;der Rucksack;;Sie kauft ___ Rucksack.;;She is buying a backpack.
+ein;;acc;;die Brille;;Ich suche ___ Brille.;;I am looking for a pair of glasses.
+ein;;acc;;das Auto;;Mein Bruder hat ___ Auto.;;My brother has a car.
+ein;;acc;;der Schrank;;Wir brauchen ___ Schrank.;;We need a cabinet.
+ein;;acc;;der Teppich;;Ich kaufe ___ Teppich.;;I am buying a carpet.
+ein;;acc;;das Zelt;;Sie bringen ___ Zelt mit.;;They bring a tent along.
+ein;;acc;;der Bruder;;Sie hat ___ Bruder.;;She has a brother.
+ein;;acc;;die Schwester;;Ich habe ___ Schwester.;;I have a sister.
+ein;;acc;;das Kind;;Er hat ___ Kind.;;He has a child.
+ein;;acc;;der Sohn;;Meine Tante hat ___ Sohn.;;My aunt has a son.
+ein;;acc;;die Tochter;;Sie haben ___ Tochter.;;They have a daughter.
+ein;;acc;;der Stift;;Ich brauche ___ Stift.;;I need a pen.
+ein;;acc;;das Heft;;Du brauchst ___ Heft.;;You need a notebook.
+ein;;acc;;die Karte;;Er schreibt ___ Karte.;;He is writing a card.
+ein;;acc;;der Anzug;;Er trägt ___ Anzug.;;He is wearing a suit.
+ein;;acc;;der Rock;;Sie trägt ___ Rock.;;She is wearing a skirt.
+ein;;acc;;die Hose;;Ich kaufe ___ Hose.;;I am buying a pair of pants.
+ein;;acc;;das Hemd;;Er braucht ___ Hemd.;;He needs a shirt.
+ein;;acc;;der Mantel;;Wir verkaufen ___ Mantel.;;We are selling a coat.
+ein;;acc;;der Laptop;;Sie hat ___ Laptop.;;She has a laptop.
+ein;;acc;;die Kamera;;Ich habe ___ Kamera.;;I have a camera.
+ein;;acc;;das Radio;;Er kauft ___ Radio.;;He is buying a radio.
+ein;;acc;;der Ring;;Sie bekommt ___ Ring.;;She gets a ring.
+ein;;acc;;die Kette;;Ich bekomme ___ Kette.;;I get a necklace.
+ein;;acc;;das Pferd;;Wir haben ___ Pferd.;;We have a horse.
+ein;;acc;;der Fernseher;;Ich brauche ___ Fernseher.;;I need a TV.
+ein;;acc;;die Einladung;;Ich bekomme ___ Einladung.;;I get an invitation.
+ein;;acc;;das Smartphone;;Du hast ___ Smartphone.;;You have a smartphone.
+kein;;acc;;der Hund;;Ich habe ___ Hund.;;I don't have a dog.
+kein;;acc;;die Katze;;Wir haben ___ Katze.;;We don't have a cat.
+kein;;acc;;das Auto;;Er hat ___ Auto.;;He doesn't have a car.
+kein;;acc;;der Computer;;Sie braucht ___ Computer.;;She doesn't need a computer.
+kein;;acc;;das Geld;;Ich habe ___ Geld.;;I have no money.
+kein;;acc;;die Zeit;;Er hat ___ Zeit.;;He has no time.
+kein;;acc;;der Bruder;;Sie hat ___ Bruder.;;She doesn't have a brother.
+kein;;acc;;die Schwester;;Er hat ___ Schwester.;;He doesn't have a sister.
+kein;;acc;;der Fernseher;;Wir haben ___ Fernseher.;;We don't have a TV.
+kein;;acc;;das Handy;;Du hast ___ Handy.;;You don't have a cell phone.
+kein;;acc;;pl:das Buch;;Ich habe ___ Bücher.;;I have no books.
+kein;;acc;;der Schlafsack;;Ich habe ___ Schlafsack.;;I don't have a sleeping bag.
+kein;;acc;;das Problem;;Wir haben ___ Problem.;;We don't have a problem.
+kein;;acc;;der Kaffee;;Ich trinke ___ Kaffee.;;I don't drink coffee.
+kein;;acc;;das Bier;;Er trinkt ___ Bier.;;He doesn't drink beer.
+mein;;acc;;der Hund;;Ich suche ___ Hund.;;I am looking for my dog.
+mein;;acc;;die Tasche;;Ich verliere ___ Tasche.;;I lose my bag.
+mein;;acc;;das Handy;;Ich brauche ___ Handy.;;I need my cell phone.
+mein;;acc;;der Computer;;Ich nutze ___ Computer.;;I use my computer.
+mein;;acc;;die Familie;;Ich besuche ___ Familie.;;I am visiting my family.
+mein;;acc;;pl:die Schwester;;Ich besuche ___ Schwestern.;;I am visiting my sisters.
+dein;;acc;;der Rucksack;;Ich finde ___ Rucksack.;;I find your backpack.
+dein;;acc;;die Brille;;Du suchst ___ Brille.;;You are looking for your glasses.
+dein;;acc;;das Fahrrad;;Ich nutze ___ Fahrrad.;;I use your bicycle.
+dein;;acc;;pl:der Freund;;Ich kenne ___ Freunde.;;I know your friends.
+sein;;acc;;der Bruder;;Er besucht ___ Bruder.;;He is visiting his brother.
+sein;;acc;;die Mutter;;Er ruft ___ Mutter an.;;He calls his mother.
+sein;;acc;;das Buch;;Er verliert ___ Buch.;;He loses his book.
+sein;;acc;;pl:das Kind;;Er holt ___ Kinder ab.;;He picks up his children.
+ihr;;acc;;der Vater;;Sie besucht ___ Vater.;;She is visiting her father.
+ihr;;acc;;die Tante;;Sie lädt ___ Tante ein.;;She invites her aunt.
+ihr;;acc;;das Kind;;Sie holt ___ Kind ab.;;She picks up her child.
+unser;;acc;;der Onkel;;Wir besuchen ___ Onkel.;;We are visiting our uncle.
+unser;;acc;;die Wohnung;;Wir verkaufen ___ Wohnung.;;We are selling our apartment.
+unser;;acc;;das Haus;;Wir verkaufen ___ Haus.;;We are selling our house.
+unser;;acc;;pl:das Buch;;Wir brauchen ___ Bücher.;;We need our books.
+euer;;acc;;der Hund;;Ich sehe ___ Hund.;;I see your (plural) dog.
+euer;;acc;;die Katze;;Ich suche ___ Katze.;;I am looking for your (plural) cat.
+euer;;acc;;das Auto;;Wir brauchen ___ Auto.;;We need your (plural) car.
+ein;;nom;;der Hund;;___ Hund bellt laut.;;A dog is barking loudly.
+ein;;nom;;die Katze;;___ Katze schläft hier.;;A cat is sleeping here.
+ein;;nom;;das Kind;;___ Kind weint.;;A child is crying.
+ein;;nom;;der Gast;;___ Gast kommt heute.;;A guest is coming today.
+kein;;nom;;der Hund;;___ Hund ist hier.;;No dog is here.
+kein;;nom;;die Lampe;;___ Lampe funktioniert.;;No lamp works.
+kein;;nom;;das Problem;;Das ist ___ Problem.;;That is no problem.
+mein;;nom;;der Bruder;;___ Bruder wohnt in Berlin.;;My brother lives in Berlin.
+mein;;nom;;die Schwester;;___ Schwester studiert Physik.;;My sister studies physics.
+mein;;nom;;pl:der Freund;;___ Freunde kommen heute Abend.;;My friends are coming tonight.
+dein;;nom;;das Handy;;___ Handy klingelt.;;Your cell phone is ringing.
+sein;;nom;;der Vater;;___ Vater kocht heute.;;His father is cooking today.
+ihr;;nom;;die Mutter;;___ Mutter arbeitet viel.;;Her mother works a lot.
+unser;;nom;;das Haus;;___ Haus ist alt.;;Our house is old.
+unser;;nom;;die Wohnung;;___ Wohnung ist klein.;;Our apartment is small.
+euer;;nom;;der Lehrer;;___ Lehrer ist sehr nett.;;Your (plural) teacher is very nice.
+euer;;nom;;die Tochter;;___ Tochter spielt Klavier.;;Your (plural) daughter plays the piano.

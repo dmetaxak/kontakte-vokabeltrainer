@@ -1,0 +1,257 @@
+die Hoffnungen;;Wir haben große Hoffnungen für das neue Jahr.;;We have great hopes for the new year.
+die Katzen;;Meine Katzen schlafen den ganzen Tag.;;My cats sleep all day.
+die Rechnungen;;Er bezahlt die Rechnungen am Ende des Monats.;;He pays the bills at the end of the month.
+die Reisen;;Ihre Reisen führen sie jedes Jahr nach Italien.;;Her trips take her to Italy every year.
+die Sachen;;Pack bitte deine Sachen ein!;;Please pack your things!
+die Computer;;Die Computer in der Schule sind neu.;;The computers at school are new.
+die Euro;;Das macht zehn Euro, bitte.;;That comes to ten euros, please.
+die Fernseher;;Im Geschäft stehen viele Fernseher.;;There are many TV sets in the store.
+die Filme;;Wir sehen am Wochenende zwei Filme.;;We are watching two films this weekend.
+die Hunde;;Die Hunde spielen im Park.;;The dogs are playing in the park.
+die Rucksäcke;;Die Rucksäcke liegen im Flur.;;The backpacks are lying in the hallway.
+die Schlafsäcke;;Wir brauchen drei Schlafsäcke für die Reise.;;We need three sleeping bags for the trip.
+die Schränke;;Die Schränke im Zimmer sind sehr groß.;;The wardrobes in the room are very big.
+die Schreibtische;;Die Schreibtische stehen am Fenster.;;The desks are by the window.
+die Sessel;;Wir kaufen zwei neue Sessel.;;We are buying two new armchairs.
+die Spieler;;Die Spieler laufen auf den Platz.;;The players run onto the field.
+die Teppiche;;Die Teppiche in diesem Geschäft sind schön.;;The carpets in this store are beautiful.
+die Boote;;Die Boote fahren über den See.;;The boats travel across the lake.
+die Fahrräder;;Die Fahrräder stehen vor dem Haus.;;The bicycles are standing in front of the house.
+die Geschäfte;;Die Geschäfte öffnen um neun Uhr.;;The stores open at nine o'clock.
+die Klaviere;;Hier gibt es viele alte Klaviere.;;There are many old pianos here.
+die Pferde;;Die Pferde stehen auf der Wiese.;;The horses are standing in the meadow.
+die Probleme;;Wir haben keine Probleme mit dem Plan.;;We have no problems with the plan.
+die Radios;;Die Radios sind leider kaputt.;;The radios are unfortunately broken.
+die Regale;;Die Regale sind voller Bücher.;;The bookshelves are full of books.
+die Smartphones;;Alle meine Freunde haben Smartphones.;;All my friends have smartphones.
+die Zelte;;Die Zelte stehen direkt am Fluss.;;The tents are right by the river.
+die Einladungen;;Ich schreibe zehn Einladungen für die Party.;;I am writing ten invitations for the party.
+die Freuden;;Die kleinen Freuden des Lebens sind wichtig.;;The little joys of life are important.
+die Höhen;;Die Höhen der Berge sind sehr unterschiedlich.;;The heights of the mountains are very different.
+die Kameras;;Die Kameras sind im Koffer.;;The cameras are in the suitcase.
+die Nachfragen;;Auf unsere Nachfragen gibt es keine Antwort.;;There is no answer to our inquiries.
+die Platten;;Mein Opa hat viele alte Platten.;;My grandpa has many old records.
+die Tassen;;Die Tassen stehen im Schrank.;;The cups are in the cupboard.
+die Bildschirme;;Die Bildschirme sind sehr hell.;;The screens are very bright.
+die Gäste;;Die Gäste kommen um acht Uhr.;;The guests are coming at eight o'clock.
+die Kontakte;;Er hat viele Kontakte in Berlin.;;He has many contacts in Berlin.
+die Rahmen;;Die Rahmen für die Bilder sind aus Holz.;;The frames for the pictures are made of wood.
+die Biere;;Wir bestellen zwei Biere.;;We order two beers.
+die Bretter;;Die Bretter liegen im Garten.;;The boards are lying in the garden.
+die Geschenke;;Die Kinder öffnen die Geschenke.;;The children open the gifts.
+die Instrumente;;Die Instrumente stehen auf der Bühne.;;The instruments are on the stage.
+die Restaurants;;In dieser Stadt gibt es gute Restaurants.;;There are good restaurants in this city.
+die Wörter;;Ich lerne jeden Tag zehn neue Wörter.;;I learn ten new words every day.
+die Ketten;;Die Ketten im Schaufenster sind teuer.;;The necklaces in the shop window are expensive.
+die Reihenfolgen;;Die Reihenfolgen der Aufgaben sind verschieden.;;The orders of the tasks are different.
+die Ringe;;Sie trägt zwei Ringe.;;She is wearing two rings.
+die Lieder;;Wir singen drei Lieder im Kurs.;;We sing three songs in class.
+die Gefahren;;Die Gefahren im Straßenverkehr sind groß.;;The dangers in road traffic are great.
+die Busse;;Die Busse fahren alle zehn Minuten.;;The buses run every ten minutes.
+die Einflüsse;;Die Einflüsse der Medien sind stark.;;The influences of the media are strong.
+die Gründe;;Es gibt viele Gründe für diese Idee.;;There are many reasons for this idea.
+die Kilometer;;Bis zur Stadt sind es zehn Kilometer.;;It is ten kilometers to the city.
+die Romane;;Sie liest gern lange Romane.;;She likes reading long novels.
+die Unterschiede;;Ich sehe keine großen Unterschiede.;;I see no big differences.
+die Wälder;;Die Wälder in Deutschland sind groß.;;The forests in Germany are big.
+die Dinge;;Ich muss noch viele Dinge kaufen.;;I still have to buy many things.
+die Frühstücke;;Die Frühstücke im Hotel sind sehr gut.;;The breakfasts at the hotel are very good.
+die Handys;;Die Handys liegen auf dem Tisch.;;The cell phones are lying on the table.
+die Hotels;;Die Hotels am Meer sind teuer.;;The hotels by the sea are expensive.
+die Spiele;;Wir spielen am Abend zwei Spiele.;;We play two games in the evening.
+die E-Mails;;Ich schreibe jeden Tag viele E-Mails.;;I write many e-mails every day.
+die Karten;;Wir schreiben zwei Karten an Oma.;;We are writing two cards to Grandma.
+die Kneipen;;In Berlin gibt es viele Kneipen.;;There are many bars in Berlin.
+die Partys;;Die Partys von Lena sind immer toll.;;Lena's parties are always great.
+die Perspektiven;;Die Perspektiven in diesem Beruf sind gut.;;The perspectives in this profession are good.
+die Sonnen;;Auf dem Bild sieht man drei Sonnen.;;You can see three suns in the picture.
+die Stunden;;Der Kurs dauert zwei Stunden.;;The course lasts two hours.
+die Wohnungen;;Die Wohnungen in München sind teuer.;;The apartments in Munich are expensive.
+die Zeiten;;Die Zeiten ändern sich.;;Times are changing.
+die Zeitungen;;Mein Vater liest jeden Morgen zwei Zeitungen.;;My father reads two newspapers every morning.
+die Berge;;Die Berge sind im Winter weiß.;;The mountains are white in winter.
+die Briefe;;Ich schreibe nur selten Briefe.;;I only rarely write letters.
+die Kaffees;;Wir bestellen zwei Kaffees.;;We order two coffees.
+die Zufälle;;Das sind doch alles nur Zufälle.;;Those are all just coincidences.
+die Angebote;;Die Angebote im Supermarkt sind gut.;;The offers at the supermarket are good.
+die Beispiele;;Der Lehrer gibt uns drei Beispiele.;;The teacher gives us three examples.
+die Fotos;;Ich mache viele Fotos im Urlaub.;;I take many photos on vacation.
+die Hobbys;;Meine Hobbys sind Lesen und Schwimmen.;;My hobbies are reading and swimming.
+die Kinos;;Die Kinos schließen um Mitternacht.;;The movie theaters close at midnight.
+die Konzerte;;Wir besuchen im Sommer viele Konzerte.;;We attend many concerts in the summer.
+die Meere;;Die Meere sind im Sommer warm.;;The seas are warm in summer.
+die Museen;;Die Museen in Berlin sind weltbekannt.;;The museums in Berlin are world famous.
+die Tiere;;Die Tiere im Zoo schlafen noch.;;The animals in the zoo are still sleeping.
+die Wochenenden;;Die Wochenenden sind immer zu kurz.;;The weekends are always too short.
+die Fremdsprachen;;Sie spricht drei Fremdsprachen.;;She speaks three foreign languages.
+die Geschichten;;Mein Opa erzählt gern Geschichten.;;My grandpa likes telling stories.
+die Minuten;;Der Zug hat zehn Minuten Verspätung.;;The train is ten minutes late.
+die Pausen;;Die Pausen in der Schule sind kurz.;;The breaks at school are short.
+die Religionen;;Es gibt viele Religionen auf der Welt.;;There are many religions in the world.
+die Schulen;;Die Schulen sind im Sommer geschlossen.;;The schools are closed in summer.
+die Schülerinnen;;Die Schülerinnen warten vor der Klasse.;;The female pupils are waiting in front of the classroom.
+die Sekunden;;Warte noch dreißig Sekunden!;;Wait another thirty seconds!
+die Wirtschaften;;Die Wirtschaften in Europa sind sehr verschieden.;;The economies in Europe are very different.
+die Wochen;;Wir haben zwei Wochen Urlaub.;;We have two weeks of vacation.
+die Schüler;;Die Schüler schreiben heute einen Test.;;The male pupils are taking a test today.
+die Betten;;Die Betten im Hotel sind bequem.;;The beds in the hotel are comfortable.
+die Fächer;;Wir haben in der Schule viele Fächer.;;We have many subjects at school.
+die Häuser;;Die Häuser in dieser Straße sind alt.;;The houses on this street are old.
+die Kapitel;;Wir lesen zwei Kapitel pro Woche.;;We read two chapters per week.
+die Aussagen;;Die Aussagen der Zeugen sind verschieden.;;The statements of the witnesses are different.
+die Lösungen;;Die Lösungen stehen hinten im Buch.;;The solutions are at the back of the book.
+die Prüfungen;;Die Prüfungen beginnen im Juli.;;The exams start in July.
+die Taschen;;Die Taschen liegen im Auto.;;The bags are in the car.
+die Momente;;Das sind die schönsten Momente im Leben.;;Those are the most beautiful moments in life.
+die Parks;;Die Parks in Wien sind sehr schön.;;The parks in Vienna are very beautiful.
+die Späße;;Seine Späße sind manchmal nicht lustig.;;His jokes are sometimes not funny.
+die Studien;;Die Studien dauern oft fünf Jahre.;;The studies often last five years.
+die Theater;;Die Theater in Hamburg sind berühmt.;;The theaters in Hamburg are famous.
+die Adressen;;Ich brauche die Adressen von allen Gästen.;;I need the addresses of all the guests.
+die Angaben;;Die Angaben im Formular sind falsch.;;The details in the form are wrong.
+die Beziehungen;;Gute Beziehungen sind wichtig.;;Good relationships are important.
+die Größen;;Die Größen sind auf dem Schild zu sehen.;;The sizes are shown on the sign.
+die Kundinnen;;Die Kundinnen warten im Geschäft.;;The female customers are waiting in the store.
+die Lehrerinnen;;Die Lehrerinnen sprechen mit den Eltern.;;The female teachers are talking to the parents.
+die Nummern;;Ich vergesse immer die Nummern.;;I always forget the numbers.
+die Personen;;Es kommen zehn Personen zur Party.;;Ten people are coming to the party.
+die Berufe;;Wir sprechen über Berufe.;;We are talking about professions.
+die Geburtstage;;Ich vergesse nie die Geburtstage meiner Freunde.;;I never forget my friends' birthdays.
+die Kunden;;Die Kunden warten schon seit zehn Minuten.;;The male customers have been waiting for ten minutes.
+die Lehrer;;Die Lehrer machen eine Pause.;;The male teachers are taking a break.
+die Züge;;Die Züge fahren pünktlich ab.;;The trains leave on time.
+die Enden;;Die Enden des Seils sind rot.;;The ends of the rope are red.
+die Gespräche;;Die Gespräche mit meinen Eltern sind wichtig.;;The conversations with my parents are important.
+die Rathäuser;;Die Rathäuser in Deutschland sind oft alt.;;The town halls in Germany are often old.
+die Telefone;;Die Telefone klingeln den ganzen Tag.;;The telephones ring all day.
+die Blumen;;Die Blumen im Garten sind rot.;;The flowers in the garden are red.
+die Einführungen;;Die Einführungen sind sehr kurz.;;The introductions are very short.
+die Hausaufgaben;;Ich mache die Hausaufgaben am Nachmittag.;;I do the homework in the afternoon.
+die Künstlerinnen;;Die Künstlerinnen malen im Park.;;The female artists are painting in the park.
+die Situationen;;Wir üben Situationen aus dem Alltag.;;We practice situations from everyday life.
+die Tafeln;;Die Tafeln in der Klasse sind sauber.;;The blackboards in the classroom are clean.
+die Übungen;;Wir machen heute drei Übungen.;;We are doing three exercises today.
+die Künstler;;Die Künstler stellen ihre Bilder aus.;;The male artists are exhibiting their pictures.
+die Namen;;Ich vergesse oft die Namen.;;I often forget names.
+die Stifte;;Die Stifte liegen auf dem Tisch.;;The pens are lying on the table.
+die Vereine;;In unserer Stadt gibt es viele Vereine.;;There are many clubs in our town.
+die Bilder;;Die Bilder an der Wand sind schön.;;The pictures on the wall are beautiful.
+die Bücher;;Die Bücher liegen auf dem Tisch.;;The books are lying on the table.
+die Brillen;;Die Brillen sind sehr teuer.;;The glasses are very expensive.
+die Frauen;;Die Frauen sprechen über die Arbeit.;;The women are talking about work.
+die Strukturen;;Wir lernen neue Strukturen im Kurs.;;We are learning new structures in class.
+die Türen;;Die Türen sind noch geschlossen.;;The doors are still closed.
+die Bälle;;Die Bälle sind rot und blau.;;The balls are red and blue.
+die Jungen;;Die Jungen spielen Fußball.;;The boys are playing soccer.
+die Kurse;;Die Kurse beginnen im Oktober.;;The courses begin in October.
+die Männer;;Die Männer trinken Kaffee.;;The men are drinking coffee.
+die Haare;;Ihre Haare sind lang und braun.;;Her hair is long and brown.
+die Mädchen;;Die Mädchen lesen ein Buch.;;The girls are reading a book.
+die Modelle;;Die neuen Modelle sind leider zu teuer.;;The new models are unfortunately too expensive.
+die Fragen;;Der Lehrer beantwortet unsere Fragen.;;The teacher answers our questions.
+die Hosen;;Die Hosen sind zu groß.;;The pants are too big.
+die Jacken;;Die Jacken hängen an der Tür.;;The jackets are hanging on the door.
+die Anzüge;;Die Anzüge sind sehr elegant.;;The suits are very elegant.
+die Herren;;Die Herren warten vor dem Eingang.;;The gentlemen are waiting in front of the entrance.
+die Hüte;;Die Hüte sind aus Stroh.;;The hats are made of straw.
+die Mäntel;;Die Mäntel sind noch nass.;;The coats are still wet.
+die Röcke;;Die Röcke sind im Sommer kurz.;;The skirts are short in summer.
+die Schuhe;;Die Schuhe stehen vor der Tür.;;The shoes are standing in front of the door.
+die Stiefel;;Die Stiefel sind aus Leder.;;The boots are made of leather.
+die Hemden;;Die Hemden sind noch nicht trocken.;;The shirts are not dry yet.
+die Kleider;;Die Kleider im Schrank sind neu.;;The dresses in the closet are new.
+die Farben;;Die Farben des Bildes sind sehr hell.;;The colors of the picture are very bright.
+die Professorinnen;;Die Professorinnen kommen aus Österreich.;;The female professors come from Austria.
+die Studentinnen;;Die Studentinnen lernen in der Bibliothek.;;The female students are studying in the library.
+die Professoren;;Die Professoren sprechen sehr schnell.;;The male professors speak very fast.
+die Studenten;;Die Studenten warten vor dem Hörsaal.;;The male students are waiting in front of the lecture hall.
+die Freundinnen;;Meine Freundinnen kommen heute Abend.;;My female friends are coming tonight.
+die Städte;;Die Städte in Deutschland sind alt.;;The cities in Germany are old.
+die Abende;;Die Abende im Sommer sind lang.;;The evenings in summer are long.
+die Doktoren;;Die Doktoren arbeiten im Krankenhaus.;;The doctors work at the hospital.
+die Freunde;;Meine Freunde wohnen in Hamburg.;;My friends live in Hamburg.
+die Fußbälle;;Die Fußbälle liegen im Keller.;;The soccer balls are lying in the basement.
+die Menschen;;Die Menschen warten auf den Bus.;;The people are waiting for the bus.
+die Morgen;;Die Morgen im Herbst sind kalt.;;The mornings in autumn are cold.
+die Tage;;Die Tage im Sommer sind lang.;;The days in summer are long.
+die Wortschätze;;Die Wortschätze der Kinder wachsen schnell.;;The children's vocabularies grow quickly.
+die Autos;;Die Autos stehen vor dem Haus.;;The cars are parked in front of the house.
+die Decken;;Die Decken in diesem Zimmer sind hoch.;;The ceilings in this room are high.
+die Lampen;;Die Lampen sind sehr hell.;;The lamps are very bright.
+die Lieben;;Er schreibt über die Lieben seines Lebens.;;He writes about the loves of his life.
+die Uhren;;Die Uhren zeigen alle die gleiche Zeit.;;The clocks all show the same time.
+die Wände;;Die Wände in meinem Zimmer sind blau.;;The walls in my room are blue.
+die Böden;;Die Böden sind aus Holz.;;The floors are made of wood.
+die Gegenstände;;Die Gegenstände liegen auf dem Tisch.;;The objects are lying on the table.
+die Hintergründe;;Die Hintergründe der Bilder sind dunkel.;;The backgrounds of the pictures are dark.
+die Laptops;;Die Laptops liegen in der Tasche.;;The laptops are in the bag.
+die Stühle;;Die Stühle stehen im Garten.;;The chairs are standing in the garden.
+die Tische;;Die Tische im Restaurant sind rund.;;The tables in the restaurant are round.
+die Vordergründe;;Die Vordergründe der Bilder sind hell.;;The foregrounds of the pictures are bright.
+die Fenster;;Die Fenster sind offen.;;The windows are open.
+die Hefte;;Die Hefte liegen im Rucksack.;;The notebooks are in the backpack.
+die Papiere;;Die Papiere liegen auf dem Schreibtisch.;;The papers are lying on the desk.
+die Bedingungen;;Die Bedingungen für den Kurs sind klar.;;The conditions for the course are clear.
+die Forschungen;;Die Forschungen dauern viele Jahre.;;The research projects take many years.
+die Sicherheiten;;Die Sicherheiten der Bank sind gering.;;The bank's securities are low.
+die Wissenschaften;;Wir studieren zwei Wissenschaften.;;We are studying two sciences.
+die Bärte;;Die Bärte der Männer sind lang.;;The men's beards are long.
+die Jobs;;Die Jobs in dieser Stadt sind gut.;;The jobs in this city are good.
+die Werte;;Die Werte sind in der Tabelle zu sehen.;;The values can be seen in the table.
+die Augen;;Seine Augen sind blau.;;His eyes are blue.
+die Systeme;;Die Systeme arbeiten sehr schnell.;;The systems work very fast.
+die Hände;;Meine Hände sind kalt.;;My hands are cold.
+die Nasen;;Die Nasen der Kinder sind rot.;;The children's noses are red.
+die Schultern;;Seine Schultern sind breit.;;His shoulders are broad.
+die Arme;;Die Arme tun mir weh.;;My arms hurt.
+die Bäuche;;Die Bäuche der Kinder sind voll.;;The children's stomachs are full.
+die Füße;;Meine Füße sind müde.;;My feet are tired.
+die Köpfe;;Die Köpfe der Schüler sind voll.;;The pupils' heads are full.
+die Körper;;Die Körper der Sportler sind stark.;;The athletes' bodies are strong.
+die Münder;;Die Münder der Kinder sind offen.;;The children's mouths are open.
+die Rücken;;Die Rücken der Männer sind breit.;;The men's backs are broad.
+die Beine;;Ihre Beine sind sehr lang.;;Her legs are very long.
+die Gesichter;;Die Gesichter der Kinder sind rot.;;The children's faces are red.
+die Ohren;;Seine Ohren sind kalt.;;His ears are cold.
+die Familien;;Die Familien wohnen in diesem Haus.;;The families live in this house.
+die Großmütter;;Unsere Großmütter kochen sehr gut.;;Our grandmothers cook very well.
+die Kusinen;;Meine Kusinen wohnen in München.;;My female cousins live in Munich.
+die Mütter;;Die Mütter warten vor der Schule.;;The mothers are waiting in front of the school.
+die Schwestern;;Meine Schwestern studieren in Wien.;;My sisters study in Vienna.
+die Tanten;;Meine Tanten kommen am Sonntag.;;My aunts are coming on Sunday.
+die Töchter;;Ihre Töchter gehen zur Schule.;;Her daughters go to school.
+die Brüder;;Meine Brüder spielen Fußball.;;My brothers play soccer.
+die Cousins;;Meine Cousins wohnen in Berlin.;;My male cousins live in Berlin.
+die Großväter;;Unsere Großväter lesen die Zeitung.;;Our grandfathers read the newspaper.
+die Onkel;;Meine Onkel kommen zur Party.;;My uncles are coming to the party.
+die Söhne;;Ihre Söhne spielen im Garten.;;Their sons are playing in the garden.
+die Väter;;Die Väter warten auf die Kinder.;;The fathers are waiting for the children.
+die Kinder;;Die Kinder spielen im Garten.;;The children are playing in the garden.
+die Ausnahmen;;Es gibt viele Ausnahmen in der Grammatik.;;There are many exceptions in grammar.
+die Tabellen;;Die Tabellen sind am Ende des Kapitels.;;The tables are at the end of the chapter.
+die Temperaturen;;Die Temperaturen sind heute sehr niedrig.;;The temperatures are very low today.
+die Frühlinge;;Die Frühlinge hier sind meistens regnerisch.;;The springs here are mostly rainy.
+die Grade;;Heute haben wir fünfzehn Grade.;;Today it is fifteen degrees.
+die Herbste;;Die Herbste in Norddeutschland sind kühl.;;The autumns in northern Germany are cool.
+die Monate;;Die Monate vergehen schnell.;;The months pass quickly.
+die Sommer;;Die Sommer in Spanien sind heiß.;;The summers in Spain are hot.
+die Winter;;Die Winter in Kanada sind kalt.;;The winters in Canada are cold.
+die Gebiete;;Die Gebiete im Norden sind kalt.;;The areas in the north are cold.
+die Jahre;;Die Jahre vergehen schnell.;;The years pass quickly.
+die Hauptstädte;;Die Hauptstädte in Europa sind groß.;;The capital cities in Europe are big.
+die Universitäten;;Die Universitäten in Deutschland sind gut.;;The universities in Germany are good.
+die Amerikaner;;Die Amerikaner kommen aus Texas.;;The male Americans come from Texas.
+die Amerikanerinnen;;Die Amerikanerinnen studieren in Berlin.;;The female Americans study in Berlin.
+die Australier;;Die Australier reisen im Winter nach Europa.;;The male Australians travel to Europe in winter.
+die Australierinnen;;Die Australierinnen sprechen gut Deutsch.;;The female Australians speak good German.
+die Deutschen;;Die Deutschen trinken gern Kaffee.;;Germans like drinking coffee.
+die Franzosen;;Die Franzosen essen gern Käse.;;The French men like eating cheese.
+die Französinnen;;Die Französinnen sprechen schnell.;;The French women speak fast.
+die Kanadier;;Die Kanadier lieben Eishockey.;;The male Canadians love ice hockey.
+die Kanadierinnen;;Die Kanadierinnen wohnen in Toronto.;;The female Canadians live in Toronto.
+die Mexikaner;;Die Mexikaner feiern gern Feste.;;The male Mexicans like celebrating festivals.
+die Mexikanerinnen;;Die Mexikanerinnen kochen sehr gut.;;The female Mexicans cook very well.
+die Österreicher;;Die Österreicher fahren gern Ski.;;The male Austrians like skiing.
+die Österreicherinnen;;Die Österreicherinnen sprechen schnell.;;The female Austrians speak fast.
+die Schweizer;;Die Schweizer sprechen oft vier Sprachen.;;The male Swiss often speak four languages.
+die Schweizerinnen;;Die Schweizerinnen arbeiten in Zürich.;;The female Swiss work in Zurich.

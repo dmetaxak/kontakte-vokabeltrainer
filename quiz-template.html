@@ -1,0 +1,2237 @@
+<title>Kontakte Vokabeltrainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@500&display=swap">
+<style>
+/* Layout: one narrow column. Home -> quiz card -> round summary, with a progress report tab.
+   Subject detail: nouns tint by grammatical gender (der blue, die red, das green), as in the textbook. */
+:root {
+  --bg: #eef1f6;
+  --fg: #14213d;
+  --muted: #55627a;
+  --line: #d3dae6;
+  --surface: #ffffff;
+  --accent: #2b4c9b;
+  --accent-fg: #ffffff;
+  --der: #1f5fbf;
+  --die: #c93d92;
+  --das: #2b7a45;
+  --b1: #86b6ef; --b2: #3987e5; --b3: #1c5cab; --b4: #0d366b;
+  --ok: #1f7a46; --ok-bg: #e0f1e6;
+  --half: #8a5a00; --half-bg: #f6ead0;
+  --bad: #a3321f; --bad-bg: #f8e3de;
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Source Code Pro", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1522; --fg: #e5eaf5; --muted: #9aa7c0; --line: #28324a; --surface: #172033;
+    --accent: #8aa9ff; --accent-fg: #0b1220;
+    --b1: #1c5cab; --b2: #2a78d6; --b3: #5598e7; --b4: #9ec5f4;
+    --der: #7fb0ff; --die: #ff9bd2; --das: #7fd69a;
+    --ok: #7bd69d; --ok-bg: #1b3a2a; --half: #f0cc82; --half-bg: #3a3017; --bad: #f4a898; --bad-bg: #40211b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1522; --fg: #e5eaf5; --muted: #9aa7c0; --line: #28324a; --surface: #172033;
+  --accent: #8aa9ff; --accent-fg: #0b1220;
+  --b1: #1c5cab; --b2: #2a78d6; --b3: #5598e7; --b4: #9ec5f4;
+  --der: #7fb0ff; --die: #ff9bd2; --das: #7fd69a;
+  --ok: #7bd69d; --ok-bg: #1b3a2a; --half: #f0cc82; --half-bg: #3a3017; --bad: #f4a898; --bad-bg: #40211b;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 1rem; }
+main { max-width: 36rem; margin-inline: auto; padding-inline: 1rem; padding-block: 1rem 3rem; display: flex; flex-direction: column; gap: 1rem; min-height: 100%; }
+h1, h2 { font-family: var(--font-display); margin: 0; text-wrap: balance; line-height: 1.15; }
+h1 { font-size: 1.6rem; padding-right: 2.5rem; }
+h2 { font-size: 1.25rem; }
+p { margin: 0; line-height: 1.5; }
+.muted { color: var(--muted); font-size: 0.92rem; }
+header.top { position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+nav { display: flex; gap: 0.4rem; }
+nav button { background: transparent; color: var(--muted); border: 1px solid var(--line); padding: 0.4rem 0.8rem; min-height: 2.25rem; font-weight: 600; font-size: 0.9rem; }
+nav button[aria-current="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+button { font: inherit; font-weight: 600; background: var(--accent); color: var(--accent-fg); border: 0; border-radius: 0.5rem; padding: 0.8rem 1rem; min-height: 2.75rem; cursor: pointer; }
+button.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+button:disabled { opacity: 0.55; cursor: default; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 0.6rem; padding: 1rem; display: flex; flex-direction: column; gap: 0.85rem; min-width: 0; }
+fieldset { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
+legend { padding: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.seg { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.seg label { flex: 1 1 8rem; display: flex; align-items: center; gap: 0.5rem; border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.6rem 0.7rem; min-height: 2.75rem; cursor: pointer; font-weight: 600; font-size: 0.95rem; }
+.seg input { accent-color: var(--accent); }
+.seg label:has(input:checked) { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.syncbar { position: absolute; top: 0; right: 0; }
+.syncbar button.syncicon { position: relative; width: 2.25rem; height: 2.25rem; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); display: grid; place-items: center; }
+.syncbar button.syncicon svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.syncbar .dot { display: none; position: absolute; top: 0.45rem; right: 0.45rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--half); box-shadow: 0 0 0 2px var(--bg); }
+.syncbar[data-state="pending"] .dot { display: block; }
+.syncbar[data-state="busy"] svg { animation: kvspin 1s linear infinite; }
+@keyframes kvspin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .syncbar[data-state="busy"] svg { animation: none; } }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.banner { border-radius: 0.5rem; padding: 0.6rem 0.8rem; font-size: 0.9rem; background: var(--half-bg); color: var(--half); }
+.segbtns { display: flex; gap: 0.5rem; }
+.segbtns.modes button { padding: 0.5rem 0.4rem; font-size: 0.95rem; line-height: 1.2; }
+.segbtns button { flex: 1 1 0; min-height: 3rem; background: transparent; color: var(--fg); border: 1px solid var(--line); font-weight: 600; font-size: 1rem; }
+.segbtns button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+[hidden] { display: none !important; }
+.segbtns button[hidden] { display: none; }
+.chart { display: flex; flex-direction: column; gap: 2px; }
+.crow { display: grid; grid-template-columns: 5rem 1fr 2.5rem; align-items: center; gap: 0.6rem; min-height: 1.75rem; }
+.crow .cl { font-size: 0.85rem; color: var(--muted); }
+.crow .ct { height: 20px; }
+.crow .cb { height: 20px; min-width: 2px; border-radius: 0 4px 4px 0; }
+.crow .cv { font-family: var(--font-mono); font-size: 0.9rem; font-variant-numeric: tabular-nums; color: var(--fg); text-align: right; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr)); gap: 0.5rem; }
+.stat { border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.55rem 0.7rem; }
+.stat b { display: block; font-family: var(--font-mono); font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.bar { height: 0.5rem; background: var(--line); border-radius: 99px; overflow: hidden; }
+.bar > i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.2s; }
+.qhead { display: flex; justify-content: space-between; gap: 0.5rem; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; flex-wrap: wrap; }
+.prompt { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.9rem, 8vw, 2.6rem); line-height: 1.1; overflow-wrap: anywhere; }
+.prompt .art.der { color: var(--der); } .prompt .art.die { color: var(--die); } .prompt .art.das { color: var(--das); }
+.hint { font-size: 0.85rem; color: var(--muted); }
+.hint.big { font-size: 1.15rem; line-height: 1.35; color: var(--fg); }
+.hint.big strong { font-weight: 800; }
+.hintbox { background: var(--tint, rgba(120,140,200,0.14)); border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.7rem 0.9rem; font-weight: 600; }
+input[type="text"], textarea { font: inherit; width: 100%; padding: 0.75rem 0.8rem; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--bg); color: var(--fg); min-height: 2.75rem; }
+textarea { min-height: 5.5rem; resize: vertical; }
+.row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.row > button { flex: 1 1 8rem; }
+.row > button.primary-wide { flex: 2 1 10rem; }
+.qtop { display: flex; justify-content: space-between; gap: 0.5rem; }
+button.small { min-height: 2rem; padding: 0.3rem 0.75rem; font-size: 0.85rem; }
+.verdict { border-radius: 0.5rem; padding: 0.7rem 0.85rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.verdict.v1 { background: var(--ok-bg); color: var(--ok); }
+.verdict.v05 { background: var(--half-bg); color: var(--half); }
+.verdict.v0 { background: var(--bad-bg); color: var(--bad); }
+.verdict strong { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.verdict .ans { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--fg); overflow-wrap: anywhere; }
+.verdict .score { font-family: var(--font-mono); font-size: 0.85rem; color: var(--fg); }
+.verdict .ex { display: flex; flex-direction: column; gap: 0.1rem; border-top: 1px solid currentColor; padding-top: 0.5rem; margin-top: 0.15rem; }
+.verdict .ex .de { font-family: var(--font-display); font-size: 1.05rem; color: var(--fg); overflow-wrap: anywhere; }
+.verdict .ex .en { font-size: 0.88rem; color: var(--muted); overflow-wrap: anywhere; }
+.verdict .meta { font-size: 0.88rem; color: var(--fg); overflow-wrap: anywhere; }
+.override { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; font-size: 0.85rem; color: var(--muted); }
+.override button { padding: 0.35rem 0.7rem; min-height: 2rem; font-size: 0.85rem; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.scroll { overflow-x: auto; }
+#seg-mode { flex-wrap: wrap; }
+#seg-mode button { flex: 1 1 calc(50% - 0.25rem); }
+.gskip { width: 100%; min-height: 2.75rem; }
+.gskip small { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; color: var(--muted); margin-right: 0.5rem; }
+.gbtns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.gbtns button { --art: var(--fg); position: relative; min-height: 4.25rem; background: transparent; color: var(--fg); border: 2px solid var(--art); border-radius: 0.6rem; font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; }
+.gbtns button.der { --art: var(--der); } .gbtns button.die { --art: var(--die); } .gbtns button.das { --art: var(--das); }
+.gbtns button small { position: absolute; top: 0.3rem; left: 0.5rem; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; color: var(--muted); }
+.gbtns button.right { background: var(--art); color: var(--bg); }
+.gbtns button.wrong { background: var(--bad-bg); color: var(--bad); border-color: var(--bad); text-decoration: line-through; }
+.gbtns button:disabled:not(.right):not(.wrong) { opacity: 0.45; }
+.gbtns button.right:disabled { opacity: 1; }
+.stack { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.prompt .pron { color: var(--accent); }
+.prompt .pronhint { font-weight: 900; }
+.prompt .pronhint em { font-style: italic; }
+.prompt.sentence { font-size: clamp(1.3rem, 5.5vw, 1.75rem); line-height: 1.3; font-weight: 600; }
+ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.92rem; }
+</style>
+
+<main>
+  <header class="top">
+    <h1>Kontakte Vokabeltrainer</h1>
+    <nav aria-label="Sections">
+      <button type="button" id="nav-home" aria-current="true">Vocab</button>
+      <button type="button" id="nav-verbs" aria-current="false">Verbs</button>
+      <button type="button" id="nav-gram" aria-current="false">Grammar</button>
+    </nav>
+    <div class="syncbar" id="sync-bar" data-state="pending">
+      <button type="button" class="syncicon" id="sync-btn" title="Sync" aria-label="Sync progress">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        <span class="dot"></span>
+      </button>
+      <span class="sr" id="sync-text" aria-live="polite">Starting</span>
+    </div>
+  </header>
+  <div id="banner" class="banner" hidden></div>
+
+  <!-- HOME -->
+  <div id="v-home" class="stack">
+  <section class="panel" aria-label="Start a quiz">
+    <div class="segbtns modes" id="seg-mode" role="group" aria-label="Quiz type">
+      <button type="button" id="mode-ge" data-mode="ge" aria-pressed="true">German to English</button>
+      <button type="button" id="mode-eg" data-mode="eg" aria-pressed="false">English to German</button>
+      <button type="button" id="mode-su" data-mode="su" aria-pressed="false">Write sentences</button>
+      <button type="button" id="mode-gn" data-mode="gn" aria-pressed="false">Noun Genders</button>
+      <button type="button" id="mode-pl" data-mode="pl" aria-pressed="false">Noun Plurals</button>
+    </div>
+    <fieldset>
+      <legend>Chapters</legend>
+      <div class="seg" id="seg-ch"></div>
+    </fieldset>
+    <p class="muted" id="mode-note"></p>
+    <button type="button" id="start">Start</button>
+    <div class="stats" id="home-stats"></div>
+  </section>
+  <section class="panel" aria-label="Vocabulary progress">
+    <h2>Vocabulary progress</h2>
+    <div class="chart" id="rep-chart" role="img" aria-label="Words by proficiency"></div>
+    <p class="muted">Scores fade gently after two weeks without practice. Noun Genders and Noun Plurals answers count here too.</p>
+    <div class="segbtns" role="group" aria-label="Sort order">
+      <button type="button" id="rep-low" aria-pressed="true">Lowest</button>
+      <button type="button" id="rep-high" aria-pressed="false">Highest</button>
+    </div>
+    <h2 id="rep-title">Lowest scores</h2>
+    <div class="scroll"><table><thead><tr><th>Word</th><th>Meaning</th><th style="text-align:right">Score</th><th style="text-align:right">Tries</th></tr></thead><tbody id="rep-rows"></tbody></table></div>
+    <div class="row">
+      <button type="button" class="ghost" id="rep-csv">Download progress CSV</button>
+    </div>
+    <p class="muted" id="rep-note"></p>
+  </section>
+  </div>
+
+  <!-- QUIZ -->
+  <section id="v-quiz" class="panel" aria-label="Quiz" hidden>
+    <div class="qtop">
+      <button type="button" class="ghost small" id="q-back">Back</button>
+      <button type="button" class="ghost small" id="q-end">End quiz</button>
+    </div>
+    <div class="qhead"><span id="q-round"></span><span id="q-left"></span></div>
+    <div class="bar" aria-hidden="true"><i id="q-bar"></i></div>
+    <div class="hint" id="q-mastery"></div>
+    <div class="prompt" id="q-prompt"></div>
+    <div class="hint" id="q-hint"></div>
+    <div id="q-answer">
+      <input type="text" id="q-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your answer" enterkeyhint="done">
+    </div>
+    <div class="row" id="q-actions">
+      <button type="button" class="ghost" id="q-skip">Skip</button>
+      <button type="button" class="primary-wide" id="q-check">Check</button>
+    </div>
+    <div id="q-feedback" aria-live="polite"></div>
+  </section>
+
+  <!-- SENTENCES -->
+  <section id="v-sent" class="panel" aria-label="Sentence practice" hidden>
+    <div class="qtop">
+      <button type="button" class="ghost small" id="s-back">Back</button>
+      <button type="button" class="ghost small" id="s-end">End practice</button>
+    </div>
+    <div class="qhead"><span id="s-count"></span><span id="s-note"></span></div>
+    <div class="prompt" id="s-prompt"></div>
+    <div class="hint" id="s-hint"></div>
+    <textarea id="s-input" aria-label="Your German sentence" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+    <div class="row">
+      <button type="button" class="ghost" id="s-skip">Skip</button>
+      <button type="button" class="primary-wide" id="s-check">Check sentence</button>
+    </div>
+    <div id="s-feedback" aria-live="polite"></div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="v-sum" class="panel" aria-label="Summary" hidden>
+    <h2 id="sum-title"></h2>
+    <div id="sum-body" style="display:flex;flex-direction:column;gap:0.75rem"></div>
+    <div class="row">
+      <button type="button" class="ghost" id="sum-home">Exit quiz</button>
+      <button type="button" id="sum-next">Continue</button>
+    </div>
+  </section>
+
+  <!-- VERBS -->
+  <div id="v-verbs" class="stack" hidden>
+    <section class="panel" aria-label="Verb drills">
+      <div class="segbtns modes" id="vseg-mode" role="group" aria-label="Verb drill type">
+        <button type="button" data-vmode="form" aria-pressed="true">Conjugate</button>
+        <button type="button" data-vmode="cloze" aria-pressed="false">Fill the blank</button>
+        <button type="button" data-vmode="perfekt" aria-pressed="false">Perfekt</button>
+      </div>
+      <fieldset>
+        <legend>Chapters</legend>
+        <div class="seg" id="vseg-ch"></div>
+      </fieldset>
+      <p class="muted" id="vmode-note"></p>
+      <button type="button" id="vstart">Start</button>
+      <div class="stats" id="v-stats"></div>
+    </section>
+    <section class="panel" aria-label="Verb progress">
+      <h2 id="vprog-title">Verb progress</h2>
+      <div class="chart" id="v-chart" role="img" aria-label="Verbs by proficiency"></div>
+      <h2>Accuracy by person</h2>
+      <div class="chart" id="v-persons" role="img" aria-label="Accuracy by person"></div>
+      <p class="muted">Based on your last 12 answers for each person, across all verb drills. Verb progress is tracked separately from vocabulary.</p>
+      <div class="segbtns" role="group" aria-label="Sort order">
+        <button type="button" id="v-low" aria-pressed="true">Lowest</button>
+        <button type="button" id="v-high" aria-pressed="false">Highest</button>
+      </div>
+      <h2 id="v-rowtitle">Lowest scores</h2>
+      <div class="scroll"><table><thead><tr><th>Verb</th><th>Meaning</th><th style="text-align:right">Score</th><th style="text-align:right">Tries</th></tr></thead><tbody id="v-rows"></tbody></table></div>
+    </section>
+  </div>
+
+  <!-- GRAMMAR -->
+  <div id="v-gram" class="stack" hidden>
+    <section class="panel" aria-label="Case endings drill">
+      <h2>Case endings: fill in the blank</h2>
+      <fieldset>
+        <legend>Sentences</legend>
+        <div class="seg" id="aseg-case"></div>
+      </fieldset>
+      <p class="muted" id="anote"></p>
+      <button type="button" id="astart">Start</button>
+      <div class="stats" id="a-stats"></div>
+    </section>
+    <section class="panel" aria-label="Case endings progress">
+      <h2>Case endings progress</h2>
+      <div class="chart" id="a-chart" role="img" aria-label="Sentences by proficiency"></div>
+      <h2>Accuracy by case and gender</h2>
+      <div class="chart" id="a-cases" role="img" aria-label="Accuracy by case and gender"></div>
+      <p class="muted">Based on your last 12 answers in each group. Grammar progress is tracked separately from vocabulary and verbs.</p>
+      <div class="segbtns" role="group" aria-label="Sort order">
+        <button type="button" id="a-low" aria-pressed="true">Lowest</button>
+        <button type="button" id="a-high" aria-pressed="false">Highest</button>
+      </div>
+      <h2 id="a-rowtitle">Lowest scores</h2>
+      <div class="scroll"><table><thead><tr><th>Sentence</th><th style="text-align:right">Score</th><th style="text-align:right">Tries</th></tr></thead><tbody id="a-rows"></tbody></table></div>
+    </section>
+  </div>
+
+  <!-- ACCUSATIVE DRILL -->
+  <section id="v-aq" class="panel" aria-label="Case endings drill" hidden>
+    <div class="qtop">
+      <button type="button" class="ghost small" id="aq-back">Back</button>
+      <button type="button" class="ghost small" id="aq-end">End drill</button>
+    </div>
+    <div class="qhead"><span id="aq-round"></span><span id="aq-left"></span></div>
+    <div class="bar" aria-hidden="true"><i id="aq-bar"></i></div>
+    <div class="prompt" id="aq-prompt"></div>
+    <div class="hint" id="aq-hint"></div>
+    <div>
+      <input type="text" id="aq-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your answer" enterkeyhint="done">
+    </div>
+    <div class="row">
+      <button type="button" class="ghost" id="aq-skip">Skip</button>
+      <button type="button" class="primary-wide" id="aq-check">Check</button>
+    </div>
+    <div id="aq-feedback" aria-live="polite"></div>
+  </section>
+
+  <!-- PLURAL DRILL -->
+  <section id="v-pq" class="panel" aria-label="Noun Plurals" hidden>
+    <div class="qtop">
+      <button type="button" class="ghost small" id="pq-back">Back</button>
+      <button type="button" class="ghost small" id="pq-end">End drill</button>
+    </div>
+    <div class="qhead"><span id="pq-round"></span><span id="pq-left"></span></div>
+    <div class="bar" aria-hidden="true"><i id="pq-bar"></i></div>
+    <div class="prompt" id="pq-prompt"></div>
+    <div class="hint" id="pq-hint"></div>
+    <div>
+      <input type="text" id="pq-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your answer" enterkeyhint="done">
+    </div>
+    <div class="row">
+      <button type="button" class="ghost" id="pq-skip">Skip</button>
+      <button type="button" class="primary-wide" id="pq-check">Check</button>
+    </div>
+    <div id="pq-feedback" aria-live="polite"></div>
+  </section>
+
+  <!-- GENDER DRILL -->
+  <section id="v-gq" class="panel" aria-label="Noun Genders" hidden>
+    <div class="qtop">
+      <button type="button" class="ghost small" id="gq-back">Back</button>
+      <button type="button" class="ghost small" id="gq-end">End drill</button>
+    </div>
+    <div class="qhead"><span id="gq-round"></span><span id="gq-left"></span></div>
+    <div class="bar" aria-hidden="true"><i id="gq-bar"></i></div>
+    <div class="prompt" id="gq-prompt"></div>
+    <div class="hint big" id="gq-hint"></div>
+    <div class="gbtns" id="gq-btns" role="group" aria-label="Choose the article">
+      <button type="button" class="der" data-art="der"><small>1</small>der</button>
+      <button type="button" class="die" data-art="die"><small>2</small>die</button>
+      <button type="button" class="das" data-art="das"><small>3</small>das</button>
+    </div>
+    <button type="button" class="ghost gskip" id="gq-skip"><small>4</small>Skip</button>
+    <div id="gq-feedback" aria-live="polite"></div>
+    <div class="row"><button type="button" class="primary-wide" id="gq-next" hidden>Next</button></div>
+  </section>
+
+  <!-- VERB DRILL -->
+  <section id="v-vq" class="panel" aria-label="Verb drill" hidden>
+    <div class="qtop">
+      <button type="button" class="ghost small" id="vq-back">Back</button>
+      <button type="button" class="ghost small" id="vq-end">End drill</button>
+    </div>
+    <div class="qhead"><span id="vq-round"></span><span id="vq-left"></span></div>
+    <div class="bar" aria-hidden="true"><i id="vq-bar"></i></div>
+    <div class="prompt" id="vq-prompt"></div>
+    <div class="hint" id="vq-hint"></div>
+    <div>
+      <input type="text" id="vq-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your answer" enterkeyhint="done">
+    </div>
+    <div class="row">
+      <button type="button" class="ghost" id="vq-skip">Skip</button>
+      <button type="button" class="primary-wide" id="vq-check">Check</button>
+    </div>
+    <div id="vq-feedback" aria-live="polite"></div>
+  </section>
+
+</main>
+
+<script>
+/*VOCABDATA*/
+/*VERBDATA*/
+/*ACCDATA*/
+</script>
+<script>
+"use strict";
+/* ---------- pure logic (also unit-tested outside the page) ---------- */
+//PURE_START
+var WEIGHT = { R: 1.0, P: 1.25, U: 1.5, G: 0.3 }, DECAY = 0.85, HIST = 12, CONF = 5;
+
+function scoreOf(h, attempts) {
+  var toks = h ? h.split(" ").filter(Boolean) : [];
+  var num = 0, den = 0;
+  for (var age = 0; age < toks.length; age++) {
+    var tok = toks[toks.length - 1 - age];
+    var w = WEIGHT[tok[0]] * Math.pow(DECAY, age);
+    num += w * parseFloat(tok.slice(1));
+    den += w;
+  }
+  if (den === 0) return 0;
+  return Math.round(100 * (num / den) * Math.min(1, attempts / CONF));
+}
+/* gentle time decay: no change for GRACE days, then the score halves every HALF days */
+/* offline sync: a word's server record plus the answers still waiting to be sent */
+function tokCredit(t) { return parseFloat(t.slice(1)); }
+function applyPending(base, p) {
+  var r = base ? { a: base.a, c: base.c, l: base.l, h: base.h } : { a: 0, c: 0, l: "", h: "" };
+  var toks = r.h ? r.h.split(" ") : [];
+  if (p.fix && toks.length) { r.c += tokCredit(p.fix) - tokCredit(toks[toks.length - 1]); toks[toks.length - 1] = p.fix; }
+  p.toks.forEach(function (t) { toks.push(t); r.a++; r.c += tokCredit(t); });
+  r.h = toks.slice(-HIST).join(" ");
+  if (p.l && p.l > r.l) r.l = p.l;
+  return r;
+}
+var GRACE = 14, HALF = 120;
+function decayFactor(last, todayStr) {
+  if (!last) return 1;
+  var a = Date.parse(last + "T00:00:00Z"), b = Date.parse(todayStr + "T00:00:00Z");
+  if (isNaN(a) || isNaN(b)) return 1;
+  var days = Math.round((b - a) / 86400000);
+  return days <= GRACE ? 1 : Math.pow(0.5, (days - GRACE) / HALF);
+}
+/* choose the opening words of a quiz by level: 55% new, 25% learning, 15% familiar, 5% mastered.
+   Any shortfall is filled from the other levels, weakest first. bandFn(word) returns the level name. */
+var QUIZ_SIZE = 20;
+var QUIZ_MIX = [["new", 0.55], ["learning", 0.25], ["familiar", 0.15], ["mastered", 0.05]];
+function pickWords(words, bandFn, n, rnd) {
+  rnd = rnd || Math.random;
+  if (words.length <= n) return shuffleWith(words, rnd);
+  var groups = QUIZ_MIX.map(function () { return []; });
+  words.forEach(function (w) {
+    var b = bandFn(w);
+    for (var i = 0; i < QUIZ_MIX.length; i++) if (QUIZ_MIX[i][0] === b) { groups[i].push(w); return; }
+  });
+  groups = groups.map(function (g) { return shuffleWith(g, rnd); });
+  var want = QUIZ_MIX.map(function (m) { return Math.round(n * m[1]); });
+  want[want.length - 1] = n - want.slice(0, -1).reduce(function (x, y) { return x + y; }, 0);
+  var out = [], pool = [];
+  for (var i = 0; i < groups.length; i++) { out = out.concat(groups[i].slice(0, want[i])); pool = pool.concat(groups[i].slice(want[i])); }
+  if (out.length < n) out = out.concat(pool.slice(0, n - out.length));
+  return shuffleWith(out, rnd);
+}
+function shuffleWith(a, rnd) {
+  a = a.slice();
+  for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(rnd() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+function bandOf(attempts, score) {
+  return attempts === 0 ? "new" : score < 40 ? "learning" : score < 80 ? "familiar" : "mastered";
+}
+function fold(s) {
+  return s.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ß/g, "ss")
+    .replace(/[^a-z0-9 ]/g, "").replace(/\s+/g, " ").trim();
+}
+function lev(a, b) {
+  var m = a.length, n = b.length, d = [], i, j;
+  for (i = 0; i <= m; i++) { d[i] = [i]; }
+  for (j = 1; j <= n; j++) { d[0][j] = j; }
+  for (i = 1; i <= m; i++) for (j = 1; j <= n; j++) {
+    d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+  }
+  return d[m][n];
+}
+function normEn(s) {
+  return s.toLowerCase().replace(/[^a-z0-9' ]/g, " ").replace(/\s+/g, " ").trim()
+    .replace(/^(to|the|a|an) /, "").replace(/^(to|the|a|an) /, "");
+}
+var NUMW = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12,
+  thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19,
+  twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+/* "twenty one" -> "21"; anything that is not entirely number words -> "" */
+function numberDigits(n) {
+  var toks = n.split(" "), total = 0;
+  for (var i = 0; i < toks.length; i++) {
+    if (toks[i] === "hundred") total = (total || 1) * 100;
+    else if (NUMW.hasOwnProperty(toks[i])) total += NUMW[toks[i]];
+    else return "";
+  }
+  return String(total);
+}
+/* "this/that is" -> ["this is", "that is"]; "he/she is" -> ["he is", "she is"] */
+function expandSlashes(part) {
+  var variants = [[]];
+  part.split(/\s+/).forEach(function (tok) {
+    var opts = tok.indexOf("/") > 0 && tok.indexOf("/") < tok.length - 1 ? tok.split("/") : [tok];
+    var next = [];
+    variants.forEach(function (v) { opts.forEach(function (o) { next.push(v.concat(o)); }); });
+    variants = next;
+  });
+  return variants.map(function (v) { return v.join(" "); });
+}
+function englishAlternatives(e) {
+  var out = [];
+  function add(v) { var n = normEn(v); if (n && out.indexOf(n) < 0) out.push(n); return n; }
+  e.split(/[;,]/).forEach(function (chunk) {
+    chunk.split(/\s+\/\s+/).forEach(function (piece) {
+      expandSlashes(piece.trim()).forEach(function (part) {
+        part = part.trim();
+        if (!part) return;
+        var stripped = part.replace(/\s*\([^)]*\)/g, "").replace(/\([^)]*\)/g, "");
+        var unwrapped = part.replace(/\(([^)]*)\)/g, "$1");
+        [stripped, unwrapped, part].forEach(function (v) {
+          var n = add(v);
+          if (!n) return;
+          var digits = numberDigits(n); if (digits) add(digits);
+          var bare = n.replace(/^(fe)?male /, ""); if (bare !== n) add(bare);
+        });
+      });
+    });
+  });
+  return out;
+}
+/* German to English: returns {credit, note} */
+function gradeEnglish(answer, english) {
+  var alts = englishAlternatives(english);
+  var pieces = answer.split(/[;,\/]/).map(normEn).filter(Boolean);
+  if (!pieces.length) return { credit: 0, note: "" };
+  for (var i = 0; i < pieces.length; i++) if (alts.indexOf(pieces[i]) >= 0) return { credit: 1, note: "" };
+  for (var j = 0; j < pieces.length; j++) for (var k = 0; k < alts.length; k++) {
+    var p = pieces[j], a = alts[k];
+    if (p.length >= 4 && a.length >= 4 && lev(p, a) <= 1) return { credit: 1, note: "Counted as correct. Check the spelling." };
+  }
+  return { credit: 0, note: "" };
+}
+/* English to German: acceptable = list of German strings that answer this prompt */
+var NONNOUN = {};
+function gradeGerman(answer, acceptable) {
+  var a = answer.trim().replace(/\s+/g, " ");
+  if (!a) return { credit: 0, note: "" };
+  var i;
+  for (i = 0; i < acceptable.length; i++) if (a === acceptable[i] || ssNorm(a) === ssNorm(acceptable[i])) return { credit: 1, note: "" };
+  /* entries that are not nouns (like "die Hand schütteln") keep their opening der/die/das as part of the phrase */
+  var noArt = function (s) { return NONNOUN[s] ? s : s.replace(/^(der|die|das) /i, ""); };
+  var hasArt = function (s) { return !NONNOUN[s] && /^(der|die|das) /i.test(s); };
+  for (i = 0; i < acceptable.length; i++) {
+    var g = acceptable[i];
+    if (a.toLowerCase() === g.toLowerCase()) return { credit: 0.5, note: "Check capitalization. Nouns start with a capital letter." };
+    if (hasArt(g)) {
+      if (fold(noArt(a)) === fold(noArt(g))) {
+        return { credit: 0.5, note: hasArt(a) ? "Right noun, wrong article." : "Right noun. Give the article too." };
+      }
+    }
+    if (fold(a) === fold(g)) return { credit: 0.5, note: "Check the umlauts and spelling." };
+    var fa = fold(noArt(a)), fg = fold(noArt(g));
+    if (fg.length >= 5 && lev(fa, fg) <= 1) return { credit: 0.5, note: "Close. Check the spelling." };
+  }
+  return { credit: 0, note: "" };
+}
+function hashId(s) {
+  var h = 5381;
+  for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+  return "w" + h.toString(36);
+}
+function shuffle(a) {
+  a = a.slice();
+  for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+/* ---------- verb conjugation (present, Perfekt) ---------- */
+var PERSONS = ["ich", "du", "er", "wir", "ihr", "sie"];
+var AUX = { haben: ["habe", "hast", "hat", "haben", "habt", "haben"], sein: ["bin", "bist", "ist", "sind", "seid", "sind"] };
+var VQ_SIZE = 20;
+function verbBase(v) { return v.pre ? v.i.slice(v.pre.length) : v.i; }
+function needsE(stem) { return /[dt]$/.test(stem) || /(ch|[bdfgkpstvwz])[mn]$/.test(stem); }
+/* the six finite present forms, without a separable prefix */
+function finiteForms(v) {
+  if (v.full) return v.full.slice();
+  var base = verbBase(v), stem = base.slice(0, -2), e = needsE(stem), t = e ? "et" : "t";
+  var du = v.du || (/[sßxz]$/.test(stem) ? stem + "t" : stem + (e ? "est" : "st"));
+  var er = v.er || stem + t;
+  return [stem + "e", du, er, base, stem + t, base];
+}
+function presentForms(v) { return finiteForms(v).map(function (f) { return v.pre ? f + " " + v.pre : f; }); }
+function allowedPersons(v) { return v.only || [0, 1, 2, 3, 4, 5]; }
+/* the pronoun is optional, and a typo in the given pronoun is forgiven */
+function stripPronoun(a, given) {
+  var m = /^(ich|du|er|sie|es|wir|ihr) (.+)$/i.exec(a);
+  if (m) return m[2];
+  if (given) { var sp = a.indexOf(" "); if (sp > 0 && lev(a.slice(0, sp), given.toLowerCase()) <= 1) return a.slice(sp + 1); }
+  return a;
+}
+/* "ss" may stand in for the eszett, which is hard to type */
+function ssNorm(s) { return s.replace(/\u00DF/g, "ss"); }
+function cleanAnswer(a) { return a.trim().replace(/\s+/g, " ").toLowerCase(); }
+function gradeAgainst(a, wants, p, partial) {
+  wants = wants.map(function (w) { return w.toLowerCase(); });
+  if (!a) return { credit: 0, note: "" };
+  var na = ssNorm(a), nw = wants.map(ssNorm);
+  if (na === nw[p]) return { credit: 1, note: "" };
+  for (var k = 0; k < wants.length; k++) {
+    if (k !== p && nw[k] === na && nw[k] !== nw[p]) return { credit: 0, note: "That is the " + PERSONS[k] + " form." };
+  }
+  if (partial && na === ssNorm(partial.text)) return { credit: 0.5, note: partial.note };
+  if (fold(a) === fold(wants[p])) return { credit: 0.5, note: "Check the umlauts and spelling." };
+  if (wants[p].length >= 4 && lev(fold(a), fold(wants[p])) <= 1) return { credit: 0.5, note: "Close. Check the spelling." };
+  return { credit: 0, note: "" };
+}
+/* plural drill: the plural noun without "die"; case and ss/ß are forgiven, umlauts and near-misses earn half credit */
+function gradePlural(answer, plural, singular) {
+  var a = cleanAnswer(answer).replace(/^die /, ""), want = plural.replace(/^die /, "").toLowerCase(), sing = singular.replace(/^(der|die|das) /, "").toLowerCase();
+  if (!a) return { credit: 0, note: "" };
+  if (ssNorm(a) === ssNorm(want)) return { credit: 1, note: "" };
+  if (ssNorm(a) === ssNorm(sing)) return { credit: 0, note: "That is the singular form." };
+  if (fold(a) === fold(want)) return { credit: 0.5, note: "Check the umlauts." };
+  if (want.length >= 4 && lev(fold(a), fold(want)) <= 1) return { credit: 0.5, note: "Close. Check the spelling." };
+  return { credit: 0, note: "" };
+}
+/* "du / fahren" -> "fährst". A separable verb needs its prefix too. */
+function gradeVerbForm(answer, v, p, pron) {
+  var a = stripPronoun(cleanAnswer(answer), pron), forms = presentForms(v);
+  var partial = v.pre ? { text: finiteForms(v)[p].toLowerCase(), note: "Add the prefix: " + forms[p] + "." } : null;
+  return gradeAgainst(a, forms, p, partial);
+}
+/* the sentence already holds the prefix, so only the finite verb is typed; a trailing prefix is tolerated */
+function gradeCloze(answer, v, p) {
+  var a = cleanAnswer(answer);
+  if (v.pre && a.length > v.pre.length + 1 && a.slice(-(v.pre.length + 1)) === " " + v.pre) a = a.slice(0, -(v.pre.length + 1));
+  return gradeAgainst(a, finiteForms(v), p, null);
+}
+/* "er / lernen" -> "hat gelernt" */
+function gradePerfekt(answer, v, p, pron) {
+  var a = stripPronoun(cleanAnswer(answer), pron), pt = v.pt.toLowerCase();
+  if (!a) return { credit: 0, note: "" };
+  var accepted = v.aux.map(function (x) { return AUX[x][p]; });
+  var parts = a.split(" ");
+  if (parts.length === 1) {
+    return ssNorm(parts[0]) === ssNorm(pt) ? { credit: 0.5, note: "Add the auxiliary: " + accepted[0] + " " + v.pt + "." } : { credit: 0, note: "" };
+  }
+  var aux = parts[0], ptc = parts.slice(1).join(" ");
+  var ptcExact = ssNorm(ptc) === ssNorm(pt);
+  var ptcClose = !ptcExact && (fold(ptc) === fold(pt) || (pt.length >= 5 && lev(fold(ptc), fold(pt)) <= 1));
+  var auxOk = accepted.indexOf(aux) >= 0;
+  if (ptcExact && auxOk) return { credit: 1, note: "" };
+  if (ptcExact) {
+    var kind = AUX.haben.indexOf(aux) >= 0 ? "haben" : AUX.sein.indexOf(aux) >= 0 ? "sein" : "";
+    var note = kind && v.aux.indexOf(kind) < 0 ? "Right participle, but this verb uses " + v.aux[0] + "."
+      : "Right participle. Check the auxiliary: " + accepted[0] + ".";
+    return { credit: 0.5, note: note };
+  }
+  if (ptcClose && auxOk) return { credit: 0.5, note: "Close. Check the participle spelling." };
+  return { credit: 0, note: "" };
+}
+/* ---------- accusative: articles and ein-words ---------- */
+/* base: der, ein, kein, mein, dein, sein, ihr, unser, euer; cs: nom or acc; g: m, f, n or p */
+function artForm(base, cs, g) {
+  if (base === "der") return { m: cs === "acc" ? "den" : "der", f: "die", n: "das", p: "die" }[g];
+  var stem = base === "euer" ? "eur" : base;
+  if (g === "f" || g === "p") return stem + "e";
+  if (g === "n") return base;
+  return cs === "acc" ? stem + "en" : base;
+}
+function gradeArticle(answer, base, cs, g) {
+  var a = answer.trim().toLowerCase().replace(/\s+/g, " "), want = artForm(base, cs, g);
+  if (!a) return { credit: 0, note: "" };
+  if (a === want) return { credit: 1, note: "" };
+  var GN = { m: "masculine", f: "feminine", n: "neuter", p: "plural" };
+  var sameCase = [], sameGender = false, known = false, other = ["nom", "acc"].filter(function (c) { return c !== cs; })[0];
+  ["m", "f", "n", "p"].forEach(function (gg) {
+    if (base === "ein" && gg === "p") return;
+    if (artForm(base, cs, gg) === a) { sameCase.push(GN[gg]); known = true; }
+    if (artForm(base, other, gg) === a) { known = true; if (gg === g) sameGender = true; }
+  });
+  if (sameGender) return { credit: 0, note: "That is the " + (other === "nom" ? "nominative" : "accusative") + " form. Here the noun is " + (cs === "acc" ? "the direct object, so use the accusative." : "the subject, so use the nominative.") };
+  if (sameCase.length) return { credit: 0, note: "That form goes with a " + sameCase.join(" or ") + " noun." };
+  var dg = base === "der" ? ["dem", "des"] : [base + "em", base + "er", base + "es", "euerm"];
+  if (known || dg.indexOf(a) >= 0) return { credit: 0, note: known ? "" : "That is a dative or genitive form. Only nominative and accusative are used here." };
+  if (a.length >= 3 && lev(a, want) <= 1) return { credit: 0.5, note: "Check the spelling." };
+  return { credit: 0, note: "" };
+}
+//PURE_END
+
+/* ---------- app ---------- */
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var WORDS = (window.VOCAB || []).map(function (w) { w.id = hashId(w.g + "|" + w.e); return w; });
+  var VERBS = (window.VERBS || []).map(function (v) { v.idpr = hashId("v|" + v.i + "|pr"); v.idpf = hashId("v|" + v.i + "|pf"); return v; });
+  var byId = {};
+  WORDS.forEach(function (w) { byId[w.id] = w; });
+  var enToGe = {};
+  WORDS.forEach(function (w) { var k = normEn(w.e); (enToGe[k] = enToGe[k] || []).push(w.g); });
+  /* words whose prompt is shared with another entry get an example sentence in the prompt's own language */
+  WORDS.forEach(function (w) { if (w.p.indexOf("noun") !== 0 && /^(der|die|das) /i.test(w.g)) NONNOUN[w.g] = true; });
+  var geCount = {};
+  WORDS.forEach(function (w) { var k = w.g.toLowerCase(); geCount[k] = (geCount[k] || 0) + 1; });
+  function clarifier(w, mode) {
+    if (!w.x || w.p === "phrase") return "";
+    var parts = w.x.split("|");
+    if (mode === "ge") return geCount[w.g.toLowerCase()] > 1 ? parts[0] : "";
+    return enToGe[normEn(w.e)].length > 1 ? (parts[1] || "") : "";
+  }
+
+  var prog = {};            // id -> {a, c, l, h}
+  var ref = null, sample = null, downloads = null, canSave = false;
+  var remote = {};          // last known copy of the account's progress
+  var pending = {};         // id -> {toks: answers not yet sent, fix: edit to the newest sent answer, l: date, inflight: count being sent}
+  var syncing = false, syncAgain = false, syncTimer = null, lastSync = "", uidKnown = "", subscribed = false;
+  var LS_KEY = "kv-sync-v1";
+  var session = null;       // current quiz state
+  var repHigh = false;      // progress table: false = lowest scores, true = highest
+  var views = ["home", "quiz", "sent", "sum", "verbs", "vq", "gram", "gq", "aq", "pq"];
+  function clone(x) { return JSON.parse(JSON.stringify(x)); } // database snapshots are frozen
+  window.addEventListener("error", function (ev) { banner("Something went wrong: " + (ev && ev.message ? ev.message : "unknown error")); });
+
+  function show(name, area) {
+    views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
+    var a = area || ((name === "verbs" || name === "vq") ? "verbs" : (name === "gram" || name === "aq") ? "gram" : "quiz");
+    $("nav-home").setAttribute("aria-current", a === "quiz" ? "true" : "false");
+    $("nav-verbs").setAttribute("aria-current", a === "verbs" ? "true" : "false");
+    $("nav-gram").setAttribute("aria-current", a === "gram" ? "true" : "false");
+    if (name === "sum") $("sum-next").focus();
+  }
+  function banner(text) { var b = $("banner"); b.hidden = !text; b.textContent = text || ""; }
+  function today() { return new Date().toISOString().slice(0, 10); }
+  function entry(id) { return prog[id] || { a: 0, c: 0, l: "", h: "" }; }
+  function scoreNow(e) { return Math.round(scoreOf(e.h, e.a) * decayFactor(e.l, today())); }
+  function scoreFor(id) { return scoreNow(entry(id)); }
+
+  /* ----- persistence: answers are saved on this device first and sent to the account when a connection is available ----- */
+  function withTimeout(p, ms) {
+    return new Promise(function (res, rej) {
+      var t = setTimeout(function () { rej(new Error("timeout")); }, ms);
+      Promise.resolve(p).then(function (v) { clearTimeout(t); res(v); }, function (e) { clearTimeout(t); rej(e); });
+    });
+  }
+  function pendingCount() {
+    var n = 0; Object.keys(pending).forEach(function (id) { n += pending[id].toks.length + (pending[id].fix ? 1 : 0); }); return n;
+  }
+  function rebuildProg() {
+    prog = clone(remote);
+    Object.keys(pending).forEach(function (id) { prog[id] = applyPending(remote[id], pending[id]); });
+  }
+  function saveLocal() {
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ uid: uidKnown, remote: remote, pending: pending, lastSync: lastSync })); } catch (e) { /* storage may be blocked */ }
+  }
+  function loadLocal() {
+    try {
+      var raw = localStorage.getItem(LS_KEY); if (!raw) return;
+      var d = JSON.parse(raw);
+      if (d && d.remote && d.pending) { remote = d.remote; pending = d.pending; uidKnown = d.uid || ""; lastSync = d.lastSync || ""; }
+    } catch (e) { /* ignore a damaged cache */ }
+  }
+  function setStatus(state) {
+    var n = pendingCount() + vstore.userCount() + gstore.userCount(), conn = !!(ref && vstore.st.ref && gstore.st.ref), t;
+    if (state !== "failed" && (syncing || vstore.st.syncing || gstore.st.syncing)) state = "syncing";
+    if (state === "syncing") t = "Syncing...";
+    else if (state === "failed" || (!conn && n)) t = n ? "Offline. " + n + (n === 1 ? " answer" : " answers") + " saved on this device." : "Offline. Progress saves on this device.";
+    else if (n) t = n + (n === 1 ? " answer" : " answers") + " waiting to sync.";
+    else if (!conn) t = "Not connected. Progress saves on this device.";
+    else t = "All progress synced.";
+    $("sync-text").textContent = t;
+    $("sync-btn").title = t + " Tap to sync."; $("sync-btn").setAttribute("aria-label", "Sync progress. " + t);
+    $("sync-btn").disabled = state === "syncing";
+    $("sync-bar").setAttribute("data-state", state === "syncing" ? "busy" : (n || !conn) ? "pending" : "ok");
+  }
+  function scheduleSync(ms) {
+    if (syncTimer) clearTimeout(syncTimer);
+    syncTimer = setTimeout(function () { syncTimer = null; syncNow(); }, ms == null ? 2000 : ms);
+  }
+  function record(w, type, credit) {
+    var e = entry(w.id), old = scoreNow(e);
+    var p = pending[w.id] || (pending[w.id] = { toks: [], fix: null, l: "", inflight: 0 });
+    p.toks.push(type + String(credit)); p.l = today();
+    prog[w.id] = applyPending(remote[w.id], p);
+    saveLocal(); setStatus(syncing ? "syncing" : "idle"); scheduleSync();
+    return { old: old, now: scoreOf(prog[w.id].h, prog[w.id].a) };
+  }
+  function amend(w, type, credit) { // replace the newest answer after a manual override
+    var tok = type + String(credit);
+    var p = pending[w.id] || (pending[w.id] = { toks: [], fix: null, l: today(), inflight: 0 });
+    if (p.toks.length > (p.inflight || 0)) p.toks[p.toks.length - 1] = tok;
+    else if (p.toks.length) { p.fix = tok; }          // newest answer is mid-send: correct it on the server afterwards
+    else p.fix = tok;                                  // newest answer was already synced
+    prog[w.id] = applyPending(remote[w.id], p);
+    saveLocal(); setStatus(syncing ? "syncing" : "idle"); scheduleSync();
+  }
+  async function connect() {
+    try {
+      var db = await withTimeout(claude.use("db"), 8000);
+      var user = await withTimeout(claude.use("user"), 8000);
+      var uid = user ? await withTimeout(user.id(), 8000) : null;
+      if (!db || !uid) return false;
+      if (uidKnown && uidKnown !== uid) { remote = {}; pending = {}; }   // a different account used this browser
+      uidKnown = uid;
+      ref = db.collection("data/users/" + uid).doc("progress");
+      canSave = true;
+      if (!subscribed) {
+        subscribed = true;
+        ref.onSnapshot(function (s) {
+          if (s.metadata.hasPendingWrites || s.metadata.fromCache || !s.exists || syncing) return;
+          var d = s.data(); if (!d || !d.words) return;
+          remote = clone(d.words); rebuildProg(); saveLocal();
+          if (!session && !sent) refreshHome();
+          setStatus("idle");
+        }, function () { subscribed = false; });
+      }
+      return true;
+    } catch (e) { ref = null; return false; }
+  }
+  async function syncNow(manual) {
+    if (syncing) { syncAgain = true; return; }
+    syncing = true; setStatus("syncing");
+    var ids = [], sentInfo = {};
+    try {
+      if (!ref && !(await connect())) throw new Error("offline");
+      var snap = await withTimeout(ref.get(), 10000);
+      var server = snap.exists && snap.data() && snap.data().words ? clone(snap.data().words) : {};
+      if (!snap.exists) await withTimeout(ref.set({ words: {} }), 10000);
+      ids = Object.keys(pending);
+      var patch = { words: {} };
+      ids.forEach(function (id) {
+        var p = pending[id]; p.inflight = p.toks.length;
+        sentInfo[id] = { n: p.toks.length, fix: !!p.fix };
+        server[id] = applyPending(server[id], { toks: p.toks.slice(0, p.inflight), fix: p.fix, l: p.l });
+        patch.words[id] = server[id];
+      });
+      if (ids.length) await withTimeout(ref.update(patch), 15000);
+      ids.forEach(function (id) {
+        var p = pending[id], si = sentInfo[id];
+        p.toks.splice(0, si.n); p.inflight = 0; if (si.fix) p.fix = null;
+        if (!p.toks.length && !p.fix) delete pending[id];
+      });
+      remote = server; lastSync = new Date().toISOString(); rebuildProg(); saveLocal();
+      if (!session && !sent) refreshHome();
+      syncing = false; setStatus("idle");
+    } catch (e) {
+      ids.forEach(function (id) {
+        var p = pending[id]; if (!p) return;
+        if (p.inflight && p.fix && !(sentInfo[id] && sentInfo[id].fix) && p.toks.length) { p.toks[p.toks.length - 1] = p.fix; p.fix = null; }
+        p.inflight = 0;
+      });
+      ref = null; subscribed = false; syncing = false; saveLocal(); setStatus("failed");
+    }
+    if (syncAgain || (ref && pendingCount())) { syncAgain = false; scheduleSync(1500); }
+  }
+
+  function needsSync() { return pendingCount() || mlog.dirtyCount() || vstore.pendingCount() || gstore.pendingCount() || !ref || !vstore.st.ref || !gstore.st.ref; }
+  function syncAll(manual) { return Promise.all([syncNow(manual), vstore.sync(manual), gstore.sync(manual), mlog.flush()]); }
+  async function init() {
+    buildHome();
+    loadLocal(); rebuildProg();
+    vstore.loadLocal(); vstore.rebuild();
+    gstore.loadLocal(); gstore.rebuild();
+    if (typeof window.addEventListener === "function") {
+      window.addEventListener("online", function () { syncAll(); });
+      window.addEventListener("offline", function () { setStatus("idle"); });
+    }
+    if (typeof document.addEventListener === "function") {
+      document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible" && needsSync()) syncAll(); });
+    }
+    var tick = setInterval(function () { if (!syncing && !vstore.st.syncing && !gstore.st.syncing && needsSync()) syncAll(); }, 30000);
+    if (tick && tick.unref) tick.unref();
+    $("sync-btn").addEventListener("click", function () { syncAll(true); });
+    refreshHome(); setStatus("idle");
+    await syncAll();
+    try { sample = await withTimeout(claude.use("sample"), 8000); } catch (e) { sample = null; }
+    try { downloads = await withTimeout(claude.use("downloads"), 8000); } catch (e) { downloads = null; }
+    $("mode-su").hidden = !sample;
+    refreshHome();
+    vRefresh(); aRefresh();
+  }
+
+  /* ----- home ----- */
+  var NOTES = {
+    ge: "You see the German word and type the English meaning. Small typos count as correct. Round 1 has 20 words from your chapters, picked at random with a lean toward the ones you know least. Words you miss or skip become the next round, and the quiz ends when every word in the round has been answered correctly.",
+    eg: "You see the English meaning and type the German word with its article. Typos and wrong articles earn half credit. Round 1 has 20 words from your chapters, picked at random with a lean toward the ones you know least. Words you miss or skip become the next round, and the quiz ends when every word in the round has been answered correctly.",
+    pl: "You see a singular noun, like “das Buch”. Type its plural without “die” (“Bücher”). Typing the “die” does no harm, and ss works for ß. A missing umlaut or a small typo earns half credit. Round 1 has 20 nouns from your chapters, picked at random with a lean toward the ones you know least. Each plural is its own word with its own score, so it also appears in the other vocab quizzes. Nouns you miss or skip come back until every one is right.",
+    gn: "You see a noun without its article. Tap der, die or das, or press 1, 2 or 3 on a keyboard. Press 4 or tap Skip if you do not know. Round 1 has 20 nouns from your chapters, picked at random with a lean toward the ones you know least. Nouns you miss or skip come back until every one is right. Your answers count a little toward each word's score.",
+    su: "You write one German sentence per word, and Claude checks it. Five words per round, weighted toward the words you know least. Each check uses your Claude account."
+  };
+  function chaptersOf(containerId) {
+    var out = [];
+    document.querySelectorAll("#" + containerId + " input:checked").forEach(function (i) { out.push(i.value); });
+    return out;
+  }
+  function chapterBoxes(containerId, onChange, items) {
+    items = items || WORDS;
+    var chs = []; items.forEach(function (w) { if (chs.indexOf(w.c) < 0) chs.push(w.c); });
+    chs.sort(function (a, b) { var na = /^\d+$/.test(a), nb = /^\d+$/.test(b); return na === nb ? (na ? a - b : a.localeCompare(b)) : (na ? 1 : -1); });
+    var box = $(containerId); box.textContent = "";
+    chs.forEach(function (c) {
+      var l = document.createElement("label");
+      var i = document.createElement("input"); i.type = "checkbox"; i.value = c; i.checked = true;
+      i.addEventListener("change", onChange);
+      l.appendChild(i); l.appendChild(document.createTextNode((/^\d+$/.test(c) ? "Kapitel " + c : "Einführung " + c) + " (" + items.filter(function (w) { return w.c === c; }).length + ")"));
+      box.appendChild(l);
+    });
+  }
+  var quizMode = "ge";
+  function setMode(m) {
+    quizMode = m;
+    document.querySelectorAll("#seg-mode button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-mode") === m ? "true" : "false");
+    });
+    refreshHome();
+  }
+  function buildHome() {
+    chapterBoxes("seg-ch", refreshHome);
+    chapterBoxes("vseg-ch", vRefresh, VERBS);
+    checkRow("aseg-case", CASES, ACCS.reduce(function (m, a) { m[a.cs] = (m[a.cs] || 0) + 1; return m; }, {}), aRefresh);
+    document.querySelectorAll("#seg-mode button").forEach(function (b) {
+      b.addEventListener("click", function () { setMode(b.getAttribute("data-mode")); });
+    });
+  }
+  function stat(label, value) {
+    var d = document.createElement("div"); d.className = "stat";
+    var b = document.createElement("b"); b.textContent = value;
+    var s = document.createElement("span"); s.textContent = label;
+    d.appendChild(b); d.appendChild(s); return d;
+  }
+  function scoreLine(id, from) {
+    var e = entry(id), to = scoreNow(e);
+    return "Word score " + from + " to " + to + " (" + bandOf(e.a, to) + ")";
+  }
+  function updateMastery() {
+    var el = $("q-mastery"); if (!session) { el.textContent = ""; return; }
+    var st = summaryStats(session.scope);
+    el.textContent = "Average score " + st.avg + " · " + st.counts.mastered + " mastered, " + st.counts.familiar + " familiar, " + st.counts.learning + " learning, " + st.counts["new"] + " new";
+  }
+  function summaryStats(words) {
+    var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
+    words.forEach(function (w) { var e = entry(w.id), s = scoreNow(e); counts[bandOf(e.a, s)]++; sum += s; });
+    return { counts: counts, avg: words.length ? Math.round(sum / words.length) : 0 };
+  }
+  function fillStats(el, words) {
+    var st = summaryStats(words); el.textContent = "";
+    el.appendChild(stat("Words", words.length));
+    el.appendChild(stat("New", st.counts["new"]));
+    el.appendChild(stat("Learning", st.counts.learning));
+    el.appendChild(stat("Familiar", st.counts.familiar));
+    el.appendChild(stat("Mastered", st.counts.mastered));
+    el.appendChild(stat("Average", st.avg));
+  }
+  function fillChart(el, words) {
+    var st = summaryStats(words), total = words.length || 1, parts = [];
+    var rows = [["New","new","var(--b1)"],["Learning","learning","var(--b2)"],["Familiar","familiar","var(--b3)"],["Mastered","mastered","var(--b4)"]];
+    el.textContent = "";
+    rows.forEach(function (r) {
+      var n = st.counts[r[1]], row = document.createElement("div"); row.className = "crow";
+      var pct = Math.round(n / total * 100);
+      row.title = r[0] + ": " + n + " (" + pct + "%)";
+      var l = document.createElement("span"); l.className = "cl"; l.textContent = r[0];
+      var t = document.createElement("div"); t.className = "ct";
+      var b = document.createElement("div"); b.className = "cb"; b.style.width = (n / total * 100) + "%"; b.style.background = r[2];
+      if (!n) b.style.width = "0";
+      t.appendChild(b);
+      var v = document.createElement("span"); v.className = "cv"; v.textContent = n;
+      row.appendChild(l); row.appendChild(t); row.appendChild(v);
+      el.appendChild(row); parts.push(r[0] + " " + n);
+    });
+    el.setAttribute("aria-label", "Words by proficiency: " + parts.join(", "));
+  }
+  function refreshHome() { refreshHomeStats(); renderReport(); }
+  function refreshHomeStats() {
+    var mode = quizMode;
+    $("mode-note").textContent = NOTES[mode];
+    var chs = chaptersOf("seg-ch");
+    if (mode === "pl") {
+      var pp = pPool(chs);
+      $("start").disabled = pp.length === 0;
+      fillPluralStats($("home-stats"), pp);
+      return;
+    }
+    if (mode === "gn") {
+      var gp = gPool(chs);
+      $("start").disabled = gp.length === 0;
+      fillGenderStats($("home-stats"), gp);
+      return;
+    }
+    var scope = WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0; });
+    $("start").disabled = scope.length === 0;
+    fillStats($("home-stats"), scope);
+  }
+
+  /* ----- shared card rendering ----- */
+  function renderGerman(el, g) {
+    el.textContent = "";
+    var m = NONNOUN[g] ? null : /^(der|die|das) (.+)$/.exec(g);
+    if (m) {
+      var a = document.createElement("span"); a.className = "art " + m[1]; a.textContent = m[1] + " ";
+      el.appendChild(a); el.appendChild(document.createTextNode(m[2]));
+    } else { el.textContent = g; }
+  }
+  function detailLine(w) {
+    var bits = [];
+    if (w.f) bits.push(w.f);
+    return bits.join(" · ");
+  }
+  function verdictBox(credit, answerText, metaText, w, type, scoreText, overrideCb) {
+    var box = document.createElement("div");
+    box.className = "verdict " + (credit === 1 ? "v1" : credit === 0.5 ? "v05" : "v0");
+    var s = document.createElement("strong");
+    s.textContent = credit === 1 ? "Correct" : credit === 0.5 ? "Half credit" : "Not this time";
+    box.appendChild(s);
+    if (answerText) { var a = document.createElement("div"); a.className = "ans"; a.textContent = answerText; box.appendChild(a); }
+    if (metaText) { var m = document.createElement("div"); m.className = "meta"; m.textContent = metaText; box.appendChild(m); }
+    if (w && w.x) {
+      var parts = w.x.split("|"), ex = document.createElement("div"); ex.className = "ex";
+      var de = document.createElement("span"); de.className = "de"; de.textContent = parts[0];
+      var en = document.createElement("span"); en.className = "en"; en.textContent = parts[1] || "";
+      ex.appendChild(de); ex.appendChild(en); box.appendChild(ex);
+    }
+    if (scoreText) { var sc = document.createElement("div"); sc.className = "score"; sc.textContent = scoreText; box.appendChild(sc); }
+    if (w && overrideCb !== false) {
+      var o = document.createElement("div"); o.className = "override";
+      o.appendChild(document.createTextNode("Grade it differently:"));
+      [[1, "Correct"], [0.5, "Half"], [0, "Wrong"]].forEach(function (c) {
+        var b = document.createElement("button"); b.type = "button"; b.className = "ghost"; b.textContent = c[1];
+        b.addEventListener("click", function () { var cb = overrideCb || (session && session.onOverride); if (cb) cb(c[0]); });
+        o.appendChild(b);
+      });
+      box.appendChild(o);
+    }
+    return box;
+  }
+
+  /* ----- quiz engine (German to English: queue protocol; English to German: rounds with retry) ----- */
+  function startQuiz() {
+    var mode = quizMode;
+    if (mode === "gn") { gStart(); return; }
+    if (mode === "pl") { pStart(); return; }
+    var chs = chaptersOf("seg-ch");
+    var scope = WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0; });
+    if (!scope.length) return;
+    if (mode === "su") { startSentences(null, scope, null); return; }
+    session = {
+      mode: mode, scope: scope, queue: pickWords(scope, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e)); }, QUIZ_SIZE), round: [], roundNo: 0, prevSet: null,
+      ri: 0, answered: 0, firstTry: 0, firstTryCredit: 0, retriesById: {}, answeredIds: {}, changes: {},
+      current: null, roundCredit: 0, recs: [], checked: false
+    };
+    nextRound();
+  }
+  function setKey(list) { return list.map(function (w) { return w.id; }).sort().join(","); }
+  function nextRound() {
+    var s = session;
+    if (!s.queue.length) { return finishQuiz(); }
+    if (s.prevSet && s.queue.length <= 10 && setKey(s.queue) === s.prevSet && sample) {
+      s.prevSet = null;
+      return startSentences(s.queue.slice(), s.scope, function () { nextRound(); });
+    }
+    s.round = shuffle(s.queue);
+    s.queue = [];
+    s.prevSet = setKey(s.round);
+    s.roundNo++; s.ri = 0; s.roundCredit = 0; s.recs = [];
+    show("quiz"); ask();
+  }
+  function ask() {
+    var s = session, list = s.round;
+    if (s.ri >= list.length) { return roundSummary(); }
+    var w = list[s.ri]; s.current = w; updateMastery();
+    $("q-round").textContent = "Round " + s.roundNo + " · word " + (s.ri + 1) + " of " + list.length;
+    $("q-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
+    $("q-bar").style.width = Math.round(100 * s.ri / list.length) + "%";
+    var clar = clarifier(w, s.mode), hints = [];
+    if (s.mode === "ge") renderGerman($("q-prompt"), w.g);
+    else { $("q-prompt").textContent = w.e; if (w.p.indexOf("noun") === 0) hints.push("(noun) include the article"); }
+    if (clar) hints.push("Example: \u201C" + clar + "\u201D");
+    $("q-hint").textContent = hints.join(" \u00B7 ");
+    $("q-back").disabled = s.ri === 0;
+    var rec = s.recs[s.ri];
+    if (rec) { showAnswered(rec); return; }
+    s.checked = false;
+    $("q-input").value = ""; $("q-input").disabled = false;
+    $("q-feedback").textContent = "";
+    $("q-check").textContent = "Check"; $("q-check").disabled = false;
+    $("q-skip").hidden = false;
+    $("q-input").focus();
+  }
+  /* an answered word shows its result screen, with the grade-it-differently buttons */
+  function showAnswered(rec) {
+    var s = session; s.checked = true;
+    $("q-input").value = rec.ans; $("q-input").disabled = true; $("q-skip").hidden = true;
+    $("q-check").textContent = "Next"; $("q-check").disabled = false;
+    renderVerdict(rec);
+    $("q-check").focus();
+  }
+  function renderVerdict(rec) {
+    var fb = $("q-feedback"); fb.textContent = "";
+    fb.appendChild(verdictBox(rec.credit, rec.answerText, rec.meta, rec.w, rec.type, scoreLine(rec.w.id, rec.scoreFrom)));
+    session.onOverride = function (c) { overrideRec(rec, c); };
+  }
+  function onCheck() {
+    var s = session; if (!s) return;
+    if (s.checked) { s.ri++; return ask(); }
+    evaluate(false);
+  }
+  function onSkip() {
+    var s = session; if (!s || s.checked) return;
+    evaluate(true);
+  }
+  function evaluate(skip) {
+    var s = session, w = s.current, typed = $("q-input").value;
+    var res = skip ? { credit: 0, note: "" }
+      : (s.mode === "ge" ? gradeEnglish(typed, w.e) : gradeGerman(typed, enToGe[normEn(w.e)] || [w.g]));
+    var rec = {
+      w: w, ans: typed, credit: res.credit, type: s.mode === "ge" ? "R" : "P",
+      firstAttempt: !s.answeredIds[w.id], scoreFrom: scoreFor(w.id),
+      answerText: s.mode === "ge" ? w.e : w.g,
+      meta: ((res.note ? res.note + " " : "") + detailLine(w)).trim()
+    };
+    s.answeredIds[w.id] = true;
+    logAnswer(rec, s.mode, { k: w.id, i: w.g, p: s.mode === "ge" ? w.g : w.e, x: rec.answerText, a: typed, c: res.credit, n: skip ? "skipped" : res.note });
+    record(w, rec.type, res.credit);
+    s.recs[s.ri] = rec;
+    s.answered++;
+    s.changes[w.id] = { w: w, from: rec.scoreFrom, to: scoreFor(w.id) };
+    s.roundCredit += res.credit;
+    if (rec.firstAttempt) { s.firstTry++; s.firstTryCredit += res.credit; }
+    applyOutcome(w, res.credit);
+    updateMastery();
+    showAnswered(rec);
+  }
+  function overrideRec(rec, c) {
+    var s = session, w = rec.w;
+    if (c === rec.credit) return;
+    var prev = rec.credit;
+    amend(w, rec.type, c); logOverride(rec, c);
+    if (s.changes[w.id]) s.changes[w.id].to = scoreFor(w.id);
+    updateMastery();
+    s.roundCredit += c - prev;
+    if (rec.firstAttempt) s.firstTryCredit += c - prev;
+    rec.credit = c;
+    applyOutcome(w, c);
+    renderVerdict(rec);
+  }
+  function applyOutcome(w, credit) {
+    var s = session, idx = s.queue.indexOf(w);
+    if (credit === 1) { if (idx >= 0) s.queue.splice(idx, 1); }
+    else {
+      if (idx < 0) s.queue.push(w);
+      s.retriesById[w.id] = (s.retriesById[w.id] || 0) + 1;
+    }
+    $("q-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
+  }
+  /* Back moves to the previous word's result screen. Nothing is undone. */
+  function onBack() {
+    var s = session; if (!s || s.ri === 0) return;
+    s.ri--; ask();
+  }
+  function roundSummary() {
+    var s = session; show("sum");
+    var n = s.round.length;
+    $("sum-title").textContent = "Round " + s.roundNo + ": " + (Math.round(s.roundCredit * 2) / 2) + " of " + n;
+    var body = $("sum-body"); body.textContent = "";
+    var p = document.createElement("p"); p.className = "muted";
+    p.textContent = s.queue.length
+      ? s.queue.length + " words make up the next round."
+      : "Every word was answered correctly.";
+    body.appendChild(p);
+    var moved = Object.keys(s.changes).map(function (k) { return s.changes[k]; })
+      .sort(function (a, b) { return Math.abs(b.to - b.from) - Math.abs(a.to - a.from); }).slice(0, 5);
+    if (moved.length) {
+      var h = document.createElement("h2"); h.textContent = "Biggest score changes"; body.appendChild(h);
+      var ul = document.createElement("ul"); ul.className = "plain";
+      moved.forEach(function (c) { var li = document.createElement("li"); li.textContent = c.w.g + " = " + c.w.e + ": " + c.from + " to " + c.to; ul.appendChild(li); });
+      body.appendChild(ul);
+    }
+    s.changes = {};
+    $("sum-next").textContent = s.queue.length ? "Next round (" + s.queue.length + " words)" : "Finish";
+    $("sum-next").onclick = function () { nextRound(); };
+    $("sum-home").onclick = function () { endQuiz(); };
+  }
+  function finishQuiz() {
+    var s = session; show("sum");
+    $("sum-title").textContent = "All words answered correctly";
+    var body = $("sum-body"); body.textContent = "";
+    var acc = s.firstTry ? Math.round(100 * s.firstTryCredit / s.firstTry) : 0;
+    var p = document.createElement("p");
+    p.textContent = s.roundNo + " rounds, " + s.answered + " answers, first-try accuracy " + acc + "%.";
+    body.appendChild(p);
+    var hard = Object.keys(s.retriesById).map(function (id) { return { w: byId[id], n: s.retriesById[id] }; })
+      .filter(function (x) { return x.n > 0; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 8);
+    if (hard.length) {
+      var h = document.createElement("h2"); h.textContent = "Missed most often"; body.appendChild(h);
+      var ul = document.createElement("ul"); ul.className = "plain";
+      hard.forEach(function (x) { var li = document.createElement("li"); li.textContent = x.w.g + " = " + x.w.e + " (" + x.n + ")"; ul.appendChild(li); });
+      body.appendChild(ul);
+    }
+    $("sum-next").textContent = "Back to Vocab";
+    $("sum-next").onclick = function () { session = null; refreshHome(); show("home"); };
+    $("sum-home").onclick = function () { endQuiz(); };
+  }
+  function endQuiz() { session = null; refreshHome(); show("home"); }
+
+  /* ----- sentence practice (checked by Claude through the sample capability) ----- */
+  var sent = null;
+  function pickWeighted(words, n) {
+    var pool = words.slice(), chosen = [], t = today();
+    var wts = pool.map(function (w) {
+      var e = entry(w.id), x = (100 - scoreNow(e)) + 15;
+      if (e.a === 0) x += 25;
+      if (e.l === t) x *= 0.3;
+      return x;
+    });
+    for (var k = 0; k < Math.min(n, pool.length); k++) {
+      var total = wts.reduce(function (a, b) { return a + b; }, 0), r = Math.random() * total, i = 0;
+      while (i < wts.length - 1 && r >= wts[i]) { r -= wts[i]; i++; }
+      chosen.push(pool.splice(i, 1)[0]); wts.splice(i, 1);
+    }
+    return chosen;
+  }
+  function startSentences(wordsGiven, scope, after) {
+    var list = wordsGiven || pickWeighted(scope, 5);
+    sent = { list: list, i: 0, credit: 0, after: after, scope: scope, recs: [], checked: false };
+    show("sent"); askSentence();
+  }
+  function askSentence() {
+    var w = sent.list[sent.i];
+    if (!w) return endSentences();
+    $("s-count").textContent = "Word " + (sent.i + 1) + " of " + sent.list.length;
+    $("s-note").textContent = sent.after ? "Same words came up again" : "";
+    renderGerman($("s-prompt"), w.g);
+    $("s-hint").textContent = w.f ? "Forms: " + w.f : "";
+    $("s-back").disabled = sent.i === 0;
+    var rec = sent.recs[sent.i];
+    if (rec) { showSentenceResult(rec); return; }
+    sent.checked = false;
+    $("s-input").value = ""; $("s-input").disabled = false; $("s-feedback").textContent = "";
+    $("s-check").textContent = "Check sentence"; $("s-check").disabled = false;
+    $("s-skip").hidden = false;
+    $("s-input").focus();
+  }
+  function showSentenceResult(rec) {
+    sent.checked = true;
+    $("s-input").value = rec.text; $("s-input").disabled = true; $("s-skip").hidden = true;
+    var fb = $("s-feedback"); fb.textContent = "";
+    if (rec.skip) {
+      var p = document.createElement("p"); p.className = "muted"; p.textContent = "Skipped. No score was recorded."; fb.appendChild(p);
+    } else {
+      fb.appendChild(verdictBox(rec.credit, rec.corrected, rec.meta, null, "U", scoreLine(rec.w.id, rec.fromScore)));
+    }
+    $("s-check").disabled = false;
+    $("s-check").textContent = sent.i + 1 < sent.list.length ? "Next word" : "Finish";
+    $("s-check").focus();
+  }
+  async function onSentenceCheck() {
+    if (!sent) return;
+    if (sent.checked) { sent.i++; return askSentence(); }
+    var w = sent.list[sent.i], text = $("s-input").value.trim();
+    if (!text) return;
+    $("s-check").disabled = true; $("s-feedback").textContent = "Checking...";
+    var prompt = "You are checking a beginner German sentence from a learner using the Kontakte textbook (chapters 1 and 2: introductions, daily life, leisure, possessions, gifts; present tense, nominative and accusative, modal verbs, separable verbs).\n"
+      + "Target word: " + w.g + " (" + w.e + ")" + (w.f ? ", forms: " + w.f : "") + ".\n"
+      + "Learner's sentence: " + text + "\n"
+      + "Score: credit 1 if the target word is used correctly (small errors elsewhere are fine); 0.5 if recognizable but flawed (wrong article, case or form, awkward meaning); 0 if used incorrectly or missing. Do not penalize grammar beyond chapters 1-2; mention it as an aside only.\n"
+      + 'Reply with only JSON: {"credit": 1, "corrected": "corrected sentence or empty string", "note": "one short line per rule behind each change, or a brief confirmation"}';
+    var res;
+    try {
+      res = await sample.json(prompt, { modelTier: "default", cache: false });
+    } catch (e) {
+      $("s-feedback").textContent = "Claude could not check this sentence (" + (e && e.code ? e.code : "error") + "). Try again, or end practice.";
+      $("s-check").disabled = false; return;
+    }
+    var credit = [0, 0.5, 1].indexOf(Number(res && res.credit)) >= 0 ? Number(res.credit) : 0;
+    var entryBefore = entry(w.id), fromScore = scoreNow(entryBefore);
+    record(w, "U", credit);
+    var rec = { w: w, text: $("s-input").value, credit: credit, skip: false, fromScore: fromScore,
+      corrected: res && res.corrected ? String(res.corrected) : "", meta: res && res.note ? String(res.note) : "" };
+    sent.recs[sent.i] = rec;
+    sent.credit += credit;
+    showSentenceResult(rec);
+  }
+  function onSentenceSkip() {
+    if (!sent || sent.checked) return;
+    sent.recs[sent.i] = { w: sent.list[sent.i], text: $("s-input").value, skip: true };
+    sent.i++; askSentence();
+  }
+  /* Back moves to the previous sentence's result screen. Nothing is undone. */
+  function onSentenceBack() {
+    if (!sent || sent.i === 0) return;
+    sent.i--; askSentence();
+  }
+  function endSentences() {
+    var s = sent; show("sum");
+    $("sum-title").textContent = "Sentences: " + s.credit + " of " + s.list.length;
+    var body = $("sum-body"); body.textContent = "";
+    var p = document.createElement("p"); p.className = "muted";
+    p.textContent = "Scores were saved for each word you wrote a sentence for.";
+    body.appendChild(p);
+    $("sum-next").textContent = s.after ? "Continue quiz" : "Practice more";
+    $("sum-next").onclick = function () { var a = s.after; sent = null; if (a) { a(); } else { startSentences(null, s.scope, null); } };
+    $("sum-home").onclick = function () { sent = null; endQuiz(); };
+  }
+
+  /* ----- report + CSV export ----- */
+  function csvCell(v) { v = String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+  function buildCsv() {
+    var lines = ["german,english,chapter,attempts,correct,last_seen,history,score"];
+    WORDS.forEach(function (w) {
+      var e = entry(w.id);
+      lines.push([w.g, w.e, w.c, e.a, e.c, e.l, e.h, scoreNow(e)].map(csvCell).join(","));
+    });
+    return lines.join("\n") + "\n";
+  }
+  function renderReport() {
+    var chs = chaptersOf("seg-ch");
+    var words = WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0; });
+    fillChart($("rep-chart"), words);
+    var high = repHigh;
+    $("rep-low").setAttribute("aria-pressed", high ? "false" : "true");
+    $("rep-high").setAttribute("aria-pressed", high ? "true" : "false");
+    $("rep-title").textContent = high ? "Highest scores" : "Lowest scores";
+    var rows = words.map(function (w) { var e = entry(w.id); return { w: w, s: scoreNow(e), a: e.a }; })
+      .sort(function (x, y) {
+        return high ? (y.s - x.s || y.a - x.a || x.w.g.localeCompare(y.w.g)) : (x.s - y.s || x.w.g.localeCompare(y.w.g));
+      }).slice(0, 10);
+    var tb = $("rep-rows"); tb.textContent = "";
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      [r.w.g, r.w.e, r.s, r.a].forEach(function (v, i) {
+        var td = document.createElement("td"); td.textContent = v; if (i > 1) td.className = "num"; tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    $("rep-csv").hidden = !downloads;
+    $("rep-note").textContent = "Progress is saved on this device first and syncs to your account whenever you are online.";
+  }
+  async function exportCsv() {
+    if (!downloads) return;
+    try { await downloads.save({ filename: "progress.csv", data: buildCsv() }); }
+    catch (e) { if (!e || e.code !== "declined") banner("The file could not be saved here."); }
+  }
+
+  /* ----- verbs: progress lives in its own account document and its own device cache ----- */
+  function makeStore(docName, lsKey, hooks) {
+    var st = { prog: {}, remote: {}, pending: {}, ref: null, syncing: false, again: false, timer: null, uid: "", subscribed: false };
+    function entry(id) { return st.prog[id] || { a: 0, c: 0, l: "", h: "" }; }
+    function pendingCount() {
+      var n = 0; Object.keys(st.pending).forEach(function (id) { n += st.pending[id].toks.length + (st.pending[id].fix ? 1 : 0); }); return n;
+    }
+    function userCount() { // answers as the person sees them: the per-person tallies ride along and are not counted
+      var n = 0; Object.keys(st.pending).forEach(function (id) { if (id.indexOf(":") < 0) n += st.pending[id].toks.length + (st.pending[id].fix ? 1 : 0); }); return n;
+    }
+    function rebuild() {
+      st.prog = clone(st.remote);
+      Object.keys(st.pending).forEach(function (id) { st.prog[id] = applyPending(st.remote[id], st.pending[id]); });
+    }
+    function saveLocal() {
+      try { localStorage.setItem(lsKey, JSON.stringify({ uid: st.uid, remote: st.remote, pending: st.pending })); } catch (e) { /* storage may be blocked */ }
+    }
+    function loadLocal() {
+      try {
+        var raw = localStorage.getItem(lsKey); if (!raw) return;
+        var d = JSON.parse(raw);
+        if (d && d.remote && d.pending) { st.remote = d.remote; st.pending = d.pending; st.uid = d.uid || ""; }
+      } catch (e) { /* ignore a damaged cache */ }
+    }
+    function schedule(ms) {
+      if (st.timer) clearTimeout(st.timer);
+      st.timer = setTimeout(function () { st.timer = null; sync(); }, ms == null ? 2000 : ms);
+    }
+    function record(id, type, credit) {
+      var p = st.pending[id] || (st.pending[id] = { toks: [], fix: null, l: "", inflight: 0 });
+      p.toks.push(type + String(credit)); p.l = today();
+      st.prog[id] = applyPending(st.remote[id], p);
+      saveLocal(); hooks.status("idle"); schedule();
+    }
+    function amend(id, type, credit) {
+      var tok = type + String(credit);
+      var p = st.pending[id] || (st.pending[id] = { toks: [], fix: null, l: today(), inflight: 0 });
+      if (p.toks.length > (p.inflight || 0)) p.toks[p.toks.length - 1] = tok;
+      else p.fix = tok;
+      st.prog[id] = applyPending(st.remote[id], p);
+      saveLocal(); hooks.status("idle"); schedule();
+    }
+    async function connect() {
+      try {
+        var db = await withTimeout(claude.use("db"), 8000);
+        var user = await withTimeout(claude.use("user"), 8000);
+        var uid = user ? await withTimeout(user.id(), 8000) : null;
+        if (!db || !uid) return false;
+        if (st.uid && st.uid !== uid) { st.remote = {}; st.pending = {}; }
+        st.uid = uid;
+        st.ref = db.collection("data/users/" + uid).doc(docName);
+        if (!st.subscribed) {
+          st.subscribed = true;
+          st.ref.onSnapshot(function (s) {
+            if (s.metadata.hasPendingWrites || s.metadata.fromCache || !s.exists || st.syncing) return;
+            var d = s.data(); if (!d || !d.words) return;
+            st.remote = clone(d.words); rebuild(); saveLocal();
+            hooks.remote(); hooks.status("idle");
+          }, function () { st.subscribed = false; });
+        }
+        return true;
+      } catch (e) { st.ref = null; return false; }
+    }
+    async function sync() {
+      if (st.syncing) { st.again = true; return; }
+      st.syncing = true; hooks.status("syncing");
+      var ids = [], sentInfo = {};
+      try {
+        if (!st.ref && !(await connect())) throw new Error("offline");
+        var snap = await withTimeout(st.ref.get(), 10000);
+        var server = snap.exists && snap.data() && snap.data().words ? clone(snap.data().words) : {};
+        if (!snap.exists) await withTimeout(st.ref.set({ words: {} }), 10000);
+        ids = Object.keys(st.pending);
+        var patch = { words: {} };
+        ids.forEach(function (id) {
+          var p = st.pending[id]; p.inflight = p.toks.length;
+          sentInfo[id] = { n: p.toks.length, fix: !!p.fix };
+          server[id] = applyPending(server[id], { toks: p.toks.slice(0, p.inflight), fix: p.fix, l: p.l });
+          patch.words[id] = server[id];
+        });
+        if (ids.length) await withTimeout(st.ref.update(patch), 15000);
+        ids.forEach(function (id) {
+          var p = st.pending[id], si = sentInfo[id];
+          p.toks.splice(0, si.n); p.inflight = 0; if (si.fix) p.fix = null;
+          if (!p.toks.length && !p.fix) delete st.pending[id];
+        });
+        st.remote = server; rebuild(); saveLocal();
+        hooks.remote();
+        st.syncing = false; hooks.status("idle");
+      } catch (e) {
+        ids.forEach(function (id) {
+          var p = st.pending[id]; if (!p) return;
+          if (p.inflight && p.fix && !(sentInfo[id] && sentInfo[id].fix) && p.toks.length) { p.toks[p.toks.length - 1] = p.fix; p.fix = null; }
+          p.inflight = 0;
+        });
+        st.ref = null; st.subscribed = false; st.syncing = false; saveLocal(); hooks.status("failed");
+      }
+      if (st.again || (st.ref && pendingCount())) { st.again = false; schedule(1500); }
+    }
+    return { st: st, entry: entry, pendingCount: pendingCount, userCount: userCount, loadLocal: loadLocal, rebuild: rebuild, record: record, amend: amend, sync: sync };
+  }
+
+  /* ----- mistake log: every missed or skipped answer, and every time you overrode the grader, kept for later review ----- */
+  var mlog = (function () {
+    var LS = "kv-mistakes-v1", CAP = 1500, st = { items: {}, dirty: {}, ref: null, busy: false, uid: "", timer: null, ver: 0 };
+    try {
+      var d0 = JSON.parse(localStorage.getItem(LS) || "null");
+      if (d0 && d0.items) { st.items = d0.items; st.dirty = d0.dirty || {}; st.uid = d0.uid || ""; }
+    } catch (e) { /* ignore a damaged cache */ }
+    function save() {
+      var keys = Object.keys(st.items);
+      if (keys.length > CAP) keys.sort().slice(0, keys.length - CAP).forEach(function (k) { if (!st.dirty[k]) delete st.items[k]; });
+      try { localStorage.setItem(LS, JSON.stringify({ uid: st.uid, items: st.items, dirty: st.dirty })); } catch (e) { /* storage may be blocked */ }
+    }
+    function dirtyCount() { return Object.keys(st.dirty).length; }
+    function schedule(ms) {
+      if (st.timer) clearTimeout(st.timer);
+      st.timer = setTimeout(function () { st.timer = null; flush(); }, ms == null ? 3000 : ms);
+    }
+    function add(d, o) {
+      var t = new Date().toISOString(), key = t.replace(/\D/g, "").slice(0, 17) + Math.random().toString(36).slice(2, 6);
+      var e = { t: t, d: d, k: String(o.k || ""), i: String(o.i || ""), p: String(o.p || ""), x: String(o.x || ""), a: String(o.a || ""), c: o.c };
+      if (o.n) e.n = String(o.n);
+      if (o.h) e.h = 1;
+      if (o.f != null) { e.f = o.f; e.o = 1; }
+      st.items[key] = e; st.dirty[key] = ++st.ver; save(); schedule();
+      return key;
+    }
+    function amend(key, patch) {
+      var e = st.items[key]; if (!e) return;
+      Object.keys(patch).forEach(function (k) { e[k] = patch[k]; });
+      st.dirty[key] = ++st.ver; save(); schedule();
+    }
+    async function flush() {
+      if (st.busy || !dirtyCount()) return;
+      st.busy = true;
+      try {
+        if (!st.ref) {
+          var db = await withTimeout(claude.use("db"), 8000), user = await withTimeout(claude.use("user"), 8000);
+          var uid = user ? await withTimeout(user.id(), 8000) : null;
+          if (!db || !uid) throw new Error("offline");
+          st.uid = uid; st.ref = db.collection("data/users/" + uid).doc("mistakes");
+        }
+        var sent = {}, patch = { words: {} };
+        Object.keys(st.dirty).forEach(function (k) { if (st.items[k]) { sent[k] = st.dirty[k]; patch.words[k] = st.items[k]; } });
+        var snap = await withTimeout(st.ref.get(), 10000);
+        if (!snap.exists) await withTimeout(st.ref.set({ words: {} }), 10000);
+        if (Object.keys(patch.words).length) await withTimeout(st.ref.update(patch), 15000);
+        Object.keys(sent).forEach(function (k) { if (st.dirty[k] === sent[k]) delete st.dirty[k]; });
+        save();
+      } catch (e) { st.ref = null; }
+      st.busy = false;
+      if (dirtyCount() && st.ref) schedule(1500);
+    }
+    return { add: add, amend: amend, flush: flush, dirtyCount: dirtyCount };
+  })();
+  /* rec.lo keeps what was shown and expected, so a later override can still be logged */
+  function logAnswer(rec, d, o) {
+    rec.lo = o; rec.ld = d; rec.lk = null;
+    if (o.c < 1 || o.h) rec.lk = mlog.add(d, o);   // misses, and answers given after a hint
+  }
+  function logOverride(rec, c) {
+    if (!rec.lo) return;
+    if (rec.lk) mlog.amend(rec.lk, { f: c, o: 1 });
+    else if (c < 1) { var o = {}; Object.keys(rec.lo).forEach(function (k) { o[k] = rec.lo[k]; }); o.f = c; rec.lk = mlog.add(rec.ld, o); }
+  }
+  var vstore = makeStore("verbs", "kv-verbs-v1", {
+    status: function (s) { setStatus(s); },
+    remote: function () { if (!$("v-verbs").hidden) vRefresh(); }
+  });
+
+  /* ----- verbs: setup, progress and drills ----- */
+  var vmode = "form", vq = null, vHigh = false;
+  var VNOTES = {
+    form: "You see a pronoun and a verb, like “du / fahren”, and type the present-tense form (“fährst”). Separable verbs need their prefix (“wache auf”). Each round has 20 verbs, picked at random with a lean toward the ones you know least. Verbs you miss or skip come back until every one is right.",
+    cloze: "A sentence has a blank where a present-tense verb belongs. Type the missing form. For separable verbs, type only the part that goes in the blank. Each round has 20 verbs, picked at random with a lean toward the ones you know least. Verbs you miss or skip come back until every one is right.",
+    perfekt: "You see a pronoun and a verb, like “er / lernen”, and type the auxiliary and participle (“hat gelernt”). A wrong auxiliary or a small spelling slip earns half credit. Each round has 20 verbs, picked at random with a lean toward the ones you know least. Verbs you miss or skip come back until every one is right."
+  };
+  function vSkill(m) { return m === "perfekt" ? "pf" : "pr"; }
+  function vId(v, skill) { return skill === "pf" ? v.idpf : v.idpr; }
+  function vEntry(v, skill) { return vstore.entry(vId(v, skill)); }
+  function vPool(m, chs) {
+    return VERBS.filter(function (v) { return chs.indexOf(v.c) >= 0 && (m !== "perfekt" || v.pt); });
+  }
+  function vStats(pool, skill) {
+    var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
+    pool.forEach(function (v) { var e = vEntry(v, skill), s = scoreNow(e); counts[bandOf(e.a, s)]++; sum += s; });
+    return { counts: counts, avg: pool.length ? Math.round(sum / pool.length) : 0 };
+  }
+  function vAcc(e) {
+    var toks = e.h ? e.h.split(" ").filter(Boolean) : [];
+    if (!toks.length) return null;
+    return toks.reduce(function (s, t) { return s + tokCredit(t); }, 0) / toks.length;
+  }
+  function bars(el, rows, label) { // rows: [label, value, text, colour]
+    el.textContent = "";
+    rows.forEach(function (r) {
+      var row = document.createElement("div"); row.className = "crow"; row.title = r[0] + ": " + r[2];
+      var l = document.createElement("span"); l.className = "cl"; l.textContent = r[0];
+      var t = document.createElement("div"); t.className = "ct";
+      var b = document.createElement("div"); b.className = "cb"; b.style.width = Math.max(0, Math.min(100, r[1])) + "%"; b.style.background = r[3];
+      if (!r[1]) b.style.width = "0";
+      t.appendChild(b);
+      var v = document.createElement("span"); v.className = "cv"; v.textContent = r[2];
+      row.appendChild(l); row.appendChild(t); row.appendChild(v); el.appendChild(row);
+    });
+    el.setAttribute("aria-label", label + ": " + rows.map(function (r) { return r[0] + " " + r[2]; }).join(", "));
+  }
+  function vRefresh() {
+    $("vmode-note").textContent = VNOTES[vmode];
+    document.querySelectorAll("#vseg-mode button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-vmode") === vmode ? "true" : "false");
+    });
+    var skill = vSkill(vmode), pool = vPool(vmode, chaptersOf("vseg-ch")), st = vStats(pool, skill);
+    $("vstart").disabled = pool.length === 0;
+    var el = $("v-stats"); el.textContent = "";
+    el.appendChild(stat("Verbs", pool.length));
+    el.appendChild(stat("New", st.counts["new"]));
+    el.appendChild(stat("Learning", st.counts.learning));
+    el.appendChild(stat("Familiar", st.counts.familiar));
+    el.appendChild(stat("Mastered", st.counts.mastered));
+    el.appendChild(stat("Average", st.avg));
+    $("vprog-title").textContent = skill === "pf" ? "Perfekt progress" : "Present tense progress";
+    var total = pool.length || 1;
+    bars($("v-chart"), [["New", "new", "var(--b1)"], ["Learning", "learning", "var(--b2)"], ["Familiar", "familiar", "var(--b3)"], ["Mastered", "mastered", "var(--b4)"]]
+      .map(function (r) { var n = st.counts[r[1]]; return [r[0], n / total * 100, String(n), r[2]]; }), "Verbs by proficiency");
+    bars($("v-persons"), PERSONS.map(function (p) {
+      var e = vstore.entry("pp:" + p), acc = vAcc(e);
+      return [p, acc === null ? 0 : Math.round(acc * 100), acc === null ? "-" : Math.round(acc * 100) + "%", "var(--b3)"];
+    }), "Accuracy by person");
+    $("v-low").setAttribute("aria-pressed", vHigh ? "false" : "true"); $("v-high").setAttribute("aria-pressed", vHigh ? "true" : "false");
+    $("v-rowtitle").textContent = vHigh ? "Highest scores" : "Lowest scores";
+    var rows = pool.map(function (v) { var e = vEntry(v, skill); return { v: v, s: scoreNow(e), a: e.a }; })
+      .sort(function (x, y) { return vHigh ? (y.s - x.s || y.a - x.a || x.v.i.localeCompare(y.v.i)) : (x.s - y.s || x.v.i.localeCompare(y.v.i)); }).slice(0, 10);
+    var tb = $("v-rows"); tb.textContent = "";
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      [r.v.lab || r.v.i, r.v.en, r.s, r.a].forEach(function (x, i) {
+        var td = document.createElement("td"); td.textContent = x; if (i > 1) td.className = "num"; tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+  }
+  function vSetMode(m) { vmode = m; vRefresh(); }
+
+  function vPickPerson(v) {
+    var ok = allowedPersons(v);
+    if (ok.length === 1) return ok[0];
+    var wts = ok.map(function (p) { var a = vAcc(vstore.entry("pp:" + PERSONS[p])); return 1 + 2 * (1 - (a === null ? 0.5 : a)); });
+    var total = wts.reduce(function (x, y) { return x + y; }, 0), r = Math.random() * total, i = 0;
+    while (i < wts.length - 1 && r >= wts[i]) { r -= wts[i]; i++; }
+    return ok[i];
+  }
+  function vPronoun(v, p) {
+    if (v.only) return { text: "es", hint: "" };
+    if (p === 2) { var pr = ["er", "sie", "es"][Math.floor(Math.random() * 3)]; return { text: pr, hint: pr === "sie" ? "she" : "" }; }
+    if (p === 5) return Math.random() < 0.5 ? { text: "sie", hint: "they" } : { text: "Sie", hint: "formal you" };
+    return { text: PERSONS[p], hint: "" };
+  }
+  function vPronLabel(it) { return it.pron.text + (it.pron.hint ? " (" + it.pron.hint + ")" : ""); }
+  function vMakeItem(v, mode) {
+    var skill = vSkill(mode), p = mode === "cloze" ? v.cz.p : vPickPerson(v);
+    return { v: v, p: p, pron: vPronoun(v, p), skill: skill, id: vId(v, skill) };
+  }
+  function vScoreLine(id, from) {
+    var e = vstore.entry(id), to = scoreNow(e);
+    return "Verb score " + from + " to " + to + " (" + bandOf(e.a, to) + ")";
+  }
+  function vStart() {
+    var skill = vSkill(vmode), pool = vPool(vmode, chaptersOf("vseg-ch"));
+    if (!pool.length) return;
+    var mode = vmode;
+    var picked = pickWords(pool, function (v) { var e = vEntry(v, skill); return bandOf(e.a, scoreNow(e)); }, VQ_SIZE);
+    vq = { mode: mode, skill: skill, pool: pool, queue: picked.map(function (v) { return vMakeItem(v, mode); }), round: [], roundNo: 0,
+      ri: 0, answered: 0, firstTry: 0, firstTryCredit: 0, retries: {}, labels: {}, answeredIds: {}, changes: {}, recs: [], checked: false, view: "vq", onOverride: null };
+    vNextRound();
+  }
+  function vNextRound() {
+    var s = vq;
+    if (!s.queue.length) return vFinish();
+    s.round = shuffle(s.queue); s.queue = [];
+    s.roundNo++; s.ri = 0; s.roundCredit = 0; s.recs = []; s.changes = {}; s.view = "vq";
+    show("vq"); vAsk();
+  }
+  function vPromptText(it) {
+    var pr = $("vq-prompt"); pr.textContent = ""; pr.className = "prompt";
+    var v = it.v, bits = [];
+    if (vq.mode === "cloze") {
+      pr.className = "prompt sentence";
+      pr.textContent = v.cz.de.replace("___", "_____");
+      bits.push("(" + v.i + ") " + v.cz.en);
+    } else {
+      var sp = document.createElement("span"); sp.className = "pron"; sp.textContent = it.pron.text;
+      if (it.pron.hint) { sp.appendChild(document.createTextNode(" ")); var ph = document.createElement("strong"); ph.className = "pronhint"; ph.appendChild(document.createTextNode("(")); var pe = document.createElement("em"); pe.textContent = it.pron.hint; ph.appendChild(pe); ph.appendChild(document.createTextNode(")")); sp.appendChild(ph); }
+      pr.appendChild(sp); pr.appendChild(document.createTextNode(" / " + v.i));
+      bits.push(v.en);
+      if (vq.mode === "perfekt") bits.push("auxiliary + participle");
+    }
+    $("vq-hint").textContent = bits.join(" · ");
+  }
+  function vAsk() {
+    var s = vq, list = s.round;
+    if (s.ri >= list.length) return vRoundSummary();
+    var it = list[s.ri]; s.current = it;
+    $("vq-round").textContent = "Round " + s.roundNo + " · verb " + (s.ri + 1) + " of " + list.length;
+    $("vq-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
+    $("vq-bar").style.width = Math.round(100 * s.ri / list.length) + "%";
+    vPromptText(it);
+    $("vq-back").disabled = s.ri === 0;
+    var rec = s.recs[s.ri];
+    if (rec) return vShowAnswered(rec);
+    s.checked = false;
+    $("vq-input").value = ""; $("vq-input").disabled = false;
+    $("vq-feedback").textContent = "";
+    $("vq-check").textContent = "Check"; $("vq-check").disabled = false;
+    $("vq-skip").hidden = false;
+    $("vq-input").focus();
+  }
+  function vShowAnswered(rec) {
+    var s = vq; s.checked = true;
+    $("vq-input").value = rec.ans; $("vq-input").disabled = true; $("vq-skip").hidden = true;
+    $("vq-check").textContent = "Next"; $("vq-check").disabled = false;
+    vRenderVerdict(rec);
+    $("vq-check").focus();
+  }
+  function vFacts(it) {
+    var v = it.v, forms = presentForms(v);
+    if (vq.mode === "perfekt") {
+      return v.i + " · " + (finiteForms(v)[2] + (v.pre ? " " + v.pre : "")) + " · " + v.aux[0] + " " + v.pt + (v.aux.length > 1 ? " (also " + v.aux[1] + ")" : "");
+    }
+    return PERSONS.map(function (p, k) { return (k === 5 ? "sie/Sie" : k === 2 ? "er/sie/es" : p) + " " + forms[k]; }).join(" · ");
+  }
+  function vRenderVerdict(rec) {
+    var fb = $("vq-feedback"); fb.textContent = "";
+    vq.onOverride = function (c) { vOverride(rec, c); };
+    fb.appendChild(verdictBox(rec.credit, rec.answerText, rec.meta, { x: rec.ex }, rec.type, vScoreLine(rec.it.id, rec.scoreFrom), vq.onOverride));
+  }
+  function vExpected(it) {
+    var v = it.v, p = it.p;
+    if (vq.mode === "perfekt") return vPronLabel(it) + " " + AUX[v.aux[0]][p] + " " + v.pt;
+    if (vq.mode === "cloze") return presentForms(v)[p];
+    return vPronLabel(it) + " " + presentForms(v)[p];
+  }
+  function vOnCheck() {
+    var s = vq; if (!s) return;
+    if (s.checked) { s.ri++; return vAsk(); }
+    vEvaluate(false);
+  }
+  function vEvaluate(skip) {
+    var s = vq, it = s.current, v = it.v, typed = $("vq-input").value;
+    var res = skip ? { credit: 0, note: "" }
+      : s.mode === "perfekt" ? gradePerfekt(typed, v, it.p, it.pron.text)
+      : s.mode === "cloze" ? gradeCloze(typed, v, it.p) : gradeVerbForm(typed, v, it.p, it.pron.text);
+    var type = s.mode === "cloze" ? "R" : "P";
+    var ex = s.mode === "perfekt" ? "" : v.cz.de.replace("___", finiteForms(v)[v.cz.p]) + "|" + v.cz.en;
+    var rec = { it: it, ans: typed, credit: res.credit, type: type, firstAttempt: !s.answeredIds[it.id], scoreFrom: scoreNow(vstore.entry(it.id)),
+      answerText: vExpected(it), meta: ((res.note ? res.note + " " : "") + vFacts(it)).trim(), ex: ex };
+    s.answeredIds[it.id] = true; s.labels[it.id] = vLabel(it);
+    logAnswer(rec, "verb-" + s.mode, { k: it.id, i: vLabel(it), p: $("vq-prompt").textContent + (s.mode === "cloze" ? " | " + $("vq-hint").textContent : ""), x: rec.answerText, a: typed, c: res.credit, n: skip ? "skipped" : res.note });
+    vstore.record(it.id, type, res.credit);
+    vstore.record("pp:" + PERSONS[it.p], type, res.credit);
+    s.recs[s.ri] = rec; s.answered++;
+    s.changes[it.id] = { it: it, from: rec.scoreFrom, to: scoreNow(vstore.entry(it.id)) };
+    s.roundCredit += res.credit;
+    if (rec.firstAttempt) { s.firstTry++; s.firstTryCredit += res.credit; }
+    vOutcome(it, res.credit);
+    vShowAnswered(rec);
+  }
+  function vOutcome(it, credit) {
+    var s = vq, idx = s.queue.indexOf(it);
+    if (credit === 1) { if (idx >= 0) s.queue.splice(idx, 1); }
+    else { if (idx < 0) s.queue.push(it); s.retries[it.id] = (s.retries[it.id] || 0) + 1; }
+    $("vq-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
+  }
+  function vOverride(rec, c) {
+    var s = vq, it = rec.it;
+    if (c === rec.credit) return;
+    var prev = rec.credit;
+    vstore.amend(it.id, rec.type, c); logOverride(rec, c);
+    vstore.amend("pp:" + PERSONS[it.p], rec.type, c);
+    if (s.changes[it.id]) s.changes[it.id].to = scoreNow(vstore.entry(it.id));
+    s.roundCredit += c - prev;
+    if (rec.firstAttempt) s.firstTryCredit += c - prev;
+    rec.credit = c;
+    vOutcome(it, c);
+    vRenderVerdict(rec);
+  }
+  function vLabel(it) { return it.v.lab || it.v.i; }
+  function vRoundSummary() {
+    var s = vq; s.view = "sum"; show("sum", "verbs");
+    $("sum-title").textContent = "Round " + s.roundNo + ": " + (Math.round(s.roundCredit * 2) / 2) + " of " + s.round.length;
+    var body = $("sum-body"); body.textContent = "";
+    var p = document.createElement("p"); p.className = "muted";
+    p.textContent = s.queue.length ? s.queue.length + " verbs make up the next round." : "Every verb was answered correctly.";
+    body.appendChild(p);
+    var moved = Object.keys(s.changes).map(function (k) { return s.changes[k]; })
+      .sort(function (a, b) { return Math.abs(b.to - b.from) - Math.abs(a.to - a.from); }).slice(0, 5);
+    if (moved.length) {
+      var h = document.createElement("h2"); h.textContent = "Biggest score changes"; body.appendChild(h);
+      var ul = document.createElement("ul"); ul.className = "plain";
+      moved.forEach(function (c) { var li = document.createElement("li"); li.textContent = vLabel(c.it) + ": " + c.from + " to " + c.to; ul.appendChild(li); });
+      body.appendChild(ul);
+    }
+    $("sum-next").textContent = s.queue.length ? "Next round (" + s.queue.length + " verbs)" : "Finish";
+    $("sum-next").onclick = function () { vNextRound(); };
+    $("sum-home").onclick = function () { vEnd(); };
+  }
+  function vFinish() {
+    var s = vq; s.view = "sum"; s.finished = true; show("sum", "verbs");
+    $("sum-title").textContent = "All verbs answered correctly";
+    var body = $("sum-body"); body.textContent = "";
+    var acc = s.firstTry ? Math.round(100 * s.firstTryCredit / s.firstTry) : 0;
+    var p = document.createElement("p");
+    p.textContent = s.roundNo + " rounds, " + s.answered + " answers, first-try accuracy " + acc + "%.";
+    body.appendChild(p);
+    var hard = Object.keys(s.retries).map(function (id) { return { id: id, n: s.retries[id] }; })
+      .filter(function (x) { return x.n > 0; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 8);
+    if (hard.length) {
+      var h = document.createElement("h2"); h.textContent = "Missed most often"; body.appendChild(h);
+      var ul = document.createElement("ul"); ul.className = "plain";
+      hard.forEach(function (x) { var li = document.createElement("li"); li.textContent = (s.labels[x.id] || x.id) + " (" + x.n + ")"; ul.appendChild(li); });
+      body.appendChild(ul);
+    }
+    $("sum-next").textContent = "Verb progress";
+    $("sum-next").onclick = function () { vEnd(); };
+    $("sum-home").onclick = function () { vEnd(); };
+  }
+  function vEnd() { vq = null; vRefresh(); show("verbs"); }
+  function vBack() { var s = vq; if (!s || s.ri === 0) return; s.ri--; vAsk(); }
+  function vSkip() { var s = vq; if (!s || s.checked) return; vEvaluate(true); }
+
+  /* ----- grammar progress store (accusative) ----- */
+  var gstore = makeStore("grammar", "kv-grammar-v1", {
+    status: function (s) { setStatus(s); },
+    remote: function () {
+      if (!$("v-gram").hidden) aRefresh();
+    }
+  });
+
+  /* ----- vocab: gender drill (der, die or das) ----- */
+  var GQ_SIZE = 20, ARTICLES = ["der", "die", "das"];
+  var gq = null;
+  function gIsGendered(w) { return !w.pl && w.p.indexOf("noun") === 0 && /^(der|die|das) [^\/]+$/.test(w.g) && w.f !== "plural only"; }
+  function gArt(w) { return w.g.split(" ")[0]; }
+  function gBare(w) { return w.g.replace(/^(der|die|das) /, ""); }
+  function gPool(chs) { return WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0 && gIsGendered(w); }); }
+  function gStats(pool) {
+    var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
+    pool.forEach(function (w) { var e = entry(w.id), s = scoreNow(e); counts[bandOf(e.a, s)]++; sum += s; });
+    return { counts: counts, avg: pool.length ? Math.round(sum / pool.length) : 0 };
+  }
+  function fillGenderStats(el, pool) {
+    var st = gStats(pool); el.textContent = "";
+    el.appendChild(stat("Nouns", pool.length));
+    el.appendChild(stat("New", st.counts["new"]));
+    el.appendChild(stat("Learning", st.counts.learning));
+    el.appendChild(stat("Familiar", st.counts.familiar));
+    el.appendChild(stat("Mastered", st.counts.mastered));
+    el.appendChild(stat("Average", st.avg));
+  }
+  function gStart() {
+    var pool = gPool(chaptersOf("seg-ch"));
+    if (!pool.length) return;
+    var picked = pickWords(pool, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e)); }, GQ_SIZE);
+    gq = { queue: picked.slice(), round: [], roundNo: 0, ri: 0, answered: 0, firstTry: 0, firstTryCredit: 0, retries: {}, labels: {}, answeredIds: {},
+      changes: {}, recs: [], checked: false, view: "gq", finished: false };
+    gNextRound();
+  }
+  function gNextRound() {
+    var s = gq;
+    if (!s.queue.length) return gFinish();
+    s.round = shuffle(s.queue); s.queue = [];
+    s.roundNo++; s.ri = 0; s.roundCredit = 0; s.recs = []; s.changes = {}; s.view = "gq";
+    show("gq"); gAsk();
+  }
+  function gButtons(enabled, correct, chosen) {
+    document.querySelectorAll("#gq-btns button, #gq-skip").forEach(function (b) {
+      var a = b.getAttribute("data-art");
+      b.disabled = !enabled;
+      b.classList.toggle("right", !enabled && !!a && a === correct);
+      b.classList.toggle("wrong", !enabled && !!a && a === chosen && chosen !== correct);
+    });
+  }
+  function gAsk() {
+    var s = gq, list = s.round;
+    if (s.ri >= list.length) return gRoundSummary();
+    var w = list[s.ri]; s.current = w;
+    $("gq-round").textContent = "Round " + s.roundNo + " · noun " + (s.ri + 1) + " of " + list.length;
+    $("gq-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
+    $("gq-bar").style.width = Math.round(100 * s.ri / list.length) + "%";
+    $("gq-prompt").textContent = gBare(w);
+    $("gq-hint").textContent = w.e;
+    $("gq-back").disabled = s.ri === 0;
+    var rec = s.recs[s.ri];
+    if (rec) return gShowAnswered(rec);
+    s.checked = false;
+    $("gq-feedback").textContent = ""; $("gq-next").hidden = true;
+    gButtons(true);
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); // nothing is focused, so Enter cannot answer
+  }
+  function gChoose(art) { // art is der, die, das, or null for Skip
+    var s = gq; if (!s || s.checked) return;
+    var w = s.current, right = gArt(w), credit = art === right ? 1 : 0;
+    var rec = { w: w, choice: art, credit: credit, firstAttempt: !s.answeredIds[w.id], scoreFrom: scoreNow(entry(w.id)) };
+    s.answeredIds[w.id] = true; s.labels[w.id] = w.g;
+    logAnswer(rec, "gender", { k: w.id, i: w.g, p: gBare(w) + " (" + w.e + ")", x: right, a: art || "", c: credit, n: art ? "" : "skipped" });
+    record(w, "G", credit);
+    s.recs[s.ri] = rec; s.answered++;
+    s.changes[w.id] = { w: w, from: rec.scoreFrom, to: scoreNow(entry(w.id)) };
+    s.roundCredit += credit;
+    if (rec.firstAttempt) { s.firstTry++; s.firstTryCredit += credit; }
+    var idx = s.queue.indexOf(w);
+    if (credit === 1) { if (idx >= 0) s.queue.splice(idx, 1); }
+    else { if (idx < 0) s.queue.push(w); s.retries[w.id] = (s.retries[w.id] || 0) + 1; }
+    $("gq-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
+    gShowAnswered(rec);
+  }
+  function gShowAnswered(rec) {
+    var s = gq; s.checked = true;
+    gButtons(false, gArt(rec.w), rec.choice);
+    var fb = $("gq-feedback"); fb.textContent = "";
+    var e = entry(rec.w.id), now = scoreNow(e);
+    fb.appendChild(verdictBox(rec.credit, rec.w.g, rec.w.f ? "Plural: " + rec.w.f : "", rec.w, "R",
+      "Noun score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now) + ")", false));
+    $("gq-next").hidden = false; $("gq-next").focus();
+  }
+  function gNext() { var s = gq; if (!s || !s.checked) return; s.ri++; gAsk(); }
+  function gBack() { var s = gq; if (!s || s.ri === 0) return; s.ri--; gAsk(); }
+  function gRoundSummary() {
+    var s = gq; s.view = "sum"; show("sum");
+    $("sum-title").textContent = "Round " + s.roundNo + ": " + s.roundCredit + " of " + s.round.length;
+    var body = $("sum-body"); body.textContent = "";
+    var p = document.createElement("p"); p.className = "muted";
+    p.textContent = s.queue.length ? s.queue.length + " nouns make up the next round." : "Every noun was answered correctly.";
+    body.appendChild(p);
+    var moved = Object.keys(s.changes).map(function (k) { return s.changes[k]; })
+      .sort(function (a, b) { return Math.abs(b.to - b.from) - Math.abs(a.to - a.from); }).slice(0, 5);
+    if (moved.length) {
+      var h = document.createElement("h2"); h.textContent = "Biggest score changes"; body.appendChild(h);
+      var ul = document.createElement("ul"); ul.className = "plain";
+      moved.forEach(function (c) { var li = document.createElement("li"); li.textContent = c.w.g + ": " + c.from + " to " + c.to; ul.appendChild(li); });
+      body.appendChild(ul);
+    }
+    $("sum-next").textContent = s.queue.length ? "Next round (" + s.queue.length + " nouns)" : "Finish";
+    $("sum-next").onclick = function () { gNextRound(); };
+    $("sum-home").onclick = function () { gEnd(); };
+  }
+  function gFinish() {
+    var s = gq; s.view = "sum"; s.finished = true; show("sum");
+    $("sum-title").textContent = "All nouns answered correctly";
+    var body = $("sum-body"); body.textContent = "";
+    var acc = s.firstTry ? Math.round(100 * s.firstTryCredit / s.firstTry) : 0;
+    var p = document.createElement("p");
+    p.textContent = s.roundNo + " rounds, " + s.answered + " answers, first-try accuracy " + acc + "%.";
+    body.appendChild(p);
+    var hard = Object.keys(s.retries).map(function (id) { return { id: id, n: s.retries[id] }; })
+      .filter(function (x) { return x.n > 0; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 8);
+    if (hard.length) {
+      var h = document.createElement("h2"); h.textContent = "Missed most often"; body.appendChild(h);
+      var ul = document.createElement("ul"); ul.className = "plain";
+      hard.forEach(function (x) { var li = document.createElement("li"); li.textContent = (s.labels[x.id] || x.id) + " (" + x.n + ")"; ul.appendChild(li); });
+      body.appendChild(ul);
+    }
+    $("sum-next").textContent = "Back to Vocab";
+    $("sum-next").onclick = function () { gq = null; refreshHome(); show("home"); };
+    $("sum-home").onclick = function () { gEnd(); };
+  }
+  function gEnd() { gq = null; refreshHome(); show("home"); }
+  function gResume() { if (gq.view === "sum") { if (gq.finished) gFinish(); else gRoundSummary(); } else { show("gq"); } }
+
+  /* ----- a reusable typed-answer drill (rounds, retries, Back, grade-it-differently) ----- */
+  function makeDrill(cfg) {
+    var s = null, E = function (n) { return $(cfg.prefix + "-" + n); };
+    function start(items) {
+      s = { queue: items.slice(), round: [], roundNo: 0, ri: 0, answered: 0, firstTry: 0, firstTryCredit: 0, retries: {}, labels: {},
+        answeredIds: {}, changes: {}, recs: [], checked: false, view: "q", finished: false, roundCredit: 0 };
+      nextRound();
+    }
+    function nextRound() {
+      if (!s.queue.length) return finish();
+      s.round = shuffle(s.queue); s.queue = [];
+      s.roundNo++; s.ri = 0; s.roundCredit = 0; s.recs = []; s.changes = {}; s.view = "q";
+      show(cfg.view); ask();
+    }
+    function ask() {
+      if (s.ri >= s.round.length) return roundSummary();
+      var it = s.round[s.ri]; s.current = it;
+      E("round").textContent = "Round " + s.roundNo + " · " + cfg.unit + " " + (s.ri + 1) + " of " + s.round.length;
+      E("left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
+      E("bar").style.width = Math.round(100 * s.ri / s.round.length) + "%";
+      cfg.prompt(it, E("prompt"), E("hint"));
+      E("back").disabled = s.ri === 0;
+      var rec = s.recs[s.ri];
+      if (rec) return showAnswered(rec);
+      s.checked = false; s.hinted = false;
+      E("input").value = ""; E("input").disabled = false; E("feedback").textContent = "";
+      E("check").disabled = false; E("skip").hidden = false;
+      if (cfg.hint) E("skip").textContent = "Hint";
+      checkLabel();
+      E("input").focus();
+    }
+    function showAnswered(rec) {
+      s.checked = true;
+      E("input").value = rec.ans; E("input").disabled = true; E("skip").hidden = true;
+      E("check").textContent = "Next"; E("check").disabled = false;
+      renderVerdict(rec); E("check").focus();
+    }
+    function renderVerdict(rec) {
+      var fb = E("feedback"); fb.textContent = "";
+      var e = cfg.store.entry(rec.it.id), now = scoreNow(e);
+      fb.appendChild(verdictBox(rec.credit, rec.answerText, rec.meta, { x: rec.ex }, cfg.type,
+        cfg.scoreWord + " score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now) + ")", function (c) { override(rec, c); }));
+    }
+    function checkLabel() { // with a hint button, the Check button reads Skip until something is typed
+      if (!s || s.checked) return;
+      E("check").textContent = cfg.hint && !E("input").value.trim() ? "Skip" : "Check";
+    }
+    function onCheck(fromKey) {
+      if (!s) return;
+      if (s.checked) { s.ri++; return ask(); }
+      if (!E("input").value.trim()) { if (cfg.hint && !fromKey) evaluate(true); return; }   // an empty Enter does nothing; the Skip button skips
+      evaluate(false);
+    }
+    function showHint() {
+      if (!s || s.checked || !cfg.hint) return;
+      s.hinted = true;
+      var fb = E("feedback"); fb.textContent = "";
+      var d = document.createElement("div"); d.className = "hintbox"; d.textContent = cfg.hint(s.current); fb.appendChild(d);
+    }
+    function evaluate(skip) {
+      var it = s.current, typed = E("input").value;
+      var res = skip ? { credit: 0, note: "" } : cfg.grade(it, typed);
+      var rec = { it: it, ans: typed, credit: res.credit, firstAttempt: !s.answeredIds[it.id], scoreFrom: scoreNow(cfg.store.entry(it.id)),
+        answerText: cfg.expected(it), meta: ((res.note ? res.note + " " : "") + cfg.facts(it)).trim(), ex: cfg.example(it) };
+      s.answeredIds[it.id] = true; s.labels[it.id] = cfg.label(it);
+      logAnswer(rec, cfg.logName, { k: it.id, i: cfg.label(it), p: E("prompt").textContent + " | " + E("hint").textContent, x: rec.answerText, a: typed, c: res.credit, n: skip ? "skipped" : res.note, h: s.hinted });
+      cfg.store.record(it.id, cfg.type, res.credit);
+      if (cfg.agg) cfg.store.record(cfg.agg(it), cfg.type, res.credit);
+      s.recs[s.ri] = rec; s.answered++;
+      s.changes[it.id] = { label: s.labels[it.id], from: rec.scoreFrom, to: scoreNow(cfg.store.entry(it.id)) };
+      s.roundCredit += res.credit;
+      if (rec.firstAttempt) { s.firstTry++; s.firstTryCredit += res.credit; }
+      outcome(it, res.credit);
+      showAnswered(rec);
+    }
+    function outcome(it, credit) {
+      var idx = s.queue.indexOf(it);
+      if (credit === 1) { if (idx >= 0) s.queue.splice(idx, 1); }
+      else { if (idx < 0) s.queue.push(it); s.retries[it.id] = (s.retries[it.id] || 0) + 1; }
+      E("left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
+    }
+    function override(rec, c) {
+      var it = rec.it;
+      if (c === rec.credit) return;
+      var prev = rec.credit;
+      cfg.store.amend(it.id, cfg.type, c); logOverride(rec, c); if (cfg.agg) cfg.store.amend(cfg.agg(it), cfg.type, c);
+      if (s.changes[it.id]) s.changes[it.id].to = scoreNow(cfg.store.entry(it.id));
+      s.roundCredit += c - prev;
+      if (rec.firstAttempt) s.firstTryCredit += c - prev;
+      rec.credit = c; outcome(it, c); renderVerdict(rec);
+    }
+    function roundSummary() {
+      s.view = "sum"; show("sum", cfg.area);
+      $("sum-title").textContent = "Round " + s.roundNo + ": " + (Math.round(s.roundCredit * 2) / 2) + " of " + s.round.length;
+      var body = $("sum-body"); body.textContent = "";
+      var p = document.createElement("p"); p.className = "muted";
+      p.textContent = s.queue.length ? s.queue.length + " " + cfg.unit + "s make up the next round." : "Every " + cfg.unit + " was answered correctly.";
+      body.appendChild(p);
+      var moved = Object.keys(s.changes).map(function (k) { return s.changes[k]; })
+        .sort(function (a, b) { return Math.abs(b.to - b.from) - Math.abs(a.to - a.from); }).slice(0, 5);
+      if (moved.length) {
+        var h = document.createElement("h2"); h.textContent = "Biggest score changes"; body.appendChild(h);
+        var ul = document.createElement("ul"); ul.className = "plain";
+        moved.forEach(function (c) { var li = document.createElement("li"); li.textContent = c.label + ": " + c.from + " to " + c.to; ul.appendChild(li); });
+        body.appendChild(ul);
+      }
+      $("sum-next").textContent = s.queue.length ? "Next round (" + s.queue.length + " " + cfg.unit + "s)" : "Finish";
+      $("sum-next").onclick = function () { nextRound(); };
+      $("sum-home").onclick = function () { end(); };
+    }
+    function finish() {
+      s.view = "sum"; s.finished = true; show("sum", cfg.area);
+      $("sum-title").textContent = "All " + cfg.unit + "s answered correctly";
+      var body = $("sum-body"); body.textContent = "";
+      var acc = s.firstTry ? Math.round(100 * s.firstTryCredit / s.firstTry) : 0;
+      var p = document.createElement("p");
+      p.textContent = s.roundNo + " rounds, " + s.answered + " answers, first-try accuracy " + acc + "%.";
+      body.appendChild(p);
+      var hard = Object.keys(s.retries).map(function (id) { return { id: id, n: s.retries[id] }; })
+        .filter(function (x) { return x.n > 0; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 8);
+      if (hard.length) {
+        var h = document.createElement("h2"); h.textContent = "Missed most often"; body.appendChild(h);
+        var ul = document.createElement("ul"); ul.className = "plain";
+        hard.forEach(function (x) { var li = document.createElement("li"); li.textContent = (s.labels[x.id] || x.id) + " (" + x.n + ")"; ul.appendChild(li); });
+        body.appendChild(ul);
+      }
+      $("sum-next").textContent = cfg.endName;
+      $("sum-next").onclick = function () { end(); };
+      $("sum-home").onclick = function () { end(); };
+    }
+    function end() { s = null; cfg.onEnd(); }
+    function resume() { if (s.view === "sum") { if (s.finished) finish(); else roundSummary(); } else { show(cfg.view); } }
+    E("check").addEventListener("click", function () { onCheck(false); });
+    E("input").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); onCheck(true); } });
+    E("input").addEventListener("input", checkLabel);
+    E("skip").addEventListener("click", function () { if (cfg.hint) showHint(); else if (s && !s.checked) evaluate(true); });
+    E("back").addEventListener("click", function () { if (s && s.ri > 0) { s.ri--; ask(); } });
+    E("end").addEventListener("click", end);
+    return { start: start, resume: resume, active: function () { return !!s; } };
+  }
+
+
+  /* ----- vocab: plural drill (singular in, plural out) ----- */
+  var PQ_SIZE = 20;
+  var SING = {}; WORDS.forEach(function (w) { SING[w.g] = w; });
+  function pPool(chs) { return WORDS.filter(function (w) { return w.pl && chs.indexOf(w.c) >= 0; }); }
+  function fillPluralStats(el, pool) {
+    var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
+    pool.forEach(function (w) { var e = entry(w.id), sc = scoreNow(e); counts[bandOf(e.a, sc)]++; sum += sc; });
+    el.textContent = "";
+    el.appendChild(stat("Plurals", pool.length));
+    el.appendChild(stat("New", counts["new"]));
+    el.appendChild(stat("Learning", counts.learning));
+    el.appendChild(stat("Familiar", counts.familiar));
+    el.appendChild(stat("Mastered", counts.mastered));
+    el.appendChild(stat("Average", pool.length ? Math.round(sum / pool.length) : 0));
+  }
+  var vocabStoreAdapter = {
+    entry: entry,
+    record: function (id, t, c) { record({ id: id }, t, c); },
+    amend: function (id, t, c) { amend({ id: id }, t, c); }
+  };
+  var pqd = makeDrill({
+    prefix: "pq", logName: "plural", view: "pq", area: "quiz", store: vocabStoreAdapter, unit: "noun", type: "P", scoreWord: "Plural", endName: "Back to Vocab",
+    prompt: function (w, pr, hint) {
+      var sw = SING[w.pl];
+      pr.className = "prompt"; pr.textContent = w.pl;
+      hint.className = "hint big"; hint.textContent = "Plural of “" + sw.e + "”";
+    },
+    grade: function (w, typed) { return gradePlural(typed, w.g, w.pl); },
+    expected: function (w) { return w.g; },
+    facts: function (w) { return w.e; },
+    example: function (w) { return w.x || ""; },
+    label: function (w) { return w.g; },
+    onEnd: function () { refreshHome(); show("home"); }
+  });
+  function pStart() {
+    var pool = pPool(chaptersOf("seg-ch"));
+    if (!pool.length) return;
+    pqd.start(pickWords(pool, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e)); }, PQ_SIZE));
+  }
+
+  /* ----- grammar: accusative, fill in the blank ----- */
+  var ACCS = (window.ACC || []).map(function (a) { a.id = hashId("acc|" + a.b + "|" + a.cs + "|" + a.de); return a; });
+  var AQ_SIZE = 20, aHigh = false;
+  var GNAME = { m: "masculine", f: "feminine", n: "neuter", p: "plural" };
+  var CASES = [["acc", "Accusative (the direct object)"], ["nom", "Nominative (the subject)"]];
+  function checkRow(containerId, opts, counts, onChange) {
+    var box = $(containerId); box.textContent = "";
+    opts.forEach(function (o) {
+      var l = document.createElement("label");
+      var i = document.createElement("input"); i.type = "checkbox"; i.value = o[0]; i.checked = true; i.addEventListener("change", onChange);
+      l.appendChild(i); l.appendChild(document.createTextNode(o[1] + " (" + counts[o[0]] + ")")); box.appendChild(l);
+    });
+  }
+  function aPool() {
+    var cases = chaptersOf("aseg-case");
+    return ACCS.filter(function (a) { return cases.indexOf(a.cs) >= 0; });
+  }
+  function aAggKey(a) { return a.cs === "acc" ? "ac:acc-" + a.g : "ac:nom"; }
+  function aStats(pool) {
+    var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
+    pool.forEach(function (a) { var e = gstore.entry(a.id), s = scoreNow(e); counts[bandOf(e.a, s)]++; sum += s; });
+    return { counts: counts, avg: pool.length ? Math.round(sum / pool.length) : 0 };
+  }
+  function aRefresh() {
+    $("anote").textContent = "Each sentence has a blank for an article, ein-word or possessive, and the English translation is shown below it. Work out which word is meant and type the form that fits, in the nominative for a subject or the accusative for a direct object. Each round has 20 sentences, picked at random with a lean toward the ones you know least. Sentences you miss or skip come back until every one is right.";
+    var pool = aPool(), st = aStats(pool), total = pool.length || 1;
+    $("astart").disabled = pool.length === 0;
+    var el = $("a-stats"); el.textContent = "";
+    el.appendChild(stat("Sentences", pool.length));
+    el.appendChild(stat("New", st.counts["new"]));
+    el.appendChild(stat("Learning", st.counts.learning));
+    el.appendChild(stat("Familiar", st.counts.familiar));
+    el.appendChild(stat("Mastered", st.counts.mastered));
+    el.appendChild(stat("Average", st.avg));
+    bars($("a-chart"), [["New", "new", "var(--b1)"], ["Learning", "learning", "var(--b2)"], ["Familiar", "familiar", "var(--b3)"], ["Mastered", "mastered", "var(--b4)"]]
+      .map(function (r) { var n = st.counts[r[1]]; return [r[0], n / total * 100, String(n), r[2]]; }), "Sentences by proficiency");
+    var rowsDef = [["Acc. masc.", "ac:acc-m"], ["Acc. fem.", "ac:acc-f"], ["Acc. neut.", "ac:acc-n"], ["Acc. plural", "ac:acc-p"], ["Nominative", "ac:nom"]];
+    bars($("a-cases"), rowsDef.map(function (r) {
+      var acc = vAcc(gstore.entry(r[1]));
+      return [r[0], acc === null ? 0 : Math.round(acc * 100), acc === null ? "-" : Math.round(acc * 100) + "%", "var(--b3)"];
+    }), "Accuracy by case and gender");
+    $("a-low").setAttribute("aria-pressed", aHigh ? "false" : "true"); $("a-high").setAttribute("aria-pressed", aHigh ? "true" : "false");
+    $("a-rowtitle").textContent = aHigh ? "Highest scores" : "Lowest scores";
+    var rows = pool.map(function (a) { var e = gstore.entry(a.id); return { a: a, s: scoreNow(e), n: e.a }; })
+      .sort(function (x, y) { return aHigh ? (y.s - x.s || y.n - x.n || x.a.de.localeCompare(y.a.de)) : (x.s - y.s || x.a.de.localeCompare(y.a.de)); }).slice(0, 10);
+    var tb = $("a-rows"); tb.textContent = "";
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      [r.a.de + " (" + r.a.b + ")", r.s, r.n].forEach(function (x, i) {
+        var td = document.createElement("td"); td.textContent = x; if (i > 0) td.className = "num"; tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+  }
+  function aFormsLine(a) {
+    var out = [["m", "masc."], ["f", "fem."], ["n", "neut."], ["p", "plural"]].filter(function (g) { return !(a.b === "ein" && g[0] === "p"); })
+      .map(function (g) { return g[1] + " " + artForm(a.b, a.cs, g[0]); });
+    return (a.cs === "acc" ? "Accusative of " : "Nominative of ") + a.b + ": " + out.join(" · ");
+  }
+  function aFacts(a) {
+    var noun = a.n.replace(/^(der|die|das) /, ""), role = a.cs === "acc" ? "direct object, so accusative" : "subject, so nominative";
+    return noun + " is " + (a.g === "p" ? "plural" : GNAME[a.g]) + " and the " + role + ": " + a.b + " → " + artForm(a.b, a.cs, a.g) + ". " + aFormsLine(a);
+  }
+  var CUE_RE = {
+    der: "the|this|that|these|those", ein: "an?", kein: "no|not any|any|(?:do|does|did|is|are|has|have)n't",
+    mein: "my", dein: "your", sein: "his|its", ihr: "her|their|its", unser: "our", euer: "your"
+  };
+  function cueEnglish(el, en, base, cs) { // bold the word that matches the blank: the first match for a subject, the last for an object
+    el.textContent = "";
+    var re = new RegExp("\\b(?:" + CUE_RE[base] + ")(?![\\w'])", "gi"), m, last = null;
+    while ((m = re.exec(en))) { if (cs === "nom" && last) break; last = m; }
+    if (!last) { el.textContent = en; return; }
+    el.appendChild(document.createTextNode(en.slice(0, last.index)));
+    var rest = en.slice(last.index + last[0].length), mk = /^ \([^)]*\)/.exec(rest);
+    var b = document.createElement("strong"); b.textContent = last[0] + (mk ? mk[0] : ""); el.appendChild(b);
+    el.appendChild(document.createTextNode(mk ? rest.slice(mk[0].length) : rest));
+  }
+  var aqd = makeDrill({
+    prefix: "aq", logName: "case", view: "aq",
+    hint: function (a) { return a.w + " is " + (a.g === "p" ? "plural" : a.g === "m" ? "masc." : a.g === "f" ? "fem." : "neut."); }, area: "gram", store: gstore, unit: "sentence", type: "P", scoreWord: "Sentence", endName: "Case endings progress",
+    prompt: function (a, pr, hint) {
+      pr.className = "prompt sentence"; pr.textContent = a.de.replace("___", "_____");
+      hint.className = "hint big"; cueEnglish(hint, a.en, a.b, a.cs);
+    },
+    grade: function (a, typed) { return gradeArticle(typed, a.b, a.cs, a.g); },
+    expected: function (a) { var f = artForm(a.b, a.cs, a.g); return a.de.indexOf("___") === 0 ? f.charAt(0).toUpperCase() + f.slice(1) : f; },
+    facts: aFacts,
+    example: function (a) { var f = artForm(a.b, a.cs, a.g); if (a.de.indexOf("___") === 0) f = f.charAt(0).toUpperCase() + f.slice(1); return a.de.replace("___", f) + "|" + a.en; },
+    agg: aAggKey,
+    label: function (a) { return a.de.replace("___", artForm(a.b, a.cs, a.g)); },
+    onEnd: function () { aRefresh(); show("gram"); }
+  });
+  function aStart() {
+    var pool = aPool();
+    if (!pool.length) return;
+    var picked = pickWords(pool, function (a) { var e = gstore.entry(a.id); return bandOf(e.a, scoreNow(e)); }, AQ_SIZE);
+    aqd.start(picked);
+  }
+
+  /* ----- wiring ----- */
+  $("nav-home").addEventListener("click", function () { if (gq) { gResume(); } else if (pqd.active()) { pqd.resume(); } else if (session || sent) { show(session ? "quiz" : "sent"); } else { refreshHome(); show("home"); } });
+  $("nav-verbs").addEventListener("click", function () {
+    if (vq) { if (vq.view === "sum") { if (vq.finished) vFinish(); else vRoundSummary(); } else { show("vq"); } }
+    else { vRefresh(); show("verbs"); }
+  });
+  document.querySelectorAll("#vseg-mode button").forEach(function (b) {
+    b.addEventListener("click", function () { vSetMode(b.getAttribute("data-vmode")); });
+  });
+  $("nav-gram").addEventListener("click", function () {
+    if (aqd.active()) aqd.resume(); else { aRefresh(); show("gram"); }
+  });
+  $("astart").addEventListener("click", aStart);
+  document.querySelectorAll("#gq-btns button").forEach(function (b) { b.addEventListener("click", function () { gChoose(b.getAttribute("data-art")); }); });
+  $("gq-skip").addEventListener("click", function () { gChoose(null); });
+  $("gq-next").addEventListener("click", gNext);
+  $("gq-back").addEventListener("click", gBack);
+  $("gq-end").addEventListener("click", gEnd);
+  document.addEventListener("keydown", function (e) {
+    if ($("v-gq").hidden || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+    var k = ["1", "2", "3", "4"].indexOf(e.key);
+    if (k >= 0 && gq && !gq.checked) { e.preventDefault(); gChoose(k === 3 ? null : ARTICLES[k]); }
+  });
+  $("vstart").addEventListener("click", vStart);
+  $("vq-check").addEventListener("click", vOnCheck);
+  $("vq-input").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); vOnCheck(); } });
+  $("vq-skip").addEventListener("click", vSkip);
+  $("vq-back").addEventListener("click", vBack);
+  $("vq-end").addEventListener("click", vEnd);
+  $("start").addEventListener("click", startQuiz);
+  $("q-check").addEventListener("click", onCheck);
+  $("q-input").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); onCheck(); } });
+  $("q-end").addEventListener("click", endQuiz);
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" || e.repeat || $("v-sum").hidden) return;
+    var t = e.target && e.target.tagName;
+    if (t === "BUTTON" || t === "INPUT" || t === "TEXTAREA") return;
+    e.preventDefault(); $("sum-next").click();
+  });
+  $("s-check").addEventListener("click", onSentenceCheck);
+  $("q-skip").addEventListener("click", onSkip);
+  $("q-back").addEventListener("click", onBack);
+  $("s-skip").addEventListener("click", onSentenceSkip);
+  $("s-back").addEventListener("click", onSentenceBack);
+  $("s-end").addEventListener("click", function () { sent = null; endQuiz(); });
+  $("rep-low").addEventListener("click", function () { repHigh = false; renderReport(); });
+  $("rep-high").addEventListener("click", function () { repHigh = true; renderReport(); });
+  $("rep-csv").addEventListener("click", exportCsv);
+  $("v-low").addEventListener("click", function () { vHigh = false; vRefresh(); });
+  $("v-high").addEventListener("click", function () { vHigh = true; vRefresh(); });
+  $("a-low").addEventListener("click", function () { aHigh = false; aRefresh(); });
+  $("a-high").addEventListener("click", function () { aHigh = true; aRefresh(); });
+  init();
+})();
+</script>
