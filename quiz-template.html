@@ -86,10 +86,10 @@ legend { padding: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06e
 .crow .ct { height: 20px; }
 .crow .cb { height: 20px; min-width: 2px; border-radius: 0 4px 4px 0; }
 .crow .cv { font-family: var(--font-mono); font-size: 0.9rem; font-variant-numeric: tabular-nums; color: var(--fg); text-align: right; }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr)); gap: 0.5rem; }
-.stat { border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.55rem 0.7rem; }
-.stat b { display: block; font-family: var(--font-mono); font-size: 1.25rem; font-variant-numeric: tabular-nums; }
-.stat span { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(4.6rem, 1fr)); gap: 0.35rem; }
+.stat { border: 1px solid var(--line); border-radius: 0.4rem; padding: 0.3rem 0.5rem; }
+.stat b { display: block; font-family: var(--font-mono); font-size: 1rem; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
 .bar { height: 0.5rem; background: var(--line); border-radius: 99px; overflow: hidden; }
 .bar > i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.2s; }
 .qhead { display: flex; justify-content: space-between; gap: 0.5rem; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; flex-wrap: wrap; }
@@ -172,18 +172,18 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
       <button type="button" id="mode-gn" data-mode="gn" aria-pressed="false">Noun Genders</button>
       <button type="button" id="mode-pl" data-mode="pl" aria-pressed="false">Noun Plurals</button>
     </div>
+    <p class="muted" id="mode-note"></p>
     <fieldset>
       <legend>Chapters</legend>
       <div class="seg" id="seg-ch"></div>
     </fieldset>
-    <p class="muted" id="mode-note"></p>
     <button type="button" id="start">Start</button>
-    <div class="stats" id="home-stats"></div>
   </section>
   <section class="panel" aria-label="Vocabulary progress">
     <h2>Vocabulary progress</h2>
     <div class="chart" id="rep-chart" role="img" aria-label="Words by proficiency"></div>
-    <p class="muted">Scores fade gently after two weeks without practice. Noun Genders and Noun Plurals answers count here too.</p>
+    <div class="stats" id="home-stats"></div>
+    <p class="muted">Scores fade gently after two weeks without practice.</p>
     <div class="segbtns" role="group" aria-label="Sort order">
       <button type="button" id="rep-low" aria-pressed="true">Lowest</button>
       <button type="button" id="rep-high" aria-pressed="false">Highest</button>
@@ -253,20 +253,20 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
         <button type="button" data-vmode="cloze" aria-pressed="false">Fill the blank</button>
         <button type="button" data-vmode="perfekt" aria-pressed="false">Perfekt</button>
       </div>
+      <p class="muted" id="vmode-note"></p>
       <fieldset>
         <legend>Chapters</legend>
         <div class="seg" id="vseg-ch"></div>
       </fieldset>
-      <p class="muted" id="vmode-note"></p>
       <button type="button" id="vstart">Start</button>
-      <div class="stats" id="v-stats"></div>
     </section>
     <section class="panel" aria-label="Verb progress">
       <h2 id="vprog-title">Verb progress</h2>
       <div class="chart" id="v-chart" role="img" aria-label="Verbs by proficiency"></div>
+      <div class="stats" id="v-stats"></div>
       <h2>Accuracy by person</h2>
       <div class="chart" id="v-persons" role="img" aria-label="Accuracy by person"></div>
-      <p class="muted">Based on your last 12 answers for each person, across all verb drills. Verb progress is tracked separately from vocabulary.</p>
+      <p class="muted">Based on your last 12 answers for each person, across all verb drills.</p>
       <div class="segbtns" role="group" aria-label="Sort order">
         <button type="button" id="v-low" aria-pressed="true">Lowest</button>
         <button type="button" id="v-high" aria-pressed="false">Highest</button>
@@ -280,20 +280,20 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
   <div id="v-gram" class="stack" hidden>
     <section class="panel" aria-label="Case endings drill">
       <h2>Case endings: fill in the blank</h2>
+      <p class="muted" id="anote"></p>
       <fieldset>
         <legend>Sentences</legend>
         <div class="seg" id="aseg-case"></div>
       </fieldset>
-      <p class="muted" id="anote"></p>
       <button type="button" id="astart">Start</button>
-      <div class="stats" id="a-stats"></div>
     </section>
     <section class="panel" aria-label="Case endings progress">
       <h2>Case endings progress</h2>
       <div class="chart" id="a-chart" role="img" aria-label="Sentences by proficiency"></div>
+      <div class="stats" id="a-stats"></div>
       <h2>Accuracy by case and gender</h2>
       <div class="chart" id="a-cases" role="img" aria-label="Accuracy by case and gender"></div>
-      <p class="muted">Based on your last 12 answers in each group. Grammar progress is tracked separately from vocabulary and verbs.</p>
+      <p class="muted">Based on your last 12 answers in each group.</p>
       <div class="segbtns" role="group" aria-label="Sort order">
         <button type="button" id="a-low" aria-pressed="true">Lowest</button>
         <button type="button" id="a-high" aria-pressed="false">Highest</button>
@@ -870,11 +870,11 @@ function gradeArticle(answer, base, cs, g) {
 
   /* ----- home ----- */
   var NOTES = {
-    ge: "You see the German word and type the English meaning. Small typos count as correct. Round 1 has 20 words from your chapters, picked at random with a lean toward the ones you know least. Words you miss or skip become the next round, and the quiz ends when every word in the round has been answered correctly.",
-    eg: "You see the English meaning and type the German word with its article. Typos and wrong articles earn half credit. Round 1 has 20 words from your chapters, picked at random with a lean toward the ones you know least. Words you miss or skip become the next round, and the quiz ends when every word in the round has been answered correctly.",
-    pl: "You see a singular noun, like “das Buch”. Type its plural without “die” (“Bücher”). Typing the “die” does no harm, and ss works for ß. A missing umlaut or a small typo earns half credit. Round 1 has 20 nouns from your chapters, picked at random with a lean toward the ones you know least. Each plural is its own word with its own score, so it also appears in the other vocab quizzes. Nouns you miss or skip come back until every one is right.",
-    gn: "You see a noun without its article. Tap der, die or das, or press 1, 2 or 3 on a keyboard. Press 4 or tap Skip if you do not know. Round 1 has 20 nouns from your chapters, picked at random with a lean toward the ones you know least. Nouns you miss or skip come back until every one is right. Your answers count a little toward each word's score.",
-    su: "You write one German sentence per word, and Claude checks it. Five words per round, weighted toward the words you know least. Each check uses your Claude account."
+    ge: "See a German word and type its English meaning.",
+    eg: "See an English meaning and type the German word with its article.",
+    pl: "See a singular noun and type its plural, without “die”.",
+    gn: "See a noun and pick der, die or das.",
+    su: "Write one German sentence per word, checked by Claude."
   };
   function chaptersOf(containerId) {
     var out = [];
@@ -1503,9 +1503,9 @@ function gradeArticle(answer, base, cs, g) {
   /* ----- verbs: setup, progress and drills ----- */
   var vmode = "form", vq = null, vHigh = false;
   var VNOTES = {
-    form: "You see a pronoun and a verb, like “du / fahren”, and type the present-tense form (“fährst”). Separable verbs need their prefix (“wache auf”). Each round has 20 verbs, picked at random with a lean toward the ones you know least. Verbs you miss or skip come back until every one is right.",
-    cloze: "A sentence has a blank where a present-tense verb belongs. Type the missing form. For separable verbs, type only the part that goes in the blank. Each round has 20 verbs, picked at random with a lean toward the ones you know least. Verbs you miss or skip come back until every one is right.",
-    perfekt: "You see a pronoun and a verb, like “er / lernen”, and type the auxiliary and participle (“hat gelernt”). A wrong auxiliary or a small spelling slip earns half credit. Each round has 20 verbs, picked at random with a lean toward the ones you know least. Verbs you miss or skip come back until every one is right."
+    form: "See a pronoun and a verb and type the present-tense form.",
+    cloze: "Type the present-tense verb that fits the blank in a sentence.",
+    perfekt: "See a pronoun and a verb and type the auxiliary and participle."
   };
   function vSkill(m) { return m === "perfekt" ? "pf" : "pr"; }
   function vId(v, skill) { return skill === "pf" ? v.idpf : v.idpr; }
@@ -2105,7 +2105,7 @@ function gradeArticle(answer, base, cs, g) {
     return { counts: counts, avg: pool.length ? Math.round(sum / pool.length) : 0 };
   }
   function aRefresh() {
-    $("anote").textContent = "Each sentence has a blank for an article, ein-word or possessive, and the English translation is shown below it. Work out which word is meant and type the form that fits, in the nominative for a subject or the accusative for a direct object. Each round has 20 sentences, picked at random with a lean toward the ones you know least. Sentences you miss or skip come back until every one is right.";
+    $("anote").textContent = "Type the article, ein-word or possessive that fits the blank, using the English translation as a guide.";
     var pool = aPool(), st = aStats(pool), total = pool.length || 1;
     $("astart").disabled = pool.length === 0;
     var el = $("a-stats"); el.textContent = "";
