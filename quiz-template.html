@@ -72,7 +72,10 @@ button.streak { display: inline-flex; align-items: center; gap: 0.25rem; min-hei
 button.streak svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 button.streak[data-done="true"] { color: var(--flame-ink); }
 button.streak[data-done="true"] svg { stroke: var(--flame); fill: var(--flame-fill); }
-.streaktip { margin: 0; font-size: 0.85rem; color: var(--fg); border: 1px solid var(--line); background: var(--surface); border-radius: 0.5rem; padding: 0.5rem 0.7rem; }
+.streaktip { position: absolute; top: 100%; right: 0; z-index: 20; margin: 0.25rem 0 0; width: max-content; max-width: min(17rem, calc(100vw - 2rem)); white-space: pre-line; font-size: 0.85rem; font-weight: 400; line-height: 1.4; color: var(--fg); border: 1px solid var(--line); background: var(--surface); border-radius: 0.5rem; padding: 0.5rem 0.7rem; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18); }
+.streaktip[hidden] { display: none; }
+.streaktip::first-line { font-weight: 700; }
+.streaktip::before { content: ""; position: absolute; top: -0.36rem; left: calc(var(--arrow, 50%) - 0.35rem); width: 0.7rem; height: 0.7rem; background: var(--surface); border-top: 1px solid var(--line); border-left: 1px solid var(--line); transform: rotate(45deg); }
 .syncbar button.syncicon { position: relative; width: 2.25rem; height: 2.25rem; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); display: grid; place-items: center; }
 .syncbar button.syncicon svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .syncbar .dot { display: none; position: absolute; top: 0.45rem; right: 0.45rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--half); box-shadow: 0 0 0 2px var(--bg); }
@@ -162,6 +165,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
     </nav>
     <div class="syncbar" id="sync-bar" data-state="pending">
       <button type="button" class="streak" id="streak-btn" data-done="false" aria-label="Streak" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span id="streak-n">0</span></button>
+      <p class="streaktip" id="streak-tip" role="status" hidden></p>
       <button type="button" class="syncicon" id="sync-btn" title="Sync" aria-label="Sync progress">
         <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
         <span class="dot"></span>
@@ -169,7 +173,6 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
       <span class="sr" id="sync-text" aria-live="polite">Starting</span>
     </div>
   </header>
-  <p class="streaktip" id="streak-tip" role="status" hidden></p>
   <div id="banner" class="banner" hidden></div>
 
   <!-- HOME -->
@@ -899,12 +902,18 @@ function streakInfo(days, todayStr, nowOff) {
     $("sync-btn").addEventListener("click", function () { syncAll(true); });
     dstore.render();
     var tipTimer = null;
-    $("streak-btn").addEventListener("click", function () {
-      var tip = $("streak-tip"), open = tip.hidden;
-      tip.textContent = dstore.tipText(); tip.hidden = !open; $("streak-btn").setAttribute("aria-expanded", open ? "true" : "false");
-      if (tipTimer) clearTimeout(tipTimer);
-      if (open) tipTimer = setTimeout(function () { tip.hidden = true; $("streak-btn").setAttribute("aria-expanded", "false"); }, 6000);
+    function hideTip() { $("streak-tip").hidden = true; $("streak-btn").setAttribute("aria-expanded", "false"); if (tipTimer) { clearTimeout(tipTimer); tipTimer = null; } }
+    $("streak-btn").addEventListener("click", function (ev) {
+      ev.stopPropagation();
+      var tip = $("streak-tip");
+      if (!tip.hidden) { hideTip(); return; }
+      tip.textContent = dstore.tipText(); tip.hidden = false; $("streak-btn").setAttribute("aria-expanded", "true");
+      var br = $("streak-btn").getBoundingClientRect(), tr = tip.getBoundingClientRect();
+      tip.style.setProperty("--arrow", Math.max(14, Math.min(tr.width - 14, br.left + br.width / 2 - tr.left)) + "px");
+      tipTimer = setTimeout(hideTip, 6000);
     });
+    document.addEventListener("click", function (ev) { if (!$("streak-tip").hidden && ev.target !== $("streak-tip")) hideTip(); });
+    document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") hideTip(); });
     if (typeof document.addEventListener === "function") document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") dstore.render(); });
     refreshHome(); setStatus("idle");
     await syncAll();
@@ -1553,11 +1562,10 @@ function streakInfo(days, todayStr, nowOff) {
       b.setAttribute("aria-label", "Streak: " + i.cur + (i.cur === 1 ? " day" : " days"));
     }
     function tipText() {
-      var i = info(), p = [i.cur + (i.cur === 1 ? " day" : " days") + " streak"];
-      p.push("best " + i.best);
+      var i = info(), p = [i.cur + "-day streak"];
       if (i.forgiven) p.push(i.forgiven === 1 ? "1 travel day forgiven" : i.forgiven + " travel days forgiven");
-      p.push(i.done ? i.today + (i.today === 1 ? " round" : " rounds") + " today" : (i.cur ? "finish a round today to keep it going" : "finish a round to start a streak"));
-      return p.join(" · ");
+      p.push(i.done ? i.today + (i.today === 1 ? " round" : " rounds") + " today" : (i.cur ? "Finish a round today to keep it going" : "Finish a round to start a streak"));
+      return p.join("\n");
     }
     function schedule(ms) {
       if (st.timer) clearTimeout(st.timer);
