@@ -685,12 +685,31 @@ function gradeArticle(answer, base, cs, g) {
 }
 function localDay(d) { d = d || new Date(); var m = d.getMonth() + 1, x = d.getDate(); return d.getFullYear() + "-" + (m < 10 ? "0" : "") + m + "-" + (x < 10 ? "0" : "") + x; }
 function dayShift(s, n) { var p = s.split("-"); return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + n)).toISOString().slice(0, 10); }
-function streakInfo(days, todayStr) {
-  var cur = 0, k = days[todayStr] ? todayStr : dayShift(todayStr, -1);
-  while (days[k]) { cur++; k = dayShift(k, -1); }
+function streakInfo(days, todayStr, nowOff) {
+  /* days: date -> true, or {a: first, z: last} UTC offset in minutes (east positive) of that day's rounds.
+     A single missing date is forgiven when the next practice happened at least 2h further east than the last one before it. */
+  function off(d, f) { var e = days[d]; return e && typeof e === "object" && typeof e[f] === "number" ? e[f] : null; }
+  function bridge(a, b, bOff) {
+    var ao = off(a, "z"), bo = typeof bOff === "number" ? bOff : off(b, "a");
+    return ao != null && bo != null && bo - ao >= 120;
+  }
   var keys = Object.keys(days).filter(function (d) { return days[d]; }).sort(), best = 0, run = 0, prev = null;
-  keys.forEach(function (d) { run = prev && dayShift(prev, 1) === d ? run + 1 : 1; if (run > best) best = run; prev = d; });
-  return { cur: cur, best: best, done: !!days[todayStr] };
+  keys.forEach(function (d) {
+    run = prev && (dayShift(prev, 1) === d || (dayShift(prev, 2) === d && bridge(prev, d))) ? run + 1 : 1;
+    if (run > best) best = run; prev = d;
+  });
+  var cur = 0, forgiven = 0, k = null, y = dayShift(todayStr, -1), y2 = dayShift(todayStr, -2);
+  if (days[todayStr]) k = todayStr;
+  else if (days[y]) k = y;
+  else if (days[y2] && typeof nowOff === "number" && bridge(y2, todayStr, nowOff)) { k = y2; forgiven++; }
+  while (k && days[k]) {
+    cur++;
+    var p = dayShift(k, -1), q = dayShift(k, -2);
+    if (days[p]) k = p;
+    else if (days[q] && bridge(q, k)) { forgiven++; k = q; }
+    else k = null;
+  }
+  return { cur: cur, best: best, done: !!days[todayStr], forgiven: forgiven };
 }
 //PURE_END
 
@@ -1519,9 +1538,10 @@ function streakInfo(days, todayStr) {
     } catch (e) { /* ignore a damaged cache */ }
     function save() { try { localStorage.setItem(LS, JSON.stringify({ uid: st.uid, days: st.days, dirty: st.dirty })); } catch (e) { /* storage may be blocked */ } }
     function dirtyCount() { return Object.keys(st.dirty).length; }
+    function nowOff() { return -new Date().getTimezoneOffset(); }
     function info() {
-      var set = {}; Object.keys(st.days).forEach(function (k) { if (st.days[k] && st.days[k].r > 0) set[k] = 1; });
-      var i = streakInfo(set, localDay()); i.today = (st.days[localDay()] || { r: 0 }).r; return i;
+      var set = {}; Object.keys(st.days).forEach(function (k) { if (st.days[k] && st.days[k].r > 0) set[k] = st.days[k]; });
+      var i = streakInfo(set, localDay(), nowOff()); i.today = (st.days[localDay()] || { r: 0 }).r; return i;
     }
     function render() {
       var i = info(), b = $("streak-btn");
@@ -1532,6 +1552,7 @@ function streakInfo(days, todayStr) {
     function tipText() {
       var i = info(), p = [i.cur + (i.cur === 1 ? " day" : " days") + " streak"];
       p.push("best " + i.best);
+      if (i.forgiven) p.push(i.forgiven === 1 ? "1 travel day forgiven" : i.forgiven + " travel days forgiven");
       p.push(i.done ? i.today + (i.today === 1 ? " round" : " rounds") + " today" : (i.cur ? "finish a round today to keep it going" : "finish a round to start a streak"));
       return p.join(" · ");
     }
@@ -1541,6 +1562,7 @@ function streakInfo(days, todayStr) {
     }
     function mark() {
       var k = localDay(), e = st.days[k] || (st.days[k] = { r: 0 });
+      var o = nowOff(); if (typeof e.a !== "number") e.a = o; e.z = o;
       e.r++; st.dirty[k] = ++st.ver; save(); render(); schedule();
     }
     async function sync() {
@@ -1559,7 +1581,9 @@ function streakInfo(days, todayStr) {
         if (!snap.exists) await withTimeout(st.ref.set({ words: {} }), 10000);
         Object.keys(remote).forEach(function (k) {
           var r = remote[k] && remote[k].r > 0 ? remote[k].r : 0, l = st.days[k] ? st.days[k].r : 0;
-          if (r > l) st.days[k] = { r: r };
+          var re = remote[k] || {};
+          if (r > l) st.days[k] = { r: r, a: re.a, z: re.z };
+          else if (r > 0) { var le = st.days[k]; if (typeof le.a !== "number" && typeof re.a === "number") le.a = re.a; if (typeof le.z !== "number" && typeof re.z === "number") le.z = re.z; }
         });
         var sent = {}, patch = { words: {} };
         Object.keys(st.dirty).forEach(function (k) { if (st.days[k]) { sent[k] = st.dirty[k]; patch.words[k] = st.days[k]; } });
