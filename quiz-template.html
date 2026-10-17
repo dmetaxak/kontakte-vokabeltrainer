@@ -12,6 +12,7 @@
   --surface: #ffffff;
   --accent: #2b4c9b;
   --accent-fg: #ffffff;
+  --flame: #e0600c; --flame-fill: #ffa726; --flame-ink: #b9480a;
   --der: #1f5fbf;
   --die: #c93d92;
   --das: #2b7a45;
@@ -27,6 +28,7 @@
   :root:not([data-theme="light"]) {
     --bg: #0f1522; --fg: #e5eaf5; --muted: #9aa7c0; --line: #28324a; --surface: #172033;
     --accent: #8aa9ff; --accent-fg: #0b1220;
+    --flame: #ffb347; --flame-fill: #ff9a1f; --flame-ink: #ffb958;
     --b1: #1c5cab; --b2: #2a78d6; --b3: #5598e7; --b4: #9ec5f4;
     --der: #7fb0ff; --die: #ff9bd2; --das: #7fd69a;
     --ok: #7bd69d; --ok-bg: #1b3a2a; --half: #f0cc82; --half-bg: #3a3017; --bad: #f4a898; --bad-bg: #40211b;
@@ -36,6 +38,7 @@
 :root[data-theme="dark"] {
   --bg: #0f1522; --fg: #e5eaf5; --muted: #9aa7c0; --line: #28324a; --surface: #172033;
   --accent: #8aa9ff; --accent-fg: #0b1220;
+  --flame: #ffb347; --flame-fill: #ff9a1f; --flame-ink: #ffb958;
   --b1: #1c5cab; --b2: #2a78d6; --b3: #5598e7; --b4: #9ec5f4;
   --der: #7fb0ff; --die: #ff9bd2; --das: #7fd69a;
   --ok: #7bd69d; --ok-bg: #1b3a2a; --half: #f0cc82; --half-bg: #3a3017; --bad: #f4a898; --bad-bg: #40211b;
@@ -67,8 +70,8 @@ legend { padding: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06e
 .syncbar { position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 0.1rem; }
 button.streak { display: inline-flex; align-items: center; gap: 0.25rem; min-height: 0; padding: 0.25rem 0.55rem; border: 0; border-radius: 1rem; background: transparent; color: var(--muted); font-family: var(--font-mono); font-size: 0.95rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 button.streak svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-button.streak[data-done="true"] { color: var(--accent); }
-button.streak[data-done="true"] svg { fill: currentColor; fill-opacity: 0.25; }
+button.streak[data-done="true"] { color: var(--flame-ink); }
+button.streak[data-done="true"] svg { stroke: var(--flame); fill: var(--flame-fill); }
 .streaktip { margin: 0; font-size: 0.85rem; color: var(--fg); border: 1px solid var(--line); background: var(--surface); border-radius: 0.5rem; padding: 0.5rem 0.7rem; }
 .syncbar button.syncicon { position: relative; width: 2.25rem; height: 2.25rem; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); display: grid; place-items: center; }
 .syncbar button.syncicon svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
