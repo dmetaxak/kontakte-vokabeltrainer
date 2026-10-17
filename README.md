@@ -17,4 +17,4 @@ The published trainer is one self-contained HTML file (artifact "Kontakte Vokabe
 Data files live in `data/`. Run `python3 build.py` from the repo root; it writes `kontakte-vokabeltrainer.html` (publish to the same artifact URL) and `pure.js` (for tests).
 
 ## Storage (artifact db, per user)
-Docs under `data/users/<uid>/`: `progress` (vocab, noun genders, plurals), `verbs`, `grammar` (case endings), `mistakes` (log of misses, skips, hint use and grader overrides).
+Docs under `data/users/<uid>/`: `progress` (vocab, noun genders, plurals), `verbs`, `grammar` (case endings), `mistakes` (log of misses, skips, hint use and grader overrides), `days` (practice days for the streak: date -> rounds finished).

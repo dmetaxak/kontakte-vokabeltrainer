@@ -64,7 +64,12 @@ legend { padding: 0; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06e
 .seg label { flex: 1 1 8rem; display: flex; align-items: center; gap: 0.5rem; border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.6rem 0.7rem; min-height: 2.75rem; cursor: pointer; font-weight: 600; font-size: 0.95rem; }
 .seg input { accent-color: var(--accent); }
 .seg label:has(input:checked) { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
-.syncbar { position: absolute; top: 0; right: 0; }
+.syncbar { position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 0.1rem; }
+button.streak { display: inline-flex; align-items: center; gap: 0.25rem; min-height: 0; padding: 0.25rem 0.55rem; border: 0; border-radius: 1rem; background: transparent; color: var(--muted); font-family: var(--font-mono); font-size: 0.95rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+button.streak svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+button.streak[data-done="true"] { color: var(--accent); }
+button.streak[data-done="true"] svg { fill: currentColor; fill-opacity: 0.25; }
+.streaktip { margin: 0; font-size: 0.85rem; color: var(--fg); border: 1px solid var(--line); background: var(--surface); border-radius: 0.5rem; padding: 0.5rem 0.7rem; }
 .syncbar button.syncicon { position: relative; width: 2.25rem; height: 2.25rem; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); display: grid; place-items: center; }
 .syncbar button.syncicon svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .syncbar .dot { display: none; position: absolute; top: 0.45rem; right: 0.45rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--half); box-shadow: 0 0 0 2px var(--bg); }
@@ -153,6 +158,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
       <button type="button" id="nav-gram" aria-current="false">Grammar</button>
     </nav>
     <div class="syncbar" id="sync-bar" data-state="pending">
+      <button type="button" class="streak" id="streak-btn" data-done="false" aria-label="Streak" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span id="streak-n">0</span></button>
       <button type="button" class="syncicon" id="sync-btn" title="Sync" aria-label="Sync progress">
         <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
         <span class="dot"></span>
@@ -160,6 +166,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
       <span class="sr" id="sync-text" aria-live="polite">Starting</span>
     </div>
   </header>
+  <p class="streaktip" id="streak-tip" role="status" hidden></p>
   <div id="banner" class="banner" hidden></div>
 
   <!-- HOME -->
@@ -676,6 +683,15 @@ function gradeArticle(answer, base, cs, g) {
   if (a.length >= 3 && lev(a, want) <= 1) return { credit: 0.5, note: "Check the spelling." };
   return { credit: 0, note: "" };
 }
+function localDay(d) { d = d || new Date(); var m = d.getMonth() + 1, x = d.getDate(); return d.getFullYear() + "-" + (m < 10 ? "0" : "") + m + "-" + (x < 10 ? "0" : "") + x; }
+function dayShift(s, n) { var p = s.split("-"); return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + n)).toISOString().slice(0, 10); }
+function streakInfo(days, todayStr) {
+  var cur = 0, k = days[todayStr] ? todayStr : dayShift(todayStr, -1);
+  while (days[k]) { cur++; k = dayShift(k, -1); }
+  var keys = Object.keys(days).filter(function (d) { return days[d]; }).sort(), best = 0, run = 0, prev = null;
+  keys.forEach(function (d) { run = prev && dayShift(prev, 1) === d ? run + 1 : 1; if (run > best) best = run; prev = d; });
+  return { cur: cur, best: best, done: !!days[todayStr] };
+}
 //PURE_END
 
 /* ---------- app ---------- */
@@ -716,7 +732,7 @@ function gradeArticle(answer, base, cs, g) {
     $("nav-home").setAttribute("aria-current", a === "quiz" ? "true" : "false");
     $("nav-verbs").setAttribute("aria-current", a === "verbs" ? "true" : "false");
     $("nav-gram").setAttribute("aria-current", a === "gram" ? "true" : "false");
-    if (name === "sum") $("sum-next").focus();
+    if (name === "sum") { $("sum-next").focus(); dstore.mark(); }
   }
   function banner(text) { var b = $("banner"); b.hidden = !text; b.textContent = text || ""; }
   function today() { return new Date().toISOString().slice(0, 10); }
@@ -842,8 +858,8 @@ function gradeArticle(answer, base, cs, g) {
     if (syncAgain || (ref && pendingCount())) { syncAgain = false; scheduleSync(1500); }
   }
 
-  function needsSync() { return pendingCount() || mlog.dirtyCount() || vstore.pendingCount() || gstore.pendingCount() || !ref || !vstore.st.ref || !gstore.st.ref; }
-  function syncAll(manual) { return Promise.all([syncNow(manual), vstore.sync(manual), gstore.sync(manual), mlog.flush()]); }
+  function needsSync() { return pendingCount() || mlog.dirtyCount() || dstore.dirtyCount() || vstore.pendingCount() || gstore.pendingCount() || !ref || !vstore.st.ref || !gstore.st.ref; }
+  function syncAll(manual) { return Promise.all([syncNow(manual), vstore.sync(manual), gstore.sync(manual), mlog.flush(), dstore.sync()]); }
   async function init() {
     buildHome();
     loadLocal(); rebuildProg();
@@ -859,6 +875,15 @@ function gradeArticle(answer, base, cs, g) {
     var tick = setInterval(function () { if (!syncing && !vstore.st.syncing && !gstore.st.syncing && needsSync()) syncAll(); }, 30000);
     if (tick && tick.unref) tick.unref();
     $("sync-btn").addEventListener("click", function () { syncAll(true); });
+    dstore.render();
+    var tipTimer = null;
+    $("streak-btn").addEventListener("click", function () {
+      var tip = $("streak-tip"), open = tip.hidden;
+      tip.textContent = dstore.tipText(); tip.hidden = !open; $("streak-btn").setAttribute("aria-expanded", open ? "true" : "false");
+      if (tipTimer) clearTimeout(tipTimer);
+      if (open) tipTimer = setTimeout(function () { tip.hidden = true; $("streak-btn").setAttribute("aria-expanded", "false"); }, 6000);
+    });
+    if (typeof document.addEventListener === "function") document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") dstore.render(); });
     refreshHome(); setStatus("idle");
     await syncAll();
     try { sample = await withTimeout(claude.use("sample"), 8000); } catch (e) { sample = null; }
@@ -1484,6 +1509,68 @@ function gradeArticle(answer, base, cs, g) {
       if (dirtyCount() && st.ref) schedule(1500);
     }
     return { add: add, amend: amend, flush: flush, dirtyCount: dirtyCount };
+  })();
+  /* practice days: one entry per local date, bumped when a round is finished */
+  var dstore = (function () {
+    var LS = "kv-days-v1", st = { days: {}, dirty: {}, ref: null, busy: false, uid: "", timer: null, ver: 0 };
+    try {
+      var d0 = JSON.parse(localStorage.getItem(LS) || "null");
+      if (d0 && d0.days) { st.days = d0.days; st.dirty = d0.dirty || {}; st.uid = d0.uid || ""; }
+    } catch (e) { /* ignore a damaged cache */ }
+    function save() { try { localStorage.setItem(LS, JSON.stringify({ uid: st.uid, days: st.days, dirty: st.dirty })); } catch (e) { /* storage may be blocked */ } }
+    function dirtyCount() { return Object.keys(st.dirty).length; }
+    function info() {
+      var set = {}; Object.keys(st.days).forEach(function (k) { if (st.days[k] && st.days[k].r > 0) set[k] = 1; });
+      var i = streakInfo(set, localDay()); i.today = (st.days[localDay()] || { r: 0 }).r; return i;
+    }
+    function render() {
+      var i = info(), b = $("streak-btn");
+      $("streak-n").textContent = String(i.cur);
+      b.setAttribute("data-done", i.done ? "true" : "false");
+      b.setAttribute("aria-label", "Streak: " + i.cur + (i.cur === 1 ? " day" : " days"));
+    }
+    function tipText() {
+      var i = info(), p = [i.cur + (i.cur === 1 ? " day" : " days") + " streak"];
+      p.push("best " + i.best);
+      p.push(i.done ? i.today + (i.today === 1 ? " round" : " rounds") + " today" : (i.cur ? "finish a round today to keep it going" : "finish a round to start a streak"));
+      return p.join(" · ");
+    }
+    function schedule(ms) {
+      if (st.timer) clearTimeout(st.timer);
+      st.timer = setTimeout(function () { st.timer = null; sync(); }, ms == null ? 3000 : ms);
+    }
+    function mark() {
+      var k = localDay(), e = st.days[k] || (st.days[k] = { r: 0 });
+      e.r++; st.dirty[k] = ++st.ver; save(); render(); schedule();
+    }
+    async function sync() {
+      if (st.busy) return;
+      st.busy = true;
+      try {
+        if (!st.ref) {
+          var db = await withTimeout(claude.use("db"), 8000), user = await withTimeout(claude.use("user"), 8000);
+          var uid = user ? await withTimeout(user.id(), 8000) : null;
+          if (!db || !uid) throw new Error("offline");
+          if (st.uid && st.uid !== uid) { st.days = {}; st.dirty = {}; }
+          st.uid = uid; st.ref = db.collection("data/users/" + uid).doc("days");
+        }
+        var snap = await withTimeout(st.ref.get(), 10000);
+        var remote = snap.exists && snap.data() && snap.data().words ? snap.data().words : {};
+        if (!snap.exists) await withTimeout(st.ref.set({ words: {} }), 10000);
+        Object.keys(remote).forEach(function (k) {
+          var r = remote[k] && remote[k].r > 0 ? remote[k].r : 0, l = st.days[k] ? st.days[k].r : 0;
+          if (r > l) st.days[k] = { r: r };
+        });
+        var sent = {}, patch = { words: {} };
+        Object.keys(st.dirty).forEach(function (k) { if (st.days[k]) { sent[k] = st.dirty[k]; patch.words[k] = st.days[k]; } });
+        if (Object.keys(patch.words).length) await withTimeout(st.ref.update(patch), 15000);
+        Object.keys(sent).forEach(function (k) { if (st.dirty[k] === sent[k]) delete st.dirty[k]; });
+        save(); render();
+      } catch (e) { st.ref = null; }
+      st.busy = false;
+      if (dirtyCount() && st.ref) schedule(1500);
+    }
+    return { mark: mark, sync: sync, render: render, tipText: tipText, dirtyCount: dirtyCount, info: info, st: st };
   })();
   /* rec.lo keeps what was shown and expected, so a later override can still be logged */
   function logAnswer(rec, d, o) {
