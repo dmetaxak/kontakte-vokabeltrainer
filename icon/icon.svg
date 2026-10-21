@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+<rect width="180" height="180" fill="#14213d"/>
+<text x="90" y="108" text-anchor="middle" font-family="Georgia, 'DejaVu Serif', serif" font-weight="700" font-size="84" fill="#ffffff" letter-spacing="-2">KV</text>
+<circle cx="60" cy="138" r="9" fill="#1f5fbf"/><circle cx="90" cy="138" r="9" fill="#c93d92"/><circle cx="120" cy="138" r="9" fill="#2b7a45"/>
+</svg>
