@@ -315,3 +315,150 @@ Das ist genau richtig.|That is exactly right.
 Das ist ein technisches Problem.|That is a technical problem.
 Sie ist seit zwei Jahren verheiratet.|She has been married for two years.
 Ich bin in Hamburg geboren.|I was born in Hamburg.
+Mein Zimmer ist klein, aber gemütlich.|My room is small but cozy.
+Kannst du das Bild beschreiben?|Can you describe the picture?
+Ich bleibe heute zu Hause.|I'm staying home today.
+Wie definierst du dieses Wort?|How do you define this word?
+Die Lehrerin erklärt die Grammatik.|The teacher explains the grammar.
+Er erzählt uns eine lange Geschichte.|He tells us a long story.
+Dieser Ausweis gilt noch ein Jahr.|This ID is valid for another year.
+Sie liebt ihren Hund sehr.|She loves her dog very much.
+Meine Tochter rechnet schon sehr gut.|My daughter already calculates very well.
+Wir reden oft über die Schule.|We often talk about school.
+Er schneidet das Brot mit einem Messer.|He cuts the bread with a knife.
+Im Urlaub tauche ich gern.|On vacation I like to dive.
+Kommst du morgen bei mir vorbei?|Are you coming by my place tomorrow?
+Das Kind zeichnet ein Haus.|The child is drawing a house.
+Ich kenne die Antwort nicht.|I don't know the answer.
+Die Ausstellung ist bis Sonntag geöffnet.|The exhibition is open until Sunday.
+Ein Erwachsener muss das Formular unterschreiben.|An adult has to sign the form.
+Das ist eine gute Idee!|That's a good idea!
+Zeichne bitte eine gerade Linie.|Please draw a straight line.
+Er reist um die ganze Welt.|He travels around the whole world.
+In der Zukunft möchte ich in Berlin wohnen.|In the future I would like to live in Berlin.
+Dieser Begriff ist schwer zu erklären.|This term is hard to explain.
+Der Besuch bei meiner Oma war schön.|The visit to my grandma was nice.
+Hast du schon einen Plan für das Wochenende?|Do you already have a plan for the weekend?
+Schreib bitte einen kurzen Satz.|Please write a short sentence.
+Das ist der beste Teil des Films.|That is the best part of the movie.
+Das ist ein guter Witz.|That's a good joke.
+In diesem Zusammenhang ist das wichtig.|In this context that is important.
+Sie schreibt ein Gedicht für ihre Mutter.|She is writing a poem for her mother.
+Mein Herz schlägt schnell.|My heart is beating fast.
+Viele Leute warten an der Haltestelle.|Many people are waiting at the stop.
+Der Zug fährt direkt nach Berlin.|The train goes directly to Berlin.
+Die Aufgabe ist ganz einfach.|The task is quite simple.
+Das Essen war hervorragend.|The food was excellent.
+Das ist mir recht.|That's fine with me.
+Die Meinungen sind sehr unterschiedlich.|The opinions are very different.
+Das Wetter ist heute wunderbar.|The weather is wonderful today.
+Ich mag Katzen besonders gern.|I especially like cats.
+Wir helfen einander.|We help each other.
+Ich spreche ein bisschen Deutsch.|I speak a little German.
+Das ist gar nicht schwer.|That is not hard at all.
+Ich bin kein bisschen müde.|I'm not a bit tired.
+Nach dem Unterricht gehe ich nach Hause.|After class I go home.
+Er kommt nie zu spät.|He never comes late.
+Ich habe nur fünf Euro.|I only have five euros.
+Wir essen um acht, aber vorher gehen wir spazieren.|We eat at eight, but before that we go for a walk.
+Er bietet mir einen Kaffee an.|He offers me a coffee.
+Sie zündet eine Kerze an.|She lights a candle.
+Pass bitte gut auf!|Please pay close attention!
+Mach bitte das Licht aus.|Please turn off the light.
+Er zieht im Mai aus.|He is moving out in May.
+Meine Eltern erlauben das nicht.|My parents don't permit that.
+Das Bild hängt an der Wand.|The picture hangs on the wall.
+Sie heiraten im Sommer.|They are getting married in the summer.
+Ich hoffe, du kommst bald.|I hope you'll come soon.
+Er leert die Flasche.|He empties the bottle.
+Sie leitet die Firma.|She runs the company.
+Hier darf man nicht rauchen.|You may not smoke here.
+Ich schaffe die Arbeit bis Freitag.|I'll get the work done by Friday.
+Bitte stör mich nicht.|Please don't disturb me.
+Wir wählen im September.|We vote in September.
+Mach bitte die Tür zu.|Please close the door.
+Ein Jugendlicher hat das Fahrrad gefunden.|A teenager found the bicycle.
+Auf dem Tisch steht eine Kerze.|There is a candle on the table.
+In meinem Zimmer ist alles in Ordnung.|Everything in my room is in order.
+Die Pflanze braucht viel Wasser.|The plant needs a lot of water.
+Das ist meine Pflicht.|That is my duty.
+Er arbeitet für einen großen Konzern.|He works for a large corporation.
+Am Mittag essen wir in der Mensa.|At noon we eat in the cafeteria.
+Das neue Gesetz gilt ab Januar.|The new law applies from January.
+Ich wünsche dir viel Glück!|I wish you lots of luck!
+Sie fährt ein amerikanisches Auto.|She drives an American car.
+Er kommt bestimmt.|He is definitely coming.
+Ich habe ein eigenes Zimmer.|I have my own room.
+Ich habe gerade gegessen.|I just ate.
+Am Wochenende bin ich meist zu Hause.|On the weekend I am mostly at home.
+Dein Zimmer ist sehr sauber.|Your room is very clean.
+Die Bank steht neben der Post.|The bank is next to the post office.
+Er trinkt drei Tassen Kaffee pro Tag.|He drinks three cups of coffee per day.
+Komm bitte sofort her!|Please come here right away!
+Was für ein Auto hast du?|What kind of car do you have?
+Ich bleibe zu Hause, weil ich krank bin.|I'm staying home because I am sick.
+Sie ruft mich bald wieder an.|She will call me again soon.
+Hier darf man nicht parken.|You may not park here.
+Ich kann gut schwimmen.|I can swim well.
+Ich muss heute lernen.|I have to study today.
+Du sollst mehr schlafen.|You are supposed to sleep more.
+Wir wollen im Sommer nach Italien fahren.|We want to go to Italy in the summer.
+Sie zieht sich einen Mantel an.|She puts on a coat.
+Ich bestelle eine Pizza.|I'm ordering a pizza.
+Ich bitte dich um Hilfe.|I'm asking you for help.
+Die Firma entwickelt neue Software.|The company develops new software.
+Er erfüllt seine Pflicht.|He fulfills his duty.
+Er leidet an einer Allergie.|He suffers from an allergy.
+Nimmst du den Regenschirm mit?|Are you taking the umbrella along?
+Möchtest du den Kuchen probieren?|Would you like to try the cake?
+Die Ärztin arbeitet im Krankenhaus.|The doctor works at the hospital.
+Meine Schwester arbeitet bei einer Firma in München.|My sister works at a company in Munich.
+Die Geliebte wartet am Bahnhof.|The beloved is waiting at the train station.
+Welche Sprache sprichst du zu Hause?|Which language do you speak at home?
+Der Arzt hat heute wenig Zeit.|The doctor has little time today.
+Mein Koffer ist sehr schwer.|My suitcase is very heavy.
+Ist dieser Platz noch frei?|Is this seat still free?
+Ich habe ein gutes Gefühl.|I have a good feeling.
+Mein Onkel arbeitet im Krankenhaus.|My uncle works at the hospital.
+Das Café ist bei Studenten sehr beliebt.|The café is very popular with students.
+Eigentlich möchte ich nach Hause gehen.|Actually, I'd like to go home.
+Meine Schuhe sind nass.|My shoes are wet.
+Er denkt immer negativ.|He always thinks negatively.
+Die Nachbarin ist sehr nett.|The neighbor is very nice.
+Das Fenster ist offen.|The window is open.
+Die Tasche ist zu schwer.|The bag is too heavy.
+Das ist nicht wahr!|That isn't true!
+Entschuldigung, wo ist der Bahnhof?|Excuse me, where is the train station?
+Ich habe genug gegessen.|I've eaten enough.
+Ich muss jetzt gehen.|I have to go now.
+Na, wie geht's?|Well, how's it going?
+Er kommt sicherlich bald.|He will surely come soon.
+Mach bitte das Fenster auf.|Please open the window.
+Er kann seine Gefühle schwer ausdrücken.|He has a hard time expressing his feelings.
+Der Wind bewegt die Blätter.|The wind moves the leaves.
+Er drückt den Knopf.|He presses the button.
+Ich erkenne ihn an seiner Stimme.|I recognize him by his voice.
+Ich fühle mich heute gut.|I feel good today.
+Du siehst blass aus. Wie fühlst du dich?|You look pale. How do you feel?
+Ich fühle mich heute sehr müde.|I feel very tired today.
+Wir lachen oft zusammen.|We often laugh together.
+Das Baby schreit laut.|The baby is screaming loudly.
+Ich bin heute spät dran.|I'm running late today.
+Das Kind weint.|The child is crying.
+Die Angst vor der Prüfung ist groß.|The fear of the exam is great.
+Ich habe Angst im Dunkeln.|I'm afraid in the dark.
+Mir fehlt heute die Lust zum Lernen.|I don't feel like studying today.
+Hast du Lust, ins Kino zu gehen?|Do you feel like going to the movies?
+Die Nacht war sehr kurz.|The night was very short.
+Viele Menschen glauben an Gott.|Many people believe in God.
+Nach der Wanderung war der Hunger groß.|After the hike the hunger was great.
+Ich habe immer Hunger nach dem Training.|I'm always hungry after practice.
+Mach bitte das Licht an.|Please turn on the light.
+Ich trinke gern kaltes Wasser.|I like drinking cold water.
+Mein Bruder ist heute krank.|My brother is sick today.
+Ich bin nach der Arbeit müde.|I am tired after work.
+Er sieht sehr unglücklich aus.|He looks very unhappy.
+Sie ist wütend auf ihren Bruder.|She is angry at her brother.
+Er kommt immer pünktlich.|He always comes on time.
+Warum lernst du Deutsch?|Why are you learning German?
+Ich gehe jeden Tag zu Fuß zur Uni.|I walk to the university every day.

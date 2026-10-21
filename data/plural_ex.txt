@@ -255,3 +255,40 @@ die Österreicher;;Die Österreicher fahren gern Ski.;;The male Austrians like s
 die Österreicherinnen;;Die Österreicherinnen sprechen schnell.;;The female Austrians speak fast.
 die Schweizer;;Die Schweizer sprechen oft vier Sprachen.;;The male Swiss often speak four languages.
 die Schweizerinnen;;Die Schweizerinnen arbeiten in Zürich.;;The female Swiss work in Zurich.
+die Ausstellungen;;In der Stadt gibt es viele Ausstellungen.;;There are many exhibitions in the city.
+die Erwachsenen;;Die Erwachsenen sitzen im Garten.;;The adults are sitting in the garden.
+die Ideen;;Wir haben viele neue Ideen.;;We have a lot of new ideas.
+die Linien;;Die Linien auf dem Papier sind gerade.;;The lines on the paper are straight.
+die Welten;;In Büchern findet man fremde Welten.;;In books you can find strange worlds.
+die Zukünfte;;Die Zukünfte dieser jungen Leute sehen sehr verschieden aus.;;The futures of these young people look very different.
+die Begriffe;;Diese Begriffe sind schwer zu verstehen.;;These terms are hard to understand.
+die Besuche;;Seine Besuche sind immer kurz.;;His visits are always short.
+die Pläne;;Unsere Pläne für den Sommer sind fertig.;;Our plans for the summer are ready.
+die Sätze;;Die Sätze in diesem Text sind kurz.;;The sentences in this text are short.
+die Teile;;Die Teile passen nicht zusammen.;;The parts don't fit together.
+die Witze;;Seine Witze sind wirklich lustig.;;His jokes are really funny.
+die Zusammenhänge;;Die Zusammenhänge sind nicht leicht zu verstehen.;;The connections are not easy to understand.
+die Gedichte;;Wir lesen im Kurs deutsche Gedichte.;;We are reading German poems in class.
+die Herzen;;Die Herzen der Kinder schlagen schnell.;;The children's hearts are beating fast.
+die Jugendlichen;;Die Jugendlichen spielen Fußball im Park.;;The teenagers are playing soccer in the park.
+die Kerzen;;Die Kerzen brennen auf dem Tisch.;;The candles are burning on the table.
+die Ordnungen;;Verschiedene Ordnungen gelten in den Schulen.;;Different regulations apply in the schools.
+die Pflanzen;;Die Pflanzen im Garten brauchen Wasser.;;The plants in the garden need water.
+die Pflichten;;Meine Pflichten sind nicht leicht.;;My duties are not easy.
+die Konzerne;;Große Konzerne verdienen viel Geld.;;Large corporations earn a lot of money.
+die Mittage;;Im Sommer sind die Mittage sehr heiß.;;In summer the middays are very hot.
+die Gesetze;;Die Gesetze gelten für alle.;;The laws apply to everyone.
+die Ärztinnen;;Die Ärztinnen arbeiten im Krankenhaus.;;The female doctors work at the hospital.
+die Firmen;;In unserer Stadt gibt es viele Firmen.;;There are many companies in our city.
+die Geliebten;;Die Geliebten treffen sich am Abend.;;The lovers meet in the evening.
+die Sprachen;;Sie spricht drei Sprachen.;;She speaks three languages.
+die Ärzte;;Die Ärzte im Krankenhaus arbeiten viel.;;The doctors at the hospital work a lot.
+die Koffer;;Unsere Koffer stehen im Flur.;;Our suitcases are in the hallway.
+die Plätze;;Alle Plätze im Kino sind besetzt.;;All the seats in the theater are taken.
+die Gefühle;;Seine Gefühle zeigt er selten.;;He rarely shows his feelings.
+die Krankenhäuser;;Die Krankenhäuser in der Stadt sind modern.;;The hospitals in the city are modern.
+die Ängste;;Seine Ängste sind verschwunden.;;His fears have disappeared.
+die Nächte;;Im Winter sind die Nächte lang.;;In winter the nights are long.
+die Götter;;Die alten Griechen glaubten an viele Götter.;;The ancient Greeks believed in many gods.
+die Lichter;;Die Lichter in der Stadt sind schön.;;The lights in the city are beautiful.
+die Zimmer;;Die Zimmer im Hotel sind sehr sauber.;;The rooms in the hotel are very clean.

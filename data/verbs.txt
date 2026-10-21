@@ -98,3 +98,8 @@ schneien;;to snow;;B;;;;haben;;geschneit;;;;;;;;2
 kommen (aus);;to come (from);;B;;;;sein;;gekommen;;;;;;;;
 sprechen;;to speak;;B;;;;haben;;gesprochen;;sprichst;;spricht;;;;
 zuordnen;;to allocate, match;;B;;zu;;haben;;zugeordnet;;;;;;;;
+können;;can, to be able to;;3;;;;;;;;;;;;kann,kannst,kann,können,könnt,können;;
+wollen;;to want to;;3;;;;;;;;;;;;will,willst,will,wollen,wollt,wollen;;
+müssen;;must, to have to;;3;;;;;;;;;;;;muss,musst,muss,müssen,müsst,müssen;;
+sollen;;should, to be supposed to;;3;;;;;;;;;;;;soll,sollst,soll,sollen,sollt,sollen;;
+dürfen;;may, to be allowed to;;3;;;;;;;;;;;;darf,darfst,darf,dürfen,dürft,dürfen;;

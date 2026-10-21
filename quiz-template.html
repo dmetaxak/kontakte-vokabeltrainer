@@ -289,21 +289,25 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
 
   <!-- GRAMMAR -->
   <div id="v-gram" class="stack" hidden>
-    <section class="panel" aria-label="Case endings drill">
-      <h2>Case endings: fill in the blank</h2>
+    <section class="panel" aria-label="Grammar drills">
+      <div class="segbtns modes" id="gseg-mode" role="group" aria-label="Grammar drill type">
+        <button type="button" data-gmode="case" aria-pressed="true">Case endings</button>
+        <button type="button" data-gmode="pron" aria-pressed="false">Pronouns</button>
+      </div>
       <p class="muted" id="anote"></p>
       <fieldset>
         <legend>Sentences</legend>
         <div class="seg" id="aseg-case"></div>
+        <div class="seg" id="pseg-case" hidden></div>
       </fieldset>
       <button type="button" id="astart">Start</button>
     </section>
-    <section class="panel" aria-label="Case endings progress">
-      <h2>Case endings progress</h2>
+    <section class="panel" aria-label="Grammar progress">
+      <h2 id="a-title">Case endings progress</h2>
       <div class="chart" id="a-chart" role="img" aria-label="Sentences by proficiency"></div>
       <div class="stats" id="a-stats"></div>
-      <h2>Accuracy by case and gender</h2>
-      <div class="chart" id="a-cases" role="img" aria-label="Accuracy by case and gender"></div>
+      <h2 id="a-grptitle">Accuracy by case and gender</h2>
+      <div class="chart" id="a-cases" role="img" aria-label="Accuracy by group"></div>
       <p class="muted">Based on your last 12 answers in each group.</p>
       <div class="segbtns" role="group" aria-label="Sort order">
         <button type="button" id="a-low" aria-pressed="true">Lowest</button>
@@ -332,6 +336,26 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
       <button type="button" class="primary-wide" id="aq-check">Check</button>
     </div>
     <div id="aq-feedback" aria-live="polite"></div>
+  </section>
+
+  <!-- PRONOUN DRILL -->
+  <section id="v-pn" class="panel" aria-label="Pronoun drill" hidden>
+    <div class="qtop">
+      <button type="button" class="ghost small" id="pn-back">Back</button>
+      <button type="button" class="ghost small" id="pn-end">End drill</button>
+    </div>
+    <div class="qhead"><span id="pn-round"></span><span id="pn-left"></span></div>
+    <div class="bar" aria-hidden="true"><i id="pn-bar"></i></div>
+    <div class="prompt" id="pn-prompt"></div>
+    <div class="hint" id="pn-hint"></div>
+    <div>
+      <input type="text" id="pn-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your answer" enterkeyhint="done">
+    </div>
+    <div class="row">
+      <button type="button" class="ghost" id="pn-skip">Skip</button>
+      <button type="button" class="primary-wide" id="pn-check">Check</button>
+    </div>
+    <div id="pn-feedback" aria-live="polite"></div>
   </section>
 
   <!-- PLURAL DRILL -->
@@ -400,6 +424,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
 /*VOCABDATA*/
 /*VERBDATA*/
 /*ACCDATA*/
+/*PRONDATA*/
 </script>
 <script>
 "use strict";
@@ -715,6 +740,23 @@ function streakInfo(days, todayStr, nowOff) {
   }
   return { cur: cur, best: best, done: !!days[todayStr], forgiven: forgiven };
 }
+var PRON_FORMS = { nom: { "1s": "ich", "2s": "du", "3m": "er", "3f": "sie", "3n": "es", "1p": "wir", "2p": "ihr", "3p": "sie", fo: "sie" },
+  acc: { "1s": "mich", "2s": "dich", "3m": "ihn", "3f": "sie", "3n": "es", "1p": "uns", "2p": "euch", "3p": "sie", fo: "sie" } };
+var PRON_WHO = { "1s": "ich (I)", "2s": "du (you, informal)", "3m": "er (he)", "3f": "sie (she)", "3n": "es (it)", "1p": "wir (we)", "2p": "ihr (you all)", "3p": "sie (they)", fo: "Sie (you, formal)" };
+function pronForm(p, cs) { var f = PRON_FORMS[cs][p]; return p === "fo" ? "Sie" : f; }
+function gradePronoun(answer, p, cs) {
+  var a = answer.trim().toLowerCase().replace(/\s+/g, " "), want = PRON_FORMS[cs][p], other = cs === "acc" ? "nom" : "acc";
+  if (!a) return { credit: 0, note: "" };
+  if (a === want) return { credit: 1, note: "" };
+  if (PRON_FORMS[other][p] === a) return { credit: 0, note: "That is the " + (other === "nom" ? "nominative" : "accusative") + " form. Here the pronoun is " + (cs === "acc" ? "the direct object, so use the accusative." : "the subject, so use the nominative.") };
+  var who = function (c) { return Object.keys(PRON_FORMS[c]).filter(function (k) { return PRON_FORMS[c][k] === a; }).map(function (k) { return PRON_WHO[k]; }); };
+  var same = who(cs);
+  if (same.length) return { credit: 0, note: "That is the " + (cs === "acc" ? "accusative" : "nominative") + " form of " + same.join(" or ") + "." };
+  if (who(other).length) return { credit: 0, note: "That is a " + (other === "nom" ? "nominative" : "accusative") + " pronoun. Here you need the " + (cs === "acc" ? "accusative" : "nominative") + "." };
+  if (["mir", "dir", "ihm", "ihnen"].indexOf(a) >= 0) return { credit: 0, note: "That is a dative form. Only nominative and accusative are used here." };
+  if (a.length >= 3 && lev(a, want) <= 1) return { credit: 0.5, note: "Check the spelling." };
+  return { credit: 0, note: "" };
+}
 //PURE_END
 
 /* ---------- app ---------- */
@@ -745,13 +787,13 @@ function streakInfo(days, todayStr, nowOff) {
   var LS_KEY = "kv-sync-v1";
   var session = null;       // current quiz state
   var repHigh = false;      // progress table: false = lowest scores, true = highest
-  var views = ["home", "quiz", "sent", "sum", "verbs", "vq", "gram", "gq", "aq", "pq"];
+  var views = ["home", "quiz", "sent", "sum", "verbs", "vq", "gram", "gq", "aq", "pn", "pq"];
   function clone(x) { return JSON.parse(JSON.stringify(x)); } // database snapshots are frozen
   window.addEventListener("error", function (ev) { banner("Something went wrong: " + (ev && ev.message ? ev.message : "unknown error")); });
 
   function show(name, area) {
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
-    var a = area || ((name === "verbs" || name === "vq") ? "verbs" : (name === "gram" || name === "aq") ? "gram" : "quiz");
+    var a = area || ((name === "verbs" || name === "vq") ? "verbs" : (name === "gram" || name === "aq" || name === "pn") ? "gram" : "quiz");
     $("nav-home").setAttribute("aria-current", a === "quiz" ? "true" : "false");
     $("nav-verbs").setAttribute("aria-current", a === "verbs" ? "true" : "false");
     $("nav-gram").setAttribute("aria-current", a === "gram" ? "true" : "false");
@@ -958,6 +1000,7 @@ function streakInfo(days, todayStr, nowOff) {
   function buildHome() {
     chapterBoxes("seg-ch", refreshHome);
     chapterBoxes("vseg-ch", vRefresh, VERBS);
+    checkRow("pseg-case", PCASES, PRONS.reduce(function (m, a) { m[a.cs] = (m[a.cs] || 0) + 1; return m; }, {}), aRefresh);
     checkRow("aseg-case", CASES, ACCS.reduce(function (m, a) { m[a.cs] = (m[a.cs] || 0) + 1; return m; }, {}), aRefresh);
     document.querySelectorAll("#seg-mode button").forEach(function (b) {
       b.addEventListener("click", function () { setMode(b.getAttribute("data-mode")); });
@@ -2208,7 +2251,16 @@ function streakInfo(days, todayStr, nowOff) {
     pool.forEach(function (a) { var e = gstore.entry(a.id), s = scoreNow(e); counts[bandOf(e.a, s)]++; sum += s; });
     return { counts: counts, avg: pool.length ? Math.round(sum / pool.length) : 0 };
   }
+  var gmode = "case", gLast = "aq";
+  function gModeUI() {
+    document.querySelectorAll("#gseg-mode button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-gmode") === gmode ? "true" : "false"); });
+    $("aseg-case").hidden = gmode !== "case"; $("pseg-case").hidden = gmode !== "pron";
+    $("a-title").textContent = gmode === "pron" ? "Pronouns progress" : "Case endings progress";
+    $("a-grptitle").textContent = gmode === "pron" ? "Accuracy by pronoun" : "Accuracy by case and gender";
+  }
   function aRefresh() {
+    gModeUI();
+    if (gmode === "pron") return pRefresh();
     $("anote").textContent = "Type the article, ein-word or possessive that fits the blank, using the English translation as a guide.";
     var pool = aPool(), st = aStats(pool), total = pool.length || 1;
     $("astart").disabled = pool.length === 0;
@@ -2239,6 +2291,53 @@ function streakInfo(days, todayStr, nowOff) {
       tb.appendChild(tr);
     });
   }
+  /* ----- grammar: personal pronouns ----- */
+  var PRONS = (window.PRON || []).map(function (x) { x.id = hashId("pn|" + x.cs + "|" + x.p + "|" + x.de); return x; });
+  var PCASES = [["acc", "Accusative (the direct object)"], ["nom", "Nominative (the subject)"]];
+  var PROWS = [["ich / mich", "1s"], ["du / dich", "2s"], ["er / ihn", "3m"], ["sie (she)", "3f"], ["es", "3n"], ["wir / uns", "1p"], ["ihr / euch", "2p"], ["sie (they)", "3p"], ["Sie (formal)", "fo"]];
+  var PHINT = { "1s": "1st person singular (I / me)", "2s": "2nd person, informal singular (you)", "3m": "3rd person, masculine singular (he / him / it)", "3f": "3rd person, feminine singular (she / her / it)",
+    "3n": "3rd person, neuter singular (it)", "1p": "1st person plural (we / us)", "2p": "2nd person, informal plural (you all)", "3p": "3rd person plural (they / them)", fo: "formal you, singular or plural (always capitalized)" };
+  function pnPool() { var cs = chaptersOf("pseg-case"); return PRONS.filter(function (x) { return cs.indexOf(x.cs) >= 0; }); }
+  function pRefresh() {
+    $("anote").textContent = "Type the personal pronoun that fits the blank. Use the English translation to decide who or what it stands for.";
+    var pool = pnPool(), st = aStats(pool), total = pool.length || 1;
+    $("astart").disabled = pool.length === 0;
+    var el = $("a-stats"); el.textContent = "";
+    el.appendChild(stat("Sentences", pool.length)); el.appendChild(stat("New", st.counts["new"])); el.appendChild(stat("Learning", st.counts.learning));
+    el.appendChild(stat("Familiar", st.counts.familiar)); el.appendChild(stat("Mastered", st.counts.mastered)); el.appendChild(stat("Average", st.avg));
+    bars($("a-chart"), [["New", "new", "var(--b1)"], ["Learning", "learning", "var(--b2)"], ["Familiar", "familiar", "var(--b3)"], ["Mastered", "mastered", "var(--b4)"]]
+      .map(function (r) { var n = st.counts[r[1]]; return [r[0], n / total * 100, String(n), r[2]]; }), "Sentences by proficiency");
+    bars($("a-cases"), PROWS.map(function (r) {
+      var acc = vAcc(gstore.entry("pn:" + r[1]));
+      return [r[0], acc === null ? 0 : Math.round(acc * 100), acc === null ? "-" : Math.round(acc * 100) + "%", "var(--b3)"];
+    }), "Accuracy by pronoun");
+    $("a-low").setAttribute("aria-pressed", aHigh ? "false" : "true"); $("a-high").setAttribute("aria-pressed", aHigh ? "true" : "false");
+    $("a-rowtitle").textContent = aHigh ? "Highest scores" : "Lowest scores";
+    var rows = pool.map(function (a) { var e = gstore.entry(a.id); return { a: a, s: scoreNow(e), n: e.a }; })
+      .sort(function (x, y) { return aHigh ? (y.s - x.s || y.n - x.n || x.a.de.localeCompare(y.a.de)) : (x.s - y.s || x.a.de.localeCompare(y.a.de)); }).slice(0, 10);
+    var tb = $("a-rows"); tb.textContent = "";
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      [r.a.de, r.s, r.n].forEach(function (x, i) { var td = document.createElement("td"); td.textContent = x; if (i > 0) td.className = "num"; tr.appendChild(td); });
+      tb.appendChild(tr);
+    });
+  }
+  function pFacts(x) {
+    return (x.cs === "acc" ? "The pronoun is the direct object, so accusative: " : "The pronoun is the subject, so nominative: ") + pronForm(x.p, x.cs) +
+      ". Nominative: ich, du, er/sie/es, wir, ihr, sie/Sie. Accusative: mich, dich, ihn/sie/es, uns, euch, sie/Sie.";
+  }
+  function pExpected(x) { var f = pronForm(x.p, x.cs); return x.de.indexOf("___") === 0 ? f.charAt(0).toUpperCase() + f.slice(1) : f; }
+  var pnd = makeDrill({
+    prefix: "pn", logName: "pronoun", view: "pn", area: "gram", store: gstore, unit: "sentence", type: "P", scoreWord: "Sentence", endName: "Pronouns progress",
+    hint: function (x) { return PHINT[x.p]; },
+    prompt: function (x, pr, hint) { pr.className = "prompt sentence"; pr.textContent = x.de.replace("___", "_____"); hint.className = "hint big"; hint.textContent = x.en; },
+    grade: function (x, typed) { return gradePronoun(typed, x.p, x.cs); },
+    expected: pExpected, facts: pFacts,
+    example: function (x) { return x.de.replace("___", pExpected(x)) + "|" + x.en; },
+    agg: function (x) { return "pn:" + x.p; },
+    label: function (x) { return x.de.replace("___", pExpected(x)); },
+    onEnd: function () { aRefresh(); show("gram"); }
+  });
   function aFormsLine(a) {
     var out = [["m", "masc."], ["f", "fem."], ["n", "neut."], ["p", "plural"]].filter(function (g) { return !(a.b === "ein" && g[0] === "p"); })
       .map(function (g) { return g[1] + " " + artForm(a.b, a.cs, g[0]); });
@@ -2278,6 +2377,12 @@ function streakInfo(days, todayStr, nowOff) {
     onEnd: function () { aRefresh(); show("gram"); }
   });
   function aStart() {
+    if (gmode === "pron") {
+      var pp = pnPool(); if (!pp.length) return;
+      gLast = "pn";
+      return pnd.start(pickWords(pp, function (a) { var e = gstore.entry(a.id); return bandOf(e.a, scoreNow(e)); }, AQ_SIZE));
+    }
+    gLast = "aq";
     var pool = aPool();
     if (!pool.length) return;
     var picked = pickWords(pool, function (a) { var e = gstore.entry(a.id); return bandOf(e.a, scoreNow(e)); }, AQ_SIZE);
@@ -2294,9 +2399,11 @@ function streakInfo(days, todayStr, nowOff) {
     b.addEventListener("click", function () { vSetMode(b.getAttribute("data-vmode")); });
   });
   $("nav-gram").addEventListener("click", function () {
-    if (aqd.active()) aqd.resume(); else { aRefresh(); show("gram"); }
+    var d1 = gLast === "pn" ? pnd : aqd, d2 = gLast === "pn" ? aqd : pnd;
+    if (d1.active()) d1.resume(); else if (d2.active()) d2.resume(); else { aRefresh(); show("gram"); }
   });
   $("astart").addEventListener("click", aStart);
+  document.querySelectorAll("#gseg-mode button").forEach(function (b) { b.addEventListener("click", function () { gmode = b.getAttribute("data-gmode"); aRefresh(); }); });
   document.querySelectorAll("#gq-btns button").forEach(function (b) { b.addEventListener("click", function () { gChoose(b.getAttribute("data-art")); }); });
   $("gq-skip").addEventListener("click", function () { gChoose(null); });
   $("gq-next").addEventListener("click", gNext);

@@ -321,3 +321,150 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | technisch | technical(ly) | adjective/adverb |  | 1 | Persönliche Angaben |
 | verheiratet | married | adjective |  | 1 | Persönliche Angaben |
 | geboren | born | adjective |  | 1 | Persönliche Angaben; Wann sind Sie geboren? = When were you born? |
+| das Zimmer | room | noun | die Zimmer | 1 | Freizeit |
+| beschreiben | to describe | verb |  | 3 | Talente und Pläne |
+| bleiben | to stay, remain | verb |  | 3 | Talente und Pläne |
+| definieren | to define | verb |  | 3 | Talente und Pläne |
+| erklären | to explain | verb |  | 3 | Talente und Pläne |
+| erzählen | to tell | verb |  | 3 | Talente und Pläne |
+| gelten | to be valid, count | verb | gilt | 3 | Talente und Pläne |
+| lieben | to love | verb |  | 3 | Talente und Pläne |
+| rechnen | to compute, calculate | verb |  | 3 | Talente und Pläne |
+| reden | to speak, converse | verb |  | 3 | Talente und Pläne |
+| schneiden | to cut | verb |  | 3 | Talente und Pläne |
+| tauchen | to dive | verb |  | 3 | Talente und Pläne |
+| vorbeikommen | to come by, visit | verb | kommt ... vorbei | 3 | Talente und Pläne; separable |
+| zeichnen | to draw | verb |  | 3 | Talente und Pläne |
+| die Antwort | answer, response | noun |  | 3 | Talente und Pläne; no plural given |
+| die Ausstellung | exhibition | noun | die Ausstellungen | 3 | Talente und Pläne |
+| die/der Erwachsene | adult, grown-up | noun | die Erwachsenen | 3 | Talente und Pläne |
+| die Idee | idea | noun | die Ideen | 3 | Talente und Pläne |
+| die Linie | line | noun | die Linien | 3 | Talente und Pläne |
+| die Welt | world | noun | die Welten | 3 | Talente und Pläne |
+| die Zukunft | future | noun | die Zukünfte | 3 | Talente und Pläne |
+| der Begriff | term, concept | noun | die Begriffe | 3 | Talente und Pläne |
+| der Besuch | visit | noun | die Besuche | 3 | Talente und Pläne |
+| der Plan | plan | noun | die Pläne | 3 | Talente und Pläne |
+| der Satz | sentence | noun | die Sätze | 3 | Talente und Pläne |
+| der Teil | part | noun | die Teile | 3 | Talente und Pläne |
+| der Witz | joke | noun | die Witze | 3 | Talente und Pläne |
+| der Zusammenhang | connection, context | noun | die Zusammenhänge | 3 | Talente und Pläne |
+| das Gedicht | poem | noun | die Gedichte | 3 | Talente und Pläne |
+| das Herz | heart | noun | die Herzen | 3 | Talente und Pläne |
+| die Leute | people | noun | plural only | 3 | Talente und Pläne |
+| direkt | direct(ly) | adjective/adverb |  | 3 | Talente und Pläne |
+| einfach | simple, simply | adjective/adverb |  | 3 | Talente und Pläne |
+| hervorragend | excellent(ly) | adjective/adverb |  | 3 | Talente und Pläne |
+| recht | right | adjective/adverb |  | 3 | Talente und Pläne |
+| unterschiedlich | different(ly), diverse | adjective/adverb |  | 3 | Talente und Pläne |
+| wunderbar | wonderful(ly) | adjective/adverb |  | 3 | Talente und Pläne |
+| besonders | particularly, especially | adverb |  | 3 | Talente und Pläne |
+| einander | each other, one another | pronoun |  | 3 | Talente und Pläne |
+| ein bisschen | a little bit | adverb |  | 3 | Talente und Pläne |
+| gar nicht | not at all | adverb |  | 3 | Talente und Pläne |
+| kein bisschen | not a bit | adverb |  | 3 | Talente und Pläne |
+| nach | after; to (a place) | preposition |  | 3 | Talente und Pläne |
+| nie | never | adverb |  | 3 | Talente und Pläne |
+| nur | only | adverb |  | 3 | Talente und Pläne |
+| vorher | before that | adverb |  | 3 | Talente und Pläne |
+| anbieten | to offer | verb | bietet ... an | 3 | Pflichten; separable |
+| anzünden | to light | verb | zündet ... an | 3 | Pflichten; separable |
+| aufpassen | to pay attention | verb | passt ... auf | 3 | Pflichten; separable |
+| ausmachen | to switch off, extinguish | verb | macht ... aus | 3 | Pflichten; separable |
+| ausziehen | to move away; to take off (clothes) | verb | zieht ... aus | 3 | Pflichten; separable |
+| erlauben | to permit | verb |  | 3 | Pflichten |
+| hängen | to hang | verb |  | 3 | Pflichten |
+| heiraten | to marry | verb |  | 3 | Pflichten |
+| hoffen | to hope | verb |  | 3 | Pflichten |
+| leeren | to empty | verb |  | 3 | Pflichten |
+| leiten | to lead, be the head of | verb |  | 3 | Pflichten |
+| rauchen | to smoke | verb |  | 3 | Pflichten |
+| schaffen | to accomplish, achieve | verb |  | 3 | Pflichten |
+| stören | to disturb | verb |  | 3 | Pflichten |
+| wählen | to vote, choose, elect | verb |  | 3 | Pflichten |
+| zumachen | to close | verb | macht ... zu | 3 | Pflichten; separable |
+| die/der Jugendliche | teenager, youth | noun | die Jugendlichen | 3 | Pflichten |
+| die Kerze | candle | noun | die Kerzen | 3 | Pflichten |
+| die Ordnung | order, orderliness | noun | die Ordnungen | 3 | Pflichten |
+| die Pflanze | plant | noun | die Pflanzen | 3 | Pflichten |
+| die Pflicht | duty, requirement | noun | die Pflichten | 3 | Pflichten |
+| der Konzern | corporation, enterprise | noun | die Konzerne | 3 | Pflichten |
+| der Mittag | noon | noun | die Mittage | 3 | Pflichten |
+| das Gesetz | law | noun | die Gesetze | 3 | Pflichten |
+| das Glück | luck; happiness | noun |  | 3 | Pflichten; no plural given |
+| amerikanisch | American | adjective |  | 3 | Pflichten |
+| bestimmt | definite(ly), certain(ly) | adjective/adverb |  | 3 | Pflichten |
+| eigen | own | adjective |  | 3 | Pflichten |
+| gerade | straight; just now | adjective/adverb |  | 3 | Pflichten |
+| meist, meiste | most, mostly | adjective/adverb |  | 3 | Pflichten |
+| sauber | clean(ly) | adjective/adverb |  | 3 | Pflichten |
+| neben | beside; in addition to | preposition |  | 3 | Pflichten |
+| pro | per | preposition |  | 3 | Pflichten |
+| sofort | immediately, right away | adverb |  | 3 | Pflichten |
+| was für | what kind of | phrase |  | 3 | Pflichten |
+| weil | because | conjunction |  | 3 | Pflichten |
+| wieder | again | adverb |  | 3 | Pflichten |
+| dürfen | to be permitted (to), may | verb | darf | 3 | Modalverben |
+| können | to be able (to), can; may | verb | kann | 3 | Modalverben |
+| müssen | to have to, must | verb | muss | 3 | Modalverben |
+| sollen | to be supposed to | verb | soll | 3 | Modalverben |
+| wollen | to want; to intend, plan (to) | verb | will | 3 | Modalverben |
+| anziehen | to put on, dress; to attract | verb | zieht ... an | 3 | Dienste; separable |
+| bestellen | to order (food) | verb |  | 3 | Dienste |
+| bitten | to ask, request | verb |  | 3 | Dienste |
+| entwickeln | to develop | verb |  | 3 | Dienste |
+| erfüllen | to fulfill | verb |  | 3 | Dienste |
+| leiden (an) | to suffer (from) | verb |  | 3 | Dienste |
+| mitnehmen | to take along | verb | nimmt ... mit | 3 | Dienste; separable |
+| probieren | to try, taste | verb |  | 3 | Dienste |
+| die Ärztin | female physician | noun | die Ärztinnen | 3 | Dienste |
+| die Firma | company | noun | die Firmen | 3 | Dienste |
+| die/der Geliebte | beloved female/male friend, lover | noun | die Geliebten | 3 | Dienste |
+| die Sprache | language | noun | die Sprachen | 3 | Dienste |
+| der Arzt | male physician | noun | die Ärzte | 3 | Dienste |
+| der Koffer | suitcase | noun | die Koffer | 3 | Dienste |
+| der Platz | place, seat | noun | die Plätze | 3 | Dienste |
+| das Gefühl | feeling | noun | die Gefühle | 3 | Dienste |
+| das Krankenhaus | hospital | noun | die Krankenhäuser | 3 | Dienste |
+| beliebt | popular | adjective |  | 3 | Dienste |
+| eigentlich | actual(ly) | adjective/adverb |  | 3 | Dienste |
+| nass | wet | adjective |  | 3 | Dienste |
+| negativ | negative(ly) | adjective/adverb |  | 3 | Dienste |
+| nett | nice(ly) | adjective/adverb |  | 3 | Dienste |
+| offen | open(ly) | adjective/adverb |  | 3 | Dienste |
+| schwer | heavy; hard, difficult | adjective |  | 3 | Dienste |
+| wahr | true | adjective |  | 3 | Dienste |
+| Entschuldigung! | Excuse me! | phrase |  | 3 | Dienste |
+| genug | enough | adverb |  | 3 | Dienste |
+| jetzt | now | adverb |  | 3 | Dienste |
+| na | well (interjection) | adverb |  | 3 | Dienste |
+| sicherlich | surely, certainly | adverb |  | 3 | Dienste |
+| aufmachen | to open | verb | macht ... auf | 3 | Körperliche und geistige Verfassung; separable |
+| ausdrücken | to express, convey | verb | drückt ... aus | 3 | Körperliche und geistige Verfassung; separable |
+| bewegen | to move | verb |  | 3 | Körperliche und geistige Verfassung |
+| drücken | to hug, press, push | verb |  | 3 | Körperliche und geistige Verfassung |
+| erkennen | to recognize | verb |  | 3 | Körperliche und geistige Verfassung |
+| fühlen | to feel | verb |  | 3 | Körperliche und geistige Verfassung |
+| Wie fühlst du dich? | How do you feel? | phrase |  | 3 | Körperliche und geistige Verfassung |
+| ich fühle mich ... | I feel ... | phrase |  | 3 | Körperliche und geistige Verfassung |
+| lachen | to laugh | verb |  | 3 | Körperliche und geistige Verfassung |
+| schreien | to scream, yell | verb |  | 3 | Körperliche und geistige Verfassung |
+| spät dran sein | to be late | verb | ist spät dran | 3 | Körperliche und geistige Verfassung |
+| weinen | to cry | verb |  | 3 | Körperliche und geistige Verfassung |
+| die Angst | fear | noun | die Ängste | 3 | Körperliche und geistige Verfassung |
+| Angst haben | to be afraid | verb | hat Angst | 3 | Körperliche und geistige Verfassung |
+| die Lust | desire | noun |  | 3 | Körperliche und geistige Verfassung; no plural given |
+| Lust haben | to feel like (doing something) | verb | hat Lust | 3 | Körperliche und geistige Verfassung |
+| die Nacht | night | noun | die Nächte | 3 | Körperliche und geistige Verfassung |
+| der Gott | god, God | noun | die Götter | 3 | Körperliche und geistige Verfassung |
+| der Hunger | hunger | noun |  | 3 | Körperliche und geistige Verfassung; no plural given |
+| Hunger haben | to be hungry | verb | hat Hunger | 3 | Körperliche und geistige Verfassung |
+| das Licht | light | noun | die Lichter | 3 | Körperliche und geistige Verfassung |
+| das Wasser | water | noun |  | 3 | Körperliche und geistige Verfassung; no plural given |
+| krank | sick | adjective |  | 3 | Körperliche und geistige Verfassung |
+| müde | tired(ly) | adjective/adverb |  | 3 | Körperliche und geistige Verfassung |
+| unglücklich | unhappy, unhappily | adjective/adverb |  | 3 | Körperliche und geistige Verfassung |
+| wütend | angry, angrily | adjective/adverb |  | 3 | Körperliche und geistige Verfassung |
+| immer | always | adverb |  | 3 | Körperliche und geistige Verfassung |
+| warum | why | adverb |  | 3 | Körperliche und geistige Verfassung |
+| zu Fuß | on foot | phrase |  | 3 | Körperliche und geistige Verfassung |

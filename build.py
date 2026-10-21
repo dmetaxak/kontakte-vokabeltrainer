@@ -98,11 +98,23 @@ assert set(pex)==set(r['g'] for r in plrows),(set(pex)^set(r['g'] for r in plrow
 for r in plrows: r['x']=pex[r['g']]
 rows.extend(plrows)
 open('plurals_preview.txt','w',encoding='utf-8').write('\n'.join(r['pl']+' | '+r['e']+' -> '+r['g']+' | '+en_plural(r['pl'],[q['e'] for q in rows if q['g']==r['pl']][0]) for r in plrows))
+pron=[]
+PK=('1s','2s','3m','3f','3n','1p','2p','3p','fo')
+for line in open('data/pron.txt',encoding='utf-8'):
+    line=line.rstrip('\n')
+    if not line or line.startswith('#'): continue
+    cs,p,de,en=line.split(';;')
+    assert cs in ('nom','acc') and p in PK,line
+    assert de.count('___')==1,line
+    pron.append(dict(cs=cs,p=p,de=de,en=en))
+assert len(set((x['de'] for x in pron)))==len(pron),'duplicate pronoun sentence'
+pdata=json.dumps(pron,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
 adata=json.dumps(acc,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
 data=json.dumps(rows,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
 t=open('quiz-template.html',encoding='utf-8').read()
 t=t.replace('/*VOCABDATA*/','window.VOCAB = '+data+';')
 t=t.replace('/*VERBDATA*/','window.VERBS = '+vdata+';')
+t=t.replace('/*PRONDATA*/','window.PRON = '+pdata+';')
 t=t.replace('/*ACCDATA*/','window.ACC = '+adata+';')
 open('kontakte-vokabeltrainer.html','w',encoding='utf-8').write(t)
 # extract pure block for testing

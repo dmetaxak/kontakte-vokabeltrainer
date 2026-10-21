@@ -1,0 +1,91 @@
+# case ;; person (1s 2s 3m 3f 3n 1p 2p 3p fo) ;; sentence with ___ ;; english. The answer comes from the pronoun table in the template.
+acc;;1s;;Kennst du ___ schon?;;Do you know me already?
+acc;;1s;;Der Lehrer fragt ___ etwas.;;The teacher asks me something.
+acc;;1s;;Er besucht ___ morgen.;;He is visiting me tomorrow.
+acc;;1s;;Sie ruft ___ jeden Tag an.;;She calls me every day.
+acc;;1s;;Hörst du ___ nicht?;;Don't you hear me?
+acc;;1s;;Mein Vater liebt ___.;;My father loves me.
+acc;;2s;;Ich besuche ___ am Samstag.;;I am visiting you (informal) on Saturday.
+acc;;2s;;Wir vermissen ___ sehr.;;We miss you (informal) a lot.
+acc;;2s;;Ich verstehe ___ nicht.;;I don't understand you (informal).
+acc;;2s;;Sie lädt ___ zur Party ein.;;She is inviting you (informal) to the party.
+acc;;2s;;Ich sehe ___ im Park.;;I see you (informal) in the park.
+acc;;2s;;Wann rufe ich ___ an?;;When shall I call you (informal)?
+acc;;3m;;Mein Bruder ist nett. Ich mag ___ sehr.;;My brother is nice. I like him a lot.
+acc;;3m;;Wo ist der Rucksack? Ich brauche ___.;;Where is the backpack? I need it.
+acc;;3m;;Der Lehrer ist freundlich. Wir fragen ___ oft.;;The teacher is friendly. We often ask him.
+acc;;3m;;Da ist Peter. Siehst du ___?;;There is Peter. Do you see him?
+acc;;3m;;Der Computer ist neu. Sie kauft ___ heute.;;The computer is new. She is buying it today.
+acc;;3m;;Ich kenne Herrn Weber gut. Ich besuche ___ morgen.;;I know Mr. Weber well. I am visiting him tomorrow.
+acc;;3f;;Meine Schwester ist krank. Ich besuche ___.;;My sister is sick. I am visiting her.
+acc;;3f;;Da ist die Lehrerin. Kennst du ___?;;There is the teacher. Do you know her?
+acc;;3f;;Die Tasche ist schön. Ich kaufe ___.;;The bag is pretty. I am buying it.
+acc;;3f;;Maria ist nett. Wir laden ___ zur Party ein.;;Maria is nice. We are inviting her to the party.
+acc;;3f;;Wo ist die Katze? Ich suche ___.;;Where is the cat? I am looking for it.
+acc;;3f;;Die Frau ist neu hier. Ich frage ___ etwas.;;The woman is new here. I ask her something.
+acc;;3n;;Das Buch ist gut. Ich lese ___ jetzt.;;The book is good. I am reading it now.
+acc;;3n;;Das Handy ist kaputt. Er repariert ___.;;The phone is broken. He is repairing it.
+acc;;3n;;Wo ist das Fahrrad? Ich brauche ___ heute.;;Where is the bicycle? I need it today.
+acc;;3n;;Das Zimmer ist klein. Wir mieten ___ nicht.;;The room is small. We are not renting it.
+acc;;3n;;Das Kind weint. Die Mutter nimmt ___ auf den Arm.;;The child is crying. The mother picks it up.
+acc;;3n;;Das Auto ist teuer. Ich kaufe ___ nicht.;;The car is expensive. I am not buying it.
+acc;;1p;;Der Lehrer besucht ___ morgen.;;The teacher is visiting us tomorrow.
+acc;;1p;;Sie ruft ___ jeden Abend an.;;She calls us every evening.
+acc;;1p;;Hörst du ___?;;Can you hear us?
+acc;;1p;;Meine Eltern lieben ___.;;My parents love us.
+acc;;1p;;Er lädt ___ zum Essen ein.;;He is inviting us to dinner.
+acc;;1p;;Kennt ihr ___ nicht?;;Don't you (all) know us?
+acc;;2p;;Ich besuche ___ am Wochenende.;;I am visiting you (all) on the weekend.
+acc;;2p;;Wir vermissen ___.;;We miss you (all).
+acc;;2p;;Die Lehrerin fragt ___ etwas.;;The (female) teacher asks you (all) something.
+acc;;2p;;Ich sehe ___ im Kino.;;I see you (all) at the cinema.
+acc;;2p;;Meine Schwester lädt ___ zur Party ein.;;My sister is inviting you (all) to the party.
+acc;;2p;;Verstehe ich ___?;;Do I understand you (all)?
+acc;;3p;;Meine Eltern sind nett. Ich besuche ___ oft.;;My parents are nice. I visit them often.
+acc;;3p;;Wo sind die Bücher? Ich brauche ___.;;Where are the books? I need them.
+acc;;3p;;Die Kinder spielen draußen. Siehst du ___?;;The children are playing outside. Do you see them?
+acc;;3p;;Die Taschen sind schön. Er kauft ___.;;The bags are pretty. He is buying them.
+acc;;3p;;Hans und Eva sind hier. Wir kennen ___ gut.;;Hans and Eva are here. We know them well.
+acc;;3p;;Die Schuhe sind neu. Ich trage ___ heute.;;The shoes are new. I am wearing them today.
+acc;;fo;;Herr Schmidt, ich besuche ___ morgen.;;Mr. Schmidt, I am visiting you (formal) tomorrow.
+acc;;fo;;Frau Weber, ich verstehe ___ nicht.;;Ms. Weber, I don't understand you (formal).
+acc;;fo;;Entschuldigung, kenne ich ___?;;Excuse me, do I know you (formal)?
+acc;;fo;;Wir laden ___ zur Party ein, Frau Müller.;;We are inviting you (formal) to the party, Ms. Müller.
+acc;;fo;;Herr Lang, ich rufe ___ morgen an.;;Mr. Lang, I will call you (formal) tomorrow.
+acc;;fo;;Ich sehe ___ im Büro, Herr Becker.;;I see you (formal) in the office, Mr. Becker.
+nom;;1s;;Heute bin ___ müde.;;Today I am tired.
+nom;;1s;;Morgen besuche ___ meine Oma.;;Tomorrow I am visiting my grandma.
+nom;;1s;;Wo wohne ___ eigentlich?;;Where do I actually live?
+nom;;1s;;Was brauche ___ heute?;;What do I need today?
+nom;;2s;;Woher kommst ___?;;Where are you (informal) from?
+nom;;2s;;Was machst ___ heute Abend?;;What are you (informal) doing this evening?
+nom;;2s;;Heute bist ___ früh hier.;;Today you (informal) are here early.
+nom;;2s;;Wann kommst ___ nach Hause?;;When are you (informal) coming home?
+nom;;3m;;Mein Bruder wohnt in Berlin. Heute besucht ___ mich.;;My brother lives in Berlin. Today he is visiting me.
+nom;;3m;;Peter ist hier. Heute lernt ___ Deutsch.;;Peter is here. Today he is learning German.
+nom;;3m;;Wo ist der Rucksack? Ist ___ im Auto?;;Where is the backpack? Is it in the car?
+nom;;3m;;Der Lehrer ist nett. Heute erklärt ___ die Grammatik.;;The teacher is nice. Today he explains the grammar.
+nom;;3f;;Meine Schwester ist krank. Heute bleibt ___ zu Hause.;;My sister is sick. Today she is staying home.
+nom;;3f;;Maria kommt aus Spanien. Jetzt wohnt ___ in Köln.;;Maria comes from Spain. Now she lives in Cologne.
+nom;;3f;;Die Tasche ist neu. Heute ist ___ im Büro.;;The bag is new. Today it is in the office.
+nom;;3f;;Die Lehrerin ist da. Jetzt beginnt ___ den Unterricht.;;The teacher is here. Now she is starting the class.
+nom;;3n;;Das Buch ist gut. Heute liegt ___ auf dem Tisch.;;The book is good. Today it lies on the table.
+nom;;3n;;Das Kind ist müde. Jetzt schläft ___.;;The child is tired. Now it is sleeping.
+nom;;3n;;Wo ist das Handy? Ist ___ im Rucksack?;;Where is the phone? Is it in the backpack?
+nom;;3n;;Das Zimmer ist klein. Heute ist ___ leer.;;The room is small. Today it is empty.
+nom;;1p;;Heute gehen ___ ins Kino.;;Today we are going to the cinema.
+nom;;1p;;Morgen besuchen ___ unsere Oma.;;Tomorrow we are visiting our grandma.
+nom;;1p;;Was machen ___ am Wochenende?;;What are we doing on the weekend?
+nom;;1p;;Wo wohnen ___ eigentlich?;;Where do we actually live?
+nom;;2p;;Woher kommt ___?;;Where are you (all) from?
+nom;;2p;;Was macht ___ heute Abend?;;What are you (all) doing this evening?
+nom;;2p;;Heute seid ___ früh hier.;;Today you (all) are here early.
+nom;;2p;;Wann kommt ___ nach Hause?;;When are you (all) coming home?
+nom;;3p;;Meine Eltern wohnen in Wien. Heute besuchen ___ mich.;;My parents live in Vienna. Today they are visiting me.
+nom;;3p;;Die Kinder sind müde. Jetzt schlafen ___.;;The children are tired. Now they are sleeping.
+nom;;3p;;Wo sind die Bücher? Sind ___ im Rucksack?;;Where are the books? Are they in the backpack?
+nom;;3p;;Hans und Eva kommen aus Bonn. Heute lernen ___ Deutsch.;;Hans and Eva come from Bonn. Today they are learning German.
+nom;;fo;;Woher kommen ___, Frau Weber?;;Where do you (formal) come from, Ms. Weber?
+nom;;fo;;Was machen ___ heute, Herr Schmidt?;;What are you (formal) doing today, Mr. Schmidt?
+nom;;fo;;Heute sind ___ früh hier, Frau Müller.;;Today you (formal) are here early, Ms. Müller.
+nom;;fo;;Wann kommen ___ nach Hause, Herr Lang?;;When are you (formal) coming home, Mr. Lang?

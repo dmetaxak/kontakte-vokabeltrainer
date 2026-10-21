@@ -96,3 +96,8 @@ schneien;;er;;Im Winter ___ es hier oft.;;In winter it often snows here.
 kommen;;ihr;;Woher ___ ihr?;;Where are you (all) from?
 sprechen;;du;;___ du Deutsch?;;Do you speak German?
 zuordnen;;ich;;Ich ___ jedem Bild ein Wort zu.;;I match a word to every picture.
+können;;wir;;Heute Abend ___ wir leider nicht kommen.;;Unfortunately we can't come tonight.
+wollen;;ich;;Morgen ___ ich früh aufstehen.;;Tomorrow I want to get up early.
+müssen;;du;;Du ___ heute viel lernen.;;You have to study a lot today.
+sollen;;er;;Mein Bruder ___ mehr Wasser trinken.;;My brother should drink more water.
+dürfen;;ihr;;Hier ___ ihr nicht rauchen.;;You (all) may not smoke here.
