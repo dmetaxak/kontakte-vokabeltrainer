@@ -472,10 +472,10 @@ function decayFactor(last, todayStr) {
   var days = Math.round((b - a) / 86400000);
   return days <= GRACE ? 1 : Math.pow(0.5, (days - GRACE) / HALF);
 }
-/* choose the opening words of a quiz by level: 55% new, 25% learning, 15% familiar, 5% mastered.
+/* choose the opening words of a quiz by level: 75% new, 15% learning, 8% familiar, 2% mastered.
    Any shortfall is filled from the other levels, weakest first. bandFn(word) returns the level name. */
 var QUIZ_SIZE = 20;
-var QUIZ_MIX = [["new", 0.55], ["learning", 0.25], ["familiar", 0.15], ["mastered", 0.05]];
+var QUIZ_MIX = [["new", 0.75], ["learning", 0.15], ["familiar", 0.08], ["mastered", 0.02]];
 function pickWords(words, bandFn, n, rnd) {
   rnd = rnd || Math.random;
   if (words.length <= n) return shuffleWith(words, rnd);
