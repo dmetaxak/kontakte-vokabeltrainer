@@ -169,6 +169,8 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text
 #st-list h3 { margin: 0.9rem 0 0.1rem; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
 #st-list h2 { margin: 1rem 0 0.2rem; font-size: 1.1rem; border-bottom: 2px solid var(--fg); padding-bottom: 0.2rem; }
 #st-list h2:first-child { margin-top: 0; }
+#st-list h3 .sten2 { text-transform: none; letter-spacing: 0; font-weight: 400; }
+#st-list h2 .sten2 { font-weight: 400; color: var(--muted); }
 .strow { border-bottom: 1px solid var(--line); }
 button.sthead { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 1rem; gap: 0.6rem; align-items: baseline; width: 100%; text-align: left; background: transparent; border: 0; border-radius: 0; color: var(--fg); padding: 0.6rem 0.1rem; min-height: 2.75rem; font-weight: 400; font-size: 0.98rem; line-height: 1.3; }
 .sthead .stde { font-weight: 600; overflow-wrap: anywhere; }
@@ -2439,6 +2441,17 @@ function gradePronoun(answer, p, cs) {
   /* ----- study list: every word, German and English, with the example sentence on tap ----- */
   var STUDY = WORDS.filter(function (w) { return !w.pl; });
   var stOpenAll = false;
+  var SECTION_EN = { "Bitten": "Requests", "Namen": "Names", "Kleidung": "Clothing", "Farben": "Colors", "Begrüßen und Verabschieden": "Greetings and Goodbyes", "Zahlen": "Numbers",
+    "Der Seminarraum": "The Classroom", "Beschreibungen": "Descriptions", "Der Körper": "The Body", "Die Familie": "The Family", "Wetter und Jahreszeiten": "Weather and Seasons",
+    "Geografie, Herkunft und Sprachen": "Geography, Origin and Languages", "Besitz": "Possessions", "Geschenke": "Gifts", "Kleidung und Aussehen": "Clothing and Appearance",
+    "Freude": "Joy", "Präpositionen": "Prepositions", "Freizeit": "Leisure Time", "Schule und Universität": "School and University", "Alltag": "Everyday Life",
+    "Persönliche Angaben": "Personal Information", "Talente und Pläne": "Talents and Plans", "Pflichten": "Duties", "Modalverben": "Modal Verbs", "Dienste": "Services",
+    "Körperliche und geistige Verfassung": "Physical and Mental State", "Der Arbeitstag": "Work Day", "Urlaub und Freizeit": "Vacation and Leisure Time",
+    "Geburtstage und Jahrestage": "Birthdays and Anniversaries", "Ereignisse": "Events" };
+  function stHeading(el, de, en) {
+    el.appendChild(document.createTextNode(de));
+    if (en) { var s = document.createElement("span"); s.className = "sten2"; s.textContent = " · " + en; el.appendChild(s); }
+  }
   function stRow(w) {
     var row = document.createElement("div"); row.className = "strow";
     var b = document.createElement("button"); b.type = "button"; b.className = "sthead"; b.setAttribute("aria-expanded", "false");
@@ -2476,11 +2489,11 @@ function gradePronoun(answer, p, cs) {
       if (chs.indexOf(c) < 0) return;
       var ws = STUDY.filter(function (w) { return w.c === c && (!q || fold(w.g + " " + w.e).indexOf(q) >= 0); });
       if (!ws.length) return;
-      var h = document.createElement("h2"); h.textContent = /^\d+$/.test(c) ? "Kapitel " + c : "Einführung " + c; list.appendChild(h);
+      var h = document.createElement("h2"); if (/^\d+$/.test(c)) h.textContent = "Kapitel " + c; else stHeading(h, "Einführung " + c, "Introduction " + c); list.appendChild(h);
       var lastSub = null;
       ws.forEach(function (w) {
         var sub = (w.n || "").split(";")[0].trim();
-        if (sub && sub !== lastSub) { var h3 = document.createElement("h3"); h3.textContent = sub; list.appendChild(h3); lastSub = sub; }
+        if (sub && sub !== lastSub) { var h3 = document.createElement("h3"); stHeading(h3, sub, SECTION_EN[sub]); list.appendChild(h3); lastSub = sub; }
         list.appendChild(stRow(w)); n++;
       });
     });
