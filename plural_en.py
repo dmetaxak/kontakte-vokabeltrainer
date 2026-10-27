@@ -1,5 +1,6 @@
 import re
 OVR = {  # singular German -> full English plural string
+ 'die Information':'pieces of information','das Datum':'dates; data','der Held':'male heroes','die Heldin':'female heroes','das Prozent':'percentages, percents',
  'der Fernseher':'TV sets','die Rechnung':'bills; calculations','das Bild':'pictures','der Schuh':'shoes','der Stiefel':'boots',
  'die Frau':'women; wives','der Herr':'gentlemen','der Mann':'men; husbands','das Kind':'children','der Fuß':'feet',
  'die Platte':'vinyl records; disks, boards','die Höhe':'heights; amounts','die Nachfrage':'inquiries; demands',

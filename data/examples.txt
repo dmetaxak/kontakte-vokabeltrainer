@@ -462,3 +462,139 @@ Sie ist wütend auf ihren Bruder.|She is angry at her brother.
 Er kommt immer pünktlich.|He always comes on time.
 Warum lernst du Deutsch?|Why are you learning German?
 Ich gehe jeden Tag zu Fuß zur Uni.|I walk to the university every day.
+Der Unterricht fängt um neun Uhr an.|Class starts at nine o'clock.
+Bitte antworte mir schnell.|Please answer me quickly.
+Wir brechen früh am Morgen auf.|We set out early in the morning.
+Er beendet das Gespräch.|He ends the conversation.
+Ich belege dieses Semester einen Deutschkurs.|This semester I am taking a German course.
+Kann ich mit Karte bezahlen?|Can I pay by card?
+Die Reise dauert drei Stunden.|The trip takes three hours.
+Ergänzen Sie bitte die Sätze.|Please complete the sentences.
+Ich muss noch viel erledigen.|I still have a lot to get done.
+Was ist gestern passiert?|What happened yesterday?
+Sie übernimmt die Leitung des Projekts.|She is taking over the leadership of the project.
+Ich verstehe die Frage nicht.|I don't understand the question.
+Gestern war ich sehr müde.|Yesterday I was very tired.
+Die Aufgabe ist nicht schwer.|The assignment is not hard.
+Die Bibliothek ist bis zehn Uhr geöffnet.|The library is open until ten o'clock.
+Freiheit ist mir sehr wichtig.|Freedom is very important to me.
+Die Rede des Präsidenten war lang.|The president's speech was long.
+Das ist eine wichtige Regel.|That is an important rule.
+Er hat Sehnsucht nach seiner Heimat.|He longs for his homeland.
+Die Umfrage zeigt ein klares Ergebnis.|The survey shows a clear result.
+Der Bahnhof ist nicht weit von hier.|The train station is not far from here.
+Der Krieg dauerte viele Jahre.|The war lasted many years.
+Sie macht nächstes Jahr das Abitur.|She is taking her graduation exam next year.
+Wir feiern das Fest im Garten.|We are celebrating the party in the garden.
+Das Leid der Menschen war groß.|The people's suffering was great.
+Das Opfer bekommt Hilfe.|The victim gets help.
+Zehn Prozent der Studenten sind krank.|Ten percent of the students are sick.
+Sie schreibt jeden Abend in ihr Tagebuch.|She writes in her diary every evening.
+Es ist ein Wunder, dass niemand verletzt wurde.|It is a wonder that nobody was hurt.
+Die beiden Brüder sehen ähnlich aus.|The two brothers look similar.
+Das Wetter ist furchtbar.|The weather is terrible.
+Das ist mein letzter Tag hier.|This is my last day here.
+Das ist eine private Frage.|That is a private question.
+Ich bin total müde.|I am totally tired.
+Haben Sie noch weitere Fragen?|Do you have any further questions?
+Ich habe heute wenig Zeit.|I have little time today.
+Abends lese ich gern.|In the evenings I like to read.
+Ich war schon einmal in Wien.|I have been to Vienna once.
+Erst esse ich, dann lerne ich.|First I eat, then I study.
+Mein Zug fährt erst um vier Uhr.|My train doesn't leave until four o'clock.
+Der Weg dauert etwa zehn Minuten.|The way takes approximately ten minutes.
+Gestern habe ich Freunde getroffen.|Yesterday I met friends.
+Heute früh hat es geregnet.|This morning it rained.
+Nachmittags gehe ich oft spazieren.|In the afternoon I often go for a walk.
+Nachts ist es hier sehr ruhig.|At night it is very quiet here.
+Ich lerne Deutsch, um in Berlin zu arbeiten.|I am learning German in order to work in Berlin.
+Wohin gehst du heute Abend?|Where are you going tonight?
+Der Text enthält viele neue Wörter.|The text contains many new words.
+Das Buch erscheint im Herbst.|The book appears in the fall.
+Im Urlaub fotografiere ich gern.|On vacation I like to take pictures.
+Sie verdient gut.|She earns a good living.
+Wir vergleichen die beiden Preise.|We compare the two prices.
+Ich bereite das Essen vor.|I am preparing the food.
+Die Burg steht auf einem Berg.|The castle stands on a mountain.
+Meine Haut ist sehr trocken.|My skin is very dry.
+Die Heldin des Films ist mutig.|The hero of the film is brave.
+Der Held rettet das Kind.|The hero saves the child.
+Der Sand am Strand ist heiß.|The sand on the beach is hot.
+Wir sitzen im Schatten.|We are sitting in the shade.
+Wir gehen heute an den Strand.|We are going to the beach today.
+Im Urlaub fahren wir ans Meer.|On vacation we go to the sea.
+Der Vortrag beginnt um acht Uhr.|The talk begins at eight o'clock.
+Das Interview war sehr interessant.|The interview was very interesting.
+Das Seminar findet am Dienstag statt.|The seminar takes place on Tuesday.
+Hast du eine andere Idee?|Do you have another idea?
+Die Prüfung war nicht leicht.|The exam was not easy.
+Er interessiert sich für politische Themen.|He is interested in political topics.
+Sie arbeitet in einem sozialen Beruf.|She works in a social profession.
+Ich bin krank, deshalb bleibe ich zu Hause.|I am sick, that's why I am staying home.
+Er wäscht sich die Hände.|He washes his hands.
+Wir sprechen über das Wetter.|We are talking about the weather.
+Wir fahren übers Wochenende nach Hamburg.|We are going to Hamburg over the weekend.
+Kolumbus hat Amerika entdeckt.|Columbus discovered America.
+Du musst dich bald entscheiden.|You have to decide soon.
+Wer hat das Telefon erfunden?|Who invented the telephone?
+Im Winter fällt hier viel Schnee.|In winter a lot of snow falls here.
+Wir feiern morgen meinen Geburtstag.|We are celebrating my birthday tomorrow.
+Sie gründet eine Firma.|She is founding a company.
+Er tritt auf die Bühne.|He steps onto the stage.
+Die Lehrerin verteilt die Hefte.|The teacher distributes the notebooks.
+Mein Bruder wird Arzt.|My brother is becoming a doctor.
+Ich habe schöne Erinnerungen an den Sommer.|I have nice memories of the summer.
+Ich brauche mehr Informationen.|I need more information.
+Die Vorlesung beginnt um zehn Uhr.|The lecture begins at ten o'clock.
+Der erste Mai ist ein Feiertag.|The first of May is a holiday.
+Der Flüchtling sucht Arbeit.|The refugee is looking for work.
+Ich trinke gern grünen Tee.|I like to drink green tea.
+Auf der Straße gab es einen Unfall.|There was an accident on the street.
+Welches Datum haben wir heute?|What is the date today?
+Er ist Mitglied im Sportverein.|He is a member of the sports club.
+Jeder Mensch hat das Recht auf Bildung.|Everyone has the right to education.
+Wir üben im Sprachlabor.|We practice in the language lab.
+Weihnachten feiern wir mit der Familie.|We celebrate Christmas with the family.
+Das Zentrum der Stadt ist sehr schön.|The center of the city is very beautiful.
+Diese Sängerin ist sehr bekannt.|This singer is very well known.
+Das Brot ist sehr hart.|The bread is very hard.
+Der Berg ist sehr hoch.|The mountain is very high.
+Das ist doch klar!|That is clear!
+Sie ist in ihn verliebt.|She is in love with him.
+An welchem Tag hast du Geburtstag?|On what day is your birthday?
+Wir fahren entweder nach Wien oder nach Prag.|We are going either to Vienna or to Prague.
+Nachdem er gegessen hat, geht er spazieren.|After he has eaten, he goes for a walk.
+Ich trinke Tee statt Kaffee.|I drink tea instead of coffee.
+Ich bin vor dem Unterricht angekommen.|I arrived before class.
+Vor zwei Tagen war ich in Köln.|Two days ago I was in Cologne.
+Ich bin zum ersten Mal in Deutschland.|I am in Germany for the first time.
+Ich räume mein Zimmer auf.|I am tidying up my room.
+Können Sie meine Frage beantworten?|Can you answer my question?
+Was bedeutet dieses Wort?|What does this word mean?
+Ich denke oft an meine Familie.|I often think of my family.
+Unsere Mannschaft hat gewonnen.|Our team has won.
+Die Lehrerin korrigiert die Tests.|The teacher is grading the tests.
+Ich telefoniere jeden Sonntag mit meiner Oma.|I call my grandma every Sunday.
+Versuch es noch einmal!|Try it once more!
+Darf ich meinen Freund vorstellen?|May I introduce my friend?
+Geh nicht weg!|Don't go away!
+Die Einheit des Landes ist wichtig.|The unity of the country is important.
+Das war eine schwere Entscheidung.|That was a hard decision.
+Ich lerne gern neue Kulturen kennen.|I like to get to know new cultures.
+Unsere Nachbarin ist sehr freundlich.|Our neighbor is very friendly.
+Sie spielt die Hauptrolle im Theaterstück.|She plays the lead role in the play.
+Ich habe keine Vorstellung, wo er ist.|I have no idea where he is.
+Im Alltag habe ich wenig Zeit.|In everyday life I have little time.
+Der Druck vor der Prüfung ist groß.|The pressure before the exam is great.
+Das Fahrrad steht im Keller.|The bicycle is in the basement.
+Mein Nachbar spielt abends Klavier.|My neighbor plays the piano in the evenings.
+Am Nachmittag habe ich frei.|I am free in the afternoon.
+Der Preis für das Buch ist niedrig.|The price of the book is low.
+Am Vormittag gehe ich einkaufen.|In the late morning I go shopping.
+Das Programm beginnt um acht Uhr.|The program starts at eight o'clock.
+Das Thema des Aufsatzes ist interessant.|The topic of the essay is interesting.
+Also, wir treffen uns um acht.|So, we'll meet at eight.
+Er wollte kommen, jedoch hatte er keine Zeit.|He wanted to come, however he had no time.
+Der Unterricht beginnt um neun Uhr.|Class begins at nine o'clock.
+Wen siehst du da drüben?|Whom do you see over there?
+Zuerst trinke ich einen Kaffee.|First I drink a coffee.

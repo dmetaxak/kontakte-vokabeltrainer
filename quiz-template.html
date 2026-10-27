@@ -64,6 +64,7 @@ header.top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-it
 header.top nav { grid-column: 1 / -1; grid-row: 2; }
 nav { display: flex; gap: 0.4rem; }
 nav button { background: transparent; color: var(--muted); border: 1px solid var(--line); padding: 0.4rem 0.8rem; min-height: 2.25rem; font-weight: 600; font-size: 0.9rem; }
+@media (max-width: 380px) { nav { gap: 0.3rem; } nav button { padding: 0.4rem 0.55rem; font-size: 0.85rem; } }
 nav button[aria-current="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 button { font: inherit; font-weight: 600; background: var(--accent); color: var(--accent-fg); border: 0; border-radius: 0.5rem; padding: 0.8rem 1rem; min-height: 2.75rem; cursor: pointer; }
 button.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); }
@@ -161,6 +162,24 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text
 .prompt .pronhint { font-weight: 900; }
 .prompt .pronhint em { font-style: italic; }
 .prompt.sentence { font-size: clamp(1.3rem, 5.5vw, 1.75rem); line-height: 1.3; font-weight: 600; }
+#stseg-ch label { flex: 1 1 6.5rem; padding: 0.45rem 0.6rem; min-height: 2.25rem; font-size: 0.88rem; }
+.stctl { display: flex; gap: 0.5rem; align-items: center; }
+.stctl input { flex: 1 1 auto; min-width: 0; }
+.stcount { font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+#st-list h3 { margin: 0.9rem 0 0.1rem; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+#st-list h2 { margin: 1rem 0 0.2rem; font-size: 1.1rem; border-bottom: 2px solid var(--fg); padding-bottom: 0.2rem; }
+#st-list h2:first-child { margin-top: 0; }
+.strow { border-bottom: 1px solid var(--line); }
+button.sthead { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 1rem; gap: 0.6rem; align-items: baseline; width: 100%; text-align: left; background: transparent; border: 0; border-radius: 0; color: var(--fg); padding: 0.6rem 0.1rem; min-height: 2.75rem; font-weight: 400; font-size: 0.98rem; line-height: 1.3; }
+.sthead .stde { font-weight: 600; overflow-wrap: anywhere; }
+.sthead .stf { display: block; font-weight: 400; font-size: 0.8rem; color: var(--muted); }
+.sthead .sten { color: var(--fg); overflow-wrap: anywhere; }
+.sthead .stchev { color: var(--muted); font-size: 0.8rem; transition: transform 0.15s; }
+.sthead[aria-expanded="true"] .stchev { transform: rotate(90deg); }
+.stde .art.der { color: var(--der); } .stde .art.die { color: var(--die); } .stde .art.das { color: var(--das); }
+.stx { padding: 0 0.1rem 0.75rem; font-size: 0.95rem; line-height: 1.4; display: flex; flex-direction: column; gap: 0.15rem; }
+.stx .xen { color: var(--muted); font-style: italic; }
+.stx .xtag { font-size: 0.78rem; color: var(--muted); }
 ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.92rem; }
 </style>
 
@@ -171,6 +190,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
       <button type="button" id="nav-home" aria-current="true">Vocab</button>
       <button type="button" id="nav-verbs" aria-current="false">Verbs</button>
       <button type="button" id="nav-gram" aria-current="false">Grammar</button>
+      <button type="button" id="nav-study" aria-current="false">Study</button>
     </nav>
     <div class="syncbar" id="sync-bar" data-state="pending">
       <button type="button" class="streak" id="streak-btn" data-done="false" aria-label="Streak" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span id="streak-n">0</span></button>
@@ -323,6 +343,24 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
       </div>
       <h2 id="a-rowtitle">Lowest scores</h2>
       <div class="scroll"><table><thead><tr><th>Sentence</th><th style="text-align:right">Score</th><th style="text-align:right">Tries</th></tr></thead><tbody id="a-rows"></tbody></table></div>
+    </section>
+  </div>
+
+  <!-- STUDY LIST -->
+  <div id="v-study" class="stack" hidden>
+    <section class="panel" aria-label="Study list">
+      <h2>Study list</h2>
+      <p class="muted">All the vocabulary, chapter by chapter. Tap a word for its example sentence. Nothing here counts toward your scores.</p>
+      <fieldset>
+        <legend>Chapters</legend>
+        <div class="seg" id="stseg-ch"></div>
+      </fieldset>
+      <div class="stctl">
+        <input type="text" id="st-search" placeholder="Search German or English" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Search the study list">
+        <button type="button" class="ghost small" id="st-expand">Expand all</button>
+      </div>
+      <div class="stcount" id="st-count"></div>
+      <div id="st-list"></div>
     </section>
   </div>
 
@@ -795,16 +833,17 @@ function gradePronoun(answer, p, cs) {
   var LS_KEY = "kv-sync-v1";
   var session = null;       // current quiz state
   var repHigh = false;      // progress table: false = lowest scores, true = highest
-  var views = ["home", "quiz", "sent", "sum", "verbs", "vq", "gram", "gq", "aq", "pn", "pq"];
+  var views = ["home", "quiz", "sent", "sum", "verbs", "vq", "gram", "gq", "aq", "pn", "pq", "study"];
   function clone(x) { return JSON.parse(JSON.stringify(x)); } // database snapshots are frozen
   window.addEventListener("error", function (ev) { banner("Something went wrong: " + (ev && ev.message ? ev.message : "unknown error")); });
 
   function show(name, area) {
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
-    var a = area || ((name === "verbs" || name === "vq") ? "verbs" : (name === "gram" || name === "aq" || name === "pn") ? "gram" : "quiz");
+    var a = area || ((name === "verbs" || name === "vq") ? "verbs" : (name === "gram" || name === "aq" || name === "pn") ? "gram" : name === "study" ? "study" : "quiz");
     $("nav-home").setAttribute("aria-current", a === "quiz" ? "true" : "false");
     $("nav-verbs").setAttribute("aria-current", a === "verbs" ? "true" : "false");
     $("nav-gram").setAttribute("aria-current", a === "gram" ? "true" : "false");
+    $("nav-study").setAttribute("aria-current", a === "study" ? "true" : "false");
     if (name === "sum") { $("sum-next").focus(); dstore.mark(); }
   }
   function banner(text) { var b = $("banner"); b.hidden = !text; b.textContent = text || ""; }
@@ -2397,7 +2436,67 @@ function gradePronoun(answer, p, cs) {
     aqd.start(picked);
   }
 
+  /* ----- study list: every word, German and English, with the example sentence on tap ----- */
+  var STUDY = WORDS.filter(function (w) { return !w.pl; });
+  var stOpenAll = false;
+  function stRow(w) {
+    var row = document.createElement("div"); row.className = "strow";
+    var b = document.createElement("button"); b.type = "button"; b.className = "sthead"; b.setAttribute("aria-expanded", "false");
+    var de = document.createElement("span"); de.className = "stde";
+    var m = /^(der\/die|der|die|das)\s+(.*)$/.exec(w.g);
+    if (m) {
+      var a = document.createElement("span"); a.className = "art " + m[1].split("/")[0]; a.textContent = m[1];
+      de.appendChild(a); de.appendChild(document.createTextNode(" " + m[2]));
+    } else de.appendChild(document.createTextNode(w.g));
+    var f = (w.f || "").split(";")[0].trim();
+    if (f && f !== "plural only") {
+      var fs = document.createElement("span"); fs.className = "stf";
+      fs.textContent = /^die /.test(f) ? "pl. " + f.slice(4) : f; de.appendChild(fs);
+    } else if (f === "plural only") { var fp = document.createElement("span"); fp.className = "stf"; fp.textContent = "plural only"; de.appendChild(fp); }
+    var en = document.createElement("span"); en.className = "sten"; en.textContent = w.e;
+    var ch = document.createElement("span"); ch.className = "stchev"; ch.setAttribute("aria-hidden", "true"); ch.textContent = "\u25B8";
+    b.appendChild(de); b.appendChild(en); b.appendChild(ch);
+    var x = document.createElement("div"); x.className = "stx"; x.hidden = true;
+    var parts = (w.x || "").split("|");
+    if (parts[0]) { var d1 = document.createElement("div"); d1.textContent = parts[0]; x.appendChild(d1); }
+    if (parts[1]) { var d2 = document.createElement("div"); d2.className = "xen"; d2.textContent = parts[1]; x.appendChild(d2); }
+    var tags = (w.n || "").split(";").slice(1).map(function (s) { return s.trim(); }).filter(Boolean);
+    if (w.p && w.p !== "noun") tags.unshift(w.p);
+    if (tags.length) { var tg = document.createElement("div"); tg.className = "xtag"; tg.textContent = tags.join(" · "); x.appendChild(tg); }
+    b.addEventListener("click", function () { var o = b.getAttribute("aria-expanded") !== "true"; b.setAttribute("aria-expanded", o ? "true" : "false"); x.hidden = !o; });
+    row.appendChild(b); row.appendChild(x);
+    return row;
+  }
+  function stRender() {
+    var chs = chaptersOf("stseg-ch"), q = fold($("st-search").value || ""), list = $("st-list"), n = 0;
+    list.textContent = ""; stOpenAll = false; $("st-expand").textContent = "Expand all";
+    var order = []; STUDY.forEach(function (w) { if (order.indexOf(w.c) < 0) order.push(w.c); });
+    order.sort(function (a, b) { var na = /^\d+$/.test(a), nb = /^\d+$/.test(b); return na === nb ? (na ? a - b : a.localeCompare(b)) : (na ? 1 : -1); });
+    order.forEach(function (c) {
+      if (chs.indexOf(c) < 0) return;
+      var ws = STUDY.filter(function (w) { return w.c === c && (!q || fold(w.g + " " + w.e).indexOf(q) >= 0); });
+      if (!ws.length) return;
+      var h = document.createElement("h2"); h.textContent = /^\d+$/.test(c) ? "Kapitel " + c : "Einführung " + c; list.appendChild(h);
+      var lastSub = null;
+      ws.forEach(function (w) {
+        var sub = (w.n || "").split(";")[0].trim();
+        if (sub && sub !== lastSub) { var h3 = document.createElement("h3"); h3.textContent = sub; list.appendChild(h3); lastSub = sub; }
+        list.appendChild(stRow(w)); n++;
+      });
+    });
+    if (!n) { var p = document.createElement("p"); p.className = "muted"; p.textContent = "No words match."; list.appendChild(p); }
+    $("st-count").textContent = n + (n === 1 ? " word" : " words");
+  }
+
   /* ----- wiring ----- */
+  chapterBoxes("stseg-ch", stRender, STUDY);
+  $("st-search").addEventListener("input", stRender);
+  $("st-expand").addEventListener("click", function () {
+    stOpenAll = !stOpenAll;
+    document.querySelectorAll("#st-list .sthead").forEach(function (b) { b.setAttribute("aria-expanded", stOpenAll ? "true" : "false"); b.nextSibling.hidden = !stOpenAll; });
+    $("st-expand").textContent = stOpenAll ? "Collapse all" : "Expand all";
+  });
+  $("nav-study").addEventListener("click", function () { stRender(); show("study"); });
   $("nav-home").addEventListener("click", function () { if (gq) { gResume(); } else if (pqd.active()) { pqd.resume(); } else if (session || sent) { show(session ? "quiz" : "sent"); } else { refreshHome(); show("home"); } });
   $("nav-verbs").addEventListener("click", function () {
     if (vq) { if (vq.view === "sum") { if (vq.finished) vFinish(); else vRoundSummary(); } else { show("vq"); } }

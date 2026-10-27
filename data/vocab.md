@@ -468,3 +468,139 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | immer | always | adverb |  | 3 | Körperliche und geistige Verfassung |
 | warum | why | adverb |  | 3 | Körperliche und geistige Verfassung |
 | zu Fuß | on foot | phrase |  | 3 | Körperliche und geistige Verfassung |
+| anfangen | to start, begin | verb | fängt ... an | 4 | Der Arbeitstag; separable |
+| antworten | to answer | verb |  | 4 | Der Arbeitstag |
+| aufbrechen | to leave, set out | verb | bricht ... auf | 4 | Der Arbeitstag; separable |
+| beenden | to end | verb |  | 4 | Der Arbeitstag |
+| belegen | to take (a course); to document | verb |  | 4 | Der Arbeitstag |
+| bezahlen | to pay (for) | verb |  | 4 | Der Arbeitstag |
+| dauern | to last, take (time) | verb |  | 4 | Der Arbeitstag |
+| ergänzen | to complete, add | verb |  | 4 | Der Arbeitstag |
+| erledigen | to finish, get done | verb |  | 4 | Der Arbeitstag |
+| passieren | to happen, take place | verb |  | 4 | Der Arbeitstag |
+| übernehmen | to take on, assume | verb | übernimmt | 4 | Der Arbeitstag |
+| verstehen | to understand | verb |  | 4 | Der Arbeitstag |
+| war, warst, waren | was, were | verb |  | 4 | Der Arbeitstag |
+| die Aufgabe | assignment, task, chore | noun | die Aufgaben | 4 | Der Arbeitstag |
+| die Bibliothek | library | noun | die Bibliotheken | 4 | Der Arbeitstag |
+| die Freiheit | freedom, liberty | noun | die Freiheiten | 4 | Der Arbeitstag |
+| die Rede | speech | noun | die Reden | 4 | Der Arbeitstag |
+| die Regel | rule | noun | die Regeln | 4 | Der Arbeitstag |
+| die Sehnsucht | longing, desire | noun | die Sehnsüchte | 4 | Der Arbeitstag |
+| die Umfrage | survey | noun | die Umfragen | 4 | Der Arbeitstag |
+| der Bahnhof | train station | noun | die Bahnhöfe | 4 | Der Arbeitstag |
+| der Krieg | war | noun | die Kriege | 4 | Der Arbeitstag |
+| das Abitur | high school graduation exam | noun |  | 4 | Der Arbeitstag; no plural given |
+| das Fest | celebration, party | noun | die Feste | 4 | Der Arbeitstag |
+| das Leid | suffering, sorrow | noun |  | 4 | Der Arbeitstag; no plural given |
+| das Opfer | victim; sacrifice | noun | die Opfer | 4 | Der Arbeitstag |
+| das Prozent | percentage, percent | noun | die Prozente | 4 | Der Arbeitstag |
+| das Tagebuch | diary | noun | die Tagebücher | 4 | Der Arbeitstag |
+| das Wunder | wonder | noun | die Wunder | 4 | Der Arbeitstag |
+| ähnlich | similar(ly) | adjective/adverb |  | 4 | Der Arbeitstag |
+| furchtbar | terrible, terribly | adjective/adverb |  | 4 | Der Arbeitstag |
+| letzte, letzter, letztes | last | adjective |  | 4 | Der Arbeitstag |
+| privat | private(ly) | adjective/adverb |  | 4 | Der Arbeitstag |
+| total | total(ly) | adjective/adverb |  | 4 | Der Arbeitstag |
+| weitere, weiterer, weiteres | additional, further | adjective |  | 4 | Der Arbeitstag |
+| wenig | little; few | adjective/adverb |  | 4 | Der Arbeitstag |
+| abends | evenings, in the evening | adverb |  | 4 | Der Arbeitstag |
+| einmal | once | adverb |  | 4 | Der Arbeitstag |
+| erst | first | adverb |  | 4 | Der Arbeitstag |
+| erst um vier Uhr | not until four o'clock | phrase |  | 4 | Der Arbeitstag |
+| etwa | approximately | adverb |  | 4 | Der Arbeitstag |
+| gestern | yesterday | adverb |  | 4 | Der Arbeitstag |
+| heute früh | this morning | phrase |  | 4 | Der Arbeitstag |
+| nachmittags | afternoons, in the afternoon | adverb |  | 4 | Der Arbeitstag |
+| nachts | nights, at night | adverb |  | 4 | Der Arbeitstag |
+| um ... zu ... | (in order) to ... | phrase |  | 4 | Der Arbeitstag |
+| wohin | where (to) | adverb |  | 4 | Der Arbeitstag |
+| enthalten | to contain | verb | enthält | 4 | Urlaub und Freizeit |
+| erscheinen | to appear | verb |  | 4 | Urlaub und Freizeit |
+| fotografieren | to take pictures, photograph | verb |  | 4 | Urlaub und Freizeit |
+| verdienen | to earn | verb |  | 4 | Urlaub und Freizeit |
+| vergleichen | to compare | verb |  | 4 | Urlaub und Freizeit |
+| vorbereiten | to prepare | verb | bereitet ... vor | 4 | Urlaub und Freizeit; separable |
+| die Burg | castle, fortress | noun | die Burgen | 4 | Urlaub und Freizeit |
+| die Haut | skin | noun | die Häute | 4 | Urlaub und Freizeit |
+| die Heldin | female hero | noun | die Heldinnen | 4 | Urlaub und Freizeit |
+| der Held | male hero | noun | die Helden | 4 | Urlaub und Freizeit |
+| der Sand | sand | noun |  | 4 | Urlaub und Freizeit; no plural given |
+| der Schatten | shadow, shade | noun | die Schatten | 4 | Urlaub und Freizeit |
+| der Strand | beach | noun | die Strände | 4 | Urlaub und Freizeit |
+| der Urlaub | vacation | noun | die Urlaube | 4 | Urlaub und Freizeit |
+| der Vortrag | talk, presentation, lecture | noun | die Vorträge | 4 | Urlaub und Freizeit |
+| das Interview | interview | noun | die Interviews | 4 | Urlaub und Freizeit |
+| das Seminar | seminar, class | noun | die Seminare | 4 | Urlaub und Freizeit |
+| andere, anderer, anderes | other, others | adjective |  | 4 | Urlaub und Freizeit |
+| leicht | easy, easily | adjective/adverb |  | 4 | Urlaub und Freizeit |
+| politisch | political(ly) | adjective/adverb |  | 4 | Urlaub und Freizeit |
+| sozial | social(ly) | adjective/adverb |  | 4 | Urlaub und Freizeit |
+| deshalb | therefore; that's why | adverb |  | 4 | Urlaub und Freizeit |
+| sich | oneself/himself/herself | pronoun |  | 4 | Urlaub und Freizeit |
+| über | over, above; about; across, via | preposition |  | 4 | Urlaub und Freizeit |
+| übers Wochenende | over the weekend | phrase |  | 4 | Urlaub und Freizeit |
+| entdecken | to discover | verb |  | 4 | Geburtstage und Jahrestage |
+| entscheiden | to decide | verb |  | 4 | Geburtstage und Jahrestage |
+| erfinden | to invent | verb |  | 4 | Geburtstage und Jahrestage |
+| fallen | to fall | verb | fällt | 4 | Geburtstage und Jahrestage |
+| feiern | to celebrate, party | verb |  | 4 | Geburtstage und Jahrestage |
+| gründen | to found, establish | verb |  | 4 | Geburtstage und Jahrestage |
+| treten | to step (up) | verb | tritt | 4 | Geburtstage und Jahrestage |
+| verteilen | to distribute | verb |  | 4 | Geburtstage und Jahrestage |
+| werden | to become | verb | wird | 4 | Geburtstage und Jahrestage |
+| die Erinnerung | memory, remembrance | noun | die Erinnerungen | 4 | Geburtstage und Jahrestage |
+| die Information | information | noun | die Informationen | 4 | Geburtstage und Jahrestage |
+| die Vorlesung | lecture | noun | die Vorlesungen | 4 | Geburtstage und Jahrestage |
+| der Feiertag | holiday | noun | die Feiertage | 4 | Geburtstage und Jahrestage |
+| der Flüchtling | refugee | noun | die Flüchtlinge | 4 | Geburtstage und Jahrestage |
+| der Tee | tea | noun | die Tees | 4 | Geburtstage und Jahrestage |
+| der Unfall | accident | noun | die Unfälle | 4 | Geburtstage und Jahrestage |
+| das Datum | date; data | noun | die Daten | 4 | Geburtstage und Jahrestage |
+| das Mitglied | member (of an organization) | noun | die Mitglieder | 4 | Geburtstage und Jahrestage |
+| das Recht | right, law | noun | die Rechte | 4 | Geburtstage und Jahrestage |
+| das Sprachlabor | language laboratory | noun | die Sprachlabors | 4 | Geburtstage und Jahrestage |
+| (das) Weihnachten | Christmas | noun |  | 4 | Geburtstage und Jahrestage; no plural given |
+| das Zentrum | center | noun | die Zentren | 4 | Geburtstage und Jahrestage |
+| bekannt | known | adjective |  | 4 | Geburtstage und Jahrestage |
+| hart | hard | adjective/adverb |  | 4 | Geburtstage und Jahrestage |
+| hoch | high(ly) | adjective/adverb |  | 4 | Geburtstage und Jahrestage |
+| klar | clear(ly) | adjective/adverb |  | 4 | Geburtstage und Jahrestage |
+| verliebt | in love | adjective |  | 4 | Geburtstage und Jahrestage |
+| an welchem Tag? | on what day? | phrase |  | 4 | Geburtstage und Jahrestage |
+| entweder ... oder ... | either ... or ... | conjunction |  | 4 | Geburtstage und Jahrestage |
+| nachdem | after | conjunction |  | 4 | Geburtstage und Jahrestage |
+| statt | instead of | preposition |  | 4 | Geburtstage und Jahrestage |
+| vor | before; ago | preposition |  | 4 | Geburtstage und Jahrestage |
+| vor zwei Tagen | two days ago | phrase |  | 4 | Geburtstage und Jahrestage |
+| zum ersten Mal | for the first time | phrase |  | 4 | Geburtstage und Jahrestage |
+| aufräumen | to tidy up | verb | räumt ... auf | 4 | Ereignisse; separable |
+| beantworten | to answer | verb |  | 4 | Ereignisse |
+| bedeuten | to mean, signify | verb |  | 4 | Ereignisse |
+| denken (an + acc.) | to think (of) | verb |  | 4 | Ereignisse |
+| gewinnen | to win | verb |  | 4 | Ereignisse |
+| korrigieren | to correct, grade | verb |  | 4 | Ereignisse |
+| telefonieren | to telephone, call | verb |  | 4 | Ereignisse |
+| versuchen | to try | verb |  | 4 | Ereignisse |
+| vorstellen | to introduce, present | verb | stellt ... vor | 4 | Ereignisse; separable |
+| weggehen | to leave, go away | verb | geht ... weg | 4 | Ereignisse; separable |
+| die Einheit | unity, unit | noun | die Einheiten | 4 | Ereignisse |
+| die Entscheidung | decision | noun | die Entscheidungen | 4 | Ereignisse |
+| die Kultur | culture | noun | die Kulturen | 4 | Ereignisse |
+| die Nachbarin | female neighbor | noun | die Nachbarinnen | 4 | Ereignisse |
+| die Rolle | role, part | noun | die Rollen | 4 | Ereignisse |
+| die Vorstellung | idea; imagination | noun | die Vorstellungen | 4 | Ereignisse |
+| der Alltag | daily routine, everyday life | noun |  | 4 | Ereignisse; no plural given |
+| der Druck | pressure | noun | die Drücke | 4 | Ereignisse |
+| der Keller | basement, cellar | noun | die Keller | 4 | Ereignisse |
+| der Nachbar | male neighbor | noun | die Nachbarn | 4 | Ereignisse |
+| der Nachmittag | afternoon | noun | die Nachmittage | 4 | Ereignisse |
+| der Preis | prize; price | noun | die Preise | 4 | Ereignisse |
+| der Vormittag | late morning | noun | die Vormittage | 4 | Ereignisse |
+| das Programm | program | noun | die Programme | 4 | Ereignisse |
+| das Thema | theme, topic | noun | die Themen | 4 | Ereignisse |
+| also | well, so, thus | adverb |  | 4 | Ereignisse |
+| jedoch | however | adverb |  | 4 | Ereignisse |
+| um | around; at (time) | preposition |  | 4 | Ereignisse |
+| wen | whom | pronoun |  | 4 | Ereignisse |
+| zuerst | (at) first | adverb |  | 4 | Ereignisse |

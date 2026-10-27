@@ -292,3 +292,53 @@ die Nächte;;Im Winter sind die Nächte lang.;;In winter the nights are long.
 die Götter;;Die alten Griechen glaubten an viele Götter.;;The ancient Greeks believed in many gods.
 die Lichter;;Die Lichter in der Stadt sind schön.;;The lights in the city are beautiful.
 die Zimmer;;Die Zimmer im Hotel sind sehr sauber.;;The rooms in the hotel are very clean.
+die Aufgaben;;Die Aufgaben für morgen sind leicht.;;The assignments for tomorrow are easy.
+die Bibliotheken;;In der Stadt gibt es drei große Bibliotheken.;;There are three big libraries in the city.
+die Freiheiten;;Junge Leute wollen mehr Freiheiten.;;Young people want more freedoms.
+die Reden;;Die Reden waren sehr lang.;;The speeches were very long.
+die Regeln;;Die Regeln sind einfach.;;The rules are simple.
+die Sehnsüchte;;Seine Sehnsüchte kennt niemand.;;Nobody knows his longings.
+die Umfragen;;Die Umfragen zeigen ein klares Bild.;;The surveys show a clear picture.
+die Bahnhöfe;;Die Bahnhöfe in Deutschland sind groß.;;The train stations in Germany are big.
+die Kriege;;Die Kriege haben viel Leid gebracht.;;The wars have brought a lot of suffering.
+die Feste;;Im Sommer gibt es viele Feste.;;In summer there are many celebrations.
+die Opfer;;Die Opfer bekommen schnell Hilfe.;;The victims quickly get help.
+die Prozente;;Wie viele Prozente sind das?;;How many percent is that?
+die Tagebücher;;Ihre Tagebücher liegen auf dem Regal.;;Her diaries are on the shelf.
+die Wunder;;Es gibt keine Wunder.;;There are no wonders.
+die Burgen;;Am Rhein stehen viele alte Burgen.;;Many old castles stand on the Rhine.
+die Häute;;Die Häute der Tiere sind dick.;;The skins of the animals are thick.
+die Heldinnen;;Die Heldinnen im Buch sind stark.;;The heroines in the book are strong.
+die Helden;;Die Helden im Film sind mutig.;;The heroes in the film are brave.
+die Schatten;;Die Schatten der Bäume sind lang.;;The shadows of the trees are long.
+die Strände;;Die Strände auf der Insel sind sauber.;;The beaches on the island are clean.
+die Urlaube;;Unsere Urlaube sind immer kurz.;;Our vacations are always short.
+die Vorträge;;Die Vorträge waren sehr interessant.;;The talks were very interesting.
+die Interviews;;Die Interviews dauern eine Stunde.;;The interviews take an hour.
+die Seminare;;Die Seminare finden am Nachmittag statt.;;The seminars take place in the afternoon.
+die Erinnerungen;;Meine Erinnerungen an die Kindheit sind schön.;;My memories of childhood are nice.
+die Informationen;;Die Informationen stehen im Internet.;;The information is on the internet.
+die Vorlesungen;;Die Vorlesungen beginnen um acht Uhr.;;The lectures begin at eight o'clock.
+die Feiertage;;Die Feiertage verbringen wir zu Hause.;;We spend the holidays at home.
+die Flüchtlinge;;Die Flüchtlinge suchen eine Wohnung.;;The refugees are looking for an apartment.
+die Tees;;Die Tees im Regal riechen gut.;;The teas on the shelf smell good.
+die Unfälle;;Im Winter gibt es mehr Unfälle.;;In winter there are more accidents.
+die Daten;;Die Daten sind nicht richtig.;;The data are not correct.
+die Mitglieder;;Der Verein hat hundert Mitglieder.;;The club has a hundred members.
+die Rechte;;Jeder Bürger hat Rechte.;;Every citizen has rights.
+die Sprachlabors;;Die Sprachlabors sind morgens offen.;;The language labs are open in the morning.
+die Zentren;;Die Zentren der großen Städte sind laut.;;The centers of the big cities are loud.
+die Einheiten;;Die Einheiten im Buch sind kurz.;;The units in the book are short.
+die Entscheidungen;;Wir treffen die Entscheidungen zusammen.;;We make the decisions together.
+die Kulturen;;In Europa gibt es viele Kulturen.;;In Europe there are many cultures.
+die Nachbarinnen;;Die Nachbarinnen helfen sich gegenseitig.;;The neighbors help each other.
+die Rollen;;Die Rollen im Stück sind schwer.;;The roles in the play are difficult.
+die Vorstellungen;;Meine Vorstellungen sind ganz anders.;;My ideas are completely different.
+die Drücke;;Die Drücke in den Reifen sind zu niedrig.;;The pressures in the tires are too low.
+die Keller;;Die Keller der alten Häuser sind kalt.;;The cellars of the old houses are cold.
+die Nachbarn;;Die Nachbarn feiern heute eine Party.;;The neighbors are having a party today.
+die Nachmittage;;Die Nachmittage im Sommer sind lang.;;The afternoons in summer are long.
+die Preise;;Die Preise sind hier sehr hoch.;;The prices are very high here.
+die Vormittage;;Die Vormittage verbringe ich in der Uni.;;I spend the late mornings at the university.
+die Programme;;Die Programme im Fernsehen sind langweilig.;;The programs on television are boring.
+die Themen;;Die Themen im Kurs sind interessant.;;The topics in the course are interesting.
