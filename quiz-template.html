@@ -1032,7 +1032,7 @@ function gradePronoun(answer, p, cs) {
     var box = $(containerId); box.textContent = "";
     chs.forEach(function (c) {
       var l = document.createElement("label");
-      var i = document.createElement("input"); i.type = "checkbox"; i.value = c; i.checked = true;
+      var i = document.createElement("input"); i.type = "checkbox"; i.value = c; i.checked = c === chs[chs.length - 1]; // newest chapter only, to start with
       i.addEventListener("change", onChange);
       l.appendChild(i); l.appendChild(document.createTextNode((/^\d+$/.test(c) ? "Kapitel " + c : "Einführung " + c) + " (" + items.filter(function (w) { return w.c === c; }).length + ")"));
       box.appendChild(l);
