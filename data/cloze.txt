@@ -101,3 +101,87 @@ wollen;;ich;;Morgen ___ ich früh aufstehen.;;Tomorrow I want to get up early.
 müssen;;du;;Du ___ heute viel lernen.;;You have to study a lot today.
 sollen;;er;;Mein Bruder ___ mehr Wasser trinken.;;My brother should drink more water.
 dürfen;;ihr;;Hier ___ ihr nicht rauchen.;;You (all) may not smoke here.
+beschreiben;;du;;Du ___ das Bild sehr genau.;;You describe the picture very precisely.
+bleiben;;wir;;Am Wochenende ___ wir zu Hause.;;On the weekend we stay home.
+definieren;;er;;Der Lehrer ___ das Wort an der Tafel.;;The teacher defines the word on the board.
+erklären;;sie;;Die Studenten ___ der Klasse das Projekt.;;The students explain the project to the class.
+erzählen;;du;;Du ___ immer lustige Geschichten.;;You always tell funny stories.
+gelten;;er;;Diese Regel ___ für alle.;;This rule applies to everyone.
+lieben;;ich;;Ich ___ meine Familie sehr.;;I love my family very much.
+rechnen;;du;;Du ___ sehr schnell im Kopf.;;You calculate very fast in your head.
+reden;;ihr;;Ihr ___ ständig über Fußball.;;You (all) constantly talk about soccer.
+schneiden;;ich;;Ich ___ das Brot in dünne Scheiben.;;I cut the bread into thin slices.
+tauchen;;wir;;Im Urlaub ___ wir gern im Meer.;;On vacation we like to dive in the sea.
+vorbeikommen;;er;;Mein Freund ___ morgen kurz vorbei.;;My friend is coming by briefly tomorrow.
+zeichnen;;sie;;Die Kinder ___ ein großes Haus.;;The children draw a big house.
+anbieten;;er;;Die Firma ___ günstige Kurse an.;;The company offers inexpensive courses.
+anzünden;;ich;;Ich ___ die Kerze an.;;I light the candle.
+aufpassen;;du;;Im Unterricht ___ du immer gut auf.;;In class you always pay close attention.
+ausmachen;;ihr;;Ihr ___ das Licht nie aus.;;You (all) never turn off the light.
+ausziehen;;wir;;Nächsten Monat ___ wir aus.;;Next month we are moving out.
+erlauben;;er;;Der Vater ___ das nicht.;;The father doesn't allow that.
+hängen;;er;;Das Bild ___ an der Wand.;;The picture hangs on the wall.
+heiraten;;sie;;Meine Schwester und Tim ___ im Mai.;;My sister and Tim are getting married in May.
+hoffen;;ich;;Ich ___ auf besseres Wetter.;;I am hoping for better weather.
+leeren;;er;;Er ___ den Mülleimer jeden Tag.;;He empties the trash can every day.
+leiten;;er;;Frau Weber ___ die Abteilung.;;Ms. Weber heads the department.
+rauchen;;du;;Du ___ zu viel.;;You smoke too much.
+schaffen;;wir;;Das ___ wir bis morgen.;;We will get that done by tomorrow.
+stören;;ich;;Ich ___ dich ungern bei der Arbeit.;;I don't like disturbing you at work.
+wählen;;ihr;;Wen ___ ihr dieses Jahr?;;Whom are you (all) voting for this year?
+zumachen;;du;;Du ___ die Tür immer zu.;;You always close the door.
+anziehen;;ich;;Heute ___ ich meine neue Jacke an.;;Today I am putting on my new jacket.
+bestellen;;wir;;Wir ___ zwei Pizzen.;;We are ordering two pizzas.
+bitten;;er;;Er ___ uns um Hilfe.;;He asks us for help.
+entwickeln;;sie;;Die Ingenieure ___ ein neues Auto.;;The engineers are developing a new car.
+erfüllen;;ich;;Ich ___ mir einen Traum.;;I fulfill a dream for myself.
+leiden;;er;;Er ___ sehr unter der Hitze.;;He suffers a lot from the heat.
+mitnehmen;;er;;Er ___ seinen Hund immer mit.;;He always takes his dog along.
+probieren;;du;;Du ___ immer neue Gerichte.;;You are always trying new dishes.
+aufmachen;;ich;;Ich ___ das Fenster auf.;;I open the window.
+ausdrücken;;er;;Der Autor ___ seine Gefühle gut aus.;;The author expresses his feelings well.
+bewegen;;du;;Du ___ dich zu wenig.;;You don't move around enough.
+drücken;;er;;Er ___ den Knopf.;;He presses the button.
+erkennen;;ich;;Ich ___ ihn sofort.;;I recognize him right away.
+fühlen;;wir;;Wir ___ uns hier sehr wohl.;;We feel very comfortable here.
+lachen;;ihr;;Über den Witz ___ ihr laut.;;You (all) laugh loudly at the joke.
+schreien;;sie;;Die Kinder ___ im Garten.;;The children are yelling in the garden.
+weinen;;er;;Das Baby ___ schon wieder.;;The baby is crying again.
+spielen;;ich;;Ich ___ jeden Tag Gitarre.;;I play guitar every day.
+anfangen;;er;;Der Kurs ___ um neun Uhr an.;;The course starts at nine o'clock.
+antworten;;du;;Du ___ nie auf meine Nachrichten.;;You never answer my messages.
+aufbrechen;;wir;;Morgen früh ___ wir auf.;;We set out early tomorrow morning.
+beenden;;ich;;Ich ___ die Arbeit um fünf.;;I finish work at five.
+belegen;;er;;Er ___ einen Kurs in Geschichte.;;He is taking a history course.
+bezahlen;;er;;Mein Chef ___ die Rechnung.;;My boss pays the bill.
+dauern;;er;;Die Reise ___ drei Stunden.;;The trip takes three hours.
+ergänzen;;du;;Du ___ die Sätze mit den richtigen Wörtern.;;You complete the sentences with the right words.
+erledigen;;ich;;Das ___ ich gleich.;;I'll get that done right away.
+passieren;;sie;;Auf dieser Straße ___ oft Unfälle.;;Accidents often happen on this street.
+übernehmen;;er;;Mein Bruder ___ die Firma.;;My brother takes over the company.
+verstehen;;ich;;Ich ___ die Aufgabe nicht.;;I don't understand the assignment.
+enthalten;;er;;Das Buch ___ viele Bilder.;;The book contains many pictures.
+erscheinen;;er;;Die Zeitung ___ jeden Tag.;;The newspaper appears every day.
+fotografieren;;wir;;Wir ___ die Burg.;;We are photographing the castle.
+verdienen;;du;;Du ___ viel Geld.;;You earn a lot of money.
+vergleichen;;ich;;Ich ___ die Preise im Internet.;;I compare the prices on the internet.
+vorbereiten;;du;;Du ___ das Essen vor.;;You prepare the food.
+entdecken;;sie;;Die Kinder ___ einen alten Keller.;;The children discover an old cellar.
+entscheiden;;er;;Der Chef ___ das morgen.;;The boss decides that tomorrow.
+erfinden;;er;;Er ___ immer neue Geschichten.;;He is always making up new stories.
+fallen;;er;;Das Kind ___ vom Stuhl.;;The child falls off the chair.
+feiern;;ihr;;Heute ___ ihr eine Party.;;Today you (all) are having a party.
+gründen;;sie;;Die Studenten ___ einen Verein.;;The students are founding a club.
+treten;;er;;Er ___ auf die Bühne.;;He steps onto the stage.
+verteilen;;ich;;Ich ___ die Hefte.;;I hand out the notebooks.
+werden;;wir;;Im Winter ___ wir oft krank.;;In winter we often get sick.
+aufräumen;;du;;Du ___ dein Zimmer nie auf.;;You never tidy up your room.
+beantworten;;ich;;Ich ___ die Frage gern.;;I am glad to answer the question.
+bedeuten;;er;;Das Wort ___ viel für mich.;;The word means a lot to me.
+denken;;ich;;Ich ___ oft an meine Familie.;;I often think of my family.
+gewinnen;;wir;;Heute ___ wir das Spiel.;;Today we win the game.
+korrigieren;;er;;Die Lehrerin ___ die Tests.;;The teacher is grading the tests.
+telefonieren;;ihr;;Ihr ___ jeden Abend lange.;;You (all) talk on the phone for a long time every evening.
+versuchen;;du;;Du ___ es immer wieder.;;You try again and again.
+vorstellen;;ich;;Heute ___ ich meine Freundin vor.;;Today I introduce my girlfriend.
+weggehen;;er;;Er ___ nie ohne seinen Hund weg.;;He never goes away without his dog.
