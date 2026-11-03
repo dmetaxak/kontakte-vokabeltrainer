@@ -2479,6 +2479,18 @@ function gradePronoun(answer, p, cs) {
   var SPEAK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
   var speakingBtn = null;
   function speakText(s) { return s.replace(/\(([^)]*)\)/g, "$1").replace(/\s*(\.\.\.|\u2026)\s*/g, ", ").replace(/\//g, ", ").replace(/\s+/g, " ").replace(/^[,\s]+|[,\s]+$/g, ""); }
+  /* German voices: prefer Premium, then Enhanced, then the device default */
+  function germanVoices() {
+    var vs = []; try { vs = window.speechSynthesis.getVoices() || []; } catch (e) {}
+    return vs.filter(function (v) { return /^de([-_]|$)/i.test(v.lang || ""); });
+  }
+  function voiceRank(v) { var n = (v.name || "") + " " + (v.voiceURI || ""); return /premium/i.test(n) ? 3 : /enhanced|erweitert/i.test(n) ? 2 : v["default"] ? 1 : 0; }
+  function pickVoice() {
+    var vs = germanVoices(); if (!vs.length) return null;
+    var best = vs[0];
+    vs.forEach(function (v) { if (voiceRank(v) > voiceRank(best)) best = v; });
+    return best;
+  }
   var speakTimer = null;
   var noteTimer = null;
   function speakNote(msg) {
@@ -2512,7 +2524,7 @@ function gradePronoun(answer, p, cs) {
     if (again) return;                       // a second tap stops it
     var u = new window.SpeechSynthesisUtterance(speakText(text)), started = false;
     u.lang = "de-DE"; u.rate = 0.9;
-    try { var vs = synth.getVoices(); for (var i = 0; i < vs.length; i++) if (/^de/i.test(vs[i].lang)) { u.voice = vs[i]; break; } } catch (e) {}
+    try { var pv = pickVoice(); if (pv) u.voice = pv; } catch (e) {}
     var done = function () { if (speakingBtn === btn) { btn.setAttribute("data-on", "false"); speakingBtn = null; } };
     u.onstart = function () { started = true; clearTimeout(speakTimer); };
     u.onend = done;
@@ -2524,6 +2536,70 @@ function gradePronoun(answer, p, cs) {
       if (!started && speakingBtn === btn) { speakNote("No sound started. Turn off the silent switch, raise the volume, and make sure a German voice is installed (Settings, Accessibility, Spoken Content, Voices)."); done(); try { synth.cancel(); } catch (e3) {} }
     }, 2500);
   }
+  function speakBtn(label, getText) {
+    var b = document.createElement("button"); b.type = "button"; b.className = "speak"; b.setAttribute("aria-label", label); b.setAttribute("data-on", "false");
+    b.innerHTML = SPEAK_SVG;
+    b.addEventListener("click", function (e) { e.stopPropagation(); speak(getText(), b); });
+    return b;
+  }
+  function stRow(w) {
+    var row = document.createElement("div"); row.className = "strow";
+    var b = document.createElement("button"); b.type = "button"; b.className = "sthead"; b.setAttribute("aria-expanded", "false");
+    var de = document.createElement("span"); de.className = "stde";
+    var m = /^(der\/die|der|die|das)\s+(.*)$/.exec(w.g);
+    if (m) {
+      var a = document.createElement("span"); a.className = "art " + m[1].split("/")[0]; a.textContent = m[1];
+      de.appendChild(a); de.appendChild(document.createTextNode(" " + m[2]));
+    } else de.appendChild(document.createTextNode(w.g));
+    var f = (w.f || "").split(";")[0].trim();
+    if (f && f !== "plural only") {
+      var fs = document.createElement("span"); fs.className = "stf";
+      fs.textContent = /^die /.test(f) ? "pl. " + f.slice(4) : f; de.appendChild(fs);
+    } else if (f === "plural only") { var fp = document.createElement("span"); fp.className = "stf"; fp.textContent = "plural only"; de.appendChild(fp); }
+    var en = document.createElement("span"); en.className = "sten"; en.textContent = w.e;
+    var ch = document.createElement("span"); ch.className = "stchev"; ch.setAttribute("aria-hidden", "true"); ch.textContent = "\u25B8";
+    b.appendChild(de); b.appendChild(en); b.appendChild(ch);
+    var x = document.createElement("div"); x.className = "stx"; x.hidden = true;
+    var parts = (w.x || "").split("|");
+    var xs = document.createElement("div"), xt = document.createElement("div"); xs.className = "stxs";
+    if (parts[0]) { var d1 = document.createElement("div"); d1.textContent = parts[0]; xt.appendChild(d1); }
+    if (parts[1]) { var d2 = document.createElement("div"); d2.className = "xen"; d2.textContent = parts[1]; xt.appendChild(d2); }
+    xs.appendChild(xt);
+    if (CAN_SPEAK && parts[0]) xs.appendChild(speakBtn("Speak the example sentence", function () { return parts[0]; }));
+    x.appendChild(xs);
+    var tags = (w.n || "").split(";").slice(1).map(function (s) { return s.trim(); }).filter(Boolean);
+    if (w.p && w.p !== "noun") tags.unshift(w.p);
+    if (tags.length) { var tg = document.createElement("div"); tg.className = "xtag"; tg.textContent = tags.join(" · "); x.appendChild(tg); }
+    b.addEventListener("click", function () { var o = b.getAttribute("aria-expanded") !== "true"; b.setAttribute("aria-expanded", o ? "true" : "false"); x.hidden = !o; });
+    row.appendChild(b);
+    if (CAN_SPEAK) row.appendChild(speakBtn("Speak " + w.g, function () { return w.g; }));
+    row.appendChild(x);
+    return row;
+  }
+  function stRender() {
+    var chs = chaptersOf("stseg-ch"), q = fold($("st-search").value || ""), list = $("st-list"), n = 0;
+    if (CAN_SPEAK) { try { window.speechSynthesis.cancel(); } catch (e) {} speakingBtn = null; clearTimeout(speakTimer); speakNote(""); }
+    list.textContent = ""; stOpenAll = false; $("st-expand").textContent = "Expand all";
+    var order = []; STUDY.forEach(function (w) { if (order.indexOf(w.c) < 0) order.push(w.c); });
+    order.sort(function (a, b) { var na = /^\d+$/.test(a), nb = /^\d+$/.test(b); return na === nb ? (na ? a - b : a.localeCompare(b)) : (na ? 1 : -1); });
+    order.forEach(function (c) {
+      if (chs.indexOf(c) < 0) return;
+      var ws = STUDY.filter(function (w) { return w.c === c && (!q || fold(w.g + " " + w.e).indexOf(q) >= 0); });
+      if (!ws.length) return;
+      var h = document.createElement("h2"); if (/^\d+$/.test(c)) h.textContent = "Kapitel " + c; else stHeading(h, "Einführung " + c, "Introduction " + c); list.appendChild(h);
+      var lastSub = null;
+      ws.forEach(function (w) {
+        var sub = (w.n || "").split(";")[0].trim();
+        if (sub && sub !== lastSub) { var h3 = document.createElement("h3"); stHeading(h3, sub, SECTION_EN[sub]); list.appendChild(h3); lastSub = sub; }
+        list.appendChild(stRow(w)); n++;
+      });
+    });
+    if (!n) { var p = document.createElement("p"); p.className = "muted"; p.textContent = "No words match."; list.appendChild(p); }
+    $("st-count").textContent = n + (n === 1 ? " word" : " words");
+  }
+
+  /* ----- wiring ----- */
+  initPromptSpeak();
   function speakBtn(label, getText) {
     var b = document.createElement("button"); b.type = "button"; b.className = "speak"; b.setAttribute("aria-label", label); b.setAttribute("data-on", "false");
     b.innerHTML = SPEAK_SVG;
