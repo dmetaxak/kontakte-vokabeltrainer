@@ -1,5 +1,7 @@
 # Kontakte Vokabeltrainer: source
 
+**Want your own copy?** Follow the getting-started guide Danaé shared. Copies are built from the `stable` branch. The build-and-publish steps Claude follows are in `CLAUDE.md`.
+
 The published trainer is one self-contained HTML file (artifact "Kontakte Vokabeltrainer"). This folder is the source it is built from.
 
 ## Files
