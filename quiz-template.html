@@ -175,6 +175,10 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text
 .strow .stx { grid-column: 1 / -1; }
 button.speak { width: 2.5rem; height: 2.5rem; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); display: grid; place-items: center; flex: none; }
 button.speak svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.promptrow { display: flex; align-items: flex-start; gap: 0.4rem; }
+.promptrow .prompt { flex: 1 1 auto; min-width: 0; }
+.promptrow button.speak { margin-top: 0.2rem; }
+.verdict .ans button.speak { display: inline-grid; vertical-align: middle; width: 2.25rem; height: 2.25rem; margin-left: 0.15rem; }
 button.speak[data-on="true"] { color: var(--accent); }
 .strow > button.speak { margin-top: 0.15rem; }
 .stxs { display: flex; align-items: flex-start; gap: 0.25rem; }
@@ -255,7 +259,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
     <div class="qhead"><span id="q-round"></span><span id="q-left"></span></div>
     <div class="bar" aria-hidden="true"><i id="q-bar"></i></div>
     <div class="hint" id="q-mastery"></div>
-    <div class="prompt" id="q-prompt"></div>
+    <div class="promptrow"><div class="prompt" id="q-prompt"></div><button type="button" class="speak" id="q-speak" aria-label="Speak the word" hidden></button></div>
     <div class="hint" id="q-hint"></div>
     <div id="q-answer">
       <input type="text" id="q-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your answer" enterkeyhint="done">
@@ -423,7 +427,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
     </div>
     <div class="qhead"><span id="pq-round"></span><span id="pq-left"></span></div>
     <div class="bar" aria-hidden="true"><i id="pq-bar"></i></div>
-    <div class="prompt" id="pq-prompt"></div>
+    <div class="promptrow"><div class="prompt" id="pq-prompt"></div><button type="button" class="speak" id="pq-speak" aria-label="Speak the word" hidden></button></div>
     <div class="hint" id="pq-hint"></div>
     <div>
       <input type="text" id="pq-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Your answer" enterkeyhint="done">
@@ -443,7 +447,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
     </div>
     <div class="qhead"><span id="gq-round"></span><span id="gq-left"></span></div>
     <div class="bar" aria-hidden="true"><i id="gq-bar"></i></div>
-    <div class="prompt" id="gq-prompt"></div>
+    <div class="promptrow"><div class="prompt" id="gq-prompt"></div><button type="button" class="speak" id="gq-speak" aria-label="Speak the word" hidden></button></div>
     <div class="hint big" id="gq-hint"></div>
     <div class="gbtns" id="gq-btns" role="group" aria-label="Choose the article">
       <button type="button" class="der" data-art="der"><small>1</small>der</button>
@@ -1216,6 +1220,7 @@ function gradePronoun(answer, p, cs) {
     var clar = clarifier(w, s.mode), hints = [];
     if (s.mode === "ge") renderGerman($("q-prompt"), w.g);
     else { $("q-prompt").textContent = w.e; if (w.p.indexOf("noun") === 0) hints.push("(noun) include the article"); }
+    promptSpeak("q-speak", s.mode === "ge" ? w.g : "");
     if (clar) hints.push("Example: \u201C" + clar + "\u201D");
     $("q-hint").textContent = hints.join(" \u00B7 ");
     $("q-back").disabled = s.ri === 0;
@@ -1238,7 +1243,9 @@ function gradePronoun(answer, p, cs) {
   }
   function renderVerdict(rec) {
     var fb = $("q-feedback"); fb.textContent = "";
-    fb.appendChild(verdictBox(rec.credit, rec.answerText, rec.meta, rec.w, rec.type, scoreLine(rec.w.id, rec.scoreFrom)));
+    var vb = verdictBox(rec.credit, rec.answerText, rec.meta, rec.w, rec.type, scoreLine(rec.w.id, rec.scoreFrom));
+    fb.appendChild(vb);
+    if (session.mode === "eg") ansSpeak(vb, rec.w.g);
     session.onOverride = function (c) { overrideRec(rec, c); };
   }
   function onCheck() {
@@ -2025,6 +2032,7 @@ function gradePronoun(answer, p, cs) {
     $("gq-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
     $("gq-bar").style.width = Math.round(100 * s.ri / list.length) + "%";
     $("gq-prompt").textContent = gBare(w);
+    promptSpeak("gq-speak", gBare(w));
     $("gq-hint").textContent = w.e;
     $("gq-back").disabled = s.ri === 0;
     var rec = s.recs[s.ri];
@@ -2056,8 +2064,9 @@ function gradePronoun(answer, p, cs) {
     gButtons(false, gArt(rec.w), rec.choice);
     var fb = $("gq-feedback"); fb.textContent = "";
     var e = entry(rec.w.id), now = scoreNow(e);
-    fb.appendChild(verdictBox(rec.credit, rec.w.g, rec.w.f ? "Plural: " + rec.w.f : "", rec.w, "R",
-      "Noun score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now) + ")", false));
+    var gvb = verdictBox(rec.credit, rec.w.g, rec.w.f ? "Plural: " + rec.w.f : "", rec.w, "R",
+      "Noun score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now) + ")", false);
+    fb.appendChild(gvb); ansSpeak(gvb, rec.w.g);
     $("gq-next").hidden = false; $("gq-next").focus();
   }
   function gNext() { var s = gq; if (!s || !s.checked) return; s.ri++; gAsk(); }
@@ -2144,8 +2153,10 @@ function gradePronoun(answer, p, cs) {
     function renderVerdict(rec) {
       var fb = E("feedback"); fb.textContent = "";
       var e = cfg.store.entry(rec.it.id), now = scoreNow(e);
-      fb.appendChild(verdictBox(rec.credit, rec.answerText, rec.meta, { x: rec.ex }, cfg.type,
-        cfg.scoreWord + " score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now) + ")", function (c) { override(rec, c); }));
+      var vbox = verdictBox(rec.credit, rec.answerText, rec.meta, { x: rec.ex }, cfg.type,
+        cfg.scoreWord + " score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now) + ")", function (c) { override(rec, c); });
+      fb.appendChild(vbox);
+      if (cfg.speak) ansSpeak(vbox, cfg.speak(rec.it));
     }
     function checkLabel() { // with a hint button, the Check button reads Skip until something is typed
       if (!s || s.checked) return;
@@ -2272,9 +2283,11 @@ function gradePronoun(answer, p, cs) {
       var sw = SING[w.pl];
       pr.className = "prompt"; pr.textContent = w.pl;
       hint.className = "hint big"; hint.textContent = "Plural of “" + sw.e + "”";
+      promptSpeak("pq-speak", w.pl);
     },
     grade: function (w, typed) { return gradePlural(typed, w.g, w.pl); },
     expected: function (w) { return w.g; },
+    speak: function (w) { return w.g; },
     facts: function (w) { return w.e; },
     example: function (w) { return w.x || ""; },
     label: function (w) { return w.g; },
@@ -2467,7 +2480,29 @@ function gradePronoun(answer, p, cs) {
   var speakingBtn = null;
   function speakText(s) { return s.replace(/\(([^)]*)\)/g, "$1").replace(/\s*(\.\.\.|\u2026)\s*/g, ", ").replace(/\//g, ", ").replace(/\s+/g, " ").replace(/^[,\s]+|[,\s]+$/g, ""); }
   var speakTimer = null;
-  function speakNote(msg) { var n = $("st-speaknote"); n.textContent = msg || ""; n.hidden = !msg; }
+  var noteTimer = null;
+  function speakNote(msg) {
+    var n = $("st-speaknote"); n.textContent = msg || ""; n.hidden = !msg;
+    clearTimeout(noteTimer);
+    if ($("v-study").hidden) { banner(msg || ""); if (msg) noteTimer = setTimeout(function () { banner(""); }, 8000); }
+  }
+  /* a speaker button beside a drill prompt: set its text per question; hidden when speech is unavailable */
+  function promptSpeak(id, text) {
+    var b = $(id);
+    if (speakingBtn === b) { try { window.speechSynthesis.cancel(); } catch (e) {} speakingBtn = null; clearTimeout(speakTimer); }
+    b._t = text || ""; b.setAttribute("data-on", "false");
+    b.hidden = !CAN_SPEAK || !text;
+  }
+  function initPromptSpeak() {
+    ["q-speak", "pq-speak", "gq-speak"].forEach(function (id) {
+      var b = $(id); b.innerHTML = SPEAK_SVG;
+      b.addEventListener("click", function () { speak(b._t, b); });
+    });
+  }
+  function ansSpeak(box, text) { // a speaker button after the answer in a result box
+    var a = box.querySelector(".ans");
+    if (a && text && CAN_SPEAK) a.appendChild(speakBtn("Speak " + text, function () { return text; }));
+  }
   function speak(text, btn) {
     if (!CAN_SPEAK) return;
     var synth = window.speechSynthesis, again = speakingBtn === btn;
@@ -2552,6 +2587,7 @@ function gradePronoun(answer, p, cs) {
   }
 
   /* ----- wiring ----- */
+  initPromptSpeak();
   chapterBoxes("stseg-ch", stRender, STUDY);
   $("st-search").addEventListener("input", function () { stRender(); });
   $("st-expand").addEventListener("click", function () {
