@@ -2536,7 +2536,7 @@ function gradePronoun(answer, p, cs) {
     if (again) return;                       // a second tap stops it
     var u = new window.SpeechSynthesisUtterance(speakText(text)), started = false;
     u.lang = "de-DE"; u.rate = 0.9;
-    try { var pv = pickVoice(); if (pv) { u.voice = pv; if (pv.lang) u.lang = pv.lang; } } catch (e) {}
+    try { var pv = pickVoice(); if (pv && voiceRank(pv) >= 2) u.voice = pv; } catch (e) {}   // otherwise leave it unset so the system picks its own German voice
     dbgTaps++; voiceDebug(u.voice); keepUtt = u;                             // keep a reference so Safari does not drop the utterance (and its voice)
     var done = function () { if (speakingBtn === btn) { btn.setAttribute("data-on", "false"); speakingBtn = null; } };
     u.onstart = function () { started = true; clearTimeout(speakTimer); };
