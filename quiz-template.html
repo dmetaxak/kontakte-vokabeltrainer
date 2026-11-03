@@ -2485,10 +2485,11 @@ function gradePronoun(answer, p, cs) {
     return vs.filter(function (v) { return /^de([-_]|$)/i.test(v.lang || ""); });
   }
   function voiceRank(v) { var n = (v.name || "") + " " + (v.voiceURI || ""); return /premium/i.test(n) ? 3 : /enhanced|erweitert/i.test(n) ? 2 : v["default"] ? 1 : 0; }
+  var voiceCache = null, keepUtt = null;    // Safari can return a poorer voice list on later calls, so remember the best one found
   function pickVoice() {
-    var vs = germanVoices(); if (!vs.length) return null;
-    var best = vs[0];
-    vs.forEach(function (v) { if (voiceRank(v) > voiceRank(best)) best = v; });
+    var vs = germanVoices(), best = voiceCache;
+    vs.forEach(function (v) { if (!best || voiceRank(v) > voiceRank(best)) best = v; });
+    voiceCache = best;
     return best;
   }
   var speakTimer = null;
@@ -2524,7 +2525,8 @@ function gradePronoun(answer, p, cs) {
     if (again) return;                       // a second tap stops it
     var u = new window.SpeechSynthesisUtterance(speakText(text)), started = false;
     u.lang = "de-DE"; u.rate = 0.9;
-    try { var pv = pickVoice(); if (pv) u.voice = pv; } catch (e) {}
+    try { var pv = pickVoice(); if (pv) { u.voice = pv; if (pv.lang) u.lang = pv.lang; } } catch (e) {}
+    keepUtt = u;                             // keep a reference so Safari does not drop the utterance (and its voice)
     var done = function () { if (speakingBtn === btn) { btn.setAttribute("data-on", "false"); speakingBtn = null; } };
     u.onstart = function () { started = true; clearTimeout(speakTimer); };
     u.onend = done;
