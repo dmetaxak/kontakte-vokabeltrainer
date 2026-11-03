@@ -165,7 +165,6 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text
 #stseg-ch label { flex: 1 1 6.5rem; padding: 0.45rem 0.6rem; min-height: 2.25rem; font-size: 0.88rem; }
 .stctl { display: flex; gap: 0.5rem; align-items: center; }
 .stctl input { flex: 1 1 auto; min-width: 0; }
-.stdbg { font: 0.7rem/1.35 ui-monospace, monospace; color: var(--muted); white-space: pre-wrap; word-break: break-word; }
 .stcount { font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 #st-list h3 { margin: 0.9rem 0 0.1rem; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
 #st-list h2 { margin: 1rem 0 0.2rem; font-size: 1.1rem; border-bottom: 2px solid var(--fg); padding-bottom: 0.2rem; }
@@ -375,7 +374,6 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
         <button type="button" class="ghost small" id="st-expand">Expand all</button>
       </div>
       <div class="stcount" id="st-count"></div>
-      <div class="stdbg" id="st-dbg"></div>
       <div class="muted" id="st-speaknote" role="status" hidden style="color: var(--bad); font-size: 0.85rem;"></div>
       <div id="st-list"></div>
     </section>
@@ -2494,15 +2492,6 @@ function gradePronoun(answer, p, cs) {
     voiceCache = best;
     return best;
   }
-  var dbgTaps = 0;
-  function voiceDebug(used) {   // temporary diagnostic
-    var el = $("st-dbg"); if (!el) return;
-    var all = []; try { all = window.speechSynthesis.getVoices() || []; } catch (e) {}
-    var g = germanVoices();
-    el.textContent = "tap " + dbgTaps + " | voices " + all.length + " | German " + g.length + "\n" +
-      g.map(function (v) { return "- " + v.name + " | " + v.lang + " | " + (v.localService ? "local" : "net") + " | rank " + voiceRank(v) + " | " + v.voiceURI; }).join("\n") +
-      "\nused: " + (used ? used.name + " | " + used.voiceURI : "none");
-  }
   var speakTimer = null;
   var noteTimer = null;
   function speakNote(msg) {
@@ -2537,7 +2526,7 @@ function gradePronoun(answer, p, cs) {
     var u = new window.SpeechSynthesisUtterance(speakText(text)), started = false;
     u.lang = "de-DE"; u.rate = 0.9;
     try { var pv = pickVoice(); if (pv && voiceRank(pv) >= 2) u.voice = pv; } catch (e) {}   // otherwise leave it unset so the system picks its own German voice
-    dbgTaps++; voiceDebug(u.voice); keepUtt = u;                             // keep a reference so Safari does not drop the utterance (and its voice)
+    keepUtt = u;                             // keep a reference so Safari does not drop the utterance (and its voice)
     var done = function () { if (speakingBtn === btn) { btn.setAttribute("data-on", "false"); speakingBtn = null; } };
     u.onstart = function () { started = true; clearTimeout(speakTimer); };
     u.onend = done;
@@ -2684,7 +2673,7 @@ function gradePronoun(answer, p, cs) {
     document.querySelectorAll("#st-list .sthead").forEach(function (b) { b.setAttribute("aria-expanded", stOpenAll ? "true" : "false"); b.parentNode.querySelector(".stx").hidden = !stOpenAll; });
     $("st-expand").textContent = stOpenAll ? "Collapse all" : "Expand all";
   });
-  $("nav-study").addEventListener("click", function () { voiceDebug(null); stRender(); show("study"); });
+  $("nav-study").addEventListener("click", function () { stRender(); show("study"); });
   $("nav-home").addEventListener("click", function () { if (gq) { gResume(); } else if (pqd.active()) { pqd.resume(); } else if (session || sent) { show(session ? "quiz" : "sent"); } else { refreshHome(); show("home"); } });
   $("nav-verbs").addEventListener("click", function () {
     if (vq) { if (vq.view === "sum") { if (vq.finished) vFinish(); else vRoundSummary(); } else { show("vq"); } }
