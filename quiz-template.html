@@ -370,6 +370,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
         <button type="button" class="ghost small" id="st-expand">Expand all</button>
       </div>
       <div class="stcount" id="st-count"></div>
+      <div class="muted" id="st-speaknote" role="status" hidden style="color: var(--bad); font-size: 0.85rem;"></div>
       <div id="st-list"></div>
     </section>
   </div>
@@ -2465,19 +2466,28 @@ function gradePronoun(answer, p, cs) {
   var SPEAK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
   var speakingBtn = null;
   function speakText(s) { return s.replace(/\(([^)]*)\)/g, "$1").replace(/\s*(\.\.\.|\u2026)\s*/g, ", ").replace(/\//g, ", ").replace(/\s+/g, " ").replace(/^[,\s]+|[,\s]+$/g, ""); }
+  var speakTimer = null;
+  function speakNote(msg) { var n = $("st-speaknote"); n.textContent = msg || ""; n.hidden = !msg; }
   function speak(text, btn) {
     if (!CAN_SPEAK) return;
     var synth = window.speechSynthesis, again = speakingBtn === btn;
-    synth.cancel();
+    clearTimeout(speakTimer); speakNote("");
+    if (synth.speaking || synth.pending) synth.cancel();     // cancelling an idle engine can leave Safari silent
     if (speakingBtn) { speakingBtn.setAttribute("data-on", "false"); speakingBtn = null; }
     if (again) return;                       // a second tap stops it
-    var u = new window.SpeechSynthesisUtterance(speakText(text));
+    var u = new window.SpeechSynthesisUtterance(speakText(text)), started = false;
     u.lang = "de-DE"; u.rate = 0.9;
     try { var vs = synth.getVoices(); for (var i = 0; i < vs.length; i++) if (/^de/i.test(vs[i].lang)) { u.voice = vs[i]; break; } } catch (e) {}
     var done = function () { if (speakingBtn === btn) { btn.setAttribute("data-on", "false"); speakingBtn = null; } };
-    u.onend = done; u.onerror = done;
+    u.onstart = function () { started = true; clearTimeout(speakTimer); };
+    u.onend = done;
+    u.onerror = function (ev) { done(); if (ev && ev.error && ev.error !== "canceled" && ev.error !== "interrupted") speakNote("Speech failed (" + ev.error + "). Check the volume and the silent switch, and that a German voice is installed."); };
     speakingBtn = btn; btn.setAttribute("data-on", "true");
+    try { synth.resume(); } catch (e2) {}
     synth.speak(u);
+    speakTimer = setTimeout(function () {    // nothing started: say so instead of failing quietly
+      if (!started && speakingBtn === btn) { speakNote("No sound started. Turn off the silent switch, raise the volume, and make sure a German voice is installed (Settings, Accessibility, Spoken Content, Voices)."); done(); try { synth.cancel(); } catch (e3) {} }
+    }, 2500);
   }
   function speakBtn(label, getText) {
     var b = document.createElement("button"); b.type = "button"; b.className = "speak"; b.setAttribute("aria-label", label); b.setAttribute("data-on", "false");
@@ -2521,7 +2531,7 @@ function gradePronoun(answer, p, cs) {
   }
   function stRender() {
     var chs = chaptersOf("stseg-ch"), q = fold($("st-search").value || ""), list = $("st-list"), n = 0;
-    if (CAN_SPEAK) { window.speechSynthesis.cancel(); speakingBtn = null; }
+    if (CAN_SPEAK) { try { window.speechSynthesis.cancel(); } catch (e) {} speakingBtn = null; clearTimeout(speakTimer); speakNote(""); }
     list.textContent = ""; stOpenAll = false; $("st-expand").textContent = "Expand all";
     var order = []; STUDY.forEach(function (w) { if (order.indexOf(w.c) < 0) order.push(w.c); });
     order.sort(function (a, b) { var na = /^\d+$/.test(a), nb = /^\d+$/.test(b); return na === nb ? (na ? a - b : a.localeCompare(b)) : (na ? 1 : -1); });
