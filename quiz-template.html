@@ -517,6 +517,15 @@ function applyPending(base, p) {
   if (p.l && p.l > r.l) r.l = p.l;
   return r;
 }
+/* one word's record built from two (a singular and the plural that used to be scored on its own):
+   counts add up, and the histories join oldest-first by last-practice date */
+function mergeEntries(x, y) {
+  if (!y || !y.a) return x;
+  if (!x || !x.a) return y;
+  var first = x.l <= y.l ? x : y, second = first === x ? y : x;
+  var toks = (first.h ? first.h.split(" ") : []).concat(second.h ? second.h.split(" ") : []).filter(Boolean);
+  return { a: x.a + y.a, c: x.c + y.c, l: second.l, h: toks.slice(-HIST).join(" ") };
+}
 var GRACE = 14, HALF = 120;
 function decayFactor(last, todayStr) {
   if (!last) return 1;
@@ -823,16 +832,26 @@ function gradePronoun(answer, p, cs) {
 /* ---------- app ---------- */
 (function () {
   var $ = function (id) { return document.getElementById(id); };
-  var WORDS = (window.VOCAB || []).map(function (w) { w.id = hashId(w.g + "|" + w.e); return w; });
+  /* every row, plural forms included (used for grading and prompts) */
+  var ALL = (window.VOCAB || []).map(function (w) { w.id = hashId(w.g + "|" + w.e); return w; });
+  /* a plural form belongs to its singular: one word, one score. w.pf is the plural form;
+     w.plid is the id the plural was scored under before, read back into the word's score */
+  var SING = {}; ALL.forEach(function (w) { if (!w.pl) SING[w.g] = w; });
+  ALL.forEach(function (w) { if (w.pl && SING[w.pl]) { SING[w.pl].pf = w; SING[w.pl].plid = w.id; w.base = SING[w.pl]; } });
+  var WORDS = ALL.filter(function (w) { return !w.pl; });
   var VERBS = (window.VERBS || []).map(function (v) { v.idpr = hashId("v|" + v.i + "|pr"); v.idpf = hashId("v|" + v.i + "|pf"); return v; });
   var byId = {};
   WORDS.forEach(function (w) { byId[w.id] = w; });
   var enToGe = {};
-  WORDS.forEach(function (w) { var k = normEn(w.e); (enToGe[k] = enToGe[k] || []).push(w.g); });
+  ALL.forEach(function (w) { var k = normEn(w.e); (enToGe[k] = enToGe[k] || []).push(w.g); });
   /* words whose prompt is shared with another entry get an example sentence in the prompt's own language */
-  WORDS.forEach(function (w) { if (w.p.indexOf("noun") !== 0 && /^(der|die|das) /i.test(w.g)) NONNOUN[w.g] = true; });
+  ALL.forEach(function (w) { if (w.p.indexOf("noun") !== 0 && /^(der|die|das) /i.test(w.g)) NONNOUN[w.g] = true; });
   var geCount = {};
-  WORDS.forEach(function (w) { var k = w.g.toLowerCase(); geCount[k] = (geCount[k] || 0) + 1; });
+  ALL.forEach(function (w) { var k = w.g.toLowerCase(); geCount[k] = (geCount[k] || 0) + 1; });
+  /* the form a vocab question shows: the word itself, or its plural form (scored to the same word) */
+  var PLURAL_SHARE = 0.4;
+  function pickForm(w) { return w.pf && Math.random() < PLURAL_SHARE ? "pl" : "sg"; }
+  function faceOf(w, form) { return form === "pl" && w.pf ? w.pf : w; }
   function clarifier(w, mode) {
     if (!w.x || w.p === "phrase") return "";
     var parts = w.x.split("|");
@@ -863,7 +882,11 @@ function gradePronoun(answer, p, cs) {
   }
   function banner(text) { var b = $("banner"); b.hidden = !text; b.textContent = text || ""; }
   function today() { return new Date().toISOString().slice(0, 10); }
-  function entry(id) { return prog[id] || { a: 0, c: 0, l: "", h: "" }; }
+  function entry(id) {
+    var w = byId[id], e = prog[id];
+    if (w && w.plid && prog[w.plid]) e = mergeEntries(e, prog[w.plid]);
+    return e || { a: 0, c: 0, l: "", h: "" };
+  }
   function scoreNow(e) { return Math.round(scoreOf(e.h, e.a) * decayFactor(e.l, today())); }
   function scoreFor(id) { return scoreNow(entry(id)); }
 
@@ -914,7 +937,8 @@ function gradePronoun(answer, p, cs) {
     p.toks.push(type + String(credit)); p.l = today();
     prog[w.id] = applyPending(remote[w.id], p);
     saveLocal(); setStatus(syncing ? "syncing" : "idle"); scheduleSync();
-    return { old: old, now: scoreOf(prog[w.id].h, prog[w.id].a) };
+    var ne = entry(w.id);
+    return { old: old, now: scoreOf(ne.h, ne.a) };
   }
   function amend(w, type, credit) { // replace the newest answer after a manual override
     var tok = type + String(credit);
@@ -1192,7 +1216,7 @@ function gradePronoun(answer, p, cs) {
     session = {
       mode: mode, scope: scope, queue: pickWords(scope, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e)); }, QUIZ_SIZE), round: [], roundNo: 0, prevSet: null,
       ri: 0, answered: 0, firstTry: 0, firstTryCredit: 0, retriesById: {}, answeredIds: {}, changes: {},
-      current: null, roundCredit: 0, recs: [], checked: false
+      current: null, roundCredit: 0, recs: [], checked: false, forms: {}, keepForm: {}
     };
     nextRound();
   }
@@ -1205,6 +1229,7 @@ function gradePronoun(answer, p, cs) {
       return startSentences(s.queue.slice(), s.scope, function () { nextRound(); });
     }
     s.round = shuffle(s.queue);
+    s.round.forEach(function (w) { if (!s.keepForm[w.id]) s.forms[w.id] = pickForm(w); }); // a missed form comes back as the same form
     s.queue = [];
     s.prevSet = setKey(s.round);
     s.roundNo++; s.ri = 0; s.roundCredit = 0; s.recs = [];
@@ -1214,13 +1239,14 @@ function gradePronoun(answer, p, cs) {
     var s = session, list = s.round;
     if (s.ri >= list.length) { return roundSummary(); }
     var w = list[s.ri]; s.current = w; updateMastery();
+    var f = s.recs[s.ri] ? s.recs[s.ri].f : faceOf(w, s.forms[w.id]); s.face = f;
     $("q-round").textContent = "Round " + s.roundNo + " · word " + (s.ri + 1) + " of " + list.length;
     $("q-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
     $("q-bar").style.width = Math.round(100 * s.ri / list.length) + "%";
-    var clar = clarifier(w, s.mode), hints = [];
-    if (s.mode === "ge") renderGerman($("q-prompt"), w.g);
-    else { $("q-prompt").textContent = w.e; if (w.p.indexOf("noun") === 0) hints.push("(noun) include the article"); }
-    promptSpeak("q-speak", s.mode === "ge" ? w.g : "");
+    var clar = clarifier(f, s.mode), hints = [];
+    if (s.mode === "ge") renderGerman($("q-prompt"), f.g);
+    else { $("q-prompt").textContent = f.e; if (f.p.indexOf("noun") === 0) hints.push("(noun) include the article"); }
+    promptSpeak("q-speak", s.mode === "ge" ? f.g : "");
     if (clar) hints.push("Example: \u201C" + clar + "\u201D");
     $("q-hint").textContent = hints.join(" \u00B7 ");
     $("q-back").disabled = s.ri === 0;
@@ -1243,9 +1269,9 @@ function gradePronoun(answer, p, cs) {
   }
   function renderVerdict(rec) {
     var fb = $("q-feedback"); fb.textContent = "";
-    var vb = verdictBox(rec.credit, rec.answerText, rec.meta, rec.w, rec.type, scoreLine(rec.w.id, rec.scoreFrom));
+    var vb = verdictBox(rec.credit, rec.answerText, rec.meta, rec.f, rec.type, scoreLine(rec.w.id, rec.scoreFrom));
     fb.appendChild(vb);
-    if (session.mode === "eg") ansSpeak(vb, rec.w.g);
+    if (session.mode === "eg") ansSpeak(vb, rec.f.g);
     session.onOverride = function (c) { overrideRec(rec, c); };
   }
   function onCheck() {
@@ -1258,17 +1284,17 @@ function gradePronoun(answer, p, cs) {
     evaluate(true);
   }
   function evaluate(skip) {
-    var s = session, w = s.current, typed = $("q-input").value;
+    var s = session, w = s.current, f = s.face || w, typed = $("q-input").value;
     var res = skip ? { credit: 0, note: "" }
-      : (s.mode === "ge" ? gradeEnglish(typed, w.e) : gradeGerman(typed, enToGe[normEn(w.e)] || [w.g]));
+      : (s.mode === "ge" ? gradeEnglish(typed, f.e) : gradeGerman(typed, enToGe[normEn(f.e)] || [f.g]));
     var rec = {
-      w: w, ans: typed, credit: res.credit, type: s.mode === "ge" ? "R" : "P",
+      w: w, f: f, ans: typed, credit: res.credit, type: s.mode === "ge" ? "R" : "P",
       firstAttempt: !s.answeredIds[w.id], scoreFrom: scoreFor(w.id),
-      answerText: s.mode === "ge" ? w.e : w.g,
-      meta: ((res.note ? res.note + " " : "") + detailLine(w)).trim()
+      answerText: s.mode === "ge" ? f.e : f.g,
+      meta: ((res.note ? res.note + " " : "") + detailLine(f)).trim()
     };
     s.answeredIds[w.id] = true;
-    logAnswer(rec, s.mode, { k: w.id, i: w.g, p: s.mode === "ge" ? w.g : w.e, x: rec.answerText, a: typed, c: res.credit, n: skip ? "skipped" : res.note });
+    logAnswer(rec, s.mode, { k: w.id, i: f.g, p: s.mode === "ge" ? f.g : f.e, x: rec.answerText, a: typed, c: res.credit, n: skip ? "skipped" : res.note });
     record(w, rec.type, res.credit);
     s.recs[s.ri] = rec;
     s.answered++;
@@ -1294,9 +1320,10 @@ function gradePronoun(answer, p, cs) {
   }
   function applyOutcome(w, credit) {
     var s = session, idx = s.queue.indexOf(w);
-    if (credit === 1) { if (idx >= 0) s.queue.splice(idx, 1); }
+    if (credit === 1) { if (idx >= 0) s.queue.splice(idx, 1); delete s.keepForm[w.id]; }
     else {
       if (idx < 0) s.queue.push(w);
+      s.keepForm[w.id] = true;
       s.retriesById[w.id] = (s.retriesById[w.id] || 0) + 1;
     }
     $("q-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
@@ -2259,8 +2286,7 @@ function gradePronoun(answer, p, cs) {
 
   /* ----- vocab: plural drill (singular in, plural out) ----- */
   var PQ_SIZE = 20;
-  var SING = {}; WORDS.forEach(function (w) { SING[w.g] = w; });
-  function pPool(chs) { return WORDS.filter(function (w) { return w.pl && chs.indexOf(w.c) >= 0; }); }
+  function pPool(chs) { return WORDS.filter(function (w) { return w.pf && chs.indexOf(w.c) >= 0; }); }
   function fillPluralStats(el, pool) {
     var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
     pool.forEach(function (w) { var e = entry(w.id), sc = scoreNow(e); counts[bandOf(e.a, sc)]++; sum += sc; });
@@ -2280,17 +2306,16 @@ function gradePronoun(answer, p, cs) {
   var pqd = makeDrill({
     prefix: "pq", logName: "plural", view: "pq", area: "quiz", store: vocabStoreAdapter, unit: "noun", type: "P", scoreWord: "Plural", endName: "Back to Vocab",
     prompt: function (w, pr, hint) {
-      var sw = SING[w.pl];
-      pr.className = "prompt"; pr.textContent = w.pl;
-      hint.className = "hint big"; hint.textContent = "Plural of “" + sw.e + "”";
-      promptSpeak("pq-speak", w.pl);
+      pr.className = "prompt"; pr.textContent = w.g;
+      hint.className = "hint big"; hint.textContent = "Plural of “" + w.e + "”";
+      promptSpeak("pq-speak", w.g);
     },
-    grade: function (w, typed) { return gradePlural(typed, w.g, w.pl); },
-    expected: function (w) { return w.g; },
-    speak: function (w) { return w.g; },
-    facts: function (w) { return w.e; },
-    example: function (w) { return w.x || ""; },
-    label: function (w) { return w.g; },
+    grade: function (w, typed) { return gradePlural(typed, w.pf.g, w.g); },
+    expected: function (w) { return w.pf.g; },
+    speak: function (w) { return w.pf.g; },
+    facts: function (w) { return w.pf.e; },
+    example: function (w) { return w.pf.x || ""; },
+    label: function (w) { return w.pf.g; },
     onEnd: function () { refreshHome(); show("home"); }
   });
   function pStart() {
@@ -2461,7 +2486,7 @@ function gradePronoun(answer, p, cs) {
   }
 
   /* ----- study list: every word, German and English, with the example sentence on tap ----- */
-  var STUDY = WORDS.filter(function (w) { return !w.pl; });
+  var STUDY = WORDS;
   var stOpenAll = false;
   var SECTION_EN = { "Bitten": "Requests", "Namen": "Names", "Kleidung": "Clothing", "Farben": "Colors", "Begrüßen und Verabschieden": "Greetings and Goodbyes", "Zahlen": "Numbers",
     "Der Seminarraum": "The Classroom", "Beschreibungen": "Descriptions", "Der Körper": "The Body", "Die Familie": "The Family", "Wetter und Jahreszeiten": "Weather and Seasons",

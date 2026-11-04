@@ -15,10 +15,12 @@ The published trainer is one self-contained HTML file (artifact "Kontakte Vokabe
 - `pron.txt`: personal-pronoun sentences (case;;person;;sentence with ___;;English). Person is 1s 2s 3m 3f 3n 1p 2p 3p fo; the answer comes from the pronoun table in the template (`PRON_FORMS`).
 - Modal verbs (können, wollen, müssen, sollen, dürfen, möchten) live in `verbs.txt` with a full paradigm and no auxiliary/participle, which keeps them out of the Perfekt drill.
 - `plural_en.py`: generates English plurals for the plural words (with hand-written exceptions).
-- `plural_ex.txt`: one example sentence per plural word.
+- `plural_ex.txt`: one example sentence per plural form.
+
+Plural forms are built as rows of their own (with `pl` = the singular), but the app folds each one into its singular: one word, one score. Vocab quizzes show the plural form about 40% of the time (a missed form comes back as the same form), and the plural drill scores to the singular too. Scores recorded under a plural's old id by earlier versions are merged into the singular's score when read; nothing in the db is rewritten.
 
 ## Build
 Data files live in `data/`. Run `python3 build.py` from the repo root; it writes `kontakte-vokabeltrainer.html` (publish to the same artifact URL) and `pure.js` (for tests).
 
 ## Storage (artifact db, per user)
-Docs under `data/users/<uid>/`: `progress` (vocab, noun genders, plurals), `verbs`, `grammar` (case endings), `mistakes` (log of misses, skips, hint use and grader overrides), `days` (practice days for the streak: date -> rounds finished).
+Docs under `data/users/<uid>/`: `progress` (vocab, noun genders, plurals; one entry per word, with legacy plural entries merged in on read), `verbs`, `grammar` (case endings), `mistakes` (log of misses, skips, hint use and grader overrides), `days` (practice days for the streak: date -> rounds finished).

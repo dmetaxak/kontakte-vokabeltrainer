@@ -27,5 +27,5 @@ Rules for a classmate's copy:
 - Develop on `main`. `stable` is what every classmate builds from, so only move it when Danaé says a version is ready. To release it, run `git checkout stable && git merge --ff-only main && git push origin stable`.
 - Always check with Danaé before pushing any branch.
 - **Keep saved progress compatible.** Each user's progress lives in the artifact db under `data/users/<uid>/` (`progress`, `verbs`, `grammar`, `mistakes`, `days`). New versions must still read data written by older ones. If the format changes, add code that migrates the old data on load.
-- **Word identity.** Vocabulary progress is keyed by a hash of each word's German and English text (`hashId(w.g + "|" + w.e)`). Changing either one resets that word's progress for everyone. Editing example sentences, notes or other fields doesn't.
+- **Word identity.** Vocabulary progress is keyed by a hash of each word's German and English text (`hashId(w.g + "|" + w.e)`). Changing either one resets that word's progress for everyone. Editing example sentences, notes or other fields doesn't. A noun's plural form is part of the singular word and is scored under the singular's id; the old per-plural ids are only read (merged in by `entry()`), never written.
 - Build with `python3 build.py` and run the tests on `pure.js` before committing. See README.md for the file layout.
