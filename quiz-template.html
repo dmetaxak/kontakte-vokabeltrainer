@@ -1226,7 +1226,7 @@ function gradePronoun(answer, p, cs) {
     if (!s.queue.length) { return finishQuiz(); }
     if (s.prevSet && s.queue.length <= 10 && setKey(s.queue) === s.prevSet && sample) {
       s.prevSet = null;
-      return startSentences(s.queue.slice(), s.scope, function () { nextRound(); });
+      return startSentences(s.queue.slice(), s.scope, function () { nextRound(); }, s.forms);
     }
     s.round = shuffle(s.queue);
     s.round.forEach(function (w) { if (!s.keepForm[w.id]) s.forms[w.id] = pickForm(w); }); // a missed form comes back as the same form
@@ -1395,9 +1395,11 @@ function gradePronoun(answer, p, cs) {
     }
     return chosen;
   }
-  function startSentences(wordsGiven, scope, after) {
+  /* forms: word id -> "sg" or "pl" from the quiz that led here, so a word keeps the form it was being asked in */
+  function startSentences(wordsGiven, scope, after, forms) {
     var list = wordsGiven || pickWeighted(scope, 5);
-    sent = { list: list, i: 0, credit: 0, after: after, scope: scope, recs: [], checked: false };
+    var faces = list.map(function (w) { return faceOf(w, forms && forms[w.id] ? forms[w.id] : pickForm(w)); });
+    sent = { list: list, faces: faces, i: 0, credit: 0, after: after, scope: scope, recs: [], checked: false };
     show("sent"); askSentence();
   }
   function askSentence() {
@@ -1405,8 +1407,9 @@ function gradePronoun(answer, p, cs) {
     if (!w) return endSentences();
     $("s-count").textContent = "Word " + (sent.i + 1) + " of " + sent.list.length;
     $("s-note").textContent = sent.after ? "Same words came up again" : "";
-    renderGerman($("s-prompt"), w.g);
-    $("s-hint").textContent = w.f ? "Forms: " + w.f : "";
+    var f = sent.faces[sent.i];
+    renderGerman($("s-prompt"), f.g);
+    $("s-hint").textContent = f !== w ? "Plural of " + w.g : w.f ? "Forms: " + w.f : "";
     $("s-back").disabled = sent.i === 0;
     var rec = sent.recs[sent.i];
     if (rec) { showSentenceResult(rec); return; }
@@ -1432,11 +1435,13 @@ function gradePronoun(answer, p, cs) {
   async function onSentenceCheck() {
     if (!sent) return;
     if (sent.checked) { sent.i++; return askSentence(); }
-    var w = sent.list[sent.i], text = $("s-input").value.trim();
+    var w = sent.list[sent.i], f = sent.faces[sent.i], text = $("s-input").value.trim();
+    var forms = f !== w ? "plural of " + w.g : (w.f ? "forms: " + w.f : "");
     if (!text) return;
     $("s-check").disabled = true; $("s-feedback").textContent = "Checking...";
     var prompt = "You are checking a beginner German sentence from a learner using the Kontakte textbook (chapters 1 and 2: introductions, daily life, leisure, possessions, gifts; present tense, nominative and accusative, modal verbs, separable verbs).\n"
-      + "Target word: " + w.g + " (" + w.e + ")" + (w.f ? ", forms: " + w.f : "") + ".\n"
+      + "Target word: " + f.g + " (" + f.e + ")" + (forms ? ", " + forms : "") + ".\n"
+      + "Any form of the target word counts as using it: singular or plural, any case or verb form, even if it differs from the form shown.\n"
       + "Learner's sentence: " + text + "\n"
       + "Score: credit 1 if the target word is used correctly (small errors elsewhere are fine); 0.5 if recognizable but flawed (wrong article, case or form, awkward meaning); 0 if used incorrectly or missing. Do not penalize grammar beyond chapters 1-2; mention it as an aside only.\n"
       + 'Reply with only JSON: {"credit": 1, "corrected": "corrected sentence or empty string", "note": "one short line per rule behind each change, or a brief confirmation"}';
