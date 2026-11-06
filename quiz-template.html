@@ -1262,7 +1262,7 @@ function gradePronoun(answer, p, cs) {
     $("q-feedback").textContent = "";
     $("q-check").textContent = "Check"; $("q-check").disabled = false;
     $("q-skip").hidden = false;
-    $("q-input").focus();
+    if (s.roundNo > 1 || s.ri > 0) $("q-input").focus();   // not on the opening card, so the keyboard doesn't scroll the page past the top banner
   }
   /* an answered word shows its result screen, with the grade-it-differently buttons */
   function showAnswered(rec) {
@@ -2180,7 +2180,7 @@ function gradePronoun(answer, p, cs) {
       E("check").disabled = false; E("skip").hidden = false;
       if (cfg.hint) E("skip").textContent = "Hint";
       checkLabel();
-      E("input").focus();
+      if (!cfg.noStartFocus || s.roundNo > 1 || s.ri > 0) E("input").focus();
     }
     function showAnswered(rec) {
       s.checked = true;
@@ -2315,7 +2315,7 @@ function gradePronoun(answer, p, cs) {
     amend: function (id, t, c) { amend({ id: id }, t, c); }
   };
   var pqd = makeDrill({
-    prefix: "pq", logName: "plural", view: "pq", area: "quiz", store: vocabStoreAdapter, unit: "noun", type: "P", scoreWord: "Plural", endName: "Back to Vocab",
+    prefix: "pq", logName: "plural", noStartFocus: true, view: "pq", area: "quiz", store: vocabStoreAdapter, unit: "noun", type: "P", scoreWord: "Plural", endName: "Back to Vocab",
     prompt: function (w, pr, hint, fresh) {
       pr.className = "prompt"; pr.textContent = w.g;
       hint.className = "hint big"; hint.textContent = "Plural of “" + w.e + "”";
