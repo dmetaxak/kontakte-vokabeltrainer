@@ -2524,10 +2524,7 @@ function gradePronoun(answer, p, cs) {
   }
   var speakTimer = null;
   var noteTimer = null;
-  /* iOS gives a page no way to read the ringer switch, and speech "starts" even when the switch mutes it,
-     so ask for a playback audio session (iOS 17+, ignores the switch where honoured) and show a one-time tip */
-  var IOS = /iP(hone|ad|od)/.test(navigator.userAgent || "") || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  var silentTipShown = false;
+  /* iOS mutes speech with the ringer switch and pages can't read the switch; a playback audio session (iOS 17+) plays through it */
   function playbackSession() { try { if (navigator.audioSession && navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback"; } catch (e) {} }
   function speakNote(msg) {
     var n = $("st-speaknote"); n.textContent = msg || ""; n.hidden = !msg;
@@ -2563,10 +2560,7 @@ function gradePronoun(answer, p, cs) {
     try { var pv = pickVoice(); if (pv && voiceRank(pv) >= 2) u.voice = pv; } catch (e) {}   // otherwise leave it unset so the system picks its own German voice
     keepUtt = u;                             // keep a reference so Safari does not drop the utterance (and its voice)
     var done = function () { if (speakingBtn === btn) { btn.setAttribute("data-on", "false"); speakingBtn = null; } };
-    u.onstart = function () {
-      started = true; clearTimeout(speakTimer);
-      if (IOS && !silentTipShown) { silentTipShown = true; speakNote("No sound? Check that the silent switch is off and the volume is up."); }
-    };
+    u.onstart = function () { started = true; clearTimeout(speakTimer); };
     u.onend = done;
     u.onerror = function (ev) { done(); if (ev && ev.error && ev.error !== "canceled" && ev.error !== "interrupted") speakNote("Speech failed (" + ev.error + "). Check the volume and the silent switch, and that a German voice is installed."); };
     speakingBtn = btn; btn.setAttribute("data-on", "true");
