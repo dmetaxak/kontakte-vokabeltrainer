@@ -134,7 +134,9 @@ button.small { min-height: 2rem; padding: 0.3rem 0.75rem; font-size: 0.85rem; }
 .verdict strong { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
 .verdict .ans { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--fg); overflow-wrap: anywhere; }
 .verdict .score { font-family: var(--font-mono); font-size: 0.85rem; color: var(--fg); }
-.verdict .ex { display: flex; flex-direction: column; gap: 0.1rem; border-top: 1px solid currentColor; padding-top: 0.5rem; margin-top: 0.15rem; }
+.verdict .ex { display: flex; align-items: flex-start; gap: 0.25rem; border-top: 1px solid currentColor; padding-top: 0.5rem; margin-top: 0.15rem; }
+.verdict .ex > div { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 0.1rem; }
+.verdict .ex button.speak { margin-top: -0.2rem; }
 .verdict .ex .de { font-family: var(--font-display); font-size: 1.05rem; color: var(--fg); overflow-wrap: anywhere; }
 .verdict .ex .en { font-size: 0.88rem; color: var(--muted); overflow-wrap: anywhere; }
 .verdict .meta { font-size: 0.88rem; color: var(--fg); overflow-wrap: anywhere; }
@@ -1189,7 +1191,9 @@ function gradePronoun(answer, p, cs) {
       var parts = w.x.split("|"), ex = document.createElement("div"); ex.className = "ex";
       var de = document.createElement("span"); de.className = "de"; de.textContent = parts[0];
       var en = document.createElement("span"); en.className = "en"; en.textContent = parts[1] || "";
-      ex.appendChild(de); ex.appendChild(en); box.appendChild(ex);
+      var txt = document.createElement("div"); txt.appendChild(de); txt.appendChild(en); ex.appendChild(txt);
+      if (CAN_SPEAK && parts[0]) ex.appendChild(speakBtn("Play the example sentence", function () { return parts[0]; }));   // played only on request, whatever the audio toggle says
+      box.appendChild(ex);
     }
     if (scoreText) { var sc = document.createElement("div"); sc.className = "score"; sc.textContent = scoreText; box.appendChild(sc); }
     if (w && overrideCb !== false) {
