@@ -2531,6 +2531,16 @@ function gradePronoun(answer, p, cs) {
   var speakTimer = null;
   var noteTimer = null;
   /* iOS mutes speech with the ringer switch and pages can't read the switch; a playback audio session (iOS 17+) plays through it */
+  /* iOS gives a page no way to read the silent switch, and speech "starts" even when the switch mutes it,
+     so on iPhone and iPad a reminder shows the first time audio plays in each session */
+  var IOS = /iP(hone|ad|od)/.test(navigator.userAgent || "") || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var SILENT_KEY = "kv-silent-tip", silentTipShown = false, tipUntil = 0;
+  try { silentTipShown = sessionStorage.getItem(SILENT_KEY) === "1"; } catch (e) {}
+  function silentTip() {
+    if (!IOS || silentTipShown) return;
+    silentTipShown = true; tipUntil = Date.now() + 8000; try { sessionStorage.setItem(SILENT_KEY, "1"); } catch (e) {}
+    speakNote("No sound? Silent mode mutes audio on the speaker. Turn the ringer on or use headphones.");
+  }
   function playbackSession() { try { if (navigator.audioSession && navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback"; } catch (e) {} }
   function speakNote(msg) {
     var n = $("st-speaknote"); n.textContent = msg || ""; n.hidden = !msg;
@@ -2579,7 +2589,7 @@ function gradePronoun(answer, p, cs) {
   function speak(text, btn) {
     if (!CAN_SPEAK) return;
     var synth = window.speechSynthesis, again = !!btn && speakingBtn === btn, tok = {}, auto = !btn;
-    clearTimeout(speakTimer); speakNote("");
+    clearTimeout(speakTimer); if (Date.now() > tipUntil) speakNote("");   // leave the silent-mode reminder up for its few seconds
     if (synth.speaking || synth.pending) synth.cancel();     // cancelling an idle engine can leave Safari silent
     if (speakingBtn) { speakingBtn.setAttribute("data-on", "false"); speakingBtn = null; }
     if (again) return;                       // a second tap stops it
@@ -2589,7 +2599,7 @@ function gradePronoun(answer, p, cs) {
     keepUtt = u;                             // keep a reference so Safari does not drop the utterance (and its voice)
     var done = function () { if (speakingTok === tok) { if (btn) btn.setAttribute("data-on", "false"); speakingBtn = null; speakingTok = null; } };
     var note = function (msg) { if (auto && autoWarned) return; if (auto) autoWarned = true; speakNote(msg); };   // automatic speech warns once
-    u.onstart = function () { started = true; clearTimeout(speakTimer); };
+    u.onstart = function () { started = true; clearTimeout(speakTimer); silentTip(); };
     u.onend = done;
     u.onerror = function (ev) { done(); if (ev && ev.error && ev.error !== "canceled" && ev.error !== "interrupted") note("Speech failed (" + ev.error + "). Check the volume and the silent switch, and that a German voice is installed."); };
     speakingBtn = btn; speakingTok = tok; if (btn) btn.setAttribute("data-on", "true");
