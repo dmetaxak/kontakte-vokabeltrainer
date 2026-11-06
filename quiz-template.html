@@ -2532,6 +2532,26 @@ function gradePronoun(answer, p, cs) {
   var noteTimer = null;
   /* iOS mutes speech with the ringer switch and pages can't read the switch; a playback audio session (iOS 17+) plays through it */
   function playbackSession() { try { if (navigator.audioSession && navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback"; } catch (e) {} }
+  /* iOS keeps speech on the speaker muted while the ringer is silenced, but not while an <audio> element plays.
+     Playing a short stretch of silence through one, inside the tap, moves the page to media playback, so speech
+     that follows comes out of the speaker too. Headphones were never affected. */
+  var silentEl = null;
+  function silentWav() {
+    var n = 4000, b = new Uint8Array(44 + n), d = new DataView(b.buffer), i;   // 0.5 s of 8 kHz, 8-bit mono silence
+    function str(o, t) { for (var k = 0; k < t.length; k++) b[o + k] = t.charCodeAt(k); }
+    str(0, "RIFF"); d.setUint32(4, 36 + n, true); str(8, "WAVEfmt "); d.setUint32(16, 16, true); d.setUint16(20, 1, true); d.setUint16(22, 1, true);
+    d.setUint32(24, 8000, true); d.setUint32(28, 8000, true); d.setUint16(32, 1, true); d.setUint16(34, 8, true); str(36, "data"); d.setUint32(40, n, true);
+    for (i = 44; i < b.length; i++) b[i] = 128;
+    var bin = ""; for (i = 0; i < b.length; i++) bin += String.fromCharCode(b[i]);
+    return "data:audio/wav;base64," + btoa(bin);
+  }
+  function mediaUnlock() {
+    try {
+      if (!silentEl) { silentEl = new Audio(silentWav()); silentEl.setAttribute("playsinline", ""); silentEl.preload = "auto"; }
+      silentEl.currentTime = 0;
+      var pr = silentEl.play(); if (pr && pr.catch) pr.catch(function () {});
+    } catch (e) {}
+  }
   function speakNote(msg) {
     var n = $("st-speaknote"); n.textContent = msg || ""; n.hidden = !msg;
     clearTimeout(noteTimer);
@@ -2593,7 +2613,7 @@ function gradePronoun(answer, p, cs) {
     u.onend = done;
     u.onerror = function (ev) { done(); if (ev && ev.error && ev.error !== "canceled" && ev.error !== "interrupted") note("Speech failed (" + ev.error + "). Check the volume and the silent switch, and that a German voice is installed."); };
     speakingBtn = btn; speakingTok = tok; if (btn) btn.setAttribute("data-on", "true");
-    playbackSession();
+    playbackSession(); mediaUnlock();
     try { synth.resume(); } catch (e2) {}
     synth.speak(u);
     speakTimer = setTimeout(function () {    // nothing started: say so instead of failing quietly
