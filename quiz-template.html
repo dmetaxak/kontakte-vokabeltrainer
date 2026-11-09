@@ -2534,6 +2534,8 @@ function gradePronoun(answer, p, cs) {
   /* iOS gives a page no way to read the silent switch, and speech "starts" even when the switch mutes it,
      so on iPhone and iPad a reminder shows the first time audio plays in each session */
   var IOS = /iP(hone|ad|od)/.test(navigator.userAgent || "") || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  /* the Claude desktop app's built-in browser queues speech but never plays it (checked Nov 2026), so say so plainly */
+  var CLAUDE_APP = /\bClaude\/\d/.test(navigator.userAgent || "");
   var SILENT_KEY = "kv-silent-tip", silentTipShown = false, tipUntil = 0;
   try { silentTipShown = sessionStorage.getItem(SILENT_KEY) === "1"; } catch (e) {}
   function silentTip() {
@@ -2607,7 +2609,8 @@ function gradePronoun(answer, p, cs) {
     try { synth.resume(); } catch (e2) {}
     synth.speak(u);
     speakTimer = setTimeout(function () {    // nothing started: say so instead of failing quietly
-      if (!started && speakingTok === tok) { note("No sound started. Turn off the silent switch, raise the volume, and make sure a German voice is installed (Settings, Accessibility, Spoken Content, Voices)."); done(); try { synth.cancel(); } catch (e3) {} }
+      if (!started && speakingTok === tok) { note(CLAUDE_APP ? "The Claude desktop app can't play speech. To hear the words, open KV Trainer in Chrome or Safari, or on your phone."
+        : "No sound started. Turn off the silent switch, raise the volume, and make sure a German voice is installed (Settings, Accessibility, Spoken Content, Voices)."); done(); try { synth.cancel(); } catch (e3) {} }
     }, 2500);
   }
   function speakBtn(label, getText) {
