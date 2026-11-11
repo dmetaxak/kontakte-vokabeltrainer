@@ -197,6 +197,13 @@ button.sthead { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1
 .stx { padding: 0 0.1rem 0.75rem; font-size: 0.95rem; line-height: 1.4; display: flex; flex-direction: column; gap: 0.15rem; }
 .stx .xen { color: var(--muted); font-style: italic; }
 .stx .xtag { font-size: 0.78rem; color: var(--muted); }
+.stmarks { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.4rem; }
+.stmarks button { padding: 0.35rem 0.7rem; min-height: 2rem; font-size: 0.85rem; }
+.stmarks button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.sthead .stmk { display: inline-block; margin-left: 0.4rem; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 0.3rem; padding: 0 0.3rem; vertical-align: middle; }
+.strow[data-mark="s"] .sthead .stde, .strow[data-mark="s"] .sthead .sten { opacity: 0.5; text-decoration: line-through; }
+.stfilter button { flex: 1 1 0; padding: 0.4rem 0.6rem; min-height: 2.25rem; font-size: 0.88rem; }
+.override.marks { margin-top: 0.35rem; }
 ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.92rem; }
 </style>
 
@@ -367,7 +374,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
   <div id="v-study" class="stack" hidden>
     <section class="panel" aria-label="Study list">
       <h2>Study list</h2>
-      <p class="muted">All the vocabulary, chapter by chapter. Tap a word for its example sentence. Nothing here counts toward your scores.</p>
+      <p class="muted">All the vocabulary, chapter by chapter. Tap a word for its example sentence, or to mark it as known (it counts as mastered without the warm-up answers) or skip it (it leaves every vocab drill). Nothing else here counts toward your scores.</p>
       <fieldset>
         <legend>Chapters</legend>
         <div class="seg" id="stseg-ch"></div>
@@ -375,6 +382,11 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
       <div class="stctl">
         <input type="text" id="st-search" placeholder="Search German or English" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Search the study list">
         <button type="button" class="ghost small" id="st-expand">Expand all</button>
+      </div>
+      <div class="segbtns stfilter" id="st-filter" role="group" aria-label="Show">
+        <button type="button" data-f="" aria-pressed="true">All</button>
+        <button type="button" data-f="k" aria-pressed="false">Known</button>
+        <button type="button" data-f="s" aria-pressed="false">Skipped</button>
       </div>
       <div class="stcount" id="st-count"></div>
       <div class="muted" id="st-speaknote" role="status" hidden style="color: var(--bad); font-size: 0.85rem;"></div>
@@ -496,7 +508,8 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
 //PURE_START
 var WEIGHT = { R: 1.0, P: 1.25, U: 1.5, G: 0.3 }, DECAY = 0.85, HIST = 12, CONF = 5;
 
-function scoreOf(h, attempts) {
+/* known = the learner marked the word as already known: no five-answer warm-up, and with no answers yet it counts as 100 */
+function scoreOf(h, attempts, known) {
   var toks = h ? h.split(" ").filter(Boolean) : [];
   var num = 0, den = 0;
   for (var age = 0; age < toks.length; age++) {
@@ -505,8 +518,8 @@ function scoreOf(h, attempts) {
     num += w * parseFloat(tok.slice(1));
     den += w;
   }
-  if (den === 0) return 0;
-  return Math.round(100 * (num / den) * Math.min(1, attempts / CONF));
+  if (den === 0) return known ? 100 : 0;
+  return Math.round(100 * (num / den) * (known ? 1 : Math.min(1, attempts / CONF)));
 }
 /* gentle time decay: no change for GRACE days, then the score halves every HALF days */
 /* offline sync: a word's server record plus the answers still waiting to be sent */
@@ -562,8 +575,8 @@ function shuffleWith(a, rnd) {
   for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(rnd() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
   return a;
 }
-function bandOf(attempts, score) {
-  return attempts === 0 ? "new" : score < 40 ? "learning" : score < 80 ? "familiar" : "mastered";
+function bandOf(attempts, score, known) {
+  return attempts === 0 && !known ? "new" : score < 40 ? "learning" : score < 80 ? "familiar" : "mastered";
 }
 function fold(s) {
   return s.toLowerCase().replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ß/g, "ss")
@@ -830,6 +843,16 @@ function gradePronoun(answer, p, cs) {
   if (a.length >= 3 && lev(a, want) <= 1) return { credit: 0.5, note: "Check the spelling." };
   return { credit: 0, note: "" };
 }
+/* word marks: id -> {m: "k" known | "s" skipped | "" none, t: ISO time set}. The newer mark wins */
+function mergeMarks(local, remote) {
+  var out = {};
+  Object.keys(local || {}).forEach(function (k) { out[k] = local[k]; });
+  Object.keys(remote || {}).forEach(function (k) {
+    var r = remote[k]; if (!r || typeof r.t !== "string") return;
+    if (!out[k] || !(out[k].t >= r.t)) out[k] = { m: r.m === "k" || r.m === "s" ? r.m : "", t: r.t };
+  });
+  return out;
+}
 //PURE_END
 
 /* ---------- app ---------- */
@@ -888,9 +911,13 @@ function gradePronoun(answer, p, cs) {
   function entry(id) {
     var w = byId[id], e = prog[id];
     if (w && w.plid && prog[w.plid]) e = mergeEntries(e, prog[w.plid]);
-    return e || { a: 0, c: 0, l: "", h: "" };
+    e = e || { a: 0, c: 0, l: "", h: "" };
+    if (w && mstore.get(id) === "k") e = { a: e.a, c: e.c, l: e.l, h: e.h, k: true };
+    return e;
   }
-  function scoreNow(e) { return Math.round(scoreOf(e.h, e.a) * decayFactor(e.l, today())); }
+  function scoreNow(e) { return Math.round(scoreOf(e.h, e.a, e.k) * decayFactor(e.l, today())); }
+  function isSkipped(w) { return mstore.get(w.id) === "s"; }
+  function isKnown(w) { return mstore.get(w.id) === "k"; }
   function scoreFor(id) { return scoreNow(entry(id)); }
 
   /* ----- persistence: answers are saved on this device first and sent to the account when a connection is available ----- */
@@ -941,7 +968,7 @@ function gradePronoun(answer, p, cs) {
     prog[w.id] = applyPending(remote[w.id], p);
     saveLocal(); setStatus(syncing ? "syncing" : "idle"); scheduleSync();
     var ne = entry(w.id);
-    return { old: old, now: scoreOf(ne.h, ne.a) };
+    return { old: old, now: scoreOf(ne.h, ne.a, ne.k) };
   }
   function amend(w, type, credit) { // replace the newest answer after a manual override
     var tok = type + String(credit);
@@ -1012,8 +1039,8 @@ function gradePronoun(answer, p, cs) {
     if (syncAgain || (ref && pendingCount())) { syncAgain = false; scheduleSync(1500); }
   }
 
-  function needsSync() { return pendingCount() || mlog.dirtyCount() || dstore.dirtyCount() || vstore.pendingCount() || gstore.pendingCount() || !ref || !vstore.st.ref || !gstore.st.ref; }
-  function syncAll(manual) { return Promise.all([syncNow(manual), vstore.sync(manual), gstore.sync(manual), mlog.flush(), dstore.sync()]); }
+  function needsSync() { return pendingCount() || mlog.dirtyCount() || dstore.dirtyCount() || mstore.dirtyCount() || vstore.pendingCount() || gstore.pendingCount() || !ref || !vstore.st.ref || !gstore.st.ref; }
+  function syncAll(manual) { return Promise.all([syncNow(manual), vstore.sync(manual), gstore.sync(manual), mlog.flush(), dstore.sync(), mstore.sync()]); }
   async function init() {
     buildHome();
     loadLocal(); rebuildProg();
@@ -1103,7 +1130,7 @@ function gradePronoun(answer, p, cs) {
   }
   function scoreLine(id, from) {
     var e = entry(id), to = scoreNow(e);
-    return "Word score " + from + " to " + to + " (" + bandOf(e.a, to) + ")";
+    return "Word score " + from + " to " + to + " (" + bandOf(e.a, to, e.k) + ")";
   }
   function updateMastery() {
     var el = $("q-mastery"); if (!session) { el.textContent = ""; return; }
@@ -1112,7 +1139,7 @@ function gradePronoun(answer, p, cs) {
   }
   function summaryStats(words) {
     var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
-    words.forEach(function (w) { var e = entry(w.id), s = scoreNow(e); counts[bandOf(e.a, s)]++; sum += s; });
+    words.forEach(function (w) { var e = entry(w.id), s = scoreNow(e); counts[bandOf(e.a, s, e.k)]++; sum += s; });
     return { counts: counts, avg: words.length ? Math.round(sum / words.length) : 0 };
   }
   function fillStats(el, words) {
@@ -1160,7 +1187,7 @@ function gradePronoun(answer, p, cs) {
       fillGenderStats($("home-stats"), gp);
       return;
     }
-    var scope = WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0; });
+    var scope = WORDS.filter(function (w) { return !isSkipped(w) && chs.indexOf(w.c) >= 0; });
     $("start").disabled = scope.length === 0;
     fillStats($("home-stats"), scope);
   }
@@ -1215,11 +1242,11 @@ function gradePronoun(answer, p, cs) {
     if (mode === "gn") { gStart(); return; }
     if (mode === "pl") { pStart(); return; }
     var chs = chaptersOf("seg-ch");
-    var scope = WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0; });
+    var scope = WORDS.filter(function (w) { return !isSkipped(w) && chs.indexOf(w.c) >= 0; });
     if (!scope.length) return;
     if (mode === "su") { startSentences(null, scope, null); return; }
     session = {
-      mode: mode, scope: scope, queue: pickWords(scope, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e)); }, QUIZ_SIZE), round: [], roundNo: 0, prevSet: null,
+      mode: mode, scope: scope, queue: pickWords(scope, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e), e.k); }, QUIZ_SIZE), round: [], roundNo: 0, prevSet: null,
       ri: 0, answered: 0, firstTry: 0, firstTryCredit: 0, retriesById: {}, answeredIds: {}, changes: {},
       current: null, roundCredit: 0, recs: [], checked: false, forms: {}, keepForm: {}
     };
@@ -1275,6 +1302,7 @@ function gradePronoun(answer, p, cs) {
   function renderVerdict(rec) {
     var fb = $("q-feedback"); fb.textContent = "";
     var vb = verdictBox(rec.credit, rec.answerText, rec.meta, rec.f, rec.type, scoreLine(rec.w.id, rec.scoreFrom));
+    vb.appendChild(markRow(rec));
     fb.appendChild(vb);
     session.onOverride = function (c) { overrideRec(rec, c); };
   }
@@ -1323,8 +1351,35 @@ function gradePronoun(answer, p, cs) {
     applyOutcome(w, c);
     renderVerdict(rec);
   }
+  /* "I know this" (shown after a correct answer) and "Skip for good": the word leaves this quiz either way */
+  function markRow(rec) {
+    var w = rec.w, m = mstore.get(w.id), o = document.createElement("div"); o.className = "override marks";
+    function btn(label, fn) { var b = document.createElement("button"); b.type = "button"; b.className = "ghost"; b.textContent = label; b.addEventListener("click", fn); o.appendChild(b); }
+    if (m) {
+      o.appendChild(document.createTextNode(m === "k" ? "Marked as known." : "Skipped: it won't come up again."));
+      btn("Undo", function () { quizMark(rec, ""); });
+    } else {
+      if (rec.credit === 1) btn("I know this word", function () { quizMark(rec, "k"); });
+      btn("Skip this word for good", function () { quizMark(rec, "s"); });
+    }
+    return o;
+  }
+  function quizMark(rec, m) {
+    var s = session, w = rec.w;
+    mstore.set(w.id, m);
+    if (m) {
+      var idx = s.queue.indexOf(w); if (idx >= 0) s.queue.splice(idx, 1);
+      if (m === "s") { delete s.retriesById[w.id]; delete s.changes[w.id]; }
+      $("q-left").textContent = s.queue.length ? s.queue.length + " for the next round" : "";
+    } else if (rec.credit < 1) applyOutcome(w, rec.credit);   // undo: a missed word goes back into the next round
+    if (s.changes[w.id]) s.changes[w.id].to = scoreFor(w.id);
+    if (m !== "s") s.scope = s.scope.indexOf(w) < 0 ? s.scope.concat([w]) : s.scope;
+    else s.scope = s.scope.filter(function (x) { return x !== w; });
+    updateMastery(); renderVerdict(rec);
+  }
   function applyOutcome(w, credit) {
     var s = session, idx = s.queue.indexOf(w);
+    if (isSkipped(w)) { if (idx >= 0) s.queue.splice(idx, 1); return; }   // a skipped word never comes back
     if (credit === 1) { if (idx >= 0) s.queue.splice(idx, 1); delete s.keepForm[w.id]; }
     else {
       if (idx < 0) s.queue.push(w);
@@ -1491,7 +1546,7 @@ function gradePronoun(answer, p, cs) {
   /* ----- vocab progress report ----- */
   function renderReport() {
     var chs = chaptersOf("seg-ch");
-    var words = WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0; });
+    var words = WORDS.filter(function (w) { return !isSkipped(w) && chs.indexOf(w.c) >= 0; });
     fillChart($("rep-chart"), words);
     var high = repHigh;
     $("rep-low").setAttribute("aria-pressed", high ? "false" : "true");
@@ -1509,7 +1564,8 @@ function gradePronoun(answer, p, cs) {
       });
       tb.appendChild(tr);
     });
-    $("rep-note").textContent = "Progress is saved on this device first and syncs to your account when you are online.";
+    var skipped = mstore.count("s", WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0; }));
+    $("rep-note").textContent = (skipped ? skipped + (skipped === 1 ? " word" : " words") + " in these chapters skipped (see the Study tab). " : "") + "Progress is saved on this device first and syncs to your account when you are online.";
   }
 
   /* ----- verbs: progress lives in its own account document and its own device cache ----- */
@@ -1734,6 +1790,62 @@ function gradePronoun(answer, p, cs) {
     }
     return { mark: mark, sync: sync, render: render, tipText: tipText, dirtyCount: dirtyCount, info: info, st: st };
   })();
+  /* word marks: words marked known (no warm-up needed) or skipped (left out of every vocab drill), by word id */
+  var mstore = (function () {
+    var LS = "kv-marks-v1", st = { marks: {}, dirty: {}, ref: null, busy: false, uid: "", timer: null, ver: 0 };
+    try {
+      var d0 = JSON.parse(localStorage.getItem(LS) || "null");
+      if (d0 && d0.marks) { st.marks = d0.marks; st.dirty = d0.dirty || {}; st.uid = d0.uid || ""; }
+    } catch (e) { /* ignore a damaged cache */ }
+    function save() { try { localStorage.setItem(LS, JSON.stringify({ uid: st.uid, marks: st.marks, dirty: st.dirty })); } catch (e) { /* storage may be blocked */ } }
+    function dirtyCount() { return Object.keys(st.dirty).length; }
+    function get(id) { var m = st.marks[id]; return m ? m.m : ""; }
+    function count(m, words) { var n = 0; words.forEach(function (w) { if (get(w.id) === m) n++; }); return n; }
+    function schedule(ms) {
+      if (st.timer) clearTimeout(st.timer);
+      st.timer = setTimeout(function () { st.timer = null; sync(); }, ms == null ? 2000 : ms);
+    }
+    function set(id, m) {
+      if (get(id) === m) return;
+      st.marks[id] = { m: m, t: new Date().toISOString() }; st.dirty[id] = ++st.ver; save(); schedule();
+    }
+    async function sync() {
+      if (st.busy) return;
+      st.busy = true;
+      try {
+        if (!st.ref) {
+          var db = await withTimeout(claude.use("db"), 8000), user = await withTimeout(claude.use("user"), 8000);
+          var uid = user ? await withTimeout(user.id(), 8000) : null;
+          if (!db || !uid) throw new Error("offline");
+          if (st.uid && st.uid !== uid) { st.marks = {}; st.dirty = {}; }
+          st.uid = uid; st.ref = db.collection("data/users/" + uid).doc("marks");
+        }
+        var snap = await withTimeout(st.ref.get(), 10000);
+        var remote = snap.exists && snap.data() && snap.data().words ? clone(snap.data().words) : {};
+        if (!snap.exists) await withTimeout(st.ref.set({ words: {} }), 10000);
+        var before = JSON.stringify(st.marks);
+        st.marks = mergeMarks(st.marks, remote);
+        var sent = {}, patch = { words: {} };
+        Object.keys(st.dirty).forEach(function (k) {
+          var r = remote[k];
+          if (st.marks[k] && !(r && r.t >= st.marks[k].t)) { sent[k] = st.dirty[k]; patch.words[k] = st.marks[k]; }
+          else delete st.dirty[k];   // the server already has this mark or a newer one
+        });
+        if (Object.keys(patch.words).length) await withTimeout(st.ref.update(patch), 15000);
+        Object.keys(sent).forEach(function (k) { if (st.dirty[k] === sent[k]) delete st.dirty[k]; });
+        save();
+        if (JSON.stringify(st.marks) !== before) marksChanged();
+      } catch (e) { st.ref = null; }
+      st.busy = false;
+      if (dirtyCount() && st.ref) schedule(1500);
+    }
+    return { get: get, set: set, count: count, sync: sync, dirtyCount: dirtyCount };
+  })();
+  /* another device changed a mark: redraw whatever is on screen */
+  function marksChanged() {
+    if (!$("v-study").hidden) stRender();
+    else if (!session && !sent) refreshHome();
+  }
   /* rec.lo keeps what was shown and expected, so a later override can still be logged */
   function logAnswer(rec, d, o) {
     rec.lo = o; rec.ld = d; rec.lk = null;
@@ -1764,7 +1876,7 @@ function gradePronoun(answer, p, cs) {
   }
   function vStats(pool, skill) {
     var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
-    pool.forEach(function (v) { var e = vEntry(v, skill), s = scoreNow(e); counts[bandOf(e.a, s)]++; sum += s; });
+    pool.forEach(function (v) { var e = vEntry(v, skill), s = scoreNow(e); counts[bandOf(e.a, s, e.k)]++; sum += s; });
     return { counts: counts, avg: pool.length ? Math.round(sum / pool.length) : 0 };
   }
   function vAcc(e) {
@@ -1844,13 +1956,13 @@ function gradePronoun(answer, p, cs) {
   }
   function vScoreLine(id, from) {
     var e = vstore.entry(id), to = scoreNow(e);
-    return "Verb score " + from + " to " + to + " (" + bandOf(e.a, to) + ")";
+    return "Verb score " + from + " to " + to + " (" + bandOf(e.a, to, e.k) + ")";
   }
   function vStart() {
     var skill = vSkill(vmode), pool = vPool(vmode, chaptersOf("vseg-ch"));
     if (!pool.length) return;
     var mode = vmode;
-    var picked = pickWords(pool, function (v) { var e = vEntry(v, skill); return bandOf(e.a, scoreNow(e)); }, VQ_SIZE);
+    var picked = pickWords(pool, function (v) { var e = vEntry(v, skill); return bandOf(e.a, scoreNow(e), e.k); }, VQ_SIZE);
     vq = { mode: mode, skill: skill, pool: pool, queue: picked.map(function (v) { return vMakeItem(v, mode); }), round: [], roundNo: 0,
       ri: 0, answered: 0, firstTry: 0, firstTryCredit: 0, retries: {}, labels: {}, answeredIds: {}, changes: {}, recs: [], checked: false, view: "vq", onOverride: null };
     vNextRound();
@@ -2023,10 +2135,10 @@ function gradePronoun(answer, p, cs) {
   function gIsGendered(w) { return !w.pl && w.p.indexOf("noun") === 0 && /^(der|die|das) [^\/]+$/.test(w.g) && w.f !== "plural only"; }
   function gArt(w) { return w.g.split(" ")[0]; }
   function gBare(w) { return w.g.replace(/^(der|die|das) /, ""); }
-  function gPool(chs) { return WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0 && gIsGendered(w); }); }
+  function gPool(chs) { return WORDS.filter(function (w) { return !isSkipped(w) && chs.indexOf(w.c) >= 0 && gIsGendered(w); }); }
   function gStats(pool) {
     var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
-    pool.forEach(function (w) { var e = entry(w.id), s = scoreNow(e); counts[bandOf(e.a, s)]++; sum += s; });
+    pool.forEach(function (w) { var e = entry(w.id), s = scoreNow(e); counts[bandOf(e.a, s, e.k)]++; sum += s; });
     return { counts: counts, avg: pool.length ? Math.round(sum / pool.length) : 0 };
   }
   function fillGenderStats(el, pool) {
@@ -2041,7 +2153,7 @@ function gradePronoun(answer, p, cs) {
   function gStart() {
     var pool = gPool(chaptersOf("seg-ch"));
     if (!pool.length) return;
-    var picked = pickWords(pool, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e)); }, GQ_SIZE);
+    var picked = pickWords(pool, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e), e.k); }, GQ_SIZE);
     gq = { queue: picked.slice(), round: [], roundNo: 0, ri: 0, answered: 0, firstTry: 0, firstTryCredit: 0, retries: {}, labels: {}, answeredIds: {},
       changes: {}, recs: [], checked: false, view: "gq", finished: false };
     gNextRound();
@@ -2103,7 +2215,7 @@ function gradePronoun(answer, p, cs) {
     var fb = $("gq-feedback"); fb.textContent = "";
     var e = entry(rec.w.id), now = scoreNow(e);
     var gvb = verdictBox(rec.credit, rec.w.g, rec.w.f ? "Plural: " + rec.w.f : "", rec.w, "R",
-      "Noun score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now) + ")", false);
+      "Noun score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now, e.k) + ")", false);
     fb.appendChild(gvb);
     $("gq-next").hidden = false; $("gq-next").focus();
   }
@@ -2192,7 +2304,7 @@ function gradePronoun(answer, p, cs) {
       var fb = E("feedback"); fb.textContent = "";
       var e = cfg.store.entry(rec.it.id), now = scoreNow(e);
       var vbox = verdictBox(rec.credit, rec.answerText, rec.meta, { x: rec.ex }, cfg.type,
-        cfg.scoreWord + " score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now) + ")", function (c) { override(rec, c); });
+        cfg.scoreWord + " score " + rec.scoreFrom + " to " + now + " (" + bandOf(e.a, now, e.k) + ")", function (c) { override(rec, c); });
       fb.appendChild(vbox);
     }
     function checkLabel() { // with a hint button, the Check button reads Skip until something is typed
@@ -2297,10 +2409,10 @@ function gradePronoun(answer, p, cs) {
 
   /* ----- vocab: plural drill (singular in, plural out) ----- */
   var PQ_SIZE = 20;
-  function pPool(chs) { return WORDS.filter(function (w) { return w.pf && chs.indexOf(w.c) >= 0; }); }
+  function pPool(chs) { return WORDS.filter(function (w) { return w.pf && !isSkipped(w) && chs.indexOf(w.c) >= 0; }); }
   function fillPluralStats(el, pool) {
     var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
-    pool.forEach(function (w) { var e = entry(w.id), sc = scoreNow(e); counts[bandOf(e.a, sc)]++; sum += sc; });
+    pool.forEach(function (w) { var e = entry(w.id), sc = scoreNow(e); counts[bandOf(e.a, sc, e.k)]++; sum += sc; });
     el.textContent = "";
     el.appendChild(stat("Plurals", pool.length));
     el.appendChild(stat("New", counts["new"]));
@@ -2332,7 +2444,7 @@ function gradePronoun(answer, p, cs) {
   function pStart() {
     var pool = pPool(chaptersOf("seg-ch"));
     if (!pool.length) return;
-    pqd.start(pickWords(pool, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e)); }, PQ_SIZE));
+    pqd.start(pickWords(pool, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e), e.k); }, PQ_SIZE));
   }
 
   /* ----- grammar: accusative, fill in the blank ----- */
@@ -2355,7 +2467,7 @@ function gradePronoun(answer, p, cs) {
   function aAggKey(a) { return a.cs === "acc" ? "ac:acc-" + a.g : "ac:nom"; }
   function aStats(pool) {
     var counts = { "new": 0, learning: 0, familiar: 0, mastered: 0 }, sum = 0;
-    pool.forEach(function (a) { var e = gstore.entry(a.id), s = scoreNow(e); counts[bandOf(e.a, s)]++; sum += s; });
+    pool.forEach(function (a) { var e = gstore.entry(a.id), s = scoreNow(e); counts[bandOf(e.a, s, e.k)]++; sum += s; });
     return { counts: counts, avg: pool.length ? Math.round(sum / pool.length) : 0 };
   }
   var gmode = "case", gLast = "aq";
@@ -2487,12 +2599,12 @@ function gradePronoun(answer, p, cs) {
     if (gmode === "pron") {
       var pp = pnPool(); if (!pp.length) return;
       gLast = "pn";
-      return pnd.start(pickWords(pp, function (a) { var e = gstore.entry(a.id); return bandOf(e.a, scoreNow(e)); }, AQ_SIZE));
+      return pnd.start(pickWords(pp, function (a) { var e = gstore.entry(a.id); return bandOf(e.a, scoreNow(e), e.k); }, AQ_SIZE));
     }
     gLast = "aq";
     var pool = aPool();
     if (!pool.length) return;
-    var picked = pickWords(pool, function (a) { var e = gstore.entry(a.id); return bandOf(e.a, scoreNow(e)); }, AQ_SIZE);
+    var picked = pickWords(pool, function (a) { var e = gstore.entry(a.id); return bandOf(e.a, scoreNow(e), e.k); }, AQ_SIZE);
     aqd.start(picked);
   }
 
@@ -2634,6 +2746,7 @@ function gradePronoun(answer, p, cs) {
       fs.textContent = /^die /.test(f) ? "pl. " + f.slice(4) : f; de.appendChild(fs);
     } else if (f === "plural only") { var fp = document.createElement("span"); fp.className = "stf"; fp.textContent = "plural only"; de.appendChild(fp); }
     var en = document.createElement("span"); en.className = "sten"; en.textContent = w.e;
+    var mk = document.createElement("span"); mk.className = "stmk"; en.appendChild(mk);
     var ch = document.createElement("span"); ch.className = "stchev"; ch.setAttribute("aria-hidden", "true"); ch.textContent = "\u25B8";
     b.appendChild(de); b.appendChild(en); b.appendChild(ch);
     var x = document.createElement("div"); x.className = "stx"; x.hidden = true;
@@ -2647,12 +2760,33 @@ function gradePronoun(answer, p, cs) {
     var tags = (w.n || "").split(";").slice(1).map(function (s) { return s.trim(); }).filter(Boolean);
     if (w.p && w.p !== "noun") tags.unshift(w.p);
     if (tags.length) { var tg = document.createElement("div"); tg.className = "xtag"; tg.textContent = tags.join(" · "); x.appendChild(tg); }
+    var mb = document.createElement("div"); mb.className = "stmarks";
+    var bk = document.createElement("button"), bs = document.createElement("button");
+    [bk, bs].forEach(function (z) { z.type = "button"; z.className = "ghost"; mb.appendChild(z); });
+    function paint() {
+      var m = mstore.get(w.id);
+      row.setAttribute("data-mark", m);
+      mk.textContent = m === "k" ? "known" : m === "s" ? "skipped" : ""; mk.hidden = !m;
+      bk.textContent = m === "k" ? "Known ✓" : "Mark as known"; bk.setAttribute("aria-pressed", m === "k" ? "true" : "false");
+      bs.textContent = m === "s" ? "Skipped ✓" : "Skip this word"; bs.setAttribute("aria-pressed", m === "s" ? "true" : "false");
+    }
+    bk.addEventListener("click", function () { mstore.set(w.id, mstore.get(w.id) === "k" ? "" : "k"); paint(); stCount(); });
+    bs.addEventListener("click", function () { mstore.set(w.id, mstore.get(w.id) === "s" ? "" : "s"); paint(); stCount(); });
+    x.appendChild(mb); paint();
     b.addEventListener("click", function () { var o = b.getAttribute("aria-expanded") !== "true"; b.setAttribute("aria-expanded", o ? "true" : "false"); x.hidden = !o; });
     row.appendChild(b);
     if (CAN_SPEAK) row.appendChild(speakBtn("Speak " + w.g, function () { return w.g; }));
     row.appendChild(x);
     return row;
   }
+  var stFilter = "";
+  function stCount() {
+    var chs = chaptersOf("stseg-ch"), inCh = STUDY.filter(function (w) { return chs.indexOf(w.c) >= 0; });
+    var k = mstore.count("k", inCh), s = mstore.count("s", inCh), extra = [];
+    if (k) extra.push(k + " known"); if (s) extra.push(s + " skipped");
+    $("st-count").textContent = stShown + (stShown === 1 ? " word" : " words") + (extra.length ? " · in these chapters: " + extra.join(", ") : "");
+  }
+  var stShown = 0;
   function stRender() {
     var chs = chaptersOf("stseg-ch"), q = fold($("st-search").value || ""), list = $("st-list"), n = 0;
     if (CAN_SPEAK) { try { window.speechSynthesis.cancel(); } catch (e) {} speakingBtn = null; clearTimeout(speakTimer); speakNote(""); }
@@ -2661,7 +2795,7 @@ function gradePronoun(answer, p, cs) {
     order.sort(function (a, b) { var na = /^\d+$/.test(a), nb = /^\d+$/.test(b); return na === nb ? (na ? a - b : a.localeCompare(b)) : (na ? 1 : -1); });
     order.forEach(function (c) {
       if (chs.indexOf(c) < 0) return;
-      var ws = STUDY.filter(function (w) { return w.c === c && (!q || fold(w.g + " " + w.e).indexOf(q) >= 0); });
+      var ws = STUDY.filter(function (w) { return w.c === c && (!stFilter || mstore.get(w.id) === stFilter) && (!q || fold(w.g + " " + w.e).indexOf(q) >= 0); });
       if (!ws.length) return;
       var h = document.createElement("h2"); if (/^\d+$/.test(c)) h.textContent = "Kapitel " + c; else stHeading(h, "Einführung " + c, "Introduction " + c); list.appendChild(h);
       var lastSub = null;
@@ -2671,14 +2805,21 @@ function gradePronoun(answer, p, cs) {
         list.appendChild(stRow(w)); n++;
       });
     });
-    if (!n) { var p = document.createElement("p"); p.className = "muted"; p.textContent = "No words match."; list.appendChild(p); }
-    $("st-count").textContent = n + (n === 1 ? " word" : " words");
+    if (!n) { var p = document.createElement("p"); p.className = "muted"; p.textContent = stFilter === "k" ? "No words marked as known in these chapters." : stFilter === "s" ? "No skipped words in these chapters." : "No words match."; list.appendChild(p); }
+    stShown = n; stCount();
   }
 
   /* ----- wiring ----- */
   initPromptSpeak();
   chapterBoxes("stseg-ch", stRender, STUDY);
   $("st-search").addEventListener("input", function () { stRender(); });
+  document.querySelectorAll("#st-filter button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      stFilter = b.getAttribute("data-f");
+      document.querySelectorAll("#st-filter button").forEach(function (z) { z.setAttribute("aria-pressed", z === b ? "true" : "false"); });
+      stRender();
+    });
+  });
   $("st-expand").addEventListener("click", function () {
     stOpenAll = !stOpenAll;
     document.querySelectorAll("#st-list .sthead").forEach(function (b) { b.setAttribute("aria-expanded", stOpenAll ? "true" : "false"); b.parentNode.querySelector(".stx").hidden = !stOpenAll; });
