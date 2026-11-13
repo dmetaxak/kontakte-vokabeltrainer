@@ -1362,7 +1362,7 @@ function mergeMarks(local, remote) {
       var st = document.createElement("span"); st.textContent = m === "k" ? "Marked as known. It counts as mastered and comes back only for occasional review." : "Perma-skipped. It won't come up in any vocab drill."; o.appendChild(st);
       btn("Undo", function () { quizMark(rec, ""); });
     } else {
-      if (rec.credit === 1) btn("I already know this word", function () { quizMark(rec, "k"); });
+      if (rec.credit === 1) btn("Mark as known", function () { quizMark(rec, "k"); });
       btn("Perma-skip", function () { quizMark(rec, "s"); });
     }
     return o;
