@@ -376,7 +376,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
   <div id="v-study" class="stack" hidden>
     <section class="panel" aria-label="Study list">
       <h2>Study list</h2>
-      <p class="muted">All the vocabulary, chapter by chapter. Tap a word for its example sentence, or to mark it as known (it counts as mastered without the warm-up answers) or skip it (it leaves every vocab drill). Nothing else here counts toward your scores.</p>
+      <p class="muted">All the vocabulary, chapter by chapter. Tap a word for its example sentence, or to mark it as known (it counts as mastered without the warm-up answers) or perma-skip it (it leaves every vocab drill). Nothing else here counts toward your scores.</p>
       <fieldset>
         <legend>Chapters</legend>
         <div class="seg" id="stseg-ch"></div>
@@ -388,7 +388,7 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
       <div class="segbtns stfilter" id="st-filter" role="group" aria-label="Show">
         <button type="button" data-f="" aria-pressed="true">All</button>
         <button type="button" data-f="k" aria-pressed="false">Known</button>
-        <button type="button" data-f="s" aria-pressed="false">Skipped</button>
+        <button type="button" data-f="s" aria-pressed="false">Perma-skipped</button>
       </div>
       <div class="stcount" id="st-count"></div>
       <div class="muted" id="st-speaknote" role="status" hidden style="color: var(--bad); font-size: 0.85rem;"></div>
@@ -1359,11 +1359,11 @@ function mergeMarks(local, remote) {
     var lab = document.createElement("span"); lab.className = "wmlab"; lab.textContent = "From now on:"; o.appendChild(lab);
     function btn(label, fn) { var b = document.createElement("button"); b.type = "button"; b.className = "ghost"; b.textContent = label; b.addEventListener("click", fn); o.appendChild(b); }
     if (m) {
-      var st = document.createElement("span"); st.textContent = m === "k" ? "Marked as known. It counts as mastered and comes back only for occasional review." : "Skipped. It won't come up in any vocab drill."; o.appendChild(st);
+      var st = document.createElement("span"); st.textContent = m === "k" ? "Marked as known. It counts as mastered and comes back only for occasional review." : "Perma-skipped. It won't come up in any vocab drill."; o.appendChild(st);
       btn("Undo", function () { quizMark(rec, ""); });
     } else {
       if (rec.credit === 1) btn("I already know this word", function () { quizMark(rec, "k"); });
-      btn("Skip this word forever", function () { quizMark(rec, "s"); });
+      btn("Perma-skip", function () { quizMark(rec, "s"); });
     }
     return o;
   }
@@ -1568,7 +1568,7 @@ function mergeMarks(local, remote) {
       tb.appendChild(tr);
     });
     var skipped = mstore.count("s", WORDS.filter(function (w) { return chs.indexOf(w.c) >= 0; }));
-    $("rep-note").textContent = (skipped ? skipped + (skipped === 1 ? " word" : " words") + " in these chapters skipped (see the Study tab). " : "") + "Progress is saved on this device first and syncs to your account when you are online.";
+    $("rep-note").textContent = (skipped ? skipped + (skipped === 1 ? " word" : " words") + " in these chapters perma-skipped (see the Study tab). " : "") + "Progress is saved on this device first and syncs to your account when you are online.";
   }
 
   /* ----- verbs: progress lives in its own account document and its own device cache ----- */
@@ -2769,9 +2769,9 @@ function mergeMarks(local, remote) {
     function paint() {
       var m = mstore.get(w.id);
       row.setAttribute("data-mark", m);
-      mk.textContent = m === "k" ? "known" : m === "s" ? "skipped" : ""; mk.hidden = !m;
+      mk.textContent = m === "k" ? "known" : m === "s" ? "perma-skipped" : ""; mk.hidden = !m;
       bk.textContent = m === "k" ? "Known ✓" : "Mark as known"; bk.setAttribute("aria-pressed", m === "k" ? "true" : "false");
-      bs.textContent = m === "s" ? "Skipped ✓" : "Skip this word"; bs.setAttribute("aria-pressed", m === "s" ? "true" : "false");
+      bs.textContent = m === "s" ? "Perma-skipped ✓" : "Perma-skip"; bs.setAttribute("aria-pressed", m === "s" ? "true" : "false");
     }
     bk.addEventListener("click", function () { mstore.set(w.id, mstore.get(w.id) === "k" ? "" : "k"); paint(); stCount(); });
     bs.addEventListener("click", function () { mstore.set(w.id, mstore.get(w.id) === "s" ? "" : "s"); paint(); stCount(); });
@@ -2786,7 +2786,7 @@ function mergeMarks(local, remote) {
   function stCount() {
     var chs = chaptersOf("stseg-ch"), inCh = STUDY.filter(function (w) { return chs.indexOf(w.c) >= 0; });
     var k = mstore.count("k", inCh), s = mstore.count("s", inCh), extra = [];
-    if (k) extra.push(k + " known"); if (s) extra.push(s + " skipped");
+    if (k) extra.push(k + " known"); if (s) extra.push(s + " perma-skipped");
     $("st-count").textContent = stShown + (stShown === 1 ? " word" : " words") + (extra.length ? " · in these chapters: " + extra.join(", ") : "");
   }
   var stShown = 0;
@@ -2808,7 +2808,7 @@ function mergeMarks(local, remote) {
         list.appendChild(stRow(w)); n++;
       });
     });
-    if (!n) { var p = document.createElement("p"); p.className = "muted"; p.textContent = stFilter === "k" ? "No words marked as known in these chapters." : stFilter === "s" ? "No skipped words in these chapters." : "No words match."; list.appendChild(p); }
+    if (!n) { var p = document.createElement("p"); p.className = "muted"; p.textContent = stFilter === "k" ? "No words marked as known in these chapters." : stFilter === "s" ? "No perma-skipped words in these chapters." : "No words match."; list.appendChild(p); }
     stShown = n; stCount();
   }
 
