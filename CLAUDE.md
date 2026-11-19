@@ -14,7 +14,7 @@ Work out which case you're in before doing anything:
 3. Publish `kontakte-vokabeltrainer.html` as the user's KV Trainer artifact:
    - **On first install**, create a new artifact titled "KV Trainer".
    - **On every update**, republish to the **same** artifact. Find it among the user's artifacts, or ask the user for its link. Never create a second artifact on an update, because each artifact keeps its own saved progress and a new one starts from zero.
-4. Make sure the artifact declares the **db**, **user** and **sample** capabilities. The page calls `claude.use("db")`, `claude.use("user")` and `claude.use("sample")`. db and user store and sync progress. sample gives feedback on the writing exercise.
+4. Make sure the artifact declares the **db** and **user** capabilities. The page calls `claude.use("db")` and `claude.use("user")`, which store and sync progress.
 5. Tell the user the date and title of the commit you built from (`git log -1 --format='%ci %s'`), and that they should reload the app page.
 
 Rules for a classmate's copy:

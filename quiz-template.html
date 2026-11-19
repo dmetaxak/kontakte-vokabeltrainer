@@ -121,7 +121,6 @@ button.streak[data-done="true"] svg { stroke: var(--flame); fill: var(--flame-fi
 .hint.big strong { font-weight: 800; }
 .hintbox { background: var(--tint, rgba(120,140,200,0.14)); border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.7rem 0.9rem; font-weight: 600; }
 input[type="text"], textarea { font: inherit; width: 100%; padding: 0.75rem 0.8rem; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--bg); color: var(--fg); min-height: 2.75rem; }
-textarea { min-height: 5.5rem; resize: vertical; }
 .row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .row > button { flex: 1 1 8rem; }
 .row > button.primary-wide { flex: 2 1 10rem; }
@@ -236,7 +235,6 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
     <div class="segbtns modes" id="seg-mode" role="group" aria-label="Quiz type">
       <button type="button" id="mode-ge" data-mode="ge" aria-pressed="true">German to English</button>
       <button type="button" id="mode-eg" data-mode="eg" aria-pressed="false">English to German</button>
-      <button type="button" id="mode-su" data-mode="su" aria-pressed="false">Write sentences</button>
       <button type="button" id="mode-gn" data-mode="gn" aria-pressed="false">Noun Genders</button>
       <button type="button" id="mode-pl" data-mode="pl" aria-pressed="false">Noun Plurals</button>
     </div>
@@ -283,22 +281,6 @@ ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: colum
     <div id="q-feedback" aria-live="polite"></div>
   </section>
 
-  <!-- SENTENCES -->
-  <section id="v-sent" class="panel" aria-label="Sentence practice" hidden>
-    <div class="qtop">
-      <button type="button" class="ghost small" id="s-back">Back</button>
-      <button type="button" class="ghost small" id="s-end">End practice</button>
-    </div>
-    <div class="qhead"><span id="s-count"></span><span id="s-note"></span></div>
-    <div class="prompt" id="s-prompt"></div>
-    <div class="hint" id="s-hint"></div>
-    <textarea id="s-input" aria-label="Your German sentence" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
-    <div class="row">
-      <button type="button" class="ghost" id="s-skip">Skip</button>
-      <button type="button" class="primary-wide" id="s-check">Check sentence</button>
-    </div>
-    <div id="s-feedback" aria-live="polite"></div>
-  </section>
 
   <!-- SUMMARY -->
   <section id="v-sum" class="panel" aria-label="Summary" hidden>
@@ -867,11 +849,6 @@ function mergeMarks(local, remote) {
   var SING = {}; ALL.forEach(function (w) { if (!w.pl) SING[w.g] = w; });
   ALL.forEach(function (w) { if (w.pl && SING[w.pl]) { SING[w.pl].pf = w; SING[w.pl].plid = w.id; w.base = SING[w.pl]; } });
   var WORDS = ALL.filter(function (w) { return !w.pl; });
-  /* what the learner knows, for the writing-feedback prompt: every word in the app, newest chapter last */
-  var KNOWN = (function () {
-    var nums = WORDS.map(function (w) { return w.c; }).filter(function (c) { return /^\d+$/.test(c); }).map(Number);
-    return { last: Math.max.apply(null, nums), words: WORDS.map(function (w) { return w.g; }).join(", ") };
-  })();
   var VERBS = (window.VERBS || []).map(function (v) { v.idpr = hashId("v|" + v.i + "|pr"); v.idpf = hashId("v|" + v.i + "|pf"); return v; });
   var byId = {};
   WORDS.forEach(function (w) { byId[w.id] = w; });
@@ -893,14 +870,14 @@ function mergeMarks(local, remote) {
   }
 
   var prog = {};            // id -> {a, c, l, h}
-  var ref = null, sample = null, canSave = false;
+  var ref = null, canSave = false;
   var remote = {};          // last known copy of the account's progress
   var pending = {};         // id -> {toks: answers not yet sent, fix: edit to the newest sent answer, l: date, inflight: count being sent}
   var syncing = false, syncAgain = false, syncTimer = null, lastSync = "", uidKnown = "", subscribed = false;
   var LS_KEY = "kv-sync-v1";
   var session = null;       // current quiz state
   var repHigh = false;      // progress table: false = lowest scores, true = highest
-  var views = ["home", "quiz", "sent", "sum", "verbs", "vq", "gram", "gq", "aq", "pn", "pq", "study"];
+  var views = ["home", "quiz", "sum", "verbs", "vq", "gram", "gq", "aq", "pn", "pq", "study"];
   function clone(x) { return JSON.parse(JSON.stringify(x)); } // database snapshots are frozen
   window.addEventListener("error", function (ev) { banner("Something went wrong: " + (ev && ev.message ? ev.message : "unknown error")); });
 
@@ -1002,7 +979,7 @@ function mergeMarks(local, remote) {
           if (s.metadata.hasPendingWrites || s.metadata.fromCache || !s.exists || syncing) return;
           var d = s.data(); if (!d || !d.words) return;
           remote = clone(d.words); rebuildProg(); saveLocal();
-          if (!session && !sent) refreshHome();
+          if (!session) refreshHome();
           setStatus("idle");
         }, function () { subscribed = false; });
       }
@@ -1033,7 +1010,7 @@ function mergeMarks(local, remote) {
         if (!p.toks.length && !p.fix) delete pending[id];
       });
       remote = server; lastSync = new Date().toISOString(); rebuildProg(); saveLocal();
-      if (!session && !sent) refreshHome();
+      if (!session) refreshHome();
       syncing = false; setStatus("idle");
     } catch (e) {
       ids.forEach(function (id) {
@@ -1080,9 +1057,6 @@ function mergeMarks(local, remote) {
     if (typeof document.addEventListener === "function") document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") dstore.render(); });
     refreshHome(); setStatus("idle");
     await syncAll();
-    try { sample = await withTimeout(claude.use("sample"), 8000); } catch (e) { sample = null; }
-    $("mode-su").hidden = !sample;
-    refreshHome();
     vRefresh(); aRefresh();
   }
 
@@ -1091,8 +1065,7 @@ function mergeMarks(local, remote) {
     ge: "See a German word and type its English meaning.",
     eg: "See an English meaning and type the German word with its article.",
     pl: "See a singular noun and type its plural, without “die”.",
-    gn: "See a noun and pick der, die or das.",
-    su: "Write one German sentence per word, checked by Claude."
+    gn: "See a noun and pick der, die or das."
   };
   function chaptersOf(containerId) {
     var out = [];
@@ -1251,7 +1224,6 @@ function mergeMarks(local, remote) {
     var chs = chaptersOf("seg-ch");
     var scope = WORDS.filter(function (w) { return !isSkipped(w) && chs.indexOf(w.c) >= 0; });
     if (!scope.length) return;
-    if (mode === "su") { startSentences(null, scope, null); return; }
     session = {
       mode: mode, scope: scope, queue: pickWords(scope, function (w) { var e = entry(w.id); return bandOf(e.a, scoreNow(e), e.k); }, QUIZ_SIZE), round: [], roundNo: 0, prevSet: null,
       ri: 0, answered: 0, firstTry: 0, firstTryCredit: 0, retriesById: {}, answeredIds: {}, changes: {},
@@ -1263,10 +1235,6 @@ function mergeMarks(local, remote) {
   function nextRound() {
     var s = session;
     if (!s.queue.length) { return finishQuiz(); }
-    if (s.prevSet && s.queue.length <= 10 && setKey(s.queue) === s.prevSet && sample) {
-      s.prevSet = null;
-      return startSentences(s.queue.slice(), s.scope, function () { nextRound(); }, s.forms);
-    }
     s.round = shuffle(s.queue);
     s.round.forEach(function (w) { if (!s.keepForm[w.id]) s.forms[w.id] = pickForm(w); }); // a missed form comes back as the same form
     s.queue = [];
@@ -1445,113 +1413,6 @@ function mergeMarks(local, remote) {
     $("sum-home").onclick = function () { endQuiz(); };
   }
   function endQuiz() { session = null; refreshHome(); show("home"); }
-
-  /* ----- sentence practice (checked by Claude through the sample capability) ----- */
-  var sent = null;
-  function pickWeighted(words, n) {
-    var pool = words.slice(), chosen = [], t = today();
-    var wts = pool.map(function (w) {
-      var e = entry(w.id), x = (100 - scoreNow(e)) + 15;
-      if (e.a === 0) x += 25;
-      if (e.l === t) x *= 0.3;
-      return x;
-    });
-    for (var k = 0; k < Math.min(n, pool.length); k++) {
-      var total = wts.reduce(function (a, b) { return a + b; }, 0), r = Math.random() * total, i = 0;
-      while (i < wts.length - 1 && r >= wts[i]) { r -= wts[i]; i++; }
-      chosen.push(pool.splice(i, 1)[0]); wts.splice(i, 1);
-    }
-    return chosen;
-  }
-  /* forms: word id -> "sg" or "pl" from the quiz that led here, so a word keeps the form it was being asked in */
-  function startSentences(wordsGiven, scope, after, forms) {
-    var list = wordsGiven || pickWeighted(scope, 5);
-    var faces = list.map(function (w) { return faceOf(w, forms && forms[w.id] ? forms[w.id] : pickForm(w)); });
-    sent = { list: list, faces: faces, i: 0, credit: 0, after: after, scope: scope, recs: [], checked: false };
-    show("sent"); askSentence();
-  }
-  function askSentence() {
-    var w = sent.list[sent.i];
-    if (!w) return endSentences();
-    $("s-count").textContent = "Word " + (sent.i + 1) + " of " + sent.list.length;
-    $("s-note").textContent = sent.after ? "Same words came up again" : "";
-    var f = sent.faces[sent.i];
-    renderGerman($("s-prompt"), f.g);
-    $("s-hint").textContent = f !== w ? "Plural of " + w.g : w.f ? "Forms: " + w.f : "";
-    $("s-back").disabled = sent.i === 0;
-    var rec = sent.recs[sent.i];
-    if (rec) { showSentenceResult(rec); return; }
-    sent.checked = false;
-    $("s-input").value = ""; $("s-input").disabled = false; $("s-feedback").textContent = "";
-    $("s-check").textContent = "Check sentence"; $("s-check").disabled = false;
-    $("s-skip").hidden = false;
-    $("s-input").focus();
-  }
-  function showSentenceResult(rec) {
-    sent.checked = true;
-    $("s-input").value = rec.text; $("s-input").disabled = true; $("s-skip").hidden = true;
-    var fb = $("s-feedback"); fb.textContent = "";
-    if (rec.skip) {
-      var p = document.createElement("p"); p.className = "muted"; p.textContent = "Skipped. No score was recorded."; fb.appendChild(p);
-    } else {
-      fb.appendChild(verdictBox(rec.credit, rec.corrected, rec.meta, null, "U", scoreLine(rec.w.id, rec.fromScore)));
-    }
-    $("s-check").disabled = false;
-    $("s-check").textContent = sent.i + 1 < sent.list.length ? "Next word" : "Finish";
-    $("s-check").focus();
-  }
-  async function onSentenceCheck() {
-    if (!sent) return;
-    if (sent.checked) { sent.i++; return askSentence(); }
-    var w = sent.list[sent.i], f = sent.faces[sent.i], text = $("s-input").value.trim();
-    var forms = f !== w ? "plural of " + w.g : (w.f ? "forms: " + w.f : "");
-    if (!text) return;
-    $("s-check").disabled = true; $("s-feedback").textContent = "Checking...";
-    var prompt = "You are checking a beginner German sentence from a learner using the Kontakte textbook. They have studied the Einführung and chapters 1-" + KNOWN.last + " (grammar so far: present tense, nominative, accusative and dative cases, modal and separable verbs, the Perfekt).\n"
-      + "Words they have learned so far: " + KNOWN.words + ".\n"
-      + "Other words are fine too; never lower the score because a word is not on that list.\n"
-      + "Target word: " + f.g + " (" + f.e + ")" + (forms ? ", " + forms : "") + ".\n"
-      + "Any form of the target word counts as using it: singular or plural, any case or verb form, even if it differs from the form shown.\n"
-      + "Learner's sentence: " + text + "\n"
-      + "Score: credit 1 if the target word is used correctly (small errors elsewhere are fine); 0.5 if recognizable but flawed (wrong article, case or form, awkward meaning); 0 if used incorrectly or missing. Do not penalize grammar the learner has not covered yet; mention it as an aside only.\n"
-      + 'Reply with only JSON: {"credit": 1, "corrected": "corrected sentence or empty string", "note": "one short line per rule behind each change, or a brief confirmation"}';
-    var res;
-    try {
-      res = await sample.json(prompt, { modelTier: "default", cache: false });
-    } catch (e) {
-      $("s-feedback").textContent = "Claude could not check this sentence (" + (e && e.code ? e.code : "error") + "). Try again, or end practice.";
-      $("s-check").disabled = false; return;
-    }
-    var credit = [0, 0.5, 1].indexOf(Number(res && res.credit)) >= 0 ? Number(res.credit) : 0;
-    var entryBefore = entry(w.id), fromScore = scoreNow(entryBefore);
-    record(w, "U", credit);
-    var rec = { w: w, text: $("s-input").value, credit: credit, skip: false, fromScore: fromScore,
-      corrected: res && res.corrected ? String(res.corrected) : "", meta: res && res.note ? String(res.note) : "" };
-    sent.recs[sent.i] = rec;
-    sent.credit += credit;
-    showSentenceResult(rec);
-  }
-  function onSentenceSkip() {
-    if (!sent || sent.checked) return;
-    sent.recs[sent.i] = { w: sent.list[sent.i], text: $("s-input").value, skip: true };
-    sent.i++; askSentence();
-  }
-  /* Back moves to the previous sentence's result screen. Nothing is undone. */
-  function onSentenceBack() {
-    if (!sent || sent.i === 0) return;
-    sent.i--; askSentence();
-  }
-  function endSentences() {
-    var s = sent; show("sum");
-    $("sum-title").textContent = "Sentences: " + s.credit + " of " + s.list.length;
-    var body = $("sum-body"); body.textContent = "";
-    var p = document.createElement("p"); p.className = "muted";
-    p.textContent = "Scores were saved for each word you wrote a sentence for.";
-    body.appendChild(p);
-    $("sum-next").textContent = s.after ? "Continue quiz" : "Practice more";
-    $("sum-next").onclick = function () { var a = s.after; sent = null; if (a) { a(); } else { startSentences(null, s.scope, null); } };
-    $("sum-home").onclick = function () { sent = null; endQuiz(); };
-  }
 
   /* ----- vocab progress report ----- */
   function renderReport() {
@@ -1854,7 +1715,7 @@ function mergeMarks(local, remote) {
   /* another device changed a mark: redraw whatever is on screen */
   function marksChanged() {
     if (!$("v-study").hidden) stRender();
-    else if (!session && !sent) refreshHome();
+    else if (!session) refreshHome();
   }
   /* rec.lo keeps what was shown and expected, so a later override can still be logged */
   function logAnswer(rec, d, o) {
@@ -2836,7 +2697,7 @@ function mergeMarks(local, remote) {
     $("st-expand").textContent = stOpenAll ? "Collapse all" : "Expand all";
   });
   $("nav-study").addEventListener("click", function () { stRender(); show("study"); });
-  $("nav-home").addEventListener("click", function () { if (gq) { gResume(); } else if (pqd.active()) { pqd.resume(); } else if (session || sent) { show(session ? "quiz" : "sent"); } else { refreshHome(); show("home"); } });
+  $("nav-home").addEventListener("click", function () { if (gq) { gResume(); } else if (pqd.active()) { pqd.resume(); } else if (session) { show("quiz"); } else { refreshHome(); show("home"); } });
   $("nav-verbs").addEventListener("click", function () {
     if (vq) { if (vq.view === "sum") { if (vq.finished) vFinish(); else vRoundSummary(); } else { show("vq"); } }
     else { vRefresh(); show("verbs"); }
@@ -2876,12 +2737,8 @@ function mergeMarks(local, remote) {
     if (t === "BUTTON" || t === "INPUT" || t === "TEXTAREA") return;
     e.preventDefault(); $("sum-next").click();
   });
-  $("s-check").addEventListener("click", onSentenceCheck);
   $("q-skip").addEventListener("click", onSkip);
   $("q-back").addEventListener("click", onBack);
-  $("s-skip").addEventListener("click", onSentenceSkip);
-  $("s-back").addEventListener("click", onSentenceBack);
-  $("s-end").addEventListener("click", function () { sent = null; endQuiz(); });
   $("rep-low").addEventListener("click", function () { repHigh = false; renderReport(); });
   $("rep-high").addEventListener("click", function () { repHigh = true; renderReport(); });
   $("v-low").addEventListener("click", function () { vHigh = false; vRefresh(); });
