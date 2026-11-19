@@ -185,3 +185,31 @@ telefonieren;;ihr;;Ihr ___ jeden Abend lange.;;You (all) talk on the phone for a
 versuchen;;du;;Du ___ es immer wieder.;;You try again and again.
 vorstellen;;ich;;Heute ___ ich meine Freundin vor.;;Today I introduce my girlfriend.
 weggehen;;er;;Er ___ nie ohne seinen Hund weg.;;He never goes away without his dog.
+bieten;;wir;;Wir ___ dir eine Stelle in unserem Büro.;;We are offering you a position in our office.
+erhalten;;du;;___ du viele Briefe?;;Do you receive a lot of letters?
+führen;;er;;Die Straße ___ direkt zum Bahnhof.;;The street leads directly to the train station.
+gießen;;ich;;Ich ___ jeden Morgen die Blumen.;;I water the flowers every morning.
+pflegen;;ihr;;___ ihr eure Oma?;;Are you taking care of your grandma?
+schenken;;wir;;Wir ___ unserer Mutter Blumen.;;We give our mother flowers.
+stattfinden;;er;;Die Party ___ bei mir statt.;;The party takes place at my place.
+unterrichten;;sie;;Meine Eltern ___ an einer Schule.;;My parents teach at a school.
+wünschen;;ich;;Ich ___ dir eine gute Reise.;;I wish you a good trip.
+eignen;;er;;Der Park ___ sich gut für ein Picknick.;;The park is well suited for a picnic.
+funktionieren;;er;;Der Computer ___ nicht.;;The computer isn't working.
+klingen;;du;;Du ___ heute so müde.;;You sound so tired today.
+mähen;;ich;;Ich ___ am Wochenende den Rasen.;;I mow the lawn on the weekend.
+schießen;;er;;Der Spieler ___ den Ball ins Tor.;;The player shoots the ball into the goal.
+sorgen;;wir;;Wir ___ für die Getränke.;;We'll take care of the drinks.
+untersuchen;;er;;Der Arzt ___ das Kind.;;The doctor examines the child.
+bauen;;sie;;Meine Nachbarn ___ ein neues Haus.;;My neighbors are building a new house.
+eröffnen;;er;;Mein Onkel ___ ein Restaurant.;;My uncle is opening a restaurant.
+erreichen;;du;;___ du den Zug noch?;;Will you still catch the train?
+trennen;;ihr;;___ ihr den Müll?;;Do you separate the trash?
+wechseln;;ich;;Ich ___ das Geld an der Bank.;;I change the money at the bank.
+holen;;du;;___ du bitte die Milch aus dem Kühlschrank?;;Will you please get the milk out of the refrigerator?
+kehren;;er;;Der Hausmeister ___ jeden Morgen den Hof.;;The janitor sweeps the courtyard every morning.
+merken;;wir;;Wir ___ sofort, dass etwas nicht stimmt.;;We notice right away that something is wrong.
+sparen;;ich;;Ich ___ für ein neues Fahrrad.;;I am saving for a new bicycle.
+verlassen;;du;;Wann ___ du das Büro?;;When do you leave the office?
+vorlesen;;er;;Die Lehrerin ___ der Klasse eine Geschichte vor.;;The teacher reads the class a story.
+zurückkehren;;sie;;Die Gäste ___ ins Hotel zurück.;;The guests return to the hotel.

@@ -598,3 +598,155 @@ Er wollte kommen, jedoch hatte er keine Zeit.|He wanted to come, however he had 
 Der Unterricht beginnt um neun Uhr.|Class begins at nine o'clock.
 Wen siehst du da drüben?|Whom do you see over there?
 Zuerst trinke ich einen Kaffee.|First I drink a coffee.
+Das Hotel bietet ein gutes Frühstück.|The hotel offers a good breakfast.
+Sie erhält jeden Tag viele E-Mails.|She receives many e-mails every day.
+Der Weg führt zum See.|The path leads to the lake.
+Ich gieße die Blumen im Garten.|I water the flowers in the garden.
+Die Tochter pflegt ihre kranke Mutter.|The daughter nurses her sick mother.
+Ich schenke meinem Bruder ein Buch.|I give my brother a book.
+Das Konzert findet am Samstag statt.|The concert takes place on Saturday.
+Frau Schmidt unterrichtet Deutsch an der Universität.|Ms. Schmidt teaches German at the university.
+Ich wünsche dir alles Gute zum Geburtstag.|I wish you all the best on your birthday.
+Sie ist schon lange Einwohnerin von Berlin.|She has been a resident of Berlin for a long time.
+Kauf bitte eine Flasche Wasser.|Please buy a bottle of water.
+Die Köchin macht eine Suppe.|The cook is making a soup.
+Meine Kollegin hilft mir oft.|My colleague often helps me.
+Wir brauchen eine große Menge Brot.|We need a large amount of bread.
+Gibt es eine andere Möglichkeit?|Is there another possibility?
+Im Winter trage ich eine warme Mütze.|In winter I wear a warm cap.
+Die Präsidentin hält heute eine Rede.|The president is giving a speech today.
+Die Schauspielerin spielt im Theater.|The actress performs at the theater.
+Die Soldatin ist bei der Bundeswehr.|The soldier is in the army.
+Wir wohnen in einer ruhigen Straße.|We live on a quiet street.
+Am Beginn des Kurses sind alle nervös.|At the start of the course everyone is nervous.
+Sie macht einen guten Eindruck.|She makes a good impression.
+Der Einwohner kennt die Stadt gut.|The resident knows the city well.
+In diesem Fall rufe ich dich an.|In that case I will call you.
+Der Koch arbeitet in einem Restaurant.|The cook works in a restaurant.
+Ich gehe mit meinem Kollegen essen.|I am going out to eat with my colleague.
+Der Präsident besucht unsere Stadt.|The president is visiting our city.
+Der Schauspieler ist sehr bekannt.|The actor is very well known.
+Der Soldat schreibt seiner Familie einen Brief.|The soldier writes his family a letter.
+Das Wasser kocht im Topf.|The water is boiling in the pot.
+Kannst du ein Geheimnis behalten?|Can you keep a secret?
+Das Haus ist fast ein Jahrhundert alt.|The house is almost a century old.
+Das Messer liegt in der Schublade.|The knife is in the drawer.
+Wir fahren mit dem Schiff nach Hamburg.|We are going to Hamburg by ship.
+Heute ist ein ganz normaler Tag.|Today is a completely normal day.
+Der Tisch in der Küche ist rund.|The table in the kitchen is round.
+Er arbeitet als Taxifahrer.|He works as a taxi driver.
+Das kostet mehr als zehn Euro.|That costs more than ten euros.
+Wem gibst du das Geschenk?|To whom are you giving the gift?
+Das Buch eignet sich gut für Anfänger.|The book is well suited for beginners.
+Mein Handy funktioniert nicht mehr.|My cell phone does not work anymore.
+Das klingt gut!|That sounds good!
+Am Samstag mäht mein Vater den Rasen.|On Saturday my father mows the lawn.
+Der Spieler schießt ein Tor.|The player shoots and scores a goal.
+Sie sorgt für ihre Kinder.|She takes care of her children.
+Die Ärztin untersucht den Patienten.|The doctor examines the patient.
+Die Angestellte arbeitet bei einer Bank.|The employee works at a bank.
+Meine Schwester ist Anwältin.|My sister is a lawyer.
+Die Arbeiterin arbeitet in einer Fabrik.|The worker works in a factory.
+Die Architektin plant ein neues Haus.|The architect is planning a new house.
+Ihr Sohn ist bei der Bundeswehr.|Her son is in the army.
+Die Fahrerin fährt sehr vorsichtig.|The driver drives very carefully.
+Wir arbeiten heute in einer Gruppe.|We are working in a group today.
+Die Journalistin schreibt für eine Zeitung.|The journalist writes for a newspaper.
+Nach der Arbeit habe ich keine Kraft mehr.|After work I have no strength left.
+Ich schreibe eine Liste für den Supermarkt.|I am writing a list for the supermarket.
+Die Maschine in der Fabrik ist sehr laut.|The machine in the factory is very loud.
+Die Patientin wartet beim Arzt.|The patient is waiting at the doctor's.
+Die Pilotin fliegt nach New York.|The pilot is flying to New York.
+Die Polizistin hilft dem Kind.|The police officer helps the child.
+Die Richterin arbeitet am Gericht.|The judge works at the courthouse.
+Die Schriftstellerin schreibt ein neues Buch.|The writer is writing a new book.
+Die Verkäuferin ist sehr freundlich.|The salesperson is very friendly.
+Hast du eine Versicherung für dein Auto?|Do you have insurance for your car?
+Der Angestellte hat heute frei.|The employee has the day off today.
+Der Anwalt spricht mit dem Richter.|The lawyer is speaking with the judge.
+Der Arbeiter beginnt um sechs Uhr.|The worker starts at six o'clock.
+Der Architekt zeichnet das neue Büro.|The architect is drawing the new office.
+Der Fahrer wartet vor dem Hotel.|The driver is waiting in front of the hotel.
+Das war mein Fehler.|That was my mistake.
+Der Journalist stellt dem Präsidenten eine Frage.|The journalist asks the president a question.
+Der Arzt spricht mit dem Patienten.|The doctor talks with the patient.
+Der Pilot begrüßt die Gäste.|The pilot greets the guests.
+Der Polizist zeigt uns den Weg.|The police officer shows us the way.
+Die Kinder spielen auf dem Rasen.|The children are playing on the lawn.
+Der Richter ist sehr streng.|The judge is very strict.
+Der Schriftsteller liest aus seinem Buch vor.|The writer reads aloud from his book.
+Der Verkäufer zeigt mir eine Jacke.|The salesperson shows me a jacket.
+Am Morgen gibt es viel Verkehr.|There is a lot of traffic in the morning.
+Mein Büro ist im dritten Stock.|My office is on the third floor.
+Dieses Gericht schmeckt sehr gut.|This dish tastes very good.
+Ich habe großes Interesse an Musik.|I am very interested in music.
+Sie trägt ein buntes Kleid.|She is wearing a colorful dress.
+Im Winter wird es früh dunkel.|In winter it gets dark early.
+Ist das wirklich möglich?|Is that really possible?
+Sein Onkel ist sehr reich.|His uncle is very rich.
+Er ist tatsächlich gekommen.|He actually came.
+Als er acht Jahre alt war, war er oft krank.|When he was eight years old, he was often sick.
+Die Firma baut Autos.|The company builds cars.
+Meine Tante eröffnet ein Café.|My aunt is opening a café.
+Wir erreichen den Bahnhof in zehn Minuten.|We will reach the train station in ten minutes.
+Bitte trenn das Papier vom Glas.|Please separate the paper from the glass.
+Zusammen oder getrennt? – Getrennt, bitte.|Together or separate checks? – Separate, please.
+Kannst du mir zwanzig Euro wechseln?|Can you change twenty euros for me?
+Sie macht eine Ausbildung als Köchin.|She is training to be a cook.
+Ich gehe heute zur Bank.|I am going to the bank today.
+Die Beraterin hat heute keinen Termin frei.|The counselor has no free appointment today.
+Meine Erwartung war zu hoch.|My expectation was too high.
+Mein Onkel arbeitet in einer Fabrik.|My uncle works in a factory.
+Die Karten gibt es an der Kasse.|You can get the tickets at the ticket booth.
+Ihre Kenntnis der Stadt hilft uns sehr.|Her knowledge of the city helps us a lot.
+Die Kirche steht mitten im Dorf.|The church stands in the middle of the village.
+Meine Schwester ist in der fünften Klasse.|My sister is in fifth grade.
+Er macht eine Lehre in einer Werkstatt.|He is doing an apprenticeship in a repair shop.
+Ruf sofort die Polizei!|Call the police right away!
+Ich bringe den Brief zur Post.|I am taking the letter to the post office.
+Lesen Sie bitte Seite zwanzig.|Please read page twenty.
+Die Tankstelle ist gleich um die Ecke.|The gas station is just around the corner.
+Mein Auto ist in der Werkstatt.|My car is in the repair shop.
+Der Berater hat viele gute Ideen.|The counselor has a lot of good ideas.
+Der Betrieb hat fünfzig Angestellte.|The firm has fifty employees.
+Das ist ein guter Gedanke.|That is a good thought.
+Ich kaufe Milch im Supermarkt.|I buy milk at the supermarket.
+Ich habe morgen einen Termin beim Arzt.|I have a doctor's appointment tomorrow.
+Zum Frühstück esse ich Brot mit Käse.|For breakfast I eat bread with cheese.
+Der Ring ist aus Gold.|The ring is made of gold.
+Ich habe ein Konto bei dieser Bank.|I have an account at this bank.
+Der Kurs hat ein hohes Niveau.|The course is at a high level.
+Sie arbeitet für ein großes Unternehmen.|She works for a large company.
+Er erklärt alles sehr ausführlich.|He explains everything very thoroughly.
+Heute ist ein besonderer Tag.|Today is a special day.
+Der Kühlschrank ist leer.|The refrigerator is empty.
+Diese Tasche ist sehr praktisch.|This bag is very practical.
+Theoretisch ist das möglich.|Theoretically that is possible.
+Die Kinder laufen hinaus in den Garten.|The children run out into the garden.
+Eine Fahrkarte nach Berlin, hin und zurück, bitte.|A ticket to Berlin, round trip, please.
+Ich hätte gern ein Stück Kuchen.|I would like a piece of cake.
+Sonst noch etwas? – Nein, danke, das ist alles.|Anything else? – No, thanks, that is all.
+Ich hole schnell ein Glas Wasser.|I will quickly get a glass of water.
+Er kehrt den Boden in der Küche.|He sweeps the floor in the kitchen.
+Ich merke, dass du müde bist.|I notice that you are tired.
+Sie spart Geld für eine Reise.|She is saving money for a trip.
+Er verlässt das Haus um acht Uhr.|He leaves the house at eight o'clock.
+Der Vater liest den Kindern eine Geschichte vor.|The father reads the children a story.
+Wann kehrst du aus dem Urlaub zurück?|When are you returning from vacation?
+Die Küche ist klein, aber hell.|The kitchen is small but bright.
+Die Löffel sind in der Schublade.|The spoons are in the drawer.
+Die Sekretärin macht einen Termin für mich.|The secretary makes an appointment for me.
+Oma backt am Sonntag einen Kuchen.|Grandma bakes a cake on Sunday.
+Die Milch steht im Kühlschrank.|The milk is in the refrigerator.
+Das Brot ist noch im Ofen.|The bread is still in the oven.
+Der Sekretär geht ans Telefon.|The secretary answers the phone.
+Hast du einen Wunsch zum Geburtstag?|Do you have a birthday wish?
+In meinem Zimmer ist totales Chaos.|My room is in total chaos.
+Möchtest du ein Glas Saft?|Would you like a glass of juice?
+Bitte sprechen Sie langsam.|Please speak slowly.
+Das ist ja unglaublich!|That is incredible!
+Das ist leider unmöglich.|Unfortunately that is impossible.
+Ich bin fast fertig.|I am almost done.
+Ich habe ihn mehrmals angerufen.|I called him several times.
+Wir gehen selten ins Kino.|We rarely go to the movies.
+Die Katze schläft unter dem Tisch.|The cat sleeps under the table.

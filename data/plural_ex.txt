@@ -342,3 +342,91 @@ die Preise;;Die Preise sind hier sehr hoch.;;The prices are very high here.
 die Vormittage;;Die Vormittage verbringe ich in der Uni.;;I spend the late mornings at the university.
 die Programme;;Die Programme im Fernsehen sind langweilig.;;The programs on television are boring.
 die Themen;;Die Themen im Kurs sind interessant.;;The topics in the course are interesting.
+die Einwohnerinnen;;Viele Einwohnerinnen der Stadt arbeiten im Krankenhaus.;;Many of the city's female residents work at the hospital.
+die Flaschen;;Wir bringen die leeren Flaschen zum Supermarkt.;;We take the empty bottles to the supermarket.
+die Köchinnen;;Die Köchinnen kochen heute für hundert Gäste.;;The cooks are cooking for a hundred guests today.
+die Kolleginnen;;Meine Kolleginnen trinken mittags zusammen Kaffee.;;My colleagues drink coffee together at midday.
+die Mengen;;Im Restaurant kochen sie große Mengen Reis.;;At the restaurant they cook large amounts of rice.
+die Möglichkeiten;;In dieser Stadt gibt es viele Möglichkeiten.;;There are many possibilities in this city.
+die Mützen;;Die Kinder tragen bunte Mützen.;;The children are wearing colorful caps.
+die Präsidentinnen;;Die Präsidentinnen der beiden Universitäten treffen sich heute.;;The presidents of the two universities are meeting today.
+die Schauspielerinnen;;Die Schauspielerinnen warten hinter der Bühne.;;The actresses are waiting backstage.
+die Soldatinnen;;Die Soldatinnen kehren nach Hause zurück.;;The soldiers are returning home.
+die Straßen;;Die Straßen sind am Sonntag ruhig.;;The streets are quiet on Sunday.
+die Eindrücke;;Wir haben in Wien viele neue Eindrücke gesammelt.;;We gathered many new impressions in Vienna.
+die Einwohner;;Die Stadt hat fast eine Million Einwohner.;;The city has almost a million inhabitants.
+die Fälle;;Solche Fälle sind zum Glück selten.;;Cases like that are rare, luckily.
+die Köche;;Die Köche arbeiten bis spät in der Nacht.;;The cooks work until late at night.
+die Kollegen;;Ich verstehe mich gut mit meinen Kollegen.;;I get along well with my colleagues.
+die Präsidenten;;Die Präsidenten der beiden Länder sprechen miteinander.;;The presidents of the two countries talk with each other.
+die Schauspieler;;Die Schauspieler sind nach dem Theater müde.;;The actors are tired after the play.
+die Soldaten;;Die Soldaten sind früh am Morgen wach.;;The soldiers are awake early in the morning.
+die Töpfe;;Die Töpfe stehen im Schrank.;;The pots are in the cupboard.
+die Geheimnisse;;Gute Freunde erzählen sich ihre Geheimnisse.;;Good friends tell each other their secrets.
+die Jahrhunderte;;Die Stadt ist viele Jahrhunderte alt.;;The city is many centuries old.
+die Messer;;Die Messer sind sehr scharf.;;The knives are very sharp.
+die Schiffe;;Im Hafen liegen viele Schiffe.;;There are many ships in the harbor.
+die Angestellten;;Die Angestellten haben heute eine Besprechung.;;The employees have a meeting today.
+die Anwältinnen;;Die Anwältinnen arbeiten im selben Büro.;;The lawyers work in the same office.
+die Arbeiterinnen;;Die Arbeiterinnen machen eine Pause.;;The workers are taking a break.
+die Architektinnen;;Die Architektinnen bauen ein neues Museum.;;The architects are building a new museum.
+die Fahrerinnen;;Die Fahrerinnen fahren jeden Tag nach Berlin.;;The drivers drive to Berlin every day.
+die Gruppen;;Wir arbeiten heute in kleinen Gruppen.;;Today we are working in small groups.
+die Journalistinnen;;Die Journalistinnen stellen viele Fragen.;;The journalists ask a lot of questions.
+die Kräfte;;Nach dem Urlaub habe ich neue Kräfte.;;After vacation I have new strength.
+die Listen;;Er schreibt gern Listen.;;He likes to write lists.
+die Maschinen;;Die Maschinen in der Fabrik laufen Tag und Nacht.;;The machines in the factory run day and night.
+die Patientinnen;;Die Patientinnen warten schon lange.;;The patients have been waiting for a long time.
+die Pilotinnen;;Die Pilotinnen fliegen heute nach Rom.;;The pilots are flying to Rome today.
+die Polizistinnen;;Die Polizistinnen helfen den Touristen.;;The police officers help the tourists.
+die Richterinnen;;Die Richterinnen arbeiten am Gericht.;;The judges work at the courthouse.
+die Schriftstellerinnen;;Die Schriftstellerinnen lesen heute in der Bibliothek.;;The writers are reading at the library today.
+die Verkäuferinnen;;Die Verkäuferinnen im Kaufhaus sind sehr freundlich.;;The salespeople in the department store are very friendly.
+die Versicherungen;;Versicherungen sind oft teuer.;;Insurance policies are often expensive.
+die Anwälte;;Die Anwälte sprechen mit der Richterin.;;The lawyers are speaking with the judge.
+die Arbeiter;;Die Arbeiter bauen eine neue Brücke.;;The workers are building a new bridge.
+die Architekten;;Die Architekten zeigen uns ihre Pläne.;;The architects show us their plans.
+die Fahrer;;Die Fahrer warten vor dem Bahnhof.;;The drivers are waiting in front of the train station.
+die Fehler;;Dein Aufsatz hat nur wenige Fehler.;;Your essay has only a few mistakes.
+die Journalisten;;Die Journalisten warten auf den Präsidenten.;;The journalists are waiting for the president.
+die Patienten;;Die Ärztin hat heute viele Patienten.;;The doctor has many patients today.
+die Piloten;;Die Piloten trinken einen Kaffee vor dem Flug.;;The pilots drink a coffee before the flight.
+die Polizisten;;Die Polizisten stehen vor der Bank.;;The police officers are standing in front of the bank.
+die Rasen;;Die Rasen im Park sind sehr grün.;;The lawns in the park are very green.
+die Richter;;Die Richter treffen heute eine Entscheidung.;;The judges are making a decision today.
+die Schriftsteller;;Viele Schriftsteller wohnen in dieser Straße.;;Many writers live on this street.
+die Verkäufer;;Die Verkäufer arbeiten auch am Samstag.;;The salespeople work on Saturday too.
+die Büros;;Die Büros sind am Wochenende leer.;;The offices are empty on the weekend.
+die Gerichte;;Das Restaurant hat viele vegetarische Gerichte.;;The restaurant has many vegetarian dishes.
+die Interessen;;Wir haben die gleichen Interessen.;;We have the same interests.
+die Ausbildungen;;Die beiden Ausbildungen dauern drei Jahre.;;Both training programs take three years.
+die Banken;;Die Banken sind am Sonntag geschlossen.;;The banks are closed on Sunday.
+die Beraterinnen;;Die Beraterinnen helfen den Studenten.;;The counselors help the students.
+die Erwartungen;;Der Film hat meine Erwartungen erfüllt.;;The film met my expectations.
+die Fabriken;;In dieser Stadt gibt es viele Fabriken.;;There are many factories in this city.
+die Kassen;;Am Wochenende sind alle Kassen offen.;;On the weekend all the ticket booths are open.
+die Kenntnisse;;Sie hat gute Kenntnisse in Informatik.;;She has good skills in computer science.
+die Kirchen;;In Köln gibt es viele alte Kirchen.;;There are many old churches in Cologne.
+die Klassen;;Die Klassen beginnen um acht Uhr.;;Classes begin at eight o'clock.
+die Lehren;;Die Lehren dauern meistens drei Jahre.;;Apprenticeships usually last three years.
+die Seiten;;Das Buch hat dreihundert Seiten.;;The book has three hundred pages.
+die Tankstellen;;Die Tankstellen an der Autobahn sind teuer.;;The gas stations on the highway are expensive.
+die Werkstätten;;Die Werkstätten sind am Samstag geschlossen.;;The repair shops are closed on Saturday.
+die Berater;;Die Berater geben uns gute Tipps.;;The counselors give us good tips.
+die Betriebe;;Viele Betriebe suchen neue Angestellte.;;Many firms are looking for new employees.
+die Gedanken;;Ich bin in Gedanken bei dir.;;My thoughts are with you.
+die Supermärkte;;Die Supermärkte sind abends voll.;;The supermarkets are full in the evening.
+die Termine;;Ich habe heute zu viele Termine.;;I have too many appointments today.
+die Brote;;Der Bäcker backt jeden Morgen hundert Brote.;;The baker bakes a hundred loaves of bread every morning.
+die Konten;;Er hat Konten bei zwei Banken.;;He has accounts at two banks.
+die Niveaus;;Der Kurs hat drei Niveaus.;;The course has three levels.
+die Unternehmen;;Große Unternehmen suchen oft Praktikanten.;;Large companies often look for interns.
+die Küchen;;Die Küchen in alten Wohnungen sind oft klein.;;The kitchens in old apartments are often small.
+die Schubladen;;Alle Schubladen sind voll.;;All the drawers are full.
+die Sekretärinnen;;Die Sekretärinnen beantworten die E-Mails.;;The secretaries answer the e-mails.
+die Kuchen;;Oma backt zwei Kuchen für die Party.;;Grandma is baking two cakes for the party.
+die Kühlschränke;;Die Kühlschränke in diesem Geschäft sind sehr teuer.;;The refrigerators in this store are very expensive.
+die Öfen;;Die Öfen in der Bäckerei sind sehr heiß.;;The ovens in the bakery are very hot.
+die Sekretäre;;Die Sekretäre arbeiten im ersten Stock.;;The secretaries work on the first floor.
+die Wünsche;;Hast du besondere Wünsche zum Geburtstag?;;Do you have any special birthday wishes?
+die Gläser;;Die Gläser stehen im Schrank.;;The glasses are in the cupboard.

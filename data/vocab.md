@@ -604,3 +604,155 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | um | around; at (time) | preposition |  | 4 | Ereignisse |
 | wen | whom | pronoun |  | 4 | Ereignisse |
 | zuerst | (at) first | adverb |  | 4 | Ereignisse |
+| bieten | to offer | verb |  | 5 | Dienstleistungen |
+| erhalten | to receive | verb | erhält | 5 | Dienstleistungen |
+| führen | to lead | verb |  | 5 | Dienstleistungen |
+| gießen | to water; pour | verb |  | 5 | Dienstleistungen |
+| pflegen | to attend to, nurse | verb |  | 5 | Dienstleistungen |
+| schenken | to give (as a present) | verb |  | 5 | Dienstleistungen |
+| stattfinden | to take place | verb | findet ... statt | 5 | Dienstleistungen; separable |
+| unterrichten | to teach, instruct | verb |  | 5 | Dienstleistungen |
+| wünschen | to wish, desire, want | verb |  | 5 | Dienstleistungen |
+| die Einwohnerin | female inhabitant, resident | noun | die Einwohnerinnen | 5 | Dienstleistungen |
+| die Flasche | bottle | noun | die Flaschen | 5 | Dienstleistungen |
+| die Köchin | female cook | noun | die Köchinnen | 5 | Dienstleistungen |
+| die Kollegin | female colleague | noun | die Kolleginnen | 5 | Dienstleistungen |
+| die Menge | quantity, amount | noun | die Mengen | 5 | Dienstleistungen |
+| die Möglichkeit | possibility | noun | die Möglichkeiten | 5 | Dienstleistungen |
+| die Mütze | cap | noun | die Mützen | 5 | Dienstleistungen |
+| die Präsidentin | female president | noun | die Präsidentinnen | 5 | Dienstleistungen |
+| die Schauspielerin | actress | noun | die Schauspielerinnen | 5 | Dienstleistungen |
+| die Soldatin | female soldier | noun | die Soldatinnen | 5 | Dienstleistungen |
+| die Straße | street, road | noun | die Straßen | 5 | Dienstleistungen |
+| der Beginn | beginning, start | noun |  | 5 | Dienstleistungen; no plural given |
+| der Eindruck | impression | noun | die Eindrücke | 5 | Dienstleistungen |
+| der Einwohner | male inhabitant, resident | noun | die Einwohner | 5 | Dienstleistungen |
+| der Fall | fall, collapse; case | noun | die Fälle | 5 | Dienstleistungen |
+| der Koch | male cook | noun | die Köche | 5 | Dienstleistungen |
+| der Kollege | male colleague | noun | die Kollegen | 5 | Dienstleistungen; weak masculine |
+| der Präsident | male president | noun | die Präsidenten | 5 | Dienstleistungen; weak masculine |
+| der Schauspieler | actor | noun | die Schauspieler | 5 | Dienstleistungen |
+| der Soldat | male soldier | noun | die Soldaten | 5 | Dienstleistungen; weak masculine |
+| der Topf | pot | noun | die Töpfe | 5 | Dienstleistungen |
+| das Geheimnis | secret | noun | die Geheimnisse | 5 | Dienstleistungen |
+| das Jahrhundert | century | noun | die Jahrhunderte | 5 | Dienstleistungen |
+| das Messer | knife | noun | die Messer | 5 | Dienstleistungen |
+| das Schiff | ship | noun | die Schiffe | 5 | Dienstleistungen |
+| normal | normal(ly) | adjective/adverb |  | 5 | Dienstleistungen |
+| rund | round; around | adjective/adverb |  | 5 | Dienstleistungen |
+| als | than; as; when | conjunction |  | 5 | Dienstleistungen; als Taxifahrer(in) = as a taxi driver |
+| mehr als | more than | phrase |  | 5 | Dienstleistungen |
+| wem | (to, for) whom | pronoun |  | 5 | Dienstleistungen |
+| sich eignen | to lend itself, be suitable | verb |  | 5 | Berufe; reflexive |
+| funktionieren | to work, function | verb |  | 5 | Berufe |
+| klingen | to sound (like), ring | verb |  | 5 | Berufe |
+| mähen | to mow | verb |  | 5 | Berufe |
+| schießen | to shoot | verb |  | 5 | Berufe |
+| sorgen (für) | to care (for), take care (of) | verb |  | 5 | Berufe |
+| untersuchen | to examine, investigate | verb |  | 5 | Berufe |
+| die Angestellte | female employee | noun | die Angestellten | 5 | Berufe; plural shared with der Angestellte |
+| die Anwältin | female lawyer | noun | die Anwältinnen | 5 | Berufe |
+| die Arbeiterin | female worker | noun | die Arbeiterinnen | 5 | Berufe |
+| die Architektin | female architect | noun | die Architektinnen | 5 | Berufe |
+| die Bundeswehr | (federal) army | noun |  | 5 | Berufe; no plural given |
+| die Fahrerin | female driver | noun | die Fahrerinnen | 5 | Berufe |
+| die Gruppe | group | noun | die Gruppen | 5 | Berufe |
+| die Journalistin | female journalist | noun | die Journalistinnen | 5 | Berufe |
+| die Kraft | strength, power | noun | die Kräfte | 5 | Berufe |
+| die Liste | list | noun | die Listen | 5 | Berufe |
+| die Maschine | machine | noun | die Maschinen | 5 | Berufe |
+| die Patientin | female patient | noun | die Patientinnen | 5 | Berufe |
+| die Pilotin | female pilot | noun | die Pilotinnen | 5 | Berufe |
+| die Polizistin | female police officer | noun | die Polizistinnen | 5 | Berufe |
+| die Richterin | female judge | noun | die Richterinnen | 5 | Berufe |
+| die Schriftstellerin | female writer | noun | die Schriftstellerinnen | 5 | Berufe |
+| die Verkäuferin | female salesperson | noun | die Verkäuferinnen | 5 | Berufe |
+| die Versicherung | insurance, guarantee | noun | die Versicherungen | 5 | Berufe |
+| der Angestellte | male employee | noun |  | 5 | Berufe; ein Angestellter; plural die Angestellten (as for die Angestellte) |
+| der Anwalt | male lawyer | noun | die Anwälte | 5 | Berufe |
+| der Arbeiter | male worker | noun | die Arbeiter | 5 | Berufe |
+| der Architekt | male architect | noun | die Architekten | 5 | Berufe; weak masculine |
+| der Fahrer | male driver | noun | die Fahrer | 5 | Berufe |
+| der Fehler | mistake, error | noun | die Fehler | 5 | Berufe |
+| der Journalist | male journalist | noun | die Journalisten | 5 | Berufe; weak masculine |
+| der Patient | male patient | noun | die Patienten | 5 | Berufe; weak masculine |
+| der Pilot | male pilot | noun | die Piloten | 5 | Berufe; weak masculine |
+| der Polizist | male police officer | noun | die Polizisten | 5 | Berufe; weak masculine |
+| der Rasen | lawn | noun | die Rasen | 5 | Berufe |
+| der Richter | male judge | noun | die Richter | 5 | Berufe |
+| der Schriftsteller | male writer | noun | die Schriftsteller | 5 | Berufe |
+| der Verkäufer | male salesperson | noun | die Verkäufer | 5 | Berufe |
+| der Verkehr | traffic | noun |  | 5 | Berufe; no plural given |
+| das Büro | office | noun | die Büros | 5 | Berufe |
+| das Gericht | courthouse; meal | noun | die Gerichte | 5 | Berufe |
+| das Interesse | interest | noun | die Interessen | 5 | Berufe; Interesse haben an (+ dat.) = to be interested in |
+| bunt | colorful(ly) | adjective/adverb |  | 5 | Berufe |
+| dunkel | dark(ly) | adjective/adverb |  | 5 | Berufe |
+| möglich | possible | adjective |  | 5 | Berufe |
+| reich | rich(ly) | adjective/adverb |  | 5 | Berufe |
+| tatsächlich | actual(ly), indeed | adjective/adverb |  | 5 | Berufe |
+| als er acht Jahre alt war | when he was eight years old | phrase |  | 5 | Berufe |
+| bauen | to build, manufacture, produce | verb |  | 5 | Der Arbeitsplatz |
+| eröffnen | to open, establish | verb |  | 5 | Der Arbeitsplatz |
+| erreichen | to reach, achieve | verb |  | 5 | Der Arbeitsplatz |
+| trennen | to separate | verb |  | 5 | Der Arbeitsplatz |
+| getrennt | separate(ly), with separate checks | adjective/adverb |  | 5 | Der Arbeitsplatz; from trennen |
+| wechseln | to change | verb |  | 5 | Der Arbeitsplatz |
+| die Ausbildung | specialized training | noun | die Ausbildungen | 5 | Der Arbeitsplatz |
+| die Bank | bank | noun | die Banken | 5 | Der Arbeitsplatz |
+| die Beraterin | female counselor | noun | die Beraterinnen | 5 | Der Arbeitsplatz |
+| die Erwartung | expectation | noun | die Erwartungen | 5 | Der Arbeitsplatz |
+| die Fabrik | factory | noun | die Fabriken | 5 | Der Arbeitsplatz |
+| die Kasse | ticket booth | noun | die Kassen | 5 | Der Arbeitsplatz |
+| die Kenntnis | knowledge, skill | noun | die Kenntnisse | 5 | Der Arbeitsplatz |
+| die Kirche | church | noun | die Kirchen | 5 | Der Arbeitsplatz |
+| die Klasse | class, grade | noun | die Klassen | 5 | Der Arbeitsplatz |
+| die Lehre | apprenticeship | noun | die Lehren | 5 | Der Arbeitsplatz |
+| die Polizei | police; police station | noun |  | 5 | Der Arbeitsplatz; no plural given |
+| die Post | mail; post office | noun |  | 5 | Der Arbeitsplatz; no plural given |
+| die Seite | side; page | noun | die Seiten | 5 | Der Arbeitsplatz |
+| die Tankstelle | gas station | noun | die Tankstellen | 5 | Der Arbeitsplatz |
+| die Werkstatt | repair shop, workshop, garage | noun | die Werkstätten | 5 | Der Arbeitsplatz |
+| der Berater | male counselor | noun | die Berater | 5 | Der Arbeitsplatz |
+| der Betrieb | firm, company; operation | noun | die Betriebe | 5 | Der Arbeitsplatz |
+| der Gedanke | thought | noun | die Gedanken | 5 | Der Arbeitsplatz; weak masculine |
+| der Supermarkt | supermarket | noun | die Supermärkte | 5 | Der Arbeitsplatz |
+| der Termin | appointment | noun | die Termine | 5 | Der Arbeitsplatz |
+| das Brot | bread | noun | die Brote | 5 | Der Arbeitsplatz |
+| das Gold | gold | noun |  | 5 | Der Arbeitsplatz; no plural given |
+| das Konto | (bank) account | noun | die Konten | 5 | Der Arbeitsplatz |
+| das Niveau | level | noun | die Niveaus | 5 | Der Arbeitsplatz; pronounced [nivo] |
+| das Unternehmen | company, enterprise | noun | die Unternehmen | 5 | Der Arbeitsplatz |
+| ausführlich | thorough(ly) | adjective/adverb |  | 5 | Der Arbeitsplatz |
+| besondere, besonderer, besonderes | special, particular | adjective |  | 5 | Der Arbeitsplatz |
+| leer | empty | adjective |  | 5 | Der Arbeitsplatz |
+| praktisch | practical(ly), useful(ly) | adjective/adverb |  | 5 | Der Arbeitsplatz |
+| theoretisch | theoretical(ly) | adjective/adverb |  | 5 | Der Arbeitsplatz |
+| hinaus | out | adverb |  | 5 | Der Arbeitsplatz |
+| hin und zurück | return, roundtrip | phrase |  | 5 | Der Arbeitsplatz |
+| ich hätte gern | I would like to have | phrase |  | 5 | Der Arbeitsplatz |
+| Sonst noch etwas? | Anything else? | phrase |  | 5 | Der Arbeitsplatz |
+| holen | to get, fetch | verb |  | 5 | In der Küche |
+| kehren | to sweep | verb |  | 5 | In der Küche |
+| merken | to notice, realize | verb |  | 5 | In der Küche |
+| sparen | to save, put aside | verb |  | 5 | In der Küche |
+| verlassen | to leave, abandon | verb | verlässt | 5 | In der Küche |
+| vorlesen | to read (to someone) | verb | liest ... vor | 5 | In der Küche; separable |
+| zurückkehren | to return | verb | kehrt ... zurück | 5 | In der Küche; separable; Perfekt with sein |
+| die Küche | kitchen | noun | die Küchen | 5 | In der Küche |
+| die Schublade | drawer | noun | die Schubladen | 5 | In der Küche |
+| die Sekretärin | female secretary | noun | die Sekretärinnen | 5 | In der Küche |
+| der Kuchen | cake | noun | die Kuchen | 5 | In der Küche |
+| der Kühlschrank | refrigerator | noun | die Kühlschränke | 5 | In der Küche |
+| der Ofen | oven | noun | die Öfen | 5 | In der Küche |
+| der Sekretär | male secretary | noun | die Sekretäre | 5 | In der Küche |
+| der Wunsch | wish | noun | die Wünsche | 5 | In der Küche |
+| das Chaos | chaos | noun |  | 5 | In der Küche; no plural given |
+| das Glas | glass | noun | die Gläser | 5 | In der Küche |
+| langsam | slow(ly) | adjective/adverb |  | 5 | In der Küche |
+| unglaublich | incredible, incredibly | adjective/adverb |  | 5 | In der Küche |
+| unmöglich | impossible, impossibly | adjective/adverb |  | 5 | In der Küche |
+| fast | almost | adverb |  | 5 | In der Küche |
+| mehrmals | several times | adverb |  | 5 | In der Küche |
+| selten | seldom, rarely | adverb |  | 5 | In der Küche |
+| unter | under, beneath; among | preposition |  | 5 | In der Küche |

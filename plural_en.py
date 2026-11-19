@@ -18,6 +18,8 @@ OVR = {  # singular German -> full English plural string
  'das Frühstück':'breakfasts','der Einfluss':'influences','das Tier':'animals','der Hintergrund':'backgrounds','der Vordergrund':'foregrounds',
  'die Zukunft':'futures','die/der Erwachsene':'adults, grown-ups','die/der Jugendliche':'teenagers, youths','die/der Geliebte':'beloved friends, lovers',
  'die Ordnung':'orders, regulations','der Mittag':'noons, middays','der Arzt':'male physicians','die Ärztin':'female physicians','die Angst':'fears',
+ 'die Angestellte':'employees','die Versicherung':'insurance policies, guarantees','die Ausbildung':'training programs','die Kenntnis':'knowledge, skills',
+ 'das Brot':'loaves of bread','das Messer':'knives','der Verkäufer':'male salespeople','die Verkäuferin':'female salespeople','die Kraft':'strengths, powers',
 }
 IRREG = {'man':'men','woman':'women','child':'children','foot':'feet','person':'people','mouse':'mice','tooth':'teeth'}
 def pl1(w):
