@@ -266,11 +266,11 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | Welcher Tag ist heute? | What day is today? | phrase |  | 1 | Schule und Universität |
 | Wie spät ist es? | What time is it? | phrase |  | 1 | Schule und Universität |
 | Wie viel Uhr ist es? | What time is it? | phrase |  | 1 | Schule und Universität |
-| früh | early | adjective/adverb |  | 1 | Schule und Universität |
-| spät, später | late, later | adjective/adverb |  | 1 | Schule und Universität |
-| wahrscheinlich | probable, probably | adjective/adverb |  | 1 | Schule und Universität |
-| endlich | finally | adverb |  | 1 | Schule und Universität |
-| ihr, ihre | her; their | determiner |  | 1 | Schule und Universität |
+| früh | early | adjective/adverb |  | 1 | Alltag |
+| spät, später | late, later | adjective/adverb |  | 1 | Alltag |
+| wahrscheinlich | probable, probably | adjective/adverb |  | 1 | Alltag |
+| endlich | finally | adverb |  | 1 | Alltag |
+| ihr, ihre | her; their | determiner |  | 1 | Alltag |
 | abholen | to pick (somebody) up (from a place) | verb | holt ... ab | 1 | Alltag; separable |
 | ankommen | to arrive | verb | kommt ... an | 1 | Alltag; separable |
 | anrufen | to call | verb | ruft ... an | 1 | Alltag; separable |
