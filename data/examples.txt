@@ -2,8 +2,6 @@ Du siehst heute müde aus.|You look tired today.
 Ich glaube, er kommt später.|I believe he is coming later.
 Kannst du dieses Problem lösen?|Can you solve this problem?
 Ich möchte einen Kaffee, bitte.|I would like a coffee, please.
-Du hast recht, das ist falsch.|You are right, that is wrong.
-Er treibt jeden Tag Sport.|He does sports every day.
 Das Geschenk hat mich wirklich überrascht.|The gift really surprised me.
 Ich zahle die Rechnung mit Karte.|I pay the bill by card.
 Wir ziehen nächsten Monat nach Berlin.|We are moving to Berlin next month.
@@ -88,7 +86,6 @@ Das Konzert war toll!|The concert was great!
 Beide Kinder spielen draußen.|Both children are playing outside.
 Ist Anna da?|Is Anna there?
 Ich möchte etwas essen.|I would like to eat something.
-Heute Abend gehen wir ins Kino.|This evening we're going to the movies.
 Ich sehe ihn jeden Tag.|I see him every day.
 Das kann ich selbst machen.|I can do that myself.
 Übrigens, hast du Hunger?|By the way, are you hungry?
@@ -252,8 +249,6 @@ Das Bett ist sehr bequem.|The bed is very comfortable.
 Mein Lieblingsfach ist Kunst.|My favorite subject is art.
 Das Haus ist alt.|The house is old.
 Wir lesen Kapitel zwei.|We're reading chapter two.
-Ich gehe jetzt nach Hause.|I'm going home now.
-Ich bin heute zu Hause.|I'm at home today.
 Es ist halb acht.|It is half past seven.
 Um wie viel Uhr beginnt der Film?|At what time does the film begin?
 Wann kommst du?|When are you coming?
@@ -355,8 +350,6 @@ Das Wetter ist heute wunderbar.|The weather is wonderful today.
 Ich mag Katzen besonders gern.|I especially like cats.
 Wir helfen einander.|We help each other.
 Ich spreche ein bisschen Deutsch.|I speak a little German.
-Das ist gar nicht schwer.|That is not hard at all.
-Ich bin kein bisschen müde.|I'm not a bit tired.
 Nach dem Unterricht gehe ich nach Hause.|After class I go home.
 Er kommt nie zu spät.|He never comes late.
 Ich habe nur fünf Euro.|I only have five euros.
@@ -439,20 +432,14 @@ Der Wind bewegt die Blätter.|The wind moves the leaves.
 Er drückt den Knopf.|He presses the button.
 Ich erkenne ihn an seiner Stimme.|I recognize him by his voice.
 Ich fühle mich heute gut.|I feel good today.
-Du siehst blass aus. Wie fühlst du dich?|You look pale. How do you feel?
-Ich fühle mich heute sehr müde.|I feel very tired today.
 Wir lachen oft zusammen.|We often laugh together.
 Das Baby schreit laut.|The baby is screaming loudly.
-Ich bin heute spät dran.|I'm running late today.
 Das Kind weint.|The child is crying.
 Die Angst vor der Prüfung ist groß.|The fear of the exam is great.
-Ich habe Angst im Dunkeln.|I'm afraid in the dark.
 Mir fehlt heute die Lust zum Lernen.|I don't feel like studying today.
-Hast du Lust, ins Kino zu gehen?|Do you feel like going to the movies?
 Die Nacht war sehr kurz.|The night was very short.
 Viele Menschen glauben an Gott.|Many people believe in God.
 Nach der Wanderung war der Hunger groß.|After the hike the hunger was great.
-Ich habe immer Hunger nach dem Training.|I'm always hungry after practice.
 Mach bitte das Licht an.|Please turn on the light.
 Ich trinke gern kaltes Wasser.|I like drinking cold water.
 Mein Bruder ist heute krank.|My brother is sick today.
@@ -461,7 +448,6 @@ Er sieht sehr unglücklich aus.|He looks very unhappy.
 Sie ist wütend auf ihren Bruder.|She is angry at her brother.
 Er kommt immer pünktlich.|He always comes on time.
 Warum lernst du Deutsch?|Why are you learning German?
-Ich gehe jeden Tag zu Fuß zur Uni.|I walk to the university every day.
 Der Unterricht fängt um neun Uhr an.|Class starts at nine o'clock.
 Bitte antworte mir schnell.|Please answer me quickly.
 Wir brechen früh am Morgen auf.|We set out early in the morning.
@@ -504,7 +490,6 @@ Erst esse ich, dann lerne ich.|First I eat, then I study.
 Mein Zug fährt erst um vier Uhr.|My train doesn't leave until four o'clock.
 Der Weg dauert etwa zehn Minuten.|The way takes approximately ten minutes.
 Gestern habe ich Freunde getroffen.|Yesterday I met friends.
-Heute früh hat es geregnet.|This morning it rained.
 Nachmittags gehe ich oft spazieren.|In the afternoon I often go for a walk.
 Nachts ist es hier sehr ruhig.|At night it is very quiet here.
 Ich lerne Deutsch, um in Berlin zu arbeiten.|I am learning German in order to work in Berlin.
@@ -533,7 +518,6 @@ Sie arbeitet in einem sozialen Beruf.|She works in a social profession.
 Ich bin krank, deshalb bleibe ich zu Hause.|I am sick, that's why I am staying home.
 Er wäscht sich die Hände.|He washes his hands.
 Wir sprechen über das Wetter.|We are talking about the weather.
-Wir fahren übers Wochenende nach Hamburg.|We are going to Hamburg over the weekend.
 Kolumbus hat Amerika entdeckt.|Columbus discovered America.
 Du musst dich bald entscheiden.|You have to decide soon.
 Wer hat das Telefon erfunden?|Who invented the telephone?
@@ -561,12 +545,10 @@ Das Brot ist sehr hart.|The bread is very hard.
 Der Berg ist sehr hoch.|The mountain is very high.
 Das ist doch klar!|That is clear!
 Sie ist in ihn verliebt.|She is in love with him.
-An welchem Tag hast du Geburtstag?|On what day is your birthday?
 Wir fahren entweder nach Wien oder nach Prag.|We are going either to Vienna or to Prague.
 Nachdem er gegessen hat, geht er spazieren.|After he has eaten, he goes for a walk.
 Ich trinke Tee statt Kaffee.|I drink tea instead of coffee.
 Ich bin vor dem Unterricht angekommen.|I arrived before class.
-Vor zwei Tagen war ich in Köln.|Two days ago I was in Cologne.
 Ich bin zum ersten Mal in Deutschland.|I am in Germany for the first time.
 Ich räume mein Zimmer auf.|I am tidying up my room.
 Können Sie meine Frage beantworten?|Can you answer my question?
@@ -635,7 +617,6 @@ Wir fahren mit dem Schiff nach Hamburg.|We are going to Hamburg by ship.
 Heute ist ein ganz normaler Tag.|Today is a completely normal day.
 Der Tisch in der Küche ist rund.|The table in the kitchen is round.
 Er arbeitet als Taxifahrer.|He works as a taxi driver.
-Das kostet mehr als zehn Euro.|That costs more than ten euros.
 Wem gibst du das Geschenk?|To whom are you giving the gift?
 Das Buch eignet sich gut für Anfänger.|The book is well suited for beginners.
 Mein Handy funktioniert nicht mehr.|My cell phone does not work anymore.
@@ -685,12 +666,10 @@ Im Winter wird es früh dunkel.|In winter it gets dark early.
 Ist das wirklich möglich?|Is that really possible?
 Sein Onkel ist sehr reich.|His uncle is very rich.
 Er ist tatsächlich gekommen.|He actually came.
-Als er acht Jahre alt war, war er oft krank.|When he was eight years old, he was often sick.
 Die Firma baut Autos.|The company builds cars.
 Meine Tante eröffnet ein Café.|My aunt is opening a café.
 Wir erreichen den Bahnhof in zehn Minuten.|We will reach the train station in ten minutes.
 Bitte trenn das Papier vom Glas.|Please separate the paper from the glass.
-Zusammen oder getrennt? – Getrennt, bitte.|Together or separate checks? – Separate, please.
 Kannst du mir zwanzig Euro wechseln?|Can you change twenty euros for me?
 Sie macht eine Ausbildung als Köchin.|She is training to be a cook.
 Ich gehe heute zur Bank.|I am going to the bank today.
@@ -724,8 +703,6 @@ Diese Tasche ist sehr praktisch.|This bag is very practical.
 Theoretisch ist das möglich.|Theoretically that is possible.
 Die Kinder laufen hinaus in den Garten.|The children run out into the garden.
 Eine Fahrkarte nach Berlin, hin und zurück, bitte.|A ticket to Berlin, round trip, please.
-Ich hätte gern ein Stück Kuchen.|I would like a piece of cake.
-Sonst noch etwas? – Nein, danke, das ist alles.|Anything else? – No, thanks, that is all.
 Ich hole schnell ein Glas Wasser.|I will quickly get a glass of water.
 Er kehrt den Boden in der Küche.|He sweeps the floor in the kitchen.
 Ich merke, dass du müde bist.|I notice that you are tired.

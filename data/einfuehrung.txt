@@ -30,10 +30,7 @@ das Bild;;picture, pictures;;noun;;die Bilder;;Bitten;;Das Bild hängt an der Wa
 das Buch;;book;;noun;;die Bücher;;Bitten;;Das Buch liegt auf dem Tisch.;;The book is lying on the table.
 bitte;;please; you're welcome;;adverb;;;;Bitten;;Danke! – Bitte!;;Thanks! – You're welcome!
 was ...?;;what ...?;;phrase;;;;Bitten;;Was machst du heute?;;What are you doing today?
-heißen;;to be called/named;;verb;;;;Namen;;Wie heißt du?;;What's your name?
-ich heiße ...;;my name is ...;;phrase;;;;Namen;;Ich heiße Anna.;;My name is Anna.
-wie heißen Sie?;;what's your name? (formal);;phrase;;;;Namen;;Guten Tag! Wie heißen Sie?;;Hello! What's your name?
-wie heißt du?;;what's your name? (informal);;phrase;;;;Namen;;Hallo! Wie heißt du?;;Hi! What's your name?
+heißen;;to be called/named;;verb;;;;Namen; ich heiße ... = my name is ...; wie heißen Sie? = what's your name? (formal); wie heißt du? = what's your name? (informal);;Wie heißt du?;;What's your name?
 die Brille;;glasses;;noun;;die Brillen;;Namen;;Er trägt eine Brille.;;He wears glasses.
 die Frau;;Ms., Mrs.; woman; wife;;noun;;die Frauen;;Namen;;Die Frau hat zwei Kinder.;;The woman has two children.
 die Struktur;;structure, pattern;;noun;;die Strukturen;;Namen;;Die Struktur des Satzes ist einfach.;;The structure of the sentence is simple.
@@ -55,12 +52,8 @@ und;;and;;conjunction;;;;Namen;;Ich esse Brot und Käse.;;I'm eating bread and c
 welche, welcher, welches ...?;;which ...?;;determiner;;;;Namen;;Welches Buch möchtest du?;;Which book would you like?
 wie ...?;;how;;adverb;;;;Namen;;Wie geht es dir?;;How are you?
 wie schreibt man das?;;how do you spell that?;;phrase;;;;Namen;;Wie schreibt man das Wort?;;How do you spell the word?
-stellen;;to put, place; to pose;;verb;;;;Kleidung;;Ich stelle das Glas auf den Tisch.;;I put the glass on the table.
-stellen Sie Fragen;;ask questions;;phrase;;;;Kleidung;;Stellen Sie bitte Fragen.;;Please ask questions.
-tragen;;to wear;;verb;;trägt;;Kleidung;;Im Winter trage ich einen Mantel.;;In winter I wear a coat.
-er/sie trägt ...;;he/she is wearing ...;;phrase;;;;Kleidung;;Sie trägt eine blaue Jacke.;;She is wearing a blue jacket.
-ich trage ...;;I wear / am wearing ...;;phrase;;;;Kleidung;;Heute trage ich eine Jeans.;;Today I'm wearing jeans.
-trägst du ...?;;do you wear ...? / are you wearing ...?;;phrase;;;;Kleidung;;Trägst du heute einen Hut?;;Are you wearing a hat today?
+stellen;;to put, place; to pose;;verb;;;;Kleidung; stellen Sie Fragen = ask questions;;Ich stelle das Glas auf den Tisch.;;I put the glass on the table.
+tragen;;to wear;;verb;;trägt;;Kleidung; er/sie trägt ... = he/she is wearing ...; ich trage ... = I wear / am wearing ...; trägst du ...? = do you wear ...? / are you wearing ...?;;Im Winter trage ich einen Mantel.;;In winter I wear a coat.
 die Frage;;question;;noun;;die Fragen;;Kleidung;;Ich habe eine Frage.;;I have a question.
 die Hose;;pants;;noun;;die Hosen;;Kleidung;;Die Hose ist zu lang.;;The pants are too long.
 die Jacke;;jacket;;noun;;die Jacken;;Kleidung;;Die Jacke ist warm.;;The jacket is warm.
@@ -77,15 +70,8 @@ ja;;yes;;adverb;;;;Kleidung;;Ja, das stimmt.;;Yes, that's right.
 nein;;no;;adverb;;;;Kleidung;;Nein, danke.;;No, thank you.
 oder;;or;;conjunction;;;;Kleidung;;Tee oder Kaffee?;;Tea or coffee?
 wer ...?;;who ...?;;pronoun;;;;Kleidung;;Wer ist das?;;Who is that?
-haben;;to have;;verb;;hat;;Farben;;Ich habe einen Bruder.;;I have a brother.
-er/sie hat ...;;he/she has ...;;phrase;;;;Farben;;Sie hat blaue Augen.;;She has blue eyes.
-haben Sie ...?;;do you have ...? (formal);;phrase;;;;Farben;;Haben Sie einen Stift?;;Do you have a pen?
-hast du ...?;;do you have ...? (informal);;phrase;;;;Farben;;Hast du Hunger?;;Are you hungry?
-sein;;to be;;verb;;ist;;Farben;;Ich bin Student.;;I am a student.
-bist du ...?;;are you ...? (informal);;phrase;;;;Farben;;Bist du müde?;;Are you tired?
-er/sie ist ...;;he/she is ...;;phrase;;;;Farben;;Er ist heute krank.;;He is sick today.
-sie sind ...;;they are ...;;phrase;;;;Farben;;Sie sind zu Hause.;;They are at home.
-sind Sie ...?;;are you ...? (formal);;phrase;;;;Farben;;Sind Sie Herr Schmidt?;;Are you Mr. Schmidt?
+haben;;to have;;verb;;hat;;Farben; er/sie hat ... = he/she has ...; haben Sie ...? = do you have ...? (formal); hast du ...? = do you have ...? (informal);;Ich habe einen Bruder.;;I have a brother.
+sein;;to be;;verb;;ist;;Farben; bist du ...? = are you ...? (informal); er/sie ist ... = he/she is ...; sie sind ... = they are ...; sind Sie ...? = are you ...? (formal); das ist ... = this/that is ...; das sind ... = these/those are ...;;Ich bin Student.;;I am a student.
 unterschreiben;;to sign;;verb;;;;Farben;;Bitte unterschreiben Sie hier.;;Please sign here.
 die Farbe;;color;;noun;;die Farben;;Farben;;Welche Farbe hat das Auto?;;What color is the car?
 die Professorin;;female professor;;noun;;die Professorinnen;;Farben;;Die Professorin spricht schnell.;;The professor speaks fast.
@@ -107,7 +93,7 @@ weiß;;white;;adjective;;;;Farben;;Der Schnee ist weiß.;;The snow is white.
 dein, deine;;your (informal);;determiner;;;;Farben;;Ist das dein Buch?;;Is that your book?
 hier;;here;;adverb;;;;Farben;;Ich wohne hier.;;I live here.
 mein, meine;;my;;determiner;;;;Farben;;Das ist meine Schwester.;;That is my sister.
-nicht;;not;;adverb;;;;Farben;;Ich weiß es nicht.;;I don't know.
+nicht;;not;;adverb;;;;Farben; gar nicht = not at all;;Ich weiß es nicht.;;I don't know.
 kennen;;to know;;verb;;;;Begrüßen und Verabschieden;;Ich kenne ihn nicht.;;I don't know him.
 die Hand schütteln;;to shake hands;;verb;;;;Begrüßen und Verabschieden;;Man schüttelt zur Begrüßung die Hand.;;People shake hands as a greeting.
 die Freundin;;female friend;;noun;;die Freundinnen;;Begrüßen und Verabschieden;;Meine Freundin wohnt in Köln.;;My friend lives in Cologne.
@@ -120,7 +106,7 @@ der Fußball;;soccer ball;;noun;;die Fußbälle;;Begrüßen und Verabschieden;;D
 der Mensch;;human being, person;;noun;;die Menschen;;Begrüßen und Verabschieden;;Jeder Mensch braucht Freunde.;;Every person needs friends.
 der Morgen;;morning;;noun;;die Morgen;;Begrüßen und Verabschieden;;Am Morgen trinke ich Kaffee.;;In the morning I drink coffee.
 guten Morgen;;good morning;;phrase;;;;Begrüßen und Verabschieden;;Guten Morgen! Wie geht's?;;Good morning! How are you?
-der Tag;;day;;noun;;die Tage;;Begrüßen und Verabschieden;;Ein Tag hat vierundzwanzig Stunden.;;A day has twenty-four hours.
+der Tag;;day;;noun;;die Tage;;Begrüßen und Verabschieden; an welchem Tag? = on what day?;;Ein Tag hat vierundzwanzig Stunden.;;A day has twenty-four hours.
 guten Tag;;good afternoon, hello (formal);;phrase;;;;Begrüßen und Verabschieden;;Guten Tag, Herr Weber!;;Hello, Mr. Weber!
 kaputt;;broken;;adjective;;;;Begrüßen und Verabschieden;;Mein Handy ist kaputt.;;My cell phone is broken.
 verrückt;;crazy, crazily;;adjective/adverb;;;;Begrüßen und Verabschieden;;Das ist doch verrückt!;;That's crazy!
@@ -194,8 +180,6 @@ der Vordergrund;;foreground;;noun;;die Vordergründe;;Der Seminarraum;;Im Vorder
 das Fenster;;window;;noun;;die Fenster;;Der Seminarraum;;Das Fenster ist offen.;;The window is open.
 das Heft;;notebook;;noun;;die Hefte;;Der Seminarraum;;Ich schreibe in mein Heft.;;I write in my notebook.
 das Papier;;paper;;noun;;die Papiere;;Der Seminarraum;;Ich brauche Papier und einen Stift.;;I need paper and a pen.
-das ist ...;;this/that is ...;;phrase;;;;Der Seminarraum;;Das ist meine Lehrerin.;;That is my teacher.
-das sind ...;;these/those are ...;;phrase;;;;Der Seminarraum;;Das sind meine Eltern.;;Those are my parents.
 schützen;;to protect, save;;verb;;;;Beschreibungen;;Wir müssen die Umwelt schützen.;;We have to protect the environment.
 die Bedingung;;condition;;noun;;die Bedingungen;;Beschreibungen;;Das ist eine wichtige Bedingung.;;That is an important condition.
 die Bildung;;education;;noun;;;;Beschreibungen;;Bildung ist sehr wichtig.;;Education is very important.
@@ -231,7 +215,7 @@ die Nase;;nose;;noun;;die Nasen;;Der Körper;;Meine Nase ist kalt.;;My nose is c
 die Schulter;;shoulder;;noun;;die Schultern;;Der Körper;;Mir tut die Schulter weh.;;My shoulder hurts.
 der Arm;;arm;;noun;;die Arme;;Der Körper;;Er hat einen starken Arm.;;He has a strong arm.
 der Bauch;;belly, stomach;;noun;;die Bäuche;;Der Körper;;Mein Bauch tut weh.;;My stomach hurts.
-der Fuß;;foot;;noun;;die Füße;;Der Körper;;Mein Fuß ist verletzt.;;My foot is hurt.
+der Fuß;;foot;;noun;;die Füße;;Der Körper; zu Fuß = on foot;;Mein Fuß ist verletzt.;;My foot is hurt.
 der Kopf;;head;;noun;;die Köpfe;;Der Körper;;Ich habe Kopfschmerzen.;;I have a headache.
 der Körper;;body;;noun;;die Körper;;Der Körper;;Der Körper braucht Wasser.;;The body needs water.
 der Mund;;mouth;;noun;;die Münder;;Der Körper;;Mach bitte den Mund auf.;;Please open your mouth.
@@ -264,8 +248,7 @@ schneien;;to snow;;verb;;schneit;;Wetter und Jahreszeiten;;Im Januar schneit es 
 die Ausnahme;;exception;;noun;;die Ausnahmen;;Wetter und Jahreszeiten;;Heute machen wir eine Ausnahme.;;Today we're making an exception.
 die Tabelle;;table;;noun;;die Tabellen;;Wetter und Jahreszeiten;;Die Tabelle zeigt die Ergebnisse.;;The table shows the results.
 die Temperatur;;temperature;;noun;;die Temperaturen;;Wetter und Jahreszeiten;;Die Temperatur ist heute niedrig.;;The temperature is low today.
-der Frühling;;spring;;noun;;die Frühlinge;;Wetter und Jahreszeiten;;Der Frühling ist meine Lieblingsjahreszeit.;;Spring is my favorite season.
-im Frühling;;in the spring;;phrase;;;;Wetter und Jahreszeiten;;Im Frühling blühen die Blumen.;;In the spring the flowers bloom.
+der Frühling;;spring;;noun;;die Frühlinge;;Wetter und Jahreszeiten; im Frühling = in the spring;;Der Frühling ist meine Lieblingsjahreszeit.;;Spring is my favorite season.
 der Grad;;degree;;noun;;die Grade;;Wetter und Jahreszeiten;;Es sind zwanzig Grad.;;It is twenty degrees.
 der Herbst;;fall, autumn;;noun;;die Herbste;;Wetter und Jahreszeiten;;Im Herbst fallen die Blätter.;;In autumn the leaves fall.
 der Monat;;month;;noun;;die Monate;;Wetter und Jahreszeiten;;Der Monat hat dreißig Tage.;;The month has thirty days.
@@ -283,7 +266,7 @@ warm;;warm;;adjective;;;;Wetter und Jahreszeiten;;Die Suppe ist noch warm.;;The 
 wirklich;;real(ly);;adjective/adverb;;;;Wetter und Jahreszeiten;;Das ist wirklich toll!;;That is really great!
 aber;;but, however;;conjunction;;;;Wetter und Jahreszeiten;;Ich möchte, aber ich habe keine Zeit.;;I would like to, but I don't have time.
 eher;;rather, more likely;;adverb;;;;Wetter und Jahreszeiten;;Ich bin eher müde als hungrig.;;I'm more tired than hungry.
-heute;;today;;adverb;;;;Wetter und Jahreszeiten;;Heute habe ich frei.;;Today I'm off.
+heute;;today;;adverb;;;;Wetter und Jahreszeiten; heute Abend = this evening; heute früh = this morning;;Heute habe ich frei.;;Today I'm off.
 leider;;unfortunately;;adverb;;;;Wetter und Jahreszeiten;;Ich kann leider nicht kommen.;;Unfortunately I can't come.
 manchmal;;sometimes;;adverb;;;;Wetter und Jahreszeiten;;Manchmal gehe ich zu Fuß.;;Sometimes I walk.
 noch;;even, still;;adverb;;;;Wetter und Jahreszeiten;;Es regnet noch.;;It's still raining.
@@ -318,8 +301,7 @@ der Amerikaner;;male American;;noun;;die Amerikaner;;Geografie, Herkunft und Spr
 die Amerikanerin;;female American;;noun;;die Amerikanerinnen;;Geografie, Herkunft und Sprachen;;Die Amerikanerin wohnt in Berlin.;;The American woman lives in Berlin.
 der Australier;;male Australian;;noun;;die Australier;;Geografie, Herkunft und Sprachen;;Der Australier surft gern.;;The Australian likes to surf.
 die Australierin;;female Australian;;noun;;die Australierinnen;;Geografie, Herkunft und Sprachen;;Die Australierin kommt aus Sydney.;;The Australian woman comes from Sydney.
-der/die Deutsche;;German (person);;noun;;die Deutschen;;Geografie, Herkunft und Sprachen;;Die Deutschen trinken gern Bier.;;Germans like to drink beer.
-Ich bin Deutsche/r.;;I am German.;;phrase;;;;Geografie, Herkunft und Sprachen;;Ich bin Deutscher, und du?;;I am German, and you?
+der/die Deutsche;;German (person);;noun;;die Deutschen;;Geografie, Herkunft und Sprachen; Ich bin Deutsche/r. = I am German.;;Die Deutschen trinken gern Bier.;;Germans like to drink beer.
 der Franzose;;male French person;;noun;;die Franzosen;;Geografie, Herkunft und Sprachen;;Der Franzose wohnt in Paris.;;The Frenchman lives in Paris.
 die Französin;;female French person;;noun;;die Französinnen;;Geografie, Herkunft und Sprachen;;Die Französin spricht gut Deutsch.;;The Frenchwoman speaks German well.
 der Kanadier;;male Canadian;;noun;;die Kanadier;;Geografie, Herkunft und Sprachen;;Der Kanadier mag Eishockey.;;The Canadian likes ice hockey.

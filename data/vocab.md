@@ -8,8 +8,6 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | glauben | to believe | verb |  | 2 | Besitz |
 | lösen | to solve | verb |  | 2 | Besitz |
 | möchte | would like | verb |  | 2 | Besitz; modal form of mögen |
-| recht haben | to be right | verb | hat recht | 2 | Besitz |
-| Sport treiben | to do sports, work out | verb |  | 2 | Besitz |
 | überraschen | to surprise | verb |  | 2 | Besitz |
 | zahlen | to pay | verb |  | 2 | Besitz |
 | ziehen | to draw; pull; move | verb |  | 2 | Besitz |
@@ -94,7 +92,6 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | beide | both; two | determiner |  | 2 | Geschenke |
 | da | there | adverb |  | 2 | Geschenke |
 | etwas | something | pronoun |  | 2 | Geschenke |
-| heute Abend | this evening | phrase |  | 2 | Geschenke |
 | ihn | him, it (accusative case) | pronoun |  | 2 | Geschenke |
 | selbst | (one)self; even | adverb |  | 2 | Geschenke |
 | übrigens | by the way | adverb |  | 2 | Geschenke |
@@ -148,7 +145,7 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | irgendein, irgendeine | some, any | determiner |  | 2 | Kleidung und Aussehen |
 | lieber | rather, preferably | adverb |  | 2 | Kleidung und Aussehen |
 | ohne | without | preposition |  | 2 | Kleidung und Aussehen |
-| sonst | otherwise | adverb |  | 2 | Kleidung und Aussehen |
+| sonst | otherwise | adverb |  | 2 | Kleidung und Aussehen; Sonst noch etwas? = Anything else? |
 | unterwegs | on the road, on one's way | adverb |  | 2 | Kleidung und Aussehen |
 | zu | too | adverb |  | 2 | Kleidung und Aussehen |
 | aufwachen | to wake up | verb |  | 2 | Freude; separable |
@@ -215,10 +212,10 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | das Meer | sea | noun | die Meere | 1 | Freizeit |
 | das Museum | museum | noun | die Museen | 1 | Freizeit |
 | das Tier | animal | noun | die Tiere | 1 | Freizeit |
-| das Wochenende | weekend | noun | die Wochenenden | 1 | Freizeit; am Wochenende = over the weekend |
+| das Wochenende | weekend | noun | die Wochenenden | 1 | Freizeit; am Wochenende = over the weekend; übers Wochenende = over the weekend |
 | die Ferien | vacation | noun | plural only | 1 | Freizeit |
 | die Medien | media | noun | plural only | 1 | Freizeit |
-| gern | gladly, with pleasure | adverb |  | 1 | Freizeit |
+| gern | gladly, with pleasure | adverb |  | 1 | Freizeit; ich hätte gern = I would like to have |
 | jede, jeder, jedes | each, every | determiner |  | 1 | Freizeit |
 | miteinander | with each other | adverb |  | 1 | Freizeit |
 | nichts | nothing | pronoun |  | 1 | Freizeit |
@@ -246,7 +243,7 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | die Wirtschaft | economics | noun | die Wirtschaften | 1 | Schule und Universität |
 | die Woche | week | noun | die Wochen | 1 | Schule und Universität; während der Woche = during the week |
 | der Schüler | male pupil | noun | die Schüler | 1 | Schule und Universität |
-| der Sport | sport, physical education | noun |  | 1 | Schule und Universität; no plural given |
+| der Sport | sport, physical education | noun |  | 1 | Schule und Universität; no plural given; Sport treiben = to do sports, work out |
 | der Montag | Monday | noun |  | 1 | Schule und Universität; day of the week; no plural given |
 | der Dienstag | Tuesday | noun |  | 1 | Schule und Universität; day of the week; no plural given |
 | der Mittwoch | Wednesday | noun |  | 1 | Schule und Universität; day of the week; no plural given |
@@ -256,10 +253,8 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | der Sonntag | Sunday | noun |  | 1 | Schule und Universität; day of the week; no plural given |
 | das Bett | bed | noun | die Betten | 1 | Schule und Universität; ins Bett gehen = to go to bed |
 | das Fach | academic subject | noun | die Fächer | 1 | Schule und Universität |
-| das Haus | house | noun | die Häuser | 1 | Schule und Universität |
+| das Haus | house | noun | die Häuser | 1 | Schule und Universität; nach Hause gehen = to go home; zu Hause = at home |
 | das Kapitel | chapter | noun | die Kapitel | 1 | Schule und Universität |
-| nach Hause gehen | to go home | phrase |  | 1 | Schule und Universität |
-| zu Hause | at home | phrase |  | 1 | Schule und Universität; zu = to |
 | halb | half | adjective |  | 1 | Schule und Universität |
 | Um wie viel Uhr ...? | At what time ...? | phrase |  | 1 | Schule und Universität; handwritten: in how many hours |
 | wann | when | adverb |  | 1 | Schule und Universität |
@@ -267,7 +262,7 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | Wie spät ist es? | What time is it? | phrase |  | 1 | Schule und Universität |
 | Wie viel Uhr ist es? | What time is it? | phrase |  | 1 | Schule und Universität |
 | früh | early | adjective/adverb |  | 1 | Alltag |
-| spät, später | late, later | adjective/adverb |  | 1 | Alltag |
+| spät, später | late, later | adjective/adverb |  | 1 | Alltag; spät dran sein = to be late |
 | wahrscheinlich | probable, probably | adjective/adverb |  | 1 | Alltag |
 | endlich | finally | adverb |  | 1 | Alltag |
 | ihr, ihre | her; their | determiner |  | 1 | Alltag |
@@ -355,14 +350,12 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | direkt | direct(ly) | adjective/adverb |  | 3 | Talente und Pläne |
 | einfach | simple, simply | adjective/adverb |  | 3 | Talente und Pläne |
 | hervorragend | excellent(ly) | adjective/adverb |  | 3 | Talente und Pläne |
-| recht | right | adjective/adverb |  | 3 | Talente und Pläne |
+| recht | right | adjective/adverb |  | 3 | Talente und Pläne; recht haben = to be right |
 | unterschiedlich | different(ly), diverse | adjective/adverb |  | 3 | Talente und Pläne |
 | wunderbar | wonderful(ly) | adjective/adverb |  | 3 | Talente und Pläne |
 | besonders | particularly, especially | adverb |  | 3 | Talente und Pläne |
 | einander | each other, one another | pronoun |  | 3 | Talente und Pläne |
-| ein bisschen | a little bit | adverb |  | 3 | Talente und Pläne |
-| gar nicht | not at all | adverb |  | 3 | Talente und Pläne |
-| kein bisschen | not a bit | adverb |  | 3 | Talente und Pläne |
+| ein bisschen | a little bit | adverb |  | 3 | Talente und Pläne; kein bisschen = not a bit |
 | nach | after; to (a place) | preposition |  | 3 | Talente und Pläne |
 | nie | never | adverb |  | 3 | Talente und Pläne |
 | nur | only | adverb |  | 3 | Talente und Pläne |
@@ -444,21 +437,15 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | bewegen | to move | verb |  | 3 | Körperliche und geistige Verfassung |
 | drücken | to hug, press, push | verb |  | 3 | Körperliche und geistige Verfassung |
 | erkennen | to recognize | verb |  | 3 | Körperliche und geistige Verfassung |
-| fühlen | to feel | verb |  | 3 | Körperliche und geistige Verfassung |
-| Wie fühlst du dich? | How do you feel? | phrase |  | 3 | Körperliche und geistige Verfassung |
-| ich fühle mich ... | I feel ... | phrase |  | 3 | Körperliche und geistige Verfassung |
+| fühlen | to feel | verb |  | 3 | Körperliche und geistige Verfassung; Wie fühlst du dich? = How do you feel?; ich fühle mich ... = I feel ... |
 | lachen | to laugh | verb |  | 3 | Körperliche und geistige Verfassung |
 | schreien | to scream, yell | verb |  | 3 | Körperliche und geistige Verfassung |
-| spät dran sein | to be late | verb | ist spät dran | 3 | Körperliche und geistige Verfassung |
 | weinen | to cry | verb |  | 3 | Körperliche und geistige Verfassung |
-| die Angst | fear | noun | die Ängste | 3 | Körperliche und geistige Verfassung |
-| Angst haben | to be afraid | verb | hat Angst | 3 | Körperliche und geistige Verfassung |
-| die Lust | desire | noun |  | 3 | Körperliche und geistige Verfassung; no plural given |
-| Lust haben | to feel like (doing something) | verb | hat Lust | 3 | Körperliche und geistige Verfassung |
+| die Angst | fear | noun | die Ängste | 3 | Körperliche und geistige Verfassung; Angst haben = to be afraid |
+| die Lust | desire | noun |  | 3 | Körperliche und geistige Verfassung; no plural given; Lust haben = to feel like (doing something) |
 | die Nacht | night | noun | die Nächte | 3 | Körperliche und geistige Verfassung |
 | der Gott | god, God | noun | die Götter | 3 | Körperliche und geistige Verfassung |
-| der Hunger | hunger | noun |  | 3 | Körperliche und geistige Verfassung; no plural given |
-| Hunger haben | to be hungry | verb | hat Hunger | 3 | Körperliche und geistige Verfassung |
+| der Hunger | hunger | noun |  | 3 | Körperliche und geistige Verfassung; no plural given; Hunger haben = to be hungry |
 | das Licht | light | noun | die Lichter | 3 | Körperliche und geistige Verfassung |
 | das Wasser | water | noun |  | 3 | Körperliche und geistige Verfassung; no plural given |
 | krank | sick | adjective |  | 3 | Körperliche und geistige Verfassung |
@@ -467,7 +454,6 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | wütend | angry, angrily | adjective/adverb |  | 3 | Körperliche und geistige Verfassung |
 | immer | always | adverb |  | 3 | Körperliche und geistige Verfassung |
 | warum | why | adverb |  | 3 | Körperliche und geistige Verfassung |
-| zu Fuß | on foot | phrase |  | 3 | Körperliche und geistige Verfassung |
 | anfangen | to start, begin | verb | fängt ... an | 4 | Der Arbeitstag; separable |
 | antworten | to answer | verb |  | 4 | Der Arbeitstag |
 | aufbrechen | to leave, set out | verb | bricht ... auf | 4 | Der Arbeitstag; separable |
@@ -510,7 +496,6 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | erst um vier Uhr | not until four o'clock | phrase |  | 4 | Der Arbeitstag |
 | etwa | approximately | adverb |  | 4 | Der Arbeitstag |
 | gestern | yesterday | adverb |  | 4 | Der Arbeitstag |
-| heute früh | this morning | phrase |  | 4 | Der Arbeitstag |
 | nachmittags | afternoons, in the afternoon | adverb |  | 4 | Der Arbeitstag |
 | nachts | nights, at night | adverb |  | 4 | Der Arbeitstag |
 | um ... zu ... | (in order) to ... | phrase |  | 4 | Der Arbeitstag |
@@ -539,7 +524,6 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | deshalb | therefore; that's why | adverb |  | 4 | Urlaub und Freizeit |
 | sich | oneself/himself/herself | pronoun |  | 4 | Urlaub und Freizeit |
 | über | over, above; about; across, via | preposition |  | 4 | Urlaub und Freizeit |
-| übers Wochenende | over the weekend | phrase |  | 4 | Urlaub und Freizeit |
 | entdecken | to discover | verb |  | 4 | Geburtstage und Jahrestage |
 | entscheiden | to decide | verb |  | 4 | Geburtstage und Jahrestage |
 | erfinden | to invent | verb |  | 4 | Geburtstage und Jahrestage |
@@ -567,12 +551,10 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | hoch | high(ly) | adjective/adverb |  | 4 | Geburtstage und Jahrestage |
 | klar | clear(ly) | adjective/adverb |  | 4 | Geburtstage und Jahrestage |
 | verliebt | in love | adjective |  | 4 | Geburtstage und Jahrestage |
-| an welchem Tag? | on what day? | phrase |  | 4 | Geburtstage und Jahrestage |
 | entweder ... oder ... | either ... or ... | conjunction |  | 4 | Geburtstage und Jahrestage |
 | nachdem | after | conjunction |  | 4 | Geburtstage und Jahrestage |
 | statt | instead of | preposition |  | 4 | Geburtstage und Jahrestage |
-| vor | before; ago | preposition |  | 4 | Geburtstage und Jahrestage |
-| vor zwei Tagen | two days ago | phrase |  | 4 | Geburtstage und Jahrestage |
+| vor | before; ago | preposition |  | 4 | Geburtstage und Jahrestage; vor zwei Tagen = two days ago |
 | zum ersten Mal | for the first time | phrase |  | 4 | Geburtstage und Jahrestage |
 | aufräumen | to tidy up | verb | räumt ... auf | 4 | Ereignisse; separable |
 | beantworten | to answer | verb |  | 4 | Ereignisse |
@@ -640,8 +622,7 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | das Schiff | ship | noun | die Schiffe | 5 | Dienstleistungen |
 | normal | normal(ly) | adjective/adverb |  | 5 | Dienstleistungen |
 | rund | round; around | adjective/adverb |  | 5 | Dienstleistungen |
-| als | than; as; when | conjunction |  | 5 | Dienstleistungen; als Taxifahrer(in) = as a taxi driver |
-| mehr als | more than | phrase |  | 5 | Dienstleistungen |
+| als | than; as; when | conjunction |  | 5 | Dienstleistungen; als Taxifahrer(in) = as a taxi driver; mehr als = more than; als er acht Jahre alt war = when he was eight years old |
 | wem | (to, for) whom | pronoun |  | 5 | Dienstleistungen |
 | sich eignen | to lend itself, be suitable | verb |  | 5 | Berufe; reflexive |
 | funktionieren | to work, function | verb |  | 5 | Berufe |
@@ -691,12 +672,10 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | möglich | possible | adjective |  | 5 | Berufe |
 | reich | rich(ly) | adjective/adverb |  | 5 | Berufe |
 | tatsächlich | actual(ly), indeed | adjective/adverb |  | 5 | Berufe |
-| als er acht Jahre alt war | when he was eight years old | phrase |  | 5 | Berufe |
 | bauen | to build, manufacture, produce | verb |  | 5 | Der Arbeitsplatz |
 | eröffnen | to open, establish | verb |  | 5 | Der Arbeitsplatz |
 | erreichen | to reach, achieve | verb |  | 5 | Der Arbeitsplatz |
-| trennen | to separate | verb |  | 5 | Der Arbeitsplatz |
-| getrennt | separate(ly), with separate checks | adjective/adverb |  | 5 | Der Arbeitsplatz; from trennen |
+| trennen | to separate | verb |  | 5 | Der Arbeitsplatz; getrennt = separate(ly), with separate checks |
 | wechseln | to change | verb |  | 5 | Der Arbeitsplatz |
 | die Ausbildung | specialized training | noun | die Ausbildungen | 5 | Der Arbeitsplatz |
 | die Bank | bank | noun | die Banken | 5 | Der Arbeitsplatz |
@@ -730,8 +709,6 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | theoretisch | theoretical(ly) | adjective/adverb |  | 5 | Der Arbeitsplatz |
 | hinaus | out | adverb |  | 5 | Der Arbeitsplatz |
 | hin und zurück | return, roundtrip | phrase |  | 5 | Der Arbeitsplatz |
-| ich hätte gern | I would like to have | phrase |  | 5 | Der Arbeitsplatz |
-| Sonst noch etwas? | Anything else? | phrase |  | 5 | Der Arbeitsplatz |
 | holen | to get, fetch | verb |  | 5 | In der Küche |
 | kehren | to sweep | verb |  | 5 | In der Küche |
 | merken | to notice, realize | verb |  | 5 | In der Küche |
