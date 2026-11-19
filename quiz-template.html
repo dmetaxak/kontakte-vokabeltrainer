@@ -867,6 +867,11 @@ function mergeMarks(local, remote) {
   var SING = {}; ALL.forEach(function (w) { if (!w.pl) SING[w.g] = w; });
   ALL.forEach(function (w) { if (w.pl && SING[w.pl]) { SING[w.pl].pf = w; SING[w.pl].plid = w.id; w.base = SING[w.pl]; } });
   var WORDS = ALL.filter(function (w) { return !w.pl; });
+  /* what the learner knows, for the writing-feedback prompt: every word in the app, newest chapter last */
+  var KNOWN = (function () {
+    var nums = WORDS.map(function (w) { return w.c; }).filter(function (c) { return /^\d+$/.test(c); }).map(Number);
+    return { last: Math.max.apply(null, nums), words: WORDS.map(function (w) { return w.g; }).join(", ") };
+  })();
   var VERBS = (window.VERBS || []).map(function (v) { v.idpr = hashId("v|" + v.i + "|pr"); v.idpf = hashId("v|" + v.i + "|pf"); return v; });
   var byId = {};
   WORDS.forEach(function (w) { byId[w.id] = w; });
@@ -1502,11 +1507,13 @@ function mergeMarks(local, remote) {
     var forms = f !== w ? "plural of " + w.g : (w.f ? "forms: " + w.f : "");
     if (!text) return;
     $("s-check").disabled = true; $("s-feedback").textContent = "Checking...";
-    var prompt = "You are checking a beginner German sentence from a learner using the Kontakte textbook (chapters 1 and 2: introductions, daily life, leisure, possessions, gifts; present tense, nominative and accusative, modal verbs, separable verbs).\n"
+    var prompt = "You are checking a beginner German sentence from a learner using the Kontakte textbook. They have studied the Einführung and chapters 1-" + KNOWN.last + " (grammar so far: present tense, nominative, accusative and dative cases, modal and separable verbs, the Perfekt).\n"
+      + "Words they have learned so far: " + KNOWN.words + ".\n"
+      + "Other words are fine too; never lower the score because a word is not on that list.\n"
       + "Target word: " + f.g + " (" + f.e + ")" + (forms ? ", " + forms : "") + ".\n"
       + "Any form of the target word counts as using it: singular or plural, any case or verb form, even if it differs from the form shown.\n"
       + "Learner's sentence: " + text + "\n"
-      + "Score: credit 1 if the target word is used correctly (small errors elsewhere are fine); 0.5 if recognizable but flawed (wrong article, case or form, awkward meaning); 0 if used incorrectly or missing. Do not penalize grammar beyond chapters 1-2; mention it as an aside only.\n"
+      + "Score: credit 1 if the target word is used correctly (small errors elsewhere are fine); 0.5 if recognizable but flawed (wrong article, case or form, awkward meaning); 0 if used incorrectly or missing. Do not penalize grammar the learner has not covered yet; mention it as an aside only.\n"
       + 'Reply with only JSON: {"credit": 1, "corrected": "corrected sentence or empty string", "note": "one short line per rule behind each change, or a brief confirmation"}';
     var res;
     try {
