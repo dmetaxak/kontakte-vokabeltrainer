@@ -213,3 +213,37 @@ sparen;;ich;;Ich ___ für ein neues Fahrrad.;;I am saving for a new bicycle.
 verlassen;;du;;Wann ___ du das Büro?;;When do you leave the office?
 vorlesen;;er;;Die Lehrerin ___ der Klasse eine Geschichte vor.;;The teacher reads the class a story.
 zurückkehren;;sie;;Die Gäste ___ ins Hotel zurück.;;The guests return to the hotel.
+begegnen;;wir;;Wir ___ oft unserem Nachbarn im Park.;;We often meet our neighbor in the park.
+fehlen;;sie;;Mir ___ noch zwei Stühle.;;I am still missing two chairs.
+gefallen;;du;;Du ___ mir in diesem Hemd.;;I like you in that shirt.
+gehören;;er;;Das Auto ___ meinem Vater.;;The car belongs to my father.
+helfen;;du;;___ du mir beim Kochen?;;Will you help me with the cooking?
+kennzeichnen;;ihr;;___ ihr die Kisten mit Farben?;;Are you labeling the boxes with colors?
+putzen;;ich;;Ich ___ jeden Samstag das Bad.;;I clean the bathroom every Saturday.
+schaden;;er;;Rauchen ___ der Gesundheit.;;Smoking is harmful to your health.
+schmecken;;er;;Der Kuchen ___ mir sehr gut.;;The cake tastes very good to me.
+wiederholen;;du;;___ du bitte die Frage?;;Will you please repeat the question?
+ergeben;;er;;Daraus ___ sich eine gute Idee.;;A good idea arises from that.
+folgen;;ihr;;___ ihr mir bitte?;;Will you follow me, please?
+schicken;;wir;;Wir ___ euch eine Postkarte aus Bayern.;;We are sending you a postcard from Bavaria.
+übernachten;;du;;Wo ___ du in Berlin?;;Where are you staying overnight in Berlin?
+überwiegen;;er;;In der Altstadt ___ der Tourismus.;;Tourism predominates in the old town.
+betreffen;;er;;Das Problem ___ alle Mieter.;;The problem concerns all renters.
+mieten;;sie;;Meine Freunde ___ ein Haus am See.;;My friends are renting a house by the lake.
+verändern;;er;;Das Internet ___ unser Leben.;;The internet is changing our lives.
+vermieten;;sie;;Herr und Frau Kraus ___ ihre Wohnung an Studenten.;;Mr. and Mrs. Kraus rent their apartment to students.
+ablehnen;;ich;;Ich ___ das Angebot ab.;;I am turning down the offer.
+abschließen;;du;;___ du bitte die Haustür ab?;;Will you please lock the front door?
+abtrocknen;;ihr;;___ ihr bitte das Geschirr ab?;;Will you please dry the dishes?
+aufnehmen;;er;;Die Uni ___ jedes Jahr viele Studenten auf.;;The university admits many students every year.
+aufsetzen;;du;;___ du bitte Wasser für den Kaffee auf?;;Will you please put on water for the coffee?
+aufwachsen;;du;;Wo ___ dein Kind auf?;;Where is your child growing up?
+auswählen;;wir;;Wir ___ zusammen die Farbe für das Wohnzimmer aus.;;We choose the color for the living room together.
+berichten;;er;;Der Journalist ___ über die Wahl.;;The journalist reports on the election.
+einrichten;;ihr;;Wie ___ ihr eure neue Wohnung ein?;;How are you furnishing your new apartment?
+einschalten;;ich;;Ich ___ den Fernseher ein.;;I switch on the TV.
+erleben;;wir;;Auf Reisen ___ wir immer viel.;;We always experience a lot when we travel.
+trocknen;;er;;Die Wäsche ___ in der Sonne.;;The laundry dries in the sun.
+wegbringen;;du;;___ du bitte den Müll weg?;;Will you please take out the trash?
+wischen;;ihr;;___ ihr heute den Boden?;;Are you mopping the floor today?
+zurückkommen;;sie;;Meine Eltern ___ morgen aus dem Urlaub zurück.;;My parents are coming back from vacation tomorrow.

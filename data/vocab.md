@@ -733,3 +733,154 @@ Add new words as rows. Nouns must include the article and plural. Chapter refers
 | mehrmals | several times | adverb |  | 5 | In der Küche |
 | selten | seldom, rarely | adverb |  | 5 | In der Küche |
 | unter | under, beneath; among | preposition |  | 5 | In der Küche |
+| begegnen | to meet | verb |  | 6 | Haus und Wohnung; + dat.; Perfekt with sein |
+| fehlen | to be missing | verb |  | 6 | Haus und Wohnung; + dat. |
+| gefallen | to be to one's liking; to please | verb | gefällt | 6 | Haus und Wohnung; + dat.; es gefällt mir = I like it |
+| gehören | to belong to | verb |  | 6 | Haus und Wohnung; + dat. |
+| helfen | to help | verb | hilft | 6 | Haus und Wohnung; + dat. |
+| kennzeichnen | to characterize, label, mark | verb |  | 6 | Haus und Wohnung |
+| putzen | to clean | verb |  | 6 | Haus und Wohnung |
+| schaden | to be harmful to | verb |  | 6 | Haus und Wohnung; + dat. |
+| schmecken | to taste good to | verb |  | 6 | Haus und Wohnung; + dat. |
+| wiederholen | to repeat | verb |  | 6 | Haus und Wohnung; inseparable |
+| die Badewanne | bathtub | noun | die Badewannen | 6 | Haus und Wohnung |
+| die Dusche | shower | noun | die Duschen | 6 | Haus und Wohnung |
+| die Erfahrung | experience | noun | die Erfahrungen | 6 | Haus und Wohnung |
+| die Hälfte | half | noun | die Hälften | 6 | Haus und Wohnung |
+| die Heimat | home, homeland | noun | die Heimaten | 6 | Haus und Wohnung |
+| die Miete | rent | noun | die Mieten | 6 | Haus und Wohnung |
+| die Terrasse | terrace, patio | noun | die Terrassen | 6 | Haus und Wohnung |
+| die Toilette | toilet, bathroom | noun | die Toiletten | 6 | Haus und Wohnung |
+| die Treppe | stairway | noun | die Treppen | 6 | Haus und Wohnung |
+| der Absatz | paragraph | noun | die Absätze | 6 | Haus und Wohnung |
+| der Balkon | balcony | noun | die Balkone | 6 | Haus und Wohnung |
+| der Schluss | conclusion, end | noun | die Schlüsse | 6 | Haus und Wohnung |
+| der Schutz | protection | noun |  | 6 | Haus und Wohnung; no plural given |
+| der Spiegel | mirror | noun | die Spiegel | 6 | Haus und Wohnung |
+| der Stock | floor, story | noun | die Stockwerke | 6 | Haus und Wohnung; im ersten Stock = on the second floor |
+| der Vorhang | curtain | noun | die Vorhänge | 6 | Haus und Wohnung |
+| das Bad | bathroom | noun | die Bäder | 6 | Haus und Wohnung |
+| das Dach | roof | noun | die Dächer | 6 | Haus und Wohnung |
+| das Gebäude | building | noun | die Gebäude | 6 | Haus und Wohnung |
+| das Grundstück | plot of land, property | noun | die Grundstücke | 6 | Haus und Wohnung |
+| das Land | country (rural area) | noun |  | 6 | Haus und Wohnung; no plural given; auf dem Land = in the country |
+| das Schlafzimmer | bedroom | noun | die Schlafzimmer | 6 | Haus und Wohnung |
+| das Sofa | sofa | noun | die Sofas | 6 | Haus und Wohnung |
+| das Wohnzimmer | living room | noun | die Wohnzimmer | 6 | Haus und Wohnung |
+| die Möbel | furniture | noun | plural only | 6 | Haus und Wohnung |
+| aktiv | active(ly) | adjective/adverb |  | 6 | Haus und Wohnung |
+| doppelt | double, doubly; twice | adjective/adverb |  | 6 | Haus und Wohnung |
+| gerecht | just, fair(ly) | adjective/adverb |  | 6 | Haus und Wohnung |
+| modern | modern | adjective |  | 6 | Haus und Wohnung |
+| üblich | customary, customarily | adjective/adverb |  | 6 | Haus und Wohnung |
+| allein | alone, by oneself | adverb |  | 6 | Haus und Wohnung |
+| anders | different(ly) | adverb |  | 6 | Haus und Wohnung |
+| aufgrund | because of, on account of | preposition |  | 6 | Haus und Wohnung; + gen. |
+| darüber | about it, above it | adverb |  | 6 | Haus und Wohnung |
+| während | while | conjunction |  | 6 | Haus und Wohnung; subordinating conjunction |
+| weiterhin | furthermore | adverb |  | 6 | Haus und Wohnung |
+| sich ergeben | to be produced, arise | verb | ergibt | 6 | In der Stadt; reflexive |
+| folgen | to follow, come next | verb |  | 6 | In der Stadt; + dat.; Perfekt with sein |
+| schicken | to send, forward | verb |  | 6 | In der Stadt |
+| übernachten | to stay overnight | verb |  | 6 | In der Stadt; inseparable |
+| überwiegen | to outweigh, predominate | verb |  | 6 | In der Stadt; inseparable; simple past überwog |
+| die Anzahl | number (of), quantity | noun |  | 6 | In der Stadt; no plural given |
+| die Apotheke | pharmacy | noun | die Apotheken | 6 | In der Stadt |
+| die Ecke | corner | noun | die Ecken | 6 | In der Stadt; um die Ecke = around the corner |
+| die Entwicklung | development | noun | die Entwicklungen | 6 | In der Stadt |
+| die Leistung | accomplishment, performance | noun | die Leistungen | 6 | In der Stadt |
+| die Nähe | vicinity | noun |  | 6 | In der Stadt; in der Nähe = in the vicinity |
+| die Studie | study | noun |  | 6 | In der Stadt; plural die Studien (as for das Studium) |
+| der Faktor | factor | noun | die Faktoren | 6 | In der Stadt |
+| der Flughafen | airport | noun | die Flughäfen | 6 | In der Stadt |
+| der Kindergarten | preschool | noun | die Kindergärten | 6 | In der Stadt |
+| der Laden | shop, store | noun | die Läden | 6 | In der Stadt |
+| der Zustand | condition, state | noun | die Zustände | 6 | In der Stadt |
+| Bayern | Bavaria | noun |  | 6 | In der Stadt; proper noun |
+| das Gefängnis | prison, jail | noun | die Gefängnisse | 6 | In der Stadt |
+| das Gymnasium | high school, college preparatory school | noun | die Gymnasien | 6 | In der Stadt |
+| das Merkmal | feature, attribute | noun | die Merkmale | 6 | In der Stadt |
+| aktuell | current, up-to-date | adjective |  | 6 | In der Stadt |
+| gesamt | whole; combined | adjective |  | 6 | In der Stadt |
+| öffentlich | public(ly) | adjective/adverb |  | 6 | In der Stadt |
+| weit | far | adjective/adverb |  | 6 | In der Stadt |
+| wirtschaftlich | economic, profitable | adjective |  | 6 | In der Stadt |
+| auf | on; to; at | preposition |  | 6 | In der Stadt; + dat./acc. |
+| außerdem | besides, in addition | adverb |  | 6 | In der Stadt |
+| egal | equal, same | adjective |  | 6 | In der Stadt; das ist mir egal = it's all the same to me |
+| gegenüber | opposite, across | preposition/adverb |  | 6 | In der Stadt; gleich gegenüber = just across (the way) |
+| sowie | as well as | conjunction |  | 6 | In der Stadt |
+| weg | away | adverb |  | 6 | In der Stadt |
+| betreffen | to concern, deal with | verb | betrifft | 6 | Eine Wohnung suchen |
+| mieten | to rent | verb |  | 6 | Eine Wohnung suchen |
+| verändern | to change | verb |  | 6 | Eine Wohnung suchen |
+| vermieten | to let, rent | verb |  | 6 | Eine Wohnung suchen |
+| die Bedeutung | meaning; significance | noun | die Bedeutungen | 6 | Eine Wohnung suchen |
+| die Geburt | birth | noun | die Geburten | 6 | Eine Wohnung suchen |
+| die Hütte | cabin, hut | noun | die Hütten | 6 | Eine Wohnung suchen |
+| die Innenstadt | downtown | noun | die Innenstädte | 6 | Eine Wohnung suchen |
+| die Mauer | wall | noun | die Mauern | 6 | Eine Wohnung suchen |
+| die Mieterin | female renter | noun | die Mieterinnen | 6 | Eine Wohnung suchen |
+| die Stufe | step (of a staircase) | noun | die Stufen | 6 | Eine Wohnung suchen |
+| die Veränderung | change, transformation | noun | die Veränderungen | 6 | Eine Wohnung suchen |
+| die Vermieterin | landlady | noun | die Vermieterinnen | 6 | Eine Wohnung suchen |
+| die Villa | mansion | noun | die Villen | 6 | Eine Wohnung suchen |
+| der Blick | view; glance | noun | die Blicke | 6 | Eine Wohnung suchen |
+| der Garten | garden, yard | noun | die Gärten | 6 | Eine Wohnung suchen |
+| der Mieter | male renter | noun | die Mieter | 6 | Eine Wohnung suchen |
+| der Quadratmeter | square meter (m²) | noun | die Quadratmeter | 6 | Eine Wohnung suchen; abbreviated qm |
+| der Rand | edge, border | noun | die Ränder | 6 | Eine Wohnung suchen |
+| der Stadtteil | district, neighborhood | noun | die Stadtteile | 6 | Eine Wohnung suchen |
+| der Strom | electricity, current; river | noun | die Ströme | 6 | Eine Wohnung suchen |
+| der Vermieter | landlord | noun | die Vermieter | 6 | Eine Wohnung suchen |
+| das Ausland | foreign countries | noun |  | 6 | Eine Wohnung suchen; no plural given; im Ausland = abroad |
+| das Schloss | palace, castle | noun | die Schlösser | 6 | Eine Wohnung suchen |
+| gemeinsam | in common, together | adjective/adverb |  | 6 | Eine Wohnung suchen |
+| hell | light, bright | adjective |  | 6 | Eine Wohnung suchen |
+| heutig | today's, present-day | adjective |  | 6 | Eine Wohnung suchen |
+| allerdings | however | adverb |  | 6 | Eine Wohnung suchen |
+| dabei | with it | adverb |  | 6 | Eine Wohnung suchen |
+| daher | therefore, from it | adverb |  | 6 | Eine Wohnung suchen |
+| darin | in it | adverb |  | 6 | Eine Wohnung suchen; also drin |
+| ob | whether | conjunction |  | 6 | Eine Wohnung suchen |
+| schade! | too bad | phrase |  | 6 | Eine Wohnung suchen |
+| wegen | on account of, about | preposition |  | 6 | Eine Wohnung suchen; + gen. |
+| ablehnen | to refuse, reject | verb | lehnt ... ab | 6 | Haushalt; separable |
+| abschließen | to lock | verb | schließt ... ab | 6 | Haushalt; separable |
+| abtrocknen | to dry off | verb | trocknet ... ab | 6 | Haushalt; separable |
+| aufnehmen | to receive, admit; record | verb | nimmt ... auf | 6 | Haushalt; separable |
+| aufsetzen | to put on | verb | setzt ... auf | 6 | Haushalt; separable |
+| aufwachsen | to grow up | verb | wächst ... auf | 6 | Haushalt; separable; Perfekt with sein |
+| auswählen | to select, choose | verb | wählt ... aus | 6 | Haushalt; separable |
+| berichten | to report | verb |  | 6 | Haushalt |
+| einrichten | to set up, furnish | verb | richtet ... ein | 6 | Haushalt; separable |
+| einschalten | to switch on | verb | schaltet ... ein | 6 | Haushalt; separable |
+| erleben | to experience | verb |  | 6 | Haushalt |
+| trocknen | to dry | verb |  | 6 | Haushalt |
+| wegbringen | to take away | verb | bringt ... weg | 6 | Haushalt; separable |
+| wischen | to mop | verb |  | 6 | Haushalt |
+| zurückkommen | to return | verb | kommt ... zurück | 6 | Haushalt; separable; Perfekt with sein |
+| die Botschaft | message | noun | die Botschaften | 6 | Haushalt |
+| die Flucht | flight, escape | noun | die Fluchten | 6 | Haushalt |
+| die Käuferin | female buyer, customer | noun | die Käuferinnen | 6 | Haushalt |
+| die Reihe | series, range, row | noun | die Reihen | 6 | Haushalt |
+| die Silbe | syllable | noun | die Silben | 6 | Haushalt |
+| die Sprecherin | female speaker | noun | die Sprecherinnen | 6 | Haushalt |
+| die Tätigkeit | activity | noun | die Tätigkeiten | 6 | Haushalt |
+| die Wählerin | female voter, constituent | noun | die Wählerinnen | 6 | Haushalt |
+| der Anfang | beginning | noun | die Anfänge | 6 | Haushalt |
+| der Ausdruck | expression | noun | die Ausdrücke | 6 | Haushalt |
+| der Haushalt | household, housekeeping; budget | noun | die Haushalte | 6 | Haushalt |
+| der Käufer | male buyer, customer | noun | die Käufer | 6 | Haushalt |
+| der Knochen | bone | noun | die Knochen | 6 | Haushalt |
+| der Müll | trash, garbage | noun |  | 6 | Haushalt; no plural given |
+| der Schlüssel | key | noun | die Schlüssel | 6 | Haushalt |
+| der Sprecher | male speaker | noun | die Sprecher | 6 | Haushalt |
+| der Staub | dust | noun |  | 6 | Haushalt; no plural given; Staub saugen = to vacuum |
+| der Teller | plate | noun | die Teller | 6 | Haushalt |
+| der Wähler | male voter, constituent | noun | die Wähler | 6 | Haushalt |
+| das Ereignis | event | noun | die Ereignisse | 6 | Haushalt |
+| angenehm | pleasant | adjective |  | 6 | Haushalt |
+| ehemalig | former | adjective |  | 6 | Haushalt |
+| derselbe, dieselbe, dasselbe | the same | pronoun |  | 6 | Haushalt |
+| ebenfalls | also, likewise | adverb |  | 6 | Haushalt |

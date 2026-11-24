@@ -430,3 +430,74 @@ die Öfen;;Die Öfen in der Bäckerei sind sehr heiß.;;The ovens in the bakery 
 die Sekretäre;;Die Sekretäre arbeiten im ersten Stock.;;The secretaries work on the first floor.
 die Wünsche;;Hast du besondere Wünsche zum Geburtstag?;;Do you have any special birthday wishes?
 die Gläser;;Die Gläser stehen im Schrank.;;The glasses are in the cupboard.
+die Badewannen;;Die Badewannen in diesem Hotel sind sehr groß.;;The bathtubs in this hotel are very big.
+die Duschen;;Die Duschen im Studentenwohnheim sind auf dem Flur.;;The showers in the dorm are in the hallway.
+die Erfahrungen;;Wir haben gute Erfahrungen mit dem Vermieter gemacht.;;We have had good experiences with the landlord.
+die Hälften;;Schneide den Apfel in zwei Hälften.;;Cut the apple into two halves.
+die Heimaten;;Viele Menschen haben heute zwei Heimaten.;;Many people today have two homelands.
+die Mieten;;Die Mieten in München sind sehr hoch.;;The rents in Munich are very high.
+die Terrassen;;Alle Wohnungen im Erdgeschoss haben Terrassen.;;All the apartments on the ground floor have patios.
+die Toiletten;;Die Toiletten sind im Keller.;;The restrooms are in the basement.
+die Treppen;;In alten Häusern sind die Treppen oft eng.;;In old houses the stairways are often narrow.
+die Absätze;;Der Text hat vier Absätze.;;The text has four paragraphs.
+die Balkone;;Die Balkone gehen alle zum Garten.;;The balconies all face the garden.
+die Schlüsse;;Welche Schlüsse ziehst du aus der Studie?;;What conclusions do you draw from the study?
+die Spiegel;;Im Flur hängen zwei große Spiegel.;;Two large mirrors hang in the hallway.
+die Stockwerke;;Das Gebäude hat zehn Stockwerke.;;The building has ten stories.
+die Vorhänge;;Die Vorhänge im Schlafzimmer sind blau.;;The curtains in the bedroom are blue.
+die Bäder;;Das Haus hat zwei Bäder.;;The house has two bathrooms.
+die Dächer;;Die Dächer in der Altstadt sind rot.;;The roofs in the old town are red.
+die Gebäude;;Die Gebäude in der Altstadt sind sehr alt.;;The buildings in the old town are very old.
+die Grundstücke;;Die Grundstücke am See sind teuer.;;The properties by the lake are expensive.
+die Schlafzimmer;;Die Wohnung hat drei Schlafzimmer.;;The apartment has three bedrooms.
+die Sofas;;Die Sofas in diesem Laden sind bequem.;;The sofas in this store are comfortable.
+die Wohnzimmer;;Die Wohnzimmer in Neubauten sind oft groß.;;The living rooms in new buildings are often big.
+die Faktoren;;Viele Faktoren bestimmen die Miete.;;Many factors determine the rent.
+die Flughäfen;;Berlin hatte früher drei Flughäfen.;;Berlin used to have three airports.
+die Kindergärten;;Die Kindergärten in der Stadt sind voll.;;The preschools in the city are full.
+die Läden;;Am Sonntag sind die Läden geschlossen.;;On Sunday the shops are closed.
+die Zustände;;Die Zustände im alten Gefängnis waren schlimm.;;The conditions in the old prison were terrible.
+die Gefängnisse;;Die Gefängnisse in diesem Land sind modern.;;The prisons in this country are modern.
+die Gymnasien;;In unserer Stadt gibt es drei Gymnasien.;;There are three college preparatory schools in our town.
+die Merkmale;;Welche Merkmale hat eine gute Wohnung?;;What features does a good apartment have?
+die Apotheken;;Am Sonntag sind die meisten Apotheken zu.;;On Sunday most pharmacies are closed.
+die Ecken;;Das Zimmer hat vier Ecken.;;The room has four corners.
+die Entwicklungen;;Es gibt neue Entwicklungen in der Stadtplanung.;;There are new developments in urban planning.
+die Leistungen;;Ihre Leistungen in der Schule sind sehr gut.;;Her performance in school is very good.
+die Bedeutungen;;Dieses Wort hat zwei Bedeutungen.;;This word has two meanings.
+die Geburten;;Die Zahl der Geburten steigt wieder.;;The number of births is rising again.
+die Hütten;;In den Bergen gibt es viele Hütten.;;There are many cabins in the mountains.
+die Innenstädte;;Die Innenstädte sind am Wochenende voll.;;The downtowns are full on the weekend.
+die Mauern;;Die Mauern des Schlosses sind sehr dick.;;The walls of the castle are very thick.
+die Mieterinnen;;Die Mieterinnen treffen sich im Hof.;;The renters meet in the courtyard.
+die Stufen;;Zu unserer Wohnung sind es nur drei Stufen.;;It is only three steps up to our apartment.
+die Veränderungen;;In unserem Stadtteil gibt es viele Veränderungen.;;There are many changes in our neighborhood.
+die Vermieterinnen;;Die Vermieterinnen wohnen beide im Erdgeschoss.;;The landladies both live on the ground floor.
+die Villen;;An diesem See stehen viele alte Villen.;;Many old mansions stand by this lake.
+die Blicke;;Alle Blicke gingen zur Tür.;;All eyes turned to the door.
+die Gärten;;Hinter den Häusern liegen kleine Gärten.;;Behind the houses are small gardens.
+die Mieter;;Die Mieter haben einen Brief vom Vermieter bekommen.;;The renters got a letter from the landlord.
+die Quadratmeter;;Wie viele Quadratmeter hat die Wohnung?;;How many square meters is the apartment?
+die Ränder;;Die Ränder der Seite sind zu schmal.;;The margins of the page are too narrow.
+die Stadtteile;;Die Stadtteile im Norden sind ruhig.;;The districts in the north are quiet.
+die Ströme;;Viele Ströme fließen in die Nordsee.;;Many rivers flow into the North Sea.
+die Vermieter;;Manche Vermieter wollen keine Haustiere.;;Some landlords don't want pets.
+die Schlösser;;In Bayern gibt es viele Schlösser.;;There are many castles in Bavaria.
+die Botschaften;;Ich habe zwei Botschaften auf meinem Handy.;;I have two messages on my cell phone.
+die Fluchten;;Der Film erzählt von zwei Fluchten über die Berge.;;The film tells of two escapes over the mountains.
+die Käuferinnen;;Die Käuferinnen sehen sich das Haus an.;;The buyers are looking at the house.
+die Reihen;;Die vorderen Reihen sind schon voll.;;The front rows are already full.
+die Silben;;Wie viele Silben hat das Wort?;;How many syllables does the word have?
+die Sprecherinnen;;Die Sprecherinnen im Radio sprechen sehr deutlich.;;The speakers on the radio speak very clearly.
+die Tätigkeiten;;Zu meinen Tätigkeiten gehört auch das Putzen.;;Cleaning is also one of my activities.
+die Wählerinnen;;Die Wählerinnen warten vor dem Wahllokal.;;The voters are waiting outside the polling station.
+die Anfänge;;Die Anfänge der Stadt liegen im Mittelalter.;;The beginnings of the city go back to the Middle Ages.
+die Ausdrücke;;Diese Ausdrücke sind sehr umgangssprachlich.;;These expressions are very colloquial.
+die Haushalte;;Fast alle Haushalte haben heute Internet.;;Almost all households have internet today.
+die Käufer;;Die Käufer zahlen den Preis sofort.;;The buyers pay the price right away.
+die Knochen;;Der Mensch hat über zweihundert Knochen.;;Humans have over two hundred bones.
+die Schlüssel;;Wo sind meine Schlüssel?;;Where are my keys?
+die Sprecher;;Die Sprecher der Parteien diskutieren im Fernsehen.;;The party spokesmen debate on TV.
+die Teller;;Die Teller stehen schon auf dem Tisch.;;The plates are already on the table.
+die Wähler;;Die Wähler haben gestern entschieden.;;The voters decided yesterday.
+die Ereignisse;;Die Zeitung berichtet über die Ereignisse der Woche.;;The newspaper reports on the events of the week.

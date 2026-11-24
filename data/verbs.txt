@@ -215,3 +215,37 @@ sparen;;to save, put aside;;5;;;;haben;;gespart;;;;;;;;
 verlassen;;to leave, abandon;;5;;;;haben;;verlassen;;verlässt;;verlässt;;;;
 vorlesen;;to read (to someone);;5;;vor;;haben;;vorgelesen;;liest;;liest;;;;
 zurückkehren;;to return;;5;;zurück;;sein;;zurückgekehrt;;;;;;;;
+begegnen;;to meet;;6;;;;sein;;begegnet;;;;;;;;
+fehlen;;to be missing;;6;;;;haben;;gefehlt;;;;;;;;
+gefallen;;to be to one's liking; to please;;6;;;;haben;;gefallen;;gefällst;;gefällt;;;;
+gehören;;to belong to;;6;;;;haben;;gehört;;;;;;;;
+helfen;;to help;;6;;;;haben;;geholfen;;hilfst;;hilft;;;;
+kennzeichnen;;to characterize, label, mark;;6;;;;haben;;gekennzeichnet;;;;;;;;
+putzen;;to clean;;6;;;;haben;;geputzt;;;;;;;;
+schaden;;to be harmful to;;6;;;;haben;;geschadet;;;;;;;;
+schmecken;;to taste good to;;6;;;;haben;;geschmeckt;;;;;;;;
+wiederholen;;to repeat;;6;;;;haben;;wiederholt;;;;;;;;
+ergeben (sich);;to be produced, arise;;6;;;;haben;;ergeben;;ergibst;;ergibt;;;;2
+folgen;;to follow, come next;;6;;;;sein;;gefolgt;;;;;;;;
+schicken;;to send, forward;;6;;;;haben;;geschickt;;;;;;;;
+übernachten;;to stay overnight;;6;;;;haben;;übernachtet;;;;;;;;
+überwiegen;;to outweigh, predominate;;6;;;;haben;;überwogen;;;;;;;;2
+betreffen;;to concern, deal with;;6;;;;haben;;betroffen;;betriffst;;betrifft;;;;2
+mieten;;to rent;;6;;;;haben;;gemietet;;;;;;;;
+verändern;;to change;;6;;;;haben;;verändert;;;;;;verändere,veränderst,verändert,verändern,verändert,verändern;;
+vermieten;;to let, rent;;6;;;;haben;;vermietet;;;;;;;;
+ablehnen;;to refuse, reject;;6;;ab;;haben;;abgelehnt;;;;;;;;
+abschließen;;to lock;;6;;ab;;haben;;abgeschlossen;;;;;;;;
+abtrocknen;;to dry off;;6;;ab;;haben;;abgetrocknet;;;;;;;;
+aufnehmen;;to receive, admit; record;;6;;auf;;haben;;aufgenommen;;nimmst;;nimmt;;;;
+aufsetzen;;to put on;;6;;auf;;haben;;aufgesetzt;;;;;;;;
+aufwachsen;;to grow up;;6;;auf;;sein;;aufgewachsen;;wächst;;wächst;;;;
+auswählen;;to select, choose;;6;;aus;;haben;;ausgewählt;;;;;;;;
+berichten;;to report;;6;;;;haben;;berichtet;;;;;;;;
+einrichten;;to set up, furnish;;6;;ein;;haben;;eingerichtet;;;;;;;;
+einschalten;;to switch on;;6;;ein;;haben;;eingeschaltet;;;;;;;;
+erleben;;to experience;;6;;;;haben;;erlebt;;;;;;;;
+trocknen;;to dry;;6;;;;haben;;getrocknet;;;;;;;;
+wegbringen;;to take away;;6;;weg;;haben;;weggebracht;;;;;;;;
+wischen;;to mop;;6;;;;haben;;gewischt;;;;;;;;
+zurückkommen;;to return;;6;;zurück;;sein;;zurückgekommen;;;;;;;;
